@@ -45,6 +45,31 @@
   .legend .lv { color: #C9AFEF; } .legend .lb { color: #9CC2F0; } .legend .lg { color: #9FD8B4; } .legend .lo { color: #F0C24A; } .legend .lp { color: #E08AC4; }
   .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  /* the shape / spine */
+  .spine { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 20px 24px; margin: 0 0 22px; }
+  .spine .sl { font-size: 10.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; text-align: center; }
+  .spine-loop { background: rgba(232,179,58,0.09); border: 1px solid rgba(232,179,58,0.35); border-radius: 13px; padding: 16px 18px; }
+  .spine-loop .sc-k { font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .spine-loop .sc-t { font-family: var(--serif); font-size: 23px; font-weight: 600; color: #fff; line-height: 1.1; margin: 1px 0 5px; }
+  .spine-loop .sc-d { font-size: 12px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .spine-inst { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .spine-inst .si { background: rgba(20,16,31,0.4); border-radius: 9px; padding: 9px 12px; }
+  .spine-inst .si b { display: block; font-size: 12.5px; color: #fff; }
+  .spine-inst .si span { font-size: 10.5px; color: rgba(255,255,255,0.6); }
+  .spine-supports { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+  .spine-supports span { flex: 1 1 auto; min-width: 130px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 9px; padding: 8px 12px; font-size: 11.5px; color: rgba(255,255,255,0.75); }
+  .spine-supports b { color: #fff; font-weight: 700; }
+  .spine-windows { margin-top: 12px; font-size: 12.5px; color: rgba(255,255,255,0.82); text-align: center; font-style: italic; line-height: 1.55; }
+  .spine-windows a { color: var(--gold); font-weight: 700; text-decoration: none; font-style: normal; }
+  @media (max-width: 720px){ .spine-inst { grid-template-columns: 1fr; } }
+  /* routing */
+  .routes { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .route { display: block; background: var(--card); border-radius: 11px; padding: 13px 15px; text-decoration: none; box-shadow: 0 5px 16px rgba(0,0,0,0.22); border-top: 4px solid var(--gold-deep); }
+  .route:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0,0,0,0.3); }
+  .route b { display: block; font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--pv-ink); line-height: 1.1; }
+  .route span { display: block; font-size: 11px; color: var(--text-sec); line-height: 1.4; margin-top: 3px; }
+  @media (max-width: 880px){ .routes { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 520px){ .routes { grid-template-columns: 1fr; } }
 </style>
 <script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
 </head>
@@ -56,24 +81,45 @@
 </div>
 <div class="page">
   <div class="head">
-    <div class="head-eyebrow">Wayfinding · every door in the village</div>
+    <div class="head-eyebrow">Start here · the guide to the estate</div>
     <h1 class="head-title">The Village <em>Register</em></h1>
-    <p class="head-sub">The painting on the Drawbridge doors about half the village; the rest live behind hub pages. This register lists <strong>every place, one line each</strong>, so nothing needs hunting for. Grouped by what it is, alphabetical within each group.</p>
+    <p class="head-sub">This is the whole of PowerVox as a place you can walk: one estate, our own operating model, built with the method we sell and rendered as the village of Enfys. The site is both the model and the proof. This page is the map to it. <strong>Read the shape first, jump to what you need, or scan every door below.</strong></p>
   </div>
 
-  <p class="legend"><b class="lv">ecology</b> · the Loveheart TOM &nbsp;&nbsp; <b class="lb">chassis</b> · the PowerVox TOM &nbsp;&nbsp; <b class="lg">ware</b> · a product &nbsp;&nbsp; <b class="lo">meta</b> · registers &amp; tools &nbsp;&nbsp; <b class="lp">story</b> · Hearts &amp; Minds</p>
-
-  <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:18px 22px;margin:0 0 24px;">
-    <div style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#E8B33A;margin-bottom:10px;">How to read this estate · one page, one job</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.5;">
-      <div><strong style="color:#fff;">Sell it</strong> &rarr; <a href="the-front-door.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Front Door</a>, the pitch a prospect meets.</div>
-      <div><strong style="color:#fff;">Run it</strong> &rarr; <a href="the-cartographers-table.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Loop</a>, how an engagement is delivered.</div>
-      <div><strong style="color:#fff;">Price it</strong> &rarr; <a href="the-wares.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Wares</a>, what each product is and costs.</div>
-      <div><strong style="color:#fff;">What's always true</strong> &rarr; <a href="the-instrument.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Instrument</a>, the canon, the conditions schema, the combined map.</div>
-      <div><strong style="color:#fff;">Define the words</strong> &rarr; <a href="the-construct.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Construct</a>, the canonical language.</div>
-      <div><strong style="color:#fff;">The rule</strong> &rarr; when a definition changes, the Construct changes first, then everything cascades. Never the other way round.</div>
+  <div class="spine">
+    <div class="sl">The shape of it · one machine, several doors</div>
+    <div class="spine-loop">
+      <div class="sc-k">The engagement</div>
+      <div class="sc-t">The Loop</div>
+      <div class="sc-d">The method we run on a client: one organisation read across the five questions, why, what, when, how and who, with the corrections harvested as we go.</div>
+      <div class="spine-inst">
+        <div class="si"><b>Voice Quotient</b><span>measures the voice · six dimensions</span></div>
+        <div class="si"><b>the Conditions Taxonomy</b><span>maps the room · twelve dimensions</span></div>
+      </div>
     </div>
+    <div class="spine-supports">
+      <span><b>The Construct</b> · the language</span>
+      <span><b>The Observatory</b> · the evidence</span>
+      <span><b>The Wares</b> · what is sold</span>
+      <span><b>Enfys</b> · how it is felt</span>
+    </div>
+    <div class="spine-windows">Two windows look over all of it: <a href="the-front-door.html">the Front Door</a>, the sell as a prospect meets it, and <a href="the-instrument.html">the Instrument</a>, the same machine shown as it is built.</div>
   </div>
+
+  <div class="sec-h">Start with what you want to do</div>
+  <div class="routes">
+    <a class="route" href="the-front-door.html"><b>Sell it</b><span>the Front Door, the pitch a prospect meets</span></a>
+    <a class="route" href="the-instrument.html"><b>See how it's built</b><span>the Instrument, the fixed method core</span></a>
+    <a class="route" href="the-cartographers-table.html"><b>Run an engagement</b><span>the Loop, how delivery actually goes</span></a>
+    <a class="route" href="the-wares.html"><b>Price the products</b><span>the Wares, what each is and costs</span></a>
+    <a class="route" href="the-construct.html"><b>Learn the language</b><span>the Construct, the canonical words</span></a>
+    <a class="route" href="the-observatory.html"><b>Check it's true</b><span>the Observatory, the evidence standard</span></a>
+    <a class="route" href="the-villagers.html"><b>See who it's for</b><span>the Villagers, a face per product</span></a>
+    <a class="route" href="the-noticeboard.html"><b>See what's open</b><span>the Noticeboard, every live question</span></a>
+  </div>
+
+  <div class="sec-h">Every door, one line each</div>
+  <p class="legend"><b class="lv">ecology</b> · the Loveheart TOM &nbsp;&nbsp; <b class="lb">chassis</b> · the PowerVox TOM &nbsp;&nbsp; <b class="lg">ware</b> · a product &nbsp;&nbsp; <b class="lo">meta</b> · registers &amp; tools &nbsp;&nbsp; <b class="lp">story</b> · Hearts &amp; Minds</p>
 
   <div class="sec-h">The five questions</div>
   <div class="reg">
@@ -84,7 +130,7 @@
     <a class="rg cha" href="the-gather.html"><span class="rn">The Gather <em>how · chassis</em></span><span class="rd">Seven workstreams as multi-actor swimlanes; the operating floor, with the standing rhythm above it.</span></a>
   </div>
 
-  <div class="sec-h">The engines &amp; registers · chassis</div>
+  <div class="sec-h">The method, the proof and the engines</div>
   <div class="reg">
     <a class="rg cha" href="the-burrows.html"><span class="rn">The Burrows</span><span class="rd">The systems register: nine subsystems with designs, owners and statuses.</span></a>
     <a class="rg cha" href="the-deep-vault.html"><span class="rn">The Deep Vault</span><span class="rd">The consent, IP and data architecture; two data classes; the launch gate, drafted for external review.</span></a>
@@ -113,7 +159,7 @@
     <a class="rg ware" href="the-villagers.html"><span class="rn">The Villagers ⚑</span><span class="rd">The five client personas, one per ware: who each product is for, in one face each.</span></a>
   </div>
 
-  <div class="sec-h">Hearts &amp; Minds · the story layer</div>
+  <div class="sec-h">The story · how the model is felt</div>
   <div class="reg">
     <a class="rg story" href="seren.html"><span class="rn">Seren</span><span class="rd">The origin word: star, light, noticing.</span></a>
     <a class="rg story" href="the-cast.html"><span class="rn">The Cast of Enfys</span><span class="rd">Will, Ada, Ceri and Seren: the model with a human face, and the Hum beneath it.</span></a>
@@ -121,7 +167,7 @@
     <a class="rg story" href="loveheart-book.html"><span class="rn">The Loveheart Book</span><span class="rd">Ruby's picture book, where it all began.</span></a>
   </div>
 
-  <div class="sec-h">Meta · the boards</div>
+  <div class="sec-h">The boards · ways to read the whole</div>
   <div class="reg">
     <a class="rg meta" href="index.html"><span class="rn">The Drawbridge</span><span class="rd">The gate and the painting: every marked place a door.</span></a>
     <a class="rg meta" href="the-front-door.html"><span class="rn">The Front Door</span><span class="rd">The public product page: the two-rooms hook, the blank instrument beside one room mapped, the offerings and the readiness gate. The sales artefact.</span></a>
