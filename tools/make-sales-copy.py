@@ -38,7 +38,6 @@ EXCLUDE = {
     "the-burrows.html":          "the systems register is keeper business",
     "the-records-room.html":     "the position papers are keeper business",
     "pp-01.html":                "the position papers are keeper business",
-    "the-instrument.html":       "the full method core is shown in person, not left in a copy",
     "the-register.html":         "the full internal index summarises every page, including the held-back ones",
     "keeper-rachel.html":        "the keeper pages are personal",
     "keeper-scott.html":         "the keeper pages are personal",
@@ -71,8 +70,17 @@ def main():
     site = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.dirname(here)
     out  = os.path.abspath(sys.argv[2]) if len(sys.argv) > 2 else os.path.join(os.path.dirname(site), "Enfys Sales Copy")
     pwd  = sys.argv[3] if len(sys.argv) > 3 else "Croeso2026"
-    if os.path.isdir(out): shutil.rmtree(out)
-    os.makedirs(out)
+    # Clear previous output but PRESERVE a .git (and .gitattributes) if the
+    # output folder is itself a published repo, so regenerating never destroys
+    # the repository or its history.
+    if os.path.isdir(out):
+        for item in os.listdir(out):
+            if item in (".git", ".gitattributes"):
+                continue
+            p = os.path.join(out, item)
+            shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
+    else:
+        os.makedirs(out)
     manifest = ["# Enfys sales copy — strip-pass manifest\n",
                 f"Generated from: {site}\n", "## Excluded (replaced with holding pages)\n"]
     pages = sorted(f for f in os.listdir(site) if f.endswith(".html") and not f.startswith("_"))
@@ -90,6 +98,11 @@ def main():
             n = len(POUND.findall(s))
             s = POUND.sub("£ —", s)
         s = s.replace("Rainbow2026", pwd)
+        if f == "the-front-door.html":
+            # the "Walk our operating model" button is the internal door OUT to
+            # this public site; on the public copy it is circular, so strip it.
+            s = re.sub(r"\n[ \t]*<!--[^\n]*-->", "", s)  # drop any leftover build comment
+            s = re.sub(r'\n[ \t]*<a\b[^>]*>Walk our operating model.*?</a>', "", s, flags=re.S)
         open(dst, "w", encoding="utf-8").write(s)
         if n: redactions.append(f"- {f} — {n} pound amount(s) redacted")
     manifest.append("\n## Redactions in kept pages\n")
