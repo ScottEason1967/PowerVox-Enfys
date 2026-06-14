@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Village Year · When</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0; --ql-how: #9FD8B4;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page-hero { max-width: 1120px; margin: 18px auto 0; overflow: hidden; position: relative; border-radius: 16px; box-shadow: 0 22px 60px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.12); }
+  .page-hero img { width: 100%; height: auto; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.10) 0%, rgba(20,16,31,0) 40%, rgba(22,17,35,0.85) 100%); pointer-events:none; }
+  .page-hero figcaption { position: absolute; left:0; right:0; bottom: 18px; text-align:center; font-family: var(--serif); font-style: italic; font-size: 18px; color: rgba(255,255,255,0.94); padding: 0 24px; text-shadow: 0 2px 14px rgba(0,0,0,0.85); z-index:4; }
+  .loop-overlay { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; }
+  .lo-hits a { pointer-events: all; cursor: pointer; }
+  .lo-hits circle { fill: #fff; opacity: 0; transition: opacity 0.2s ease; }
+  .lo-hits a:hover circle { opacity: 0.16; }
+  .loop-overlay .lo-ring-i { animation: spinI 48s linear infinite; transform-origin: 688px 290px; transform-box: view-box; }
+  .loop-overlay .lo-ring-o { animation: spinO 150s linear infinite; transform-origin: 688px 290px; transform-box: view-box; }
+  @keyframes spinI { to { transform: rotate(360deg); } }
+  @keyframes spinO { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .loop-overlay .lo-ring-i, .loop-overlay .lo-ring-o { animation: none; } }
+  .page-hero figcaption strong { color: var(--gold); font-weight: 600; }
+  .page { max-width: 1020px; margin: 0 auto; padding: 30px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; color: var(--ql-when); }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .thesis { font-family: var(--serif); font-style: italic; text-align: center; font-size: 21px; color: #fff; line-height: 1.55; margin: 18px auto 26px; max-width: 760px; }
+  .thesis strong { color: var(--ql-when); font-style: normal; font-weight: 600; }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 8px 0 16px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet)); }
+  /* two loops */
+  .loops { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 22px; }
+  .loop-card { background: var(--card); border-radius: 16px; padding: 22px 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); border-top: 6px solid var(--lc); }
+  .loop-card .ln { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--lc); margin-bottom: 3px; }
+  .loop-card h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .loop-card p { font-size: 12.5px; color: var(--text-sec); line-height: 1.65; }
+  .loop-card p strong { color: var(--pv-ink); }
+  .loop-card .pv { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-lt); font-size: 12px; color: var(--text-sec); }
+  .loop-card .pv strong { color: var(--lc); }
+  .loop-inner { --lc: var(--green); }
+  .loop-outer { --lc: var(--blue); }
+  /* dominance */
+  .dom { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 22px 26px; margin: 0 0 22px; }
+  .dom-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .dom-q { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--ql-when); margin-bottom: 14px; }
+  .dom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .dom-col { background: rgba(0,0,0,0.18); border-radius: 12px; padding: 14px 16px; }
+  .dom-col .dh { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 5px; }
+  .dom-col.di .dh { color: #9FD8B4; }
+  .dom-col.do .dh { color: #9CC2F0; }
+  .dom-col p { font-size: 11.5px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .dom-note { margin-top: 14px; font-size: 11.5px; color: rgba(255,255,255,0.70); line-height: 1.6; font-style: italic; }
+  .dom-note strong { color: var(--ql-when); font-style: normal; }
+  .prose { background: var(--card); border-radius: 16px; padding: 22px 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 22px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--ql-when); }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 16px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+  .cal { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 6px; }
+  .cal .c { background: rgba(47,122,77,0.10); border: 1px solid rgba(47,122,77,0.30); border-radius: 10px; padding: 10px 8px; text-align: center; }
+  .cal .c .ct { font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--green); }
+  .cal .c .cd { font-size: 11px; color: var(--text-sec); margin-top: 3px; line-height: 1.4; }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .loops, .dom-row, .cal { grid-template-columns: 1fr; } .page { padding: 24px 18px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Village Year</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">When</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<figure class="page-hero">
+  <img src="images/oaktree.png" alt="The great oak in all four seasons at once, the two nested loops turning at its heart">
+  <svg class="loop-overlay" viewBox="0 0 1376 768" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs>
+      <radialGradient id="vyscrim" gradientUnits="userSpaceOnUse" cx="688" cy="290" r="330">
+        <stop offset="0" stop-color="#14101F" stop-opacity="0.70"/>
+        <stop offset="0.55" stop-color="#14101F" stop-opacity="0.40"/>
+        <stop offset="1" stop-color="#14101F" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="vygrin" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#9FE9BE"/><stop offset="1" stop-color="#2F7A4D"/>
+      </linearGradient>
+      <linearGradient id="vygrout" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#A6CCF6"/><stop offset="1" stop-color="#2F5E9E"/>
+      </linearGradient>
+      <filter id="vytsh" x="-30%" y="-60%" width="160%" height="220%"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.95"/></filter>
+      <filter id="vyglow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+    </defs>
+
+    <rect x="0" y="0" width="1376" height="768" fill="url(#vyscrim)"/>
+
+    <!-- soft halos (static) -->
+    <circle cx="688" cy="290" r="240" fill="none" stroke="#2F5E9E" stroke-width="14" opacity="0.22" filter="url(#vyglow)"/>
+    <circle cx="688" cy="290" r="110" fill="none" stroke="#2F7A4D" stroke-width="13" opacity="0.28" filter="url(#vyglow)"/>
+
+    <!-- OUTER renewal ring (slow turn) -->
+    <g class="lo-ring-o">
+      <circle cx="688" cy="290" r="240" fill="none" stroke="url(#vygrout)" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="3 21" opacity="0.95"/>
+    </g>
+    <!-- INNER cadence ring (fast turn) -->
+    <g class="lo-ring-i">
+      <circle cx="688" cy="290" r="110" fill="none" stroke="url(#vygrin)" stroke-width="4.4" stroke-linecap="round" stroke-dasharray="11 15" opacity="0.98"/>
+      <path d="M 688 168 l 10 -15 l 10 15 z" fill="#9FE9BE"/>
+    </g>
+
+    <!-- centre -->
+    <g font-family="'Cormorant Garamond', Georgia, serif" text-anchor="middle" fill="#FFD66B" filter="url(#vytsh)">
+      <text x="688" y="286" font-size="26" font-style="italic" font-weight="600">the year</text>
+      <text x="688" y="316" font-size="26" font-style="italic" font-weight="600">turns</text>
+    </g>
+
+    <!-- inner stations (the doing) -->
+    <g filter="url(#vytsh)">
+      <circle cx="688" cy="400" r="13" fill="#2F7A4D" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="593" cy="235" r="13" fill="#2F7A4D" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="783" cy="235" r="13" fill="#2F7A4D" stroke="#fff" stroke-width="1.4"/>
+    </g>
+    <g font-family="'Segoe UI', sans-serif" fill="#fff" filter="url(#vytsh)">
+      <text x="688" y="428" text-anchor="middle" font-size="18" font-weight="700">Plant</text>
+      <text x="688" y="442" text-anchor="middle" font-size="11" font-weight="600" fill="#CFEBD9">spring · the cohort begins</text>
+      <text x="566" y="231" text-anchor="end" font-size="18" font-weight="700">Tend</text>
+      <text x="566" y="246" text-anchor="end" font-size="11" font-weight="600" fill="#CFEBD9">summer · the Greenhouse</text>
+      <text x="806" y="233" text-anchor="start" font-size="18" font-weight="700">Next cohort</text>
+      <text x="806" y="248" text-anchor="start" font-size="11" font-weight="600" fill="#CFEBD9">autumn · plant again</text>
+    </g>
+
+    <!-- outer stations (the improving) -->
+    <g filter="url(#vytsh)">
+      <circle cx="688" cy="50" r="14" fill="#2F5E9E" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="896" cy="410" r="14" fill="#2F5E9E" stroke="#fff" stroke-width="1.4"/>
+      <circle cx="480" cy="410" r="14" fill="#2F5E9E" stroke="#fff" stroke-width="1.4"/>
+    </g>
+    <g font-family="'Segoe UI', sans-serif" fill="#fff" filter="url(#vytsh)">
+      <text x="688" y="31" text-anchor="middle" font-size="18" font-weight="700">Measure</text>
+      <text x="896" y="442" text-anchor="middle" font-size="18" font-weight="700">Learn</text>
+      <text x="480" y="442" text-anchor="middle" font-size="18" font-weight="700">Adapt</text>
+    </g>
+
+    <!-- ring identities -->
+    <g font-family="'Segoe UI', sans-serif" text-anchor="middle" filter="url(#vytsh)">
+      <text x="688" y="232" font-size="11" font-weight="800" letter-spacing="2" fill="#9FE9BE">INNER · THE CADENCE</text>
+      <text x="470" y="96" font-size="11" font-weight="800" letter-spacing="2" fill="#A6CCF6">OUTER · THE RENEWAL</text>
+    </g>
+    <!-- clickable hotspots over each station -->
+    <g class="lo-hits">
+      <a href="the-gather.html?p=rtg"><title>Plant — Root to Grow (the cohort begins)</title><circle cx="688" cy="400" r="24"/></a>
+      <a href="the-gather.html?p=gh"><title>Tend — the Greenhouse</title><circle cx="593" cy="235" r="24"/></a>
+      <a href="the-gather.html"><title>Next cohort — the Gather (run the cycle again)</title><circle cx="783" cy="235" r="24"/></a>
+      <a href="the-observatory.html"><title>Measure — the Observatory (the evidence)</title><circle cx="688" cy="50" r="24"/></a>
+      <a href="the-construct.html"><title>Learn — the Construct (what the evidence sharpens)</title><circle cx="896" cy="410" r="24"/></a>
+      <a href="the-cartographers-table.html"><title>Adapt — the Loop (the model improves)</title><circle cx="480" cy="410" r="24"/></a>
+    </g>
+  </svg>
+  <figcaption>Two nested loops turn at the heart of the year — the <strong>fast green cadence of doing</strong> inside the <strong>slow blue loop of improving.</strong></figcaption>
+</figure>
+<div class="page">
+  <div class="head">
+    <div class="head-q">WHEN</div>
+    <h1 class="head-title">The Village <em>Year</em></h1>
+    <p class="head-sub">Not a timeline, and not the stages — those are the work, and the work lives at the Gather. WHEN is the <strong>rhythm by which the village runs and renews itself</strong>: two nested loops, the cadence of doing inside the loop of improving.</p>
+  </div>
+
+  <p class="thesis">Every operating model has both loops. <strong>One is always louder than the other — and which one is set by where the business wins or loses.</strong></p>
+
+  <div class="sec-h">The two loops, in words</div>
+  <div class="loops">
+    <div class="loop-card loop-inner">
+      <div class="ln">The inner loop · the cadence</div>
+      <h3>The rhythm of doing</h3>
+      <p>The repeating beat of the work itself — the season that comes round and round. Its <strong>shape is the business</strong>: cohorts here, matters in a law firm, cases in a clinic, contracting rounds for an orchestrator. This is the loop you can feel; the one with a calendar.</p>
+      <div class="pv"><strong>In PowerVox, this is the loud one.</strong> The products are the rhythm: a Root to Grow cohort plants, the Greenhouse tends it month by month, the next cohort plants. The village year you can hear. (The re-measuring is not part of this rhythm — that belongs to the outer loop.)</div>
+    </div>
+    <div class="loop-card loop-outer">
+      <div class="ln">The outer loop · the renewal</div>
+      <h3>The loop of improving</h3>
+      <p>The slow turn by which the model gets better: <strong>measure → learn → adapt → measure again.</strong> What each cycle reveals feeds back and changes the next — the only part of WHEN the Gather does not already contain, and the reason the model is alive rather than fixed.</p>
+      <div class="pv"><strong>In PowerVox, this is the quiet one — for now.</strong> The beta's evidence sharpens the construct; client outcomes refine the method; the pattern library makes each engagement smarter. The ten-year play is this loop growing loud.</div>
+    </div>
+  </div>
+
+  <div class="dom">
+    <div class="dom-title">Which loop is louder — the diagnostic</div>
+    <div class="dom-q">"Does this business win or lose mainly on how well it runs the work, or on how well it adapts the whole thing?"</div>
+    <div class="dom-row">
+      <div class="dom-col di">
+        <div class="dh">Delivery-dominant → inner loop loud</div>
+        <p>Law firms, clinics, manufacturers, PowerVox's products. Get the cadence right and you win. The renewal loop matters but it's the quiet partner.</p>
+      </div>
+      <div class="dom-col do">
+        <div class="dh">Adaptation-dominant → outer loop loud</div>
+        <p>A market orchestrator (NHSE), a regulator, an R&amp;D body, a fund. The real work is steering and re-steering the system; running it day to day is almost the quiet partner.</p>
+      </div>
+    </div>
+    <p class="dom-note"><strong>Two honest caveats.</strong> Sometimes they are genuinely balanced — a scale-up running hard and pivoting at once; "both loud" is a legal answer and it signals a business under unusual strain. And dominance shifts over a life: PowerVox is delivery-dominant today, but its whole strategy is the outer loop waking up. The diagnostic is "where are you now", not a permanent label — which is exactly why re-running the model every couple of years earns its keep.</p>
+  </div>
+
+  <div class="prose">
+    <em class="lead">The inner loop, made concrete — PowerVox's calendar.</em>
+    <p style="margin:8px 0 10px;">The cadence encoded, so the rhythm is a working part of the model and not a hope. This is the Village Clock from the Burrows, read as a year.</p>
+    <div class="cal">
+      <div class="c"><div class="ct">Weekly</div><div class="cd">2 build days protected per leader</div></div>
+      <div class="c"><div class="ct">Monthly</div><div class="cd">Greenhouse rhythm · week-four cave</div></div>
+      <div class="c"><div class="ct">Per cohort</div><div class="cd">5 Root to Grow waves a year</div></div>
+      <div class="c"><div class="ct">Quarterly</div><div class="cd">Greenhouse re-measures</div></div>
+      <div class="c"><div class="ct">Annually</div><div class="cd">the cave-month · horizon review</div></div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <em class="lead">The outer loop, made concrete — PowerVox's renewal.</em>
+    <p style="margin-top:8px;">Each turn feeds the next: the <strong>beta</strong> measures leaders and the evidence sharpens the <strong>construct</strong>; the construct improves the <strong>wares</strong>; delivering the wares generates more evidence; and across engagements the <strong>pattern library</strong> compounds so the method itself gets better. Measure feeds shape — the village does not just repeat, it ripens. Held to <a href="the-observatory.html">the Observatory's</a> threshold, never moved on commercial grounds.</p>
+    <div class="links">
+      <a href="the-gather.html">The Gather · the stages the loops turn through (HOW)</a>
+      <a href="the-millwheel.html">The Millwheel · how customers and money flow in</a>
+      <a href="the-map-room.html">The Map Room · the decade these loops mature across</a>
+      <a href="the-observatory.html">The Observatory · the renewal held to evidence</a>
+      <a href="the-hourglass.html">The Hourglass · the days the rhythm has to carry</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Village Year · two nested loops</span>
+    <span><em>Proprietary &amp; confidential</em> · WHEN holds both loops; the business sets the volume</span>
+  </div>
+</div>
+</body>
+</html>

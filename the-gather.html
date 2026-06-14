@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gather · how the village runs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --gh: #1F5E40; --loop: #2F5E9E; --coach: #5B3A8C; --egg: #B8862E;
+    --c-rachel: #D98AA6; --c-scott: #9CC2F0; --c-hannah: #9FD8B4; --c-bd: #C9AFEF; --c-client: #F2A3B0; --c-op: #D9B864;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1280px; margin: 0 auto; padding: 36px 28px 40px; }
+  .head { text-align: center; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14px; color: rgba(255,255,255,0.86); line-height: 1.6; max-width: 900px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+
+  .cfg { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 16px 0 4px; }
+  .cfg-l { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.55); align-self: center; margin-right: 4px; }
+  .cfg button { font-size: 11.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.85); cursor: pointer; transition: all .18s ease; }
+  .cfg button:hover { border-color: rgba(255,255,255,0.6); }
+  .cfg button.active { background: var(--gold); color: var(--pv-ink); border-color: transparent; }
+  .cfg button[disabled] { opacity: 0.4; cursor: not-allowed; }
+
+  .streambar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 18px 0 6px; }
+  .sk { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.9); cursor: pointer; transition: all .18s ease; }
+  .sk:hover { border-color: rgba(255,255,255,0.55); }
+  .sk.active { background: rgba(255,255,255,0.13); border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+  .sk-num { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--gold); }
+  .sk-n { font-size: 12.5px; font-weight: 700; }
+  .sk-hint { text-align: center; font-size: 11.5px; color: rgba(255,255,255,0.55); margin: 6px 0 0; }
+
+  .rhythm { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: center; margin: 14px auto 0; padding: 10px 16px; max-width: 1100px; background: rgba(232,179,58,0.07); border: 1px dashed rgba(232,179,58,0.45); border-radius: 12px; }
+  .rhythm .rh-l { font-size: 9.5px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; color: var(--ql-why, #FFD66B); margin-right: 4px; }
+  .rhythm a { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.88); text-decoration: none; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.2); padding: 5px 11px; border-radius: 999px; }
+  .rhythm a:hover { border-color: var(--gold); color: #fff; }
+  .rhythm a span { color: rgba(255,255,255,0.55); font-weight: 600; }
+
+  .stream { display: none; margin-top: 18px; }
+  .stream.active { display: block; }
+  .stream-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; padding: 14px 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-left: 5px solid var(--gold); border-radius: 12px; }
+  .stream-head .sh-n { font-family: var(--serif); font-size: 26px; font-weight: 600; color: #fff; }
+  .stream-head .sh-p { font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.5; flex: 1; min-width: 200px; }
+  .stream-head .sh-l { font-size: 11.5px; font-weight: 700; color: var(--gold); text-decoration: none; white-space: nowrap; }
+  .stream-head .sh-l:hover { color: #FFD66B; }
+  .stream-head .sh-l::before { content: '↳ lives at '; color: rgba(255,255,255,0.5); font-weight: 600; }
+
+  .scrollwrap { overflow-x: auto; padding-bottom: 6px; }
+  .matrix { display: grid; grid-template-columns: 132px repeat(6, minmax(150px, 1fr)); gap: 7px; min-width: 1100px; }
+  .corner { background: rgba(20,16,31,0.4); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; }
+  .mh { padding: 8px 11px; border-radius: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-left: 4px solid var(--pcl); }
+  .mh .v { display: block; font-family: var(--serif); font-size: 15px; font-weight: 600; color: #fff; line-height: 1.15; }
+  .mh .p { display: block; margin-top: 3px; font-size: 8.5px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .mh.g1 { --pcl: var(--red); } .mh.g2 { --pcl: var(--orange); } .mh.g3 { --pcl: var(--yellow); } .mh.g4 { --pcl: var(--green); } .mh.g5 { --pcl: var(--blue); } .mh.g6 { --pcl: var(--violet); }
+
+  .arow { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.14); border-left: 4px solid var(--ac); }
+  .arow .af { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 700; font-size: 12px; color: #fff; background: var(--ac); border: 1.5px solid var(--ac); }
+  .arow .af.open { border-style: dashed; background: rgba(255,255,255,0.08); color: var(--ac); }
+  .arow .an { display: block; font-size: 12px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .arow .ar2 { display: block; margin-top: 2px; font-size: 8.5px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .cell { background: var(--card); border-radius: 8px; padding: 10px 11px; box-shadow: 0 5px 16px rgba(0,0,0,0.24); font-size: 11.5px; color: var(--text-sec); line-height: 1.45; border-left: 3px solid var(--cl, var(--blue)); transition: opacity .2s ease, filter .2s ease; }
+  .cell strong { color: var(--pv-ink); }
+  .cell a { color: var(--blue); font-weight: 700; text-decoration: none; }
+  .cell a:hover { text-decoration: underline; }
+  .cell.empty { background: transparent; box-shadow: none; border: 1px dashed rgba(255,255,255,0.13); border-left: 1px dashed rgba(255,255,255,0.13); }
+  .cell.dim { opacity: 0.2; filter: grayscale(0.5); }
+  .ptags { margin-top: 6px; display: flex; gap: 3px; flex-wrap: wrap; }
+  .ptag { font-size: 8px; font-weight: 800; padding: 1px 5px; border-radius: 4px; text-transform: uppercase; }
+  .ptag.rtg { background: #E5F1E9; color: var(--rtg); } .ptag.gh { background: #E0EFE6; color: var(--gh); } .ptag.loop { background: #E8F0FB; color: var(--loop); } .ptag.coach { background: #F0EAF8; color: var(--coach); }
+  .ptag.gate { background: rgba(168,41,59,0.12); color: var(--red); }
+  .flag { color: var(--gold-deep); font-weight: 800; }
+  .stub { padding: 30px; text-align: center; color: rgba(255,255,255,0.5); font-style: italic; font-size: 13px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 12px; }
+
+  .note { font-size: 12px; color: rgba(255,255,255,0.66); line-height: 1.6; margin: 24px 0 0; padding: 16px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; }
+  .note strong { color: #fff; } .note a { color: var(--gold); font-weight: 700; text-decoration: none; }
+  .foot { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.6); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 760px){ .head-title { font-size: 34px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Gather</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">how the village runs</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Gather</em></h1>
+    <p class="head-sub"><strong>How the village runs, day to day.</strong> Pick a workstream to see it as a swimlane: every keeper who acts in that stream, side by side, across the lifecycle stages. Filter by product to see who lights up where. The HOW, built to the Loop's own architecture and leaner than a large institution by design.</p>
+  </div>
+
+  <div class="cfg" id="cfg">
+    <span class="cfg-l">Product</span>
+    <button data-c="all" class="active">All</button>
+    <button data-c="rtg">Root to Grow</button>
+    <button data-c="gh">The Greenhouse</button>
+    <button data-c="loop">the Loop</button>
+    <button data-c="coach">Coaching</button>
+    <button data-c="egg" disabled title="The front door; its lifecycle is defined when the paid tier ships.">the Black Egg · to come</button>
+  </div>
+
+  <div class="streambar" id="streambar">
+    <button class="sk active" data-s="0" onclick="showStream(0)"><span class="sk-num">1</span><span class="sk-n">The Funnel</span></button>
+    <button class="sk" data-s="1" onclick="showStream(1)"><span class="sk-num">2</span><span class="sk-n">Onboarding</span></button>
+    <button class="sk" data-s="2" onclick="showStream(2)"><span class="sk-num">3</span><span class="sk-n">Delivery</span></button>
+    <button class="sk" data-s="3" onclick="showStream(3)"><span class="sk-num">4</span><span class="sk-n">Money</span></button>
+    <button class="sk" data-s="4" onclick="showStream(4)"><span class="sk-num">5</span><span class="sk-n">Evidence</span></button>
+    <button class="sk" data-s="5" onclick="showStream(5)"><span class="sk-num">6</span><span class="sk-n">Information Governance</span></button>
+    <button class="sk" data-s="6" onclick="showStream(6)"><span class="sk-num">7</span><span class="sk-n">Signal &amp; Category</span></button>
+  </div>
+  <p class="sk-hint">Seven streams of work. Pick one to see who does what within it.</p>
+
+  <div class="rhythm">
+    <span class="rh-l">The standing rhythm · runs across every stream</span>
+    <a href="the-burrows.html#sys-cadence">Weekly focus check <span>· two build days protected</span></a>
+    <a href="the-hourglass.html">The 2/4 cadence <span>· week four is the cave</span></a>
+    <a href="the-burrows.html#sys-qualification">The live pipeline <span>· warm, never cold</span></a>
+    <a href="the-burrows.html#sys-ledger">The money beat <span>· invoices, chase, product share monthly</span></a>
+    <a href="the-deep-vault.html">Governance &amp; IG <span>· standing, not per engagement</span></a>
+  </div>
+
+  <!-- STREAM 0 · THE FUNNEL -->
+  <section class="stream active" id="stream-0">
+    <div class="stream-head">
+      <span class="sh-n">The Funnel</span>
+      <span class="sh-p">Winning and qualifying the work, and converting it onward. The commercial engine seen as a stream rather than a wheel.</span>
+      <a class="sh-l" href="the-millwheel.html">the Millwheel</a>
+    </div>
+    <div class="scrollwrap">
+      <div class="matrix">
+        <div class="corner"></div>
+        <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div>
+        <div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div>
+        <div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div>
+        <div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div>
+        <div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div>
+        <div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+        <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the leader</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop coach">Arrives through the <strong>signal</strong>: a talk, a Substack piece, a Black Egg result that named the gap. Enquires, and meets the <a href="the-burrows.html#sys-qualification"><strong>routing rules</strong></a>: senior leader, can fund the fee, timing fits.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span><span class="ptag coach">Coach</span></div></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop">Renews or converts onward: Root to Grow into the Greenhouse at the <strong>week-five conversation</strong>, a pilot into a programme. The funnel's whole design is that the next step is already warm.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+
+        <div class="arow" style="--ac:var(--c-bd)"><span class="af open">BD</span><span><span class="an">BD seat</span><span class="ar2">open</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop">Owns <strong>qualified inbound</strong> and conversion targets, fed by warm pipeline, never cold hunting. Routes each enquiry by the <a href="the-burrows.html#sys-qualification"><strong>routing rules</strong></a> and hands Rachel only the conversations worth her days. Held by Rachel until filled. <span class="flag">⚑</span> interim<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+        <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop">Clean commercial <strong>handover</strong> into delivery: what was sold, on what promise, at what price, recorded once and passed whole to <a href="the-burrows.html#sys-onboarding"><strong>the Welcome bench</strong></a>. Delivery never re-discovers the deal. <span class="flag">⚑</span></div>
+        <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop"><strong>Stays out of the room.</strong> Conversion never bleeds into delivery; the consent moment is never an upsell moment. <span class="flag">⚑</span></div>
+        <div class="cell" style="--cl:var(--green)" data-p="rtg gh loop">Keeps <strong>warm relationships</strong> alive between engagements; the pipeline stays live so renewal is a continuation, not a re-sell. <span class="flag">⚑</span></div>
+        <div class="cell" style="--cl:var(--blue)" data-p="loop">Turns cleared evidence into the <strong><a href="the-enterprise.html">enterprise / CPO conversation</a></strong> as Horizon 3 nears; the Deep Vault travels with the pitch as the trust story. <span class="flag">⚑</span><div class="ptags"><span class="ptag loop">Loop</span></div></div>
+        <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop"><strong>Owns conversion</strong>: pilot to programme, cohort to membership, with pilot-to-programme held at or above one in two. The revenue bridge made smooth. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+
+        <div class="arow" style="--ac:var(--c-rachel)"><img class="af" src="images/rachel.png" alt="Rachel"><span><span class="an">Rachel</span><span class="ar2">founder</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop coach">Meets only <strong>warm, qualified conversations</strong>. Says yes to fit, no to a sixth bespoke; every yes answers <a href="the-hourglass.html"><strong>the Hourglass question</strong></a> first: whose days does this take? <span class="flag">⚑</span> rule proposed. Organisational sponsors for cohorts enter here too. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span><span class="ptag coach">Coach</span></div></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell" style="--cl:var(--violet)" data-p="rtg gh">Carries the <strong>conversion conversations</strong> while the BD seat is empty. <span class="flag">⚑</span> interim<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+
+        <div class="arow" style="--ac:var(--c-scott)"><img class="af" src="images/scott1.png" alt="Scott"><span><span class="an">Scott</span><span class="ar2">operating model</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop coach">Builds and runs the <a href="the-burrows.html#sys-qualification"><strong>qualification machinery</strong></a>; holds the capacity gate against <a href="the-hourglass.html"><strong>the Hourglass</strong></a>. <strong>"Not yet" is a defined power.</strong></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop">The qualification funnel as <a href="the-burrows.html#sys-ledger"><strong>pipeline</strong></a>; renewal mechanics underneath; the monthly product-share view steering the substitution arc.</div>
+
+        <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop">The <strong>substance gate</strong>: does this serve a real commitment, or start something before the last thing is finished? Paired with Scott's capacity gate; both must open before Rachel's time is spent.</div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+
+        <div class="arow" style="--ac:var(--c-op)"><span class="af open">VA</span><span><span class="an">The Operator</span><span class="ar2">platform · VA ⚑</span></span></div>
+        <div class="cell" style="--cl:var(--red)" data-p="rtg gh">Runs the intake plumbing: the <strong>Kajabi form as the single point of entry</strong>, enquiries routed by the rules without founder hands. <span class="flag">⚑</span> actor placement to confirm<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+        <div class="cell" style="--cl:var(--orange)" data-p="rtg gh">Checkout, access and sequences configured so a yes becomes a scheduled, paying client without a founder touching it. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell empty"></div>
+        <div class="cell" style="--cl:var(--violet)" data-p="gh">Renewal and chase sequences run on the platform, junior-operated; founders see the <a href="the-burrows.html#sys-ledger"><strong>monthly view</strong></a>, not the plumbing. <span class="flag">⚑</span><div class="ptags"><span class="ptag gh">GH</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stream" id="stream-1"><div class="stream-head"><span class="sh-n">Onboarding</span><span class="sh-p">From yes to ready: contracting, consent kick-off, scheduling, access. The NHS onboards a supplier; we onboard the client.</span><a class="sh-l" href="the-burrows.html#sys-onboarding">the Welcome bench</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the leader</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop coach">Signs, contracts and <strong>consents</strong>, the consent moment kept separate from any payment or upgrade; each consent layer granted one at a time, each independently withdrawable. Scheduled in.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span><span class="ptag coach">Coach</span></div></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop">Arrives ready: access granted, materials in hand, nothing chased on the day.</div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-rachel)"><img class="af" src="images/rachel.png" alt="Rachel"><span><span class="an">Rachel</span><span class="ar2">founder</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg loop">Founder presence at kick-off where the relationship needs it. On the Loop, arranges the discovery call with <strong>every voice informed and consented to recording before it starts</strong>.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-scott)"><img class="af" src="images/scott1.png" alt="Scott"><span><span class="an">Scott</span><span class="ar2">operating model</span></span></div>
+      <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop">Contract issued on the yes; terms per product, owned in-house, two commercial solicitors on the team. On the Loop, the <strong>pattern-contribution clause</strong> travels with the contract. <span class="flag">⚑</span> clause drafting with the reviewer<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop"><a href="the-burrows.html#sys-onboarding"><strong>Onboarding end to end</strong></a>: scheduling, materials, access, the same way every time; the brief lands with delivery whole, before session one.</div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop">Everything in place before session one; the cohort runbook handed to the room. <span class="flag">⚑</span> runbook designed, confirm and implement</div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg">Baseline diagnostics at entry: the <strong>VQ Assessment and the Black Egg side by side, two instruments, not one</strong>; the companion questionnaire attached to every baseline, no exceptions.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-op)"><span class="af open">VA</span><span><span class="an">The Operator</span><span class="ar2">platform · VA ⚑</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh">Kajabi sequences send the welcome, the participant information and the consent capture in the right order, configured under the IG rules; nothing manual to forget. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+    </div></div>
+  </section>
+
+  <section class="stream" id="stream-2"><div class="stream-head"><span class="sh-n">Delivery</span><span class="sh-p">Running the work: cohorts, the membership, the engagement, the coaching. Where the change happens.</span><a class="sh-l" href="the-burrows.html#sys-delivery">the delivery systems</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the leader</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop coach"><strong>Does the work</strong>: the six-week cohort, the monthly membership rhythm, the engagement workshops, the coaching room.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span><span class="ptag coach">Coach</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh">Practises between sessions with the <strong>anchors</strong> set at the close; re-takes the diagnostic quarterly in the Greenhouse; stays in the rhythm rather than drifting.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-rachel)"><img class="af" src="images/rachel.png" alt="Rachel"><span><span class="an">Rachel</span><span class="ar2">founder</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop"><strong>Delivers Root to Grow live with Hannah</strong>, cohorts of 10–12; leads the Greenhouse rhythm; runs the <a href="the-burrows.html#sys-elicitation"><strong>Loop elicitation</strong></a> workshops live while the engine is still tacit. <span class="flag">⚑</span> externalising it is the unlock<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh coach"><strong>Anchors set at the close</strong> travel home with every leader. Premium coaching on the White Sofa, capped, every relationship routing back to the diagnostic.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag coach">Coach</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop"><strong>Co-delivers Root to Grow live with Rachel</strong>; the methodology identical in every room, version-controlled; delivery support and assurance on the Loop.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh">The <strong>behaviour-evidence approach</strong> live across cohorts: proof of change, not satisfaction scores. What the Tending produces is the Harvest's raw material.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-scott)"><img class="af" src="images/scott1.png" alt="Scott"><span><span class="an">Scott</span><span class="ar2">operating model</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop"><a href="the-burrows.html#sys-delivery"><strong>Delivery systems</strong></a> beneath every engagement: the runbook, the workbenches, the session logistics. On the Loop, the architecture itself. <span class="flag">⚑</span> designed, confirm and implement<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh"><a href="the-burrows.html#sys-tending"><strong>Follow-up workflows</strong></a>; the <strong>visible/cave cadence</strong> protected operationally, the Village Clock enforcing what <a href="the-hourglass.html">the Hourglass</a> counts.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+    </div></div>
+  </section>
+
+  <section class="stream" id="stream-3"><div class="stream-head"><span class="sh-n">Money</span><span class="sh-p">Invoicing, collection, renewal, pricing. The product share of revenue moving upward.</span><a class="sh-l" href="the-wares.html">the Wares ledger</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the leader</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop">Pays: <strong>&pound;1,495</strong> up front for Root to Grow, ~&pound;125 a month from cohort-end for the Greenhouse, ~&pound;30k on contract for the Loop.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="gh">Renews monthly; the membership <strong>run-rate</strong> (~&pound;52.5k exiting year one) compounds into next year. <span class="flag">⚑</span> the retention assumption is watched on the Wares<div class="ptags"><span class="ptag gh">GH</span></div></div>
+
+      <div class="arow" style="--ac:var(--c-scott)"><img class="af" src="images/scott1.png" alt="Scott"><span><span class="an">Scott</span><span class="ar2">operating model</span></span></div>
+      <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop">Budget signal captured at intake; "can fund the fee" is a <a href="the-burrows.html#sys-qualification"><strong>routing rule</strong></a>, so no price conversation reaches Rachel unqualified.</div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg loop">Invoice raised on signature per the product's schedule; payment confirmed before access opens. <span class="flag">⚑</span> assumption, to confirm<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop"><a href="the-burrows.html#sys-ledger"><strong>Invoicing and collections</strong></a> on the chase ladder; renewal mechanics; the monthly product-share view steering the substitution arc: roughly <strong>twenty stable members buys back one bespoke engagement</strong>.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+
+      <div class="arow" style="--ac:var(--c-bd)"><span class="af open">BD</span><span><span class="an">BD seat</span><span class="ar2">open</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop">Owns conversion as the <strong>revenue bridge</strong>: pilot to programme, Root to Grow to Greenhouse, held at or above one in two on pilots. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+
+      <div class="arow" style="--ac:var(--c-op)"><span class="af open">VA</span><span><span class="an">The Operator</span><span class="ar2">platform · VA ⚑</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh">Checkout and payment plans run on the platform; failed payments retried and chased by sequence, not by founders. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="gh">Renewal billing runs automatically on the <a href="the-burrows.html#sys-ledger"><strong>chase ladder</strong></a>, junior-operated. <span class="flag">⚑</span><div class="ptags"><span class="ptag gh">GH</span></div></div>
+    </div></div>
+  </section>
+
+  <section class="stream" id="stream-4"><div class="stream-head"><span class="sh-n">Evidence &amp; assurance</span><span class="sh-p">The beta as a by-product of revenue: baselines, the threshold, impact, the longitudinal cohort.</span><a class="sh-l" href="the-observatory.html">the Observatory</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the leader</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg">Baseline taken at entry, the start of their own line; the <strong>companion questionnaire</strong> attached to every baseline.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--green)" data-p="gh">Re-measured quarterly in the Greenhouse: the held cohort whose change-over-time is the dataset almost nobody else has.<div class="ptags"><span class="ptag gh">GH</span></div></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg gh">Sees their change in the evidence and <strong>becomes the proof</strong>: the case study (its own separate consent), the referral.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg"><strong>Falsification criteria locked</strong> before the first beta invitation; the critic line is hers, adjusted only on evidence, never on commercial pressure.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh">Methodology version-controlled in every room; drift in the instrument is drift in the evidence.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="gh">Runs the quarterly re-measure cycle; ~35 members re-measured by year-end turns snapshots into a longitudinal line.<div class="ptags"><span class="ptag gh">GH</span></div></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg gh"><a href="the-burrows.html#sys-evidence"><strong>The evidence threshold</strong></a>: n=20 hygiene, n=60 mid-beta, the cave-month analysis against pre-set criteria, α ≥ 0.70 per dimension, ρ ≥ 0.25 on the outcome link.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop"><strong>Impact reporting</strong> that feeds the buyer conversation; a claim powers a commercial application only once it has cleared its threshold; six to ten real anonymised case studies replace the composites. <span class="flag">⚑</span></div>
+
+      <div class="arow" style="--ac:var(--c-scott)"><img class="af" src="images/scott1.png" alt="Scott"><span><span class="an">Scott</span><span class="ar2">operating model</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg">Research use captured as its own consent layer before any baseline lands in the dataset; no consent, no row.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg loop">The <strong>data plumbing</strong> under consent: pseudonymised within 30 days, identifiers split from responses; the dataset usable and clean when the academic partner enters.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div>
+    </div></div>
+  </section>
+
+  <section class="stream" id="stream-5"><div class="stream-head"><span class="sh-n">Information Governance</span><span class="sh-p">Consent, IP and data, owned in-house with external review. The launch gate before any beta invitation.</span><a class="sh-l" href="the-deep-vault.html">the Deep Vault</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:#E8B33A"><span class="af">IG</span><span><span class="an">Scott · IG</span><span class="ar2">consent · ip · data</span></span></div>
+      <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop"><strong>Consent posture set at intake</strong>; the lawful basis settled before a conversation is booked. Article 9 is the binding constraint on a cautious reading; consent-led is the drafter's route, legitimate-interests held open. <span class="flag">⚑</span> with the reviewer</div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop">The <a href="the-deep-vault.html"><strong>consent, IP and data architecture</strong></a>: layered consent, each layer separately granted and separately withdrawable, the consent moment never bundled with the commercial moment. External legal review is the <strong>launch gate</strong>; this lane runs as drafted, not yet as passed. <span class="flag">⚑</span><div class="ptags"><span class="ptag gate">launch gate</span></div></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg loop">Data captured only under consent, against the <strong>Data Protection Inventory</strong>; two classes in one regime: class A the beta participants, class B the engagement-derived pattern data. Processor map <span class="flag">⚑</span> pending tooling choices.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh">Ongoing consent management between sessions; <strong>withdrawal honoured prospectively</strong>, data already in analysis retained pseudonymised, the standard research carve-out. <span class="flag">⚑</span> carve-out wording with the reviewer</div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg loop"><strong>Pseudonymisation within 30 days</strong> of capture, identifiers split from responses; debrief audio deleted within 90 days, the transcript is the value, the recording the risk. The academic partner inherits clean evidence, not a liability.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="rtg gh loop"><strong>Retention and deletion to the schedule</strong> <span class="flag">⚑</span> proposed pending review: consent records programme plus six years, the pseudonymised research set ten years, class-B patterns indefinite once anonymised to the ICO standard.</div>
+
+      <div class="arow" style="--ac:var(--c-rachel)"><img class="af" src="images/rachel.png" alt="Rachel"><span><span class="an">Rachel</span><span class="ar2">class B DP lead</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="loop">Every voice on a Loop discovery call <strong>informed and consented to recording before it starts</strong>; the engagement privacy notice issued.<div class="ptags"><span class="ptag loop">Loop</span></div></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="loop">Discovery captured; <strong>client staff are the data subjects</strong>, the organisation is not.<div class="ptags"><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="loop">Patterns abstracted to <strong>organisation-unidentifiable form</strong>, tested against the ICO standard; sector papers from aggregates only. No class-B abstraction before the review confirms the standard.<div class="ptags"><span class="ptag loop">Loop</span><span class="ptag gate">gate</span></div></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="loop">Raw transcripts and client documents <strong>returned or destroyed per contract</strong> at close.<div class="ptags"><span class="ptag loop">Loop</span></div></div>
+
+      <div class="arow" style="--ac:var(--c-client)"><span class="af open">&#9677;</span><span><span class="an">The Client</span><span class="ar2">the data subject</span></span></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--orange)" data-p="rtg gh loop">Gives <strong>informed consent, separate from payment, layer by layer</strong>: participation, research use, recording, the free-text item, the mini-360, case studies, onward sharing.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--green)" data-p="rtg gh">Withdraws any layer at any time; honoured prospectively, with the analysis carve-out explained up front.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg gh">May consent to a case study, or not; <strong>specific consent governs its whole life</strong>, reviewed at three years.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg">Recorded debriefs and the optional mini-360 only with <strong>explicit, separate consent</strong>; the third-party respondent has their own consent route.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg">The cave-month analysis runs on the <strong>pseudonymised set</strong>; the analysis never needs names.<div class="ptags"><span class="ptag rtg">RtG</span></div></div>
+      <div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-op)"><span class="af open">VA</span><span><span class="an">The Operator</span><span class="ar2">platform · VA ⚑</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh">The capture tooling (assessment platform, storage, transcription) configured under this architecture; <strong>processors not yet selected</strong>, data-processing agreements before anything runs. <span class="flag">⚑</span><div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span></div></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+    </div></div>
+  </section>
+
+  <section class="stream" id="stream-6"><div class="stream-head"><span class="sh-n">Signal &amp; Category</span><span class="sh-p">The founder signal that draws people in, and the category being built. The river and the smoke on the wheel.</span><a class="sh-l" href="the-millwheel.html">the Millwheel · river &amp; smoke</a></div>
+    <div class="scrollwrap"><div class="matrix">
+      <div class="corner"></div>
+      <div class="mh g1"><span class="v">The Gate</span><span class="p">Qualification</span></div><div class="mh g2"><span class="v">The Welcome</span><span class="p">Onboarding</span></div><div class="mh g3"><span class="v">The Work</span><span class="p">Delivery</span></div><div class="mh g4"><span class="v">The Tending</span><span class="p">Follow-up</span></div><div class="mh g5"><span class="v">The Harvest</span><span class="p">Evidence</span></div><div class="mh g6"><span class="v">The Ledger</span><span class="p">Renewal</span></div>
+
+      <div class="arow" style="--ac:var(--c-rachel)"><img class="af" src="images/rachel.png" alt="Rachel"><span><span class="an">Rachel</span><span class="ar2">founder</span></span></div>
+      <div class="cell" style="--cl:var(--red)" data-p="rtg gh loop coach">The <strong>signal</strong> that draws people to the gate: content, speaking, the story; sixty-three pieces across seven angles in the content bank. The river, <a href="the-millwheel.html">Recognition</a>.</div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg gh loop">Turns outcomes into <strong>story and signal</strong>; the Harvest feeds Recognition, swelling the river that drives the wheel.<div class="ptags"><span class="ptag rtg">RtG</span><span class="ptag gh">GH</span><span class="ptag loop">Loop</span></div></div>
+      <div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-hannah)"><span class="af">H</span><span><span class="an">Hannah</span><span class="ar2">methodology</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--yellow)" data-p="rtg gh loop">Holds the room's language to the <a href="the-construct.html"><strong>Construct</strong></a>: the sacred nouns identical in every mouth. The day two keepers define Signal differently in front of a buyer is the day the category blurs.</div>
+      <div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--blue)" data-p="rtg gh loop">The <strong>evidence</strong> that makes the category claim believable rather than asserted; no public claim outruns its cleared threshold.</div>
+      <div class="cell empty"></div>
+
+      <div class="arow" style="--ac:var(--c-bd)"><span class="af open">BD</span><span><span class="an">BD seat</span><span class="ar2">open</span></span></div>
+      <div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div><div class="cell empty"></div>
+      <div class="cell" style="--cl:var(--violet)" data-p="loop">Turns evidence into the <strong>enterprise / CPO conversation</strong>; the category becomes next year's recognition, the smoke drifting back to the river. <span class="flag">⚑</span><div class="ptags"><span class="ptag loop">Loop</span></div></div>
+    </div></div>
+  </section>
+
+  <div class="note"><strong>What this page is.</strong> The PowerVox operating floor in working draft, built to the Loop's workstream architecture: pick a stream, see every keeper in it at once. Cells marked <span class="flag">⚑</span> are the Cartographer's proposals; they await keeper confirmation. The Operator lane (the platform and the VA) and Rachel's class-B lane are additions from this depth pass, both <span class="flag">⚑ to confirm</span>. Empty cells are honest, not unfinished: that keeper has no part in that stage of that stream. Underlined systems open <a href="the-burrows.html">the Burrows</a>; the standing rhythm above the streams carries the beats that belong to no single engagement; the client lane's five faces live at <a href="the-villagers.html">the Villagers</a> ⚑.</div>
+  <div class="foot">
+    <span>Enfys · The Gather · how the village runs</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+<script>
+  function showStream(n){
+    document.querySelectorAll('.stream').forEach(function(s){ s.classList.remove('active'); });
+    var st = document.getElementById('stream-'+n); if (st) st.classList.add('active');
+    document.querySelectorAll('.sk').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-s')==String(n)); });
+  }
+  function setConfig(c){
+    document.querySelectorAll('#cfg button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-c')==c); });
+    document.querySelectorAll('.cell').forEach(function(cell){
+      var p = cell.getAttribute('data-p');
+      if (c==='all' || !p) { cell.classList.remove('dim'); return; }
+      cell.classList.toggle('dim', p.indexOf(c)===-1);
+    });
+  }
+  document.querySelectorAll('#cfg button').forEach(function(b){ if(!b.disabled) b.addEventListener('click', function(){ setConfig(b.getAttribute('data-c')); }); });
+  // arrive with a product pre-lit: the-gather.html?p=rtg|gh|loop|coach ("tom" maps to "loop" for older links)
+  (function(){
+    var map = { rtg:'rtg', gh:'gh', loop:'loop', coach:'coach', tom:'loop' };
+    var p = new URLSearchParams(window.location.search).get('p');
+    if (p && map[p]) {
+      var btn = document.querySelector('#cfg button[data-c="' + map[p] + '"]');
+      if (btn && !btn.disabled) setConfig(map[p]);
+    }
+  })();
+</script>
+</body>
+</html>

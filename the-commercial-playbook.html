@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Commercial Playbook · Enfys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+
+  /* category tabs */
+  .pb-tabs { position: sticky; top: 54px; z-index: 150; background: rgba(20,16,31,0.95); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 30px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .pb-tab { font-size: 14px; font-weight: 800; letter-spacing: 0.5px; padding: 11px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.85); cursor: pointer; transition: all .16s ease; }
+  .pb-tab:hover { border-color: rgba(255,255,255,0.6); }
+  .pb-tab.on { background: var(--gold); color: var(--pv-ink); border-color: transparent; }
+  .pb-tab.ref { color: var(--ql-when); }
+  .pb-tab.ref.on { background: var(--blue); color: #fff; }
+
+  /* play buttons row */
+  .pb-plays { background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.10); padding: 11px 30px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .pb-play { display: none; align-items: baseline; gap: 7px; font-size: 11.5px; font-weight: 700; padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); border-left: 3px solid var(--gc, var(--blue)); background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.88); cursor: pointer; text-align: left; transition: all .16s ease; }
+  .pb-play.show { display: inline-flex; }
+  .pb-play:hover { background: rgba(255,255,255,0.10); }
+  .pb-play.on { background: #FFF6D9; color: var(--pv-ink); border-color: transparent; border-left-color: var(--gc); }
+  .pb-play .pn { font-size: 9px; font-weight: 800; letter-spacing: 0.5px; color: var(--ql-why); }
+  .pb-play.on .pn { color: var(--gold-deep); }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 30px 30px 40px; }
+
+  /* home */
+  .home-hero { text-align: center; padding: 14px 0 8px; }
+  .home-eyebrow { display: inline-block; background: var(--gold-deep); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1.6px; padding: 5px 14px; border-radius: 4px; text-transform: uppercase; margin-bottom: 14px; }
+  .home-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .home-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .home-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto 6px; }
+  .home-sub strong { color: var(--gold); }
+  .north { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 22px 0 8px; }
+  .nstar { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 14px 16px; }
+  .nstar .nh { font-size: 11px; font-weight: 800; color: var(--ql-when); margin-bottom: 3px; }
+  .nstar p { font-size: 11.5px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+  .grp-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 16px; }
+  .gcard { background: var(--card); border-radius: 13px; padding: 16px 18px; box-shadow: 0 8px 26px rgba(0,0,0,0.3); border-top: 5px solid var(--gc); cursor: pointer; transition: transform .16s ease; }
+  .gcard:hover { transform: translateY(-2px); }
+  .gcard .gn { font-size: 9.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gc); }
+  .gcard h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--pv-ink); margin: 2px 0 5px; }
+  .gcard p { font-size: 11.5px; color: var(--text-sec); line-height: 1.5; }
+  .gcard .gcount { font-size: 10px; font-weight: 800; color: var(--text-muted); margin-top: 7px; }
+  @media (max-width: 760px){ .north, .grp-cards { grid-template-columns: 1fr; } }
+
+  /* play panels */
+  .play, .play-home { display: none; }
+  .play.on, .play-home.on { display: block; }
+  .play-head { border-bottom: 1px solid rgba(255,255,255,0.14); padding-bottom: 14px; margin-bottom: 16px; }
+  .play-kick { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ql-why); }
+  .play-title { font-family: var(--serif); font-size: 33px; font-weight: 600; color: #fff; line-height: 1.08; margin: 3px 0 7px; }
+  .play-title em { font-style: italic; color: var(--gold); }
+  .play-what { font-size: 13.5px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+  .play-phase { display:inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: rgba(47,94,158,0.3); color: var(--ql-when); border: 1px solid rgba(156,194,240,0.4); margin-left: 8px; vertical-align: middle; }
+
+  .ps { background: var(--card); border-radius: 13px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.28); margin-bottom: 12px; border-left: 5px solid var(--sc, var(--blue)); }
+  .ps-h { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 8px; }
+  .ps p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .ps p strong, .ps li strong { color: var(--pv-ink); }
+  .ps ul, .ps ol { margin: 4px 0 0 18px; font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .ps li { margin-bottom: 4px; }
+  .ps.rec { border-left-color: var(--green); background: #F6FBF7; }
+  .ps.rec .ps-h { color: var(--green); }
+  .ps.open { border-left-color: var(--gold-deep); background: var(--warm-cream); }
+  .chip { display:inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: 0.3px; padding: 2px 7px; border-radius: 5px; margin: 2px 3px 0 0; }
+  .chip.art { background: var(--green-pale); color: var(--green); }
+  .chip.sys { background: rgba(47,94,158,0.12); color: var(--blue); }
+  .chip.flag { background: rgba(91,58,140,0.10); color: var(--violet); font-style: italic; }
+
+  /* where we are today triage */
+  .today { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .tcol { border-radius: 11px; padding: 13px 15px; }
+  .tcol .th { font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 5px; }
+  .tcol p { font-size: 11.5px; line-height: 1.5; }
+  .tcol.work { background: rgba(47,122,77,0.12); border: 1px solid rgba(47,122,77,0.3); } .tcol.work .th { color: var(--green); } .tcol.work p { color: #2c5840; }
+  .tcol.build { background: rgba(47,94,158,0.10); border: 1px solid rgba(47,94,158,0.3); } .tcol.build .th { color: var(--blue); } .tcol.build p { color: #284a78; }
+  .tcol.block { background: rgba(168,41,59,0.10); border: 1px solid rgba(168,41,59,0.3); } .tcol.block .th { color: var(--red); } .tcol.block p { color: #7e2531; }
+  @media (max-width: 760px){ .today { grid-template-columns: 1fr; } }
+
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  .backhome { display:inline-block; margin-bottom: 14px; font-size: 11px; font-weight: 700; color: var(--ql-when); cursor: pointer; }
+  .backhome:hover { color: #fff; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-library.html">← The Library</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Commercial Playbook</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">PowerVox TOM · plays</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+
+<div class="pb-tabs" id="tabs">
+  <button class="pb-tab ref on" data-g="ref" onclick="showTab('ref')">Reference</button>
+  <button class="pb-tab" data-g="dir" onclick="showTab('dir')">Set the direction</button>
+  <button class="pb-tab" data-g="win" onclick="showTab('win')">Win the work</button>
+  <button class="pb-tab" data-g="money" onclick="showTab('money')">Run the money</button>
+  <button class="pb-tab" data-g="grow" onclick="showTab('grow')">Convert, grow &amp; reach</button>
+  <button class="pb-tab" data-g="stand" onclick="showTab('stand')">Standing disciplines</button>
+</div>
+<div class="pb-plays" id="pbPlays">
+  <button class="pb-play show on" data-g="ref" style="--gc:var(--blue)" onclick="showPlay('ref')"><span class="pn">Reference</span> About this playbook</button>
+  <button class="pb-play" data-g="dir" style="--gc:var(--red)" onclick="showPlay('p1')"><span class="pn">Play 1</span> Choose the commercial recipe</button>
+  <button class="pb-play" data-g="dir" style="--gc:var(--red)" onclick="showPlay('p2')"><span class="pn">Play 2</span> Run the substitution arc</button>
+  <button class="pb-play" data-g="dir" style="--gc:var(--red)" onclick="showPlay('p3')"><span class="pn">Play 3</span> Set pricing &amp; tiers</button>
+  <button class="pb-play" data-g="dir" style="--gc:var(--red)" onclick="showPlay('p4')"><span class="pn">Play 4</span> Settle the commercial scope</button>
+  <button class="pb-play" data-g="win" style="--gc:var(--orange)" onclick="showPlay('p5')"><span class="pn">Play 5</span> Qualify &amp; route a lead</button>
+  <button class="pb-play" data-g="win" style="--gc:var(--orange)" onclick="showPlay('p6')"><span class="pn">Play 6</span> Recruit sponsors &amp; convert inbound</button>
+  <button class="pb-play" data-g="win" style="--gc:var(--orange)" onclick="showPlay('p7')"><span class="pn">Play 7</span> Contract &amp; onboard</button>
+  <button class="pb-play" data-g="win" style="--gc:var(--orange)" onclick="showPlay('p8')"><span class="pn">Play 8</span> Ship the priority paid step</button>
+  <button class="pb-play" data-g="money" style="--gc:var(--green)" onclick="showPlay('p9')"><span class="pn">Play 9</span> Invoice &amp; collect</button>
+  <button class="pb-play" data-g="money" style="--gc:var(--green)" onclick="showPlay('p10')"><span class="pn">Play 10</span> Track the money</button>
+  <button class="pb-play" data-g="money" style="--gc:var(--green)" onclick="showPlay('p11')"><span class="pn">Play 11</span> Renew &amp; retain the Greenhouse</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p12')"><span class="pn">Play 12</span> Make the week-5 conversion</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p13')"><span class="pn">Play 13</span> Enrol the cohort mix &amp; re-measure</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p14')"><span class="pn">Play 14</span> Open direct Greenhouse membership</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p15')"><span class="pn">Play 15</span> Build the evidence &amp; credibility shelf</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p16')"><span class="pn">Play 16</span> Externalise the elicitation engine</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p17')"><span class="pn">Play 17</span> Feed the funnel</button>
+  <button class="pb-play" data-g="grow" style="--gc:var(--blue)" onclick="showPlay('p18')"><span class="pn">Play 18</span> Run the market experiments</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p19')"><span class="pn">Play 19</span> Cap the work</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p20')"><span class="pn">Play 20</span> Govern the gates</button>
+</div>
+
+<div class="wrap">
+  <!-- HOME -->
+  <section class="play-home on" id="home">
+    <div class="home-hero">
+      <div class="home-eyebrow">The Commercial Playbook · owner: Scott &amp; the open BD seat</div>
+      <h1 class="home-title">The Commercial <em>Playbook</em></h1>
+      <p class="home-sub">How PowerVox wins and runs the commercial work — recipe, pricing, qualifying, contracting, collecting, converting and the standing disciplines. Pick a group above, then a play. One metric governs the year: <strong>the PowerVox-product share of revenue, moving decisively up</strong>.</p>
+    </div>
+    <div class="north">
+      <div class="nstar"><div class="nh">Product share rising</div><p>~53% → 75% → 89% over three years. Bespoke traded out for the funnel, deliberately.</p></div>
+      <div class="nstar"><div class="nh">One clean ladder</div><p>One front door, one paid step, one core, one recurring engine, one premium pair.</p></div>
+      <div class="nstar"><div class="nh">Warm only</div><p>Only qualified, warm conversations reach Rachel's diary; energy is the binding constraint.</p></div>
+    </div>
+    <div class="grp-cards">
+      <div class="gcard" style="--gc:var(--blue)" onclick="showPlay('ref')"><div class="gn">Reference</div><h3>About this playbook</h3><p>The north stars, the guiding metric, the value ladder, the open decisions.</p><div class="gcount">1 entry</div></div>
+      <div class="gcard" style="--gc:var(--red)" onclick="showTab('dir')"><div class="gn">Set the direction</div><h3>The strategic calls</h3><p>Recipe, the substitution arc, pricing and tiers, and the scope decisions.</p><div class="gcount">4 plays</div></div>
+      <div class="gcard" style="--gc:var(--orange)" onclick="showTab('win')"><div class="gn">Win the work</div><h3>Qualify to contract</h3><p>Qualify and route, recruit sponsors, contract and onboard, ship the paid step.</p><div class="gcount">4 plays</div></div>
+      <div class="gcard" style="--gc:var(--green)" onclick="showTab('money')"><div class="gn">Run the money</div><h3>Money in, cleanly</h3><p>Invoice and collect, track the metric and run-rate, renew the Greenhouse.</p><div class="gcount">3 plays</div></div>
+      <div class="gcard" style="--gc:var(--blue)" onclick="showTab('grow')"><div class="gn">Convert, grow &amp; reach</div><h3>Grow the asset</h3><p>Conversion, the cohort mix, direct membership, the evidence shelf, the engine, the funnel and the experiments.</p><div class="gcount">7 plays</div></div>
+      <div class="gcard" style="--gc:var(--violet)" onclick="showTab('stand')"><div class="gn">Standing disciplines</div><h3>The rules that always apply</h3><p>Cap the work, and govern the gates.</p><div class="gcount">2 plays</div></div>
+    </div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section class="play" id="ref">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Reference</div><h1 class="play-title">About this <em>playbook</em></h1><p class="play-what">What the commercial playbook governs, the metric it serves, and the ladder it sells.</p></div>
+    <div class="ps"><div class="ps-h">The guiding metric</div><p>One number governs the year: <strong>the PowerVox-product share of revenue</strong>, moving from ~53% in Year 1 to ~75% in Year 2 to ~89% in Year 3. Everything here is in service of that arc — a deliberate substitution of founder-led bespoke for scalable product, computed monthly, not annually.</p></div>
+    <div class="ps"><div class="ps-h">The value ladder</div><p>One clean path: the <strong>Black Egg</strong> paid diagnostic (~£49–£99, the front door's paid step) → <strong>Root to Grow</strong> (£1,495, six-week cohort) → <strong>the Greenhouse</strong> (~£125/month recurring) → <strong>the TOM engagement / the Loop</strong> (~£30k, bespoke, capped and falling) → <strong>speaking &amp; coaching</strong> (premium, founder-led, capped). One front door, one paid step, one core, one recurring engine, one premium pair.</p></div>
+    <div class="ps"><div class="ps-h">North stars · what the plays deliver toward</div><ul><li><strong>For the buyer</strong> — a clear first step that proves value before a big commitment.</li><li><strong>For PowerVox</strong> — product share rising, founder energy protected, evidence and revenue on one path.</li><li><strong>For the category</strong> — claims that stay behind the evidence, so the wares are honest.</li></ul></div>
+    <div class="ps"><div class="ps-h">Where the How lives</div><p>This playbook is the manual — the commercial decisions, run play by play. How the work flows day to day is the operating model's How page, <a href="the-gather.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Gather</a>; the commercial subsystems (the Gate, the Welcome, the Ledger) sit in <a href="the-burrows.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Burrows</a>; the wares themselves are in <a href="the-wares.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Wares</a>.</p></div>
+    <div class="ps open"><div class="ps-h">The open commercial decisions</div><p>The Loop trade name · the TOM/Loop price (~£30k) and capacity cap (three vs six) · the SME value-ladder line in or out · the Loop artefact reframe · the single front door confirmation · the Greenhouse direct-entry trigger · the ~£50k enterprise price as a 2030 destination · the first associate facilitator · the per-ware invoice schedules. Each sits inside the play it belongs to.</p></div>
+  </section>
+
+  <!-- ===== GROUP: SET THE DIRECTION ===== -->
+  <section class="play" id="p1">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the direction · Play 1</div><h1 class="play-title">Choose the commercial <em>recipe</em></h1><p class="play-what">Route an opportunity to its commercial path — the ware that names which downstream plays run, and in what order.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A new enquiry or opportunity needs a route to market.</li><li>A new ware is being considered.</li><li>An existing line is re-evaluated and the route may shift.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · the five routes</div><ol>
+      <li><strong>The Black Egg</strong> — the paid entry diagnostic; the scalable inbound route.</li>
+      <li><strong>Root to Grow</strong> — the six-week cohort; the front of the funnel and the beta vehicle.</li>
+      <li><strong>The Greenhouse</strong> — recurring membership; the destination and the recurring engine.</li>
+      <li><strong>The TOM engagement (the Loop)</strong> — bespoke operating-model delivery; capped and falling.</li>
+      <li><strong>Speaking &amp; coaching</strong> — the premium pair; founder-led, every room routes back to the diagnostic.</li>
+      <li>An opportunity can mix routes, but name the primary — it sets the dominant downstream play set.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Route toward the funnel and the guiding metric — prefer the paths that grow product share. Take bespoke (TOM) only within the cap, and only where it feeds the second engine.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Which ware a given enquiry routes to is a judgement until the qualification criteria are set (Play 5).</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The five wares and the ladder are defined.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Explicit routing rules per ware (Play 5).</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p2">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the direction · Play 2</div><h1 class="play-title">Run the substitution <em>arc</em></h1><p class="play-what">Run the year so PowerVox-product share rises decisively, trading founder time out of bespoke and into the funnel.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Continuously; reviewed monthly and at annual planning.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Hold the guiding metric — product share % — visible <strong>monthly</strong>.</li>
+      <li>Protect founder time for product build, not bespoke drift.</li>
+      <li>Drop bespoke only as the funnel covers it (Play 19, cap-and-drop).</li>
+      <li>Each year, move the mix deliberately toward products (~53% → 75% → 89%).</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>It is a substitution, not an addition. Every bespoke engagement kept past its time slows the arc — the discipline is to let go as the product covers it.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material; the targets are set.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The metric and the three-year targets are defined.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The monthly metric view (Play 10).</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p3">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the direction · Play 3</div><h1 class="play-title">Set pricing &amp; <em>tiers</em></h1><p class="play-what">Hold one clean value ladder with set prices, and close the gap between free and the first big commitment.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Launching or repricing a ware.</li><li>Closing the free-to-£1,495 price gap.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · the ladder</div><ul>
+      <li><strong>Black Egg</strong> ~£49–£99 — the paid entry step; closes the free-to-£1,495 gap.</li>
+      <li><strong>Root to Grow</strong> £1,495 — six weeks.</li>
+      <li><strong>The Greenhouse</strong> ~£125/month — recurring, priced for longevity not volume.</li>
+      <li><strong>TOM engagement</strong> ~£30k — bespoke, capped.</li>
+      <li><strong>Speaking &amp; coaching</strong> — premium, founder-led, capped.</li>
+    </ul></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Ship the Black Egg paid tier first (Play 8) — it is the single highest-leverage price move on the board.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The TOM price ~£30k (the earlier £20k framing superseded unless reinstated). <span class="chip flag">⚑ at PP-05</span></li><li>The ~£50k enterprise diagnostic is a 2030 destination, not a price today.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The ladder prices are set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The Black Egg paid tier (Play 8).</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>TOM price confirmation.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p4">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the direction · Play 4</div><h1 class="play-title">Settle the commercial <em>scope</em></h1><p class="play-what">Settle the calls that frame everything — what's a PowerVox ware, what's a separate line, what's parked.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>At ratification of the standing positions.</li><li>When a new line or offer is proposed.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>The TOM/Loop is a <strong>PowerVox ware</strong> — contracts through PowerVox Ltd, IP in-house, revenue to the product-share metric; reframe its artefacts (landing page, domain) to the PowerVox shape.</li>
+      <li>Decide the <strong>SME value-ladder line</strong> (company-secretarial products) in or out.</li>
+      <li>Confirm the <strong>single front door</strong> — the Black Egg over Voice Mirror.</li>
+      <li>Hold <strong>parked offers</strong> out of this window — FairGround, the books, a second front door.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Protect focus. Each unaligned yes drains an aligned one — the parked list is a discipline, not a backlog.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The Loop trade name. <span class="chip flag">⚑ Rachel</span></li><li>The SME ladder in or out. <span class="chip flag">⚑ Rachel</span></li><li>The Loop artefact reframe; the front-door confirmation in marketing.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The Loop's home is settled in principle; the front door defaults to the Black Egg.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The Loop artefact reframe.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Trade name and SME ladder await Rachel.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: WIN THE WORK ===== -->
+  <section class="play" id="p5">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Win the work · Play 5</div><h1 class="play-title">Qualify &amp; route a <em>lead</em></h1><p class="play-what">Only warm, qualified conversations reach Rachel's diary; everyone else is routed kindly. The operational half of the funnel.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Every enquiry — from Substack, LinkedIn, a Black Egg result, a speaking room, or a referral.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>Capture the source at entry, always</strong> — it is the funnel's learning.</li>
+      <li>Qualify on role, seniority, budget signal and timing against per-product criteria.</li>
+      <li>Route to the right ware (Play 1's recipe).</li>
+      <li>Qualified → a capped weekly conversation slot on Rachel's diary.</li>
+      <li>Unqualified → Substack nurture, or the decline template, kindly.</li>
+      <li>Track on a five-stage pipeline board: New → Qualified → Conversation → Proposal → Won/Lost.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>The diary cap is the whole point — protect it. Source attribution at entry is non-negotiable; it is how the funnel learns what works.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Qualification criteria per ware to finalise; routing rules to confirm with the keepers.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The design exists in the Burrows (the Gate machinery).</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The criteria sheets and the pipeline board.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p6">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Win the work · Play 6</div><h1 class="play-title">Recruit sponsors &amp; convert <em>inbound</em></h1><p class="play-what">Bring the right organisations and inbound requests into the funnel rather than spawning new bespoke lines.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Building the cohort pipeline.</li><li>An inbound B2B or pilot request arrives.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Recruit the first sponsoring / anchor organisation; structure cohort one as beta wave one.</li>
+      <li>Convert pilots and B2B requests into programmes and cohorts, not a standalone line.</li>
+      <li>Top up the pool with a capped Substack call (alumni, warm network).</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Convert inbound into the funnel; don't let it spawn bespoke. A sponsored cohort triggers the IG sponsored-cohort play (voluntariness and no-detriment).</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The first associate facilitator — when to add delivery capacity (months 13–18). <span class="chip flag">⚑ thin</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The approach is set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The sponsor pipeline and the first anchor cohort.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p7">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Win the work · Play 7</div><h1 class="play-title">Contract &amp; <em>onboard</em></h1><p class="play-what">From "yes" to ready — contracted, scheduled, provisioned — the same way every time.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A deal is won.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Issue the per-ware contract (RtG cohort terms / Greenhouse membership terms / TOM statement of work), solicitor-drafted in-house.</li>
+      <li>Run the single onboarding checklist — same checklist, every engagement, no exceptions.</li>
+      <li>Keep the consent pack <strong>separate</strong> from the contract — the opt-in moment is never bundled with the commercial moment.</li>
+      <li>Provision access and schedule against the Village Clock before session one.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>One checklist, no exceptions; never bundle consent with the contract. Both founders are solicitors, so contracting stays in-house.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The per-ware invoice schedules are proposed (Play 9).</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>Consultancy contracting practice exists.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Three contract templates and the onboarding checklist.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p8">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Win the work · Play 8</div><h1 class="play-title">Ship the priority paid <em>step</em><span class="play-phase">priority one</span></h1><p class="play-what">Build and ship the Black Egg paid VQ tier — the highest-leverage single build on the board.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Now — it is priority one in the value ladder.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Ship the standalone paid diagnostic (~£49–£99) that unlocks the Voice Profile.</li>
+      <li>It does three jobs at once: closes the price gap, becomes the scalable inbound product, and is the evidence on-ramp into the beta.</li>
+      <li>Structure the next Root to Grow cohort as beta wave one alongside it.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>One build, three jobs (revenue, scale, evidence). Do it first — nothing else on the board returns as much.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The Black Egg spec contradiction (locked for handoff vs pressure-test) — resolve before engineering. <span class="chip flag">⚑</span></li><li>Tiers vs value-ladder naming to reconcile.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The Black Egg specification exists.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The paid tier itself.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>The spec contradiction; the beta wave is gated with the IG launch gate.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: RUN THE MONEY ===== -->
+  <section class="play" id="p9">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Run the money · Play 9</div><h1 class="play-title">Invoice &amp; <em>collect</em></h1><p class="play-what">Money in, cleanly, per ware — with a chase ladder that spares the friendships.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>On each engagement, per its schedule.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Invoice schedules per ware: RtG on enrolment · Greenhouse monthly, collected automatically · TOM in three instalments · speaking 50% on booking, 50% on delivery.</li>
+      <li>Terms: 14 days.</li>
+      <li>The chase ladder at 7, 14 and 21 days overdue — first chases automated and friendly; the 21-day chase is a keeper's phone call.</li>
+      <li>Spare the friendship by being impersonal early — many clients are also friends.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Automate the early chases so the system, not a keeper, does the awkward part; reserve the human call for the rare late one.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The per-ware invoice schedules are proposed, not yet confirmed. <span class="chip flag">⚑</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>Consultancy invoicing habits exist.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The schedules and chase ladder in a proper accounting package.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Schedules to confirm.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p10">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Run the money · Play 10</div><h1 class="play-title">Track the <em>money</em></h1><p class="play-what">Keep the revenue picture readable every month, so the substitution arc can be steered.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Monthly.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Compute the guiding metric — product share % — <strong>monthly</strong>, not annually.</li>
+      <li>Track the Greenhouse run-rate against the ~£52.5k exit target — the run-rate, not the in-year figure, is the asset.</li>
+      <li>Read actuals against the ~£225k worked year-one path.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Compute the metric monthly. Annual is too late to steer the substitution arc — by then the year is set.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The metric and the worked path are defined.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>A one-page monthly revenue view.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p11">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Run the money · Play 11</div><h1 class="play-title">Renew &amp; retain the <em>Greenhouse</em></h1><p class="play-what">Keep the recurring engine healthy — retention is the whole value of the recurring line.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Monthly; and at the annual membership review.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Watch retention monthly against the ~85% assumption.</li>
+      <li>Run the annual membership review cycle.</li>
+      <li>Protect the run-rate as the asset that buys back bespoke (Play 19).</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Retention is the recurring engine's entire value — watch it monthly, not at renewal time.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The ~85% retention assumption is set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The retention tracker.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: CONVERT, GROW & REACH ===== -->
+  <section class="play" id="p12">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 12</div><h1 class="play-title">Make the week-5 <em>conversion</em></h1><p class="play-what">Convert Root to Grow alumni into the Greenhouse while the room is still warm.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Week five of every cohort.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Make the Greenhouse invitation in week five, while the room is still warm.</li>
+      <li>Target ≥60% conversion of alumni.</li>
+      <li>The Tending rounds own the ask.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Ask while warm. The conversion collapses if it's left until after the room disperses — the timing is the play.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The ≥60% target and the week-5 timing are set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The automated week-5 trigger.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p13">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 13</div><h1 class="play-title">Enrol the cohort mix &amp; <em>re-measure</em></h1><p class="play-what">Enrol for the evidence the beta needs, and re-measure to build the longitudinal dataset. Every cohort is also a beta wave.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Each cohort intake; and quarterly for Greenhouse members.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Enrol deliberately for the cohort mix the beta needs — seniority, industry and gender spread.</li>
+      <li>Run the VQ Assessment and the Black Egg at baseline.</li>
+      <li>Re-measure Greenhouse members quarterly to turn a snapshot into change-over-time data.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Enrol for the dataset, not just the revenue — every pound of cohort fee also buys a row of beta evidence.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Consent and capture are governed by the IG playbook (the layered consent and the launch gate).</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The enrolment-for-mix design is set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The enrolment and re-measure schedule.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Capture is gated with the IG launch gate.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p14">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 14</div><h1 class="play-title">Open direct Greenhouse <em>membership</em></h1><p class="play-what">A second intake path — direct membership without completing a cohort first.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Year 2–3, opened on a trigger, not a date.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Define the trigger that opens direct entry.</li>
+      <li>Open direct membership alongside the cohort route once the trigger fires.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Hold until the trigger fires. Opening early dilutes the cohort funnel that feeds the Greenhouse in the first place.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The trigger is undefined. <span class="chip flag">⚑</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The intent is recorded.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Nothing yet — a Year 2–3 move.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>The trigger to define.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p15">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 15</div><h1 class="play-title">Build the evidence &amp; credibility <em>shelf</em></h1><p class="play-what">The proof that lets the wares be sold honestly — case studies, the proof sequence, and disclosure discipline.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>As engagements complete; before scaling any claim.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Replace composite case studies with 6–10 real, anonymised ones (specific consent).</li>
+      <li>Run the TOM proof sequence: PowerVox as rehearsal, a paid validation client, a zero-knowledge falsification client.</li>
+      <li>Govern credibility-artefact disclosure: the public-sector reference model anonymised; the PowerVox/Enfys model never shown to a prospect without Rachel's explicit consent.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Claims stay behind the evidence — the claims-ladder discipline (Play 20) governs what can actually be sold.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Real case studies to gather (consent-cleared); the reference-model anonymisation.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The proof approach is set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The case studies and the proof sequence.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Case studies need cleared consent.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p16">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 16</div><h1 class="play-title">Externalise the elicitation <em>engine</em></h1><p class="play-what">Turn the tacit TOM collateral into a repeatable, AI-supported product — the genuine scale unlock for the Loop.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Now — it is the single biggest blocker on the Loop.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Externalise the question sets, the sequence and the reading of the room.</li>
+      <li>Build the workshop-to-template population flow.</li>
+      <li>Prove it through the rehearsal / validation / falsification clients (Play 15).</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>This is Rachel's unlock and the real constraint — until the collateral is externalised, the Loop stays founder-dependent and cannot scale.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The collateral is tacit; externalising it is the open task. <span class="chip flag">⚑ Rachel</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>Base templates exist; the prior public-sector programme proves the output shape.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The externalised engine.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>On Rachel externalising the tacit collateral.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p17">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 17</div><h1 class="play-title">Feed the <em>funnel</em></h1><p class="play-what">Keep recognition flowing to the one free instrument — every channel points to the front door.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Continuously.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Run content as a funnel feeder — every piece seeds the sacred nouns and points to the Black Egg.</li>
+      <li>Route every speaking room back to the diagnostic.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>One destination. Every channel — content, speaking, referral — points to the single free instrument; don't scatter the call to action.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The content bank exists.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The publishing cadence.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p18">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Convert, grow &amp; reach · Play 18</div><h1 class="play-title">Run the market <em>experiments</em></h1><p class="play-what">Test the buyer, the price and the message before betting on them — measure leaning-in and money, never politeness.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Before scaling a proposition or a price.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>Buyer-language test</strong> — three fixed propositions, delivered flat, into CPO conversations; watch for leaning-in.</li>
+      <li><strong>Paid-willingness test</strong> — three real price points (~£5k / £15–25k / ~£50k) to three buyers.</li>
+      <li><strong>Pattern-resonance test</strong> — say the four compensation behaviours aloud; capture the verbatim "that's me".</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Measure behaviour and money, never politeness. The experiments earn the right to a price, rather than assuming one.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The ~£50k enterprise price is a 2030 destination the experiments must earn.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The three tests are designed.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Running them in live buyer conversations.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: STANDING DISCIPLINES ===== -->
+  <section class="play" id="p19">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 19</div><h1 class="play-title">Cap the <em>work</em></h1><p class="play-what">Protect capacity and energy as the binding constraint — the caps live in the calendar, not in memory.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Planning the calendar; and whenever a tempting yes appears.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>Finish-before-you-start gate</strong> — a new idea passes Hannah (substance) and Scott (capacity) before it takes Rachel's time.</li>
+      <li><strong>Encode the delivery caps in the calendar</strong> — single cohort track in H1, three TOM engagements in the year, capped speaking.</li>
+      <li><strong>Cap-and-drop bespoke</strong> — drop a bespoke engagement only as ~20 stable members (~£30k run-rate) cover it. Never on hope.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>The caps live in the calendar, not in memory. Bespoke is dropped as the membership scales, never dropped on hope and never kept past its time.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The TOM capacity cap — three engagements (vs the superseded six). <span class="chip flag">⚑ at PP-05</span></li><li>The first associate facilitator timing.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The 2/4 visible-cave model is agreed.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The caps encoded as calendar rules.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>The capacity cap to confirm.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p20">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 20</div><h1 class="play-title">Govern the <em>gates</em></h1><p class="play-what">The standing commercial gates and disclosures that keep the wares honest and the category defensible.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Always; and specifically before publishing, before the beta, and before choosing tooling.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>The consent / IP legal-review gate</strong> — external review must clear before the first beta invitation (run through the <a href="the-deep-vault-playbook.html" style="color:var(--blue);font-weight:700;text-decoration:none;">IG playbook</a>).</li>
+      <li><strong>Choose tooling under the gate</strong> — leave the assessment platform unchosen until the reviewer has seen the processor map.</li>
+      <li><strong>Govern the public claim</strong> — state only the link currently being tested; a claim may power a commercial application only once it has cleared its evidence threshold.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>The gates are features, not friction — they are what keep the wares honest and stop the category over-claiming before it has earned its evidence.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The external reviewer to appoint (IG playbook). <span class="chip flag">⚑ launch-blocking</span></li><li>The claims-ladder discipline is held by Hannah as independent critic.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The gates are defined.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Resolving the gate items.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Reviewer sign-off outstanding.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  function clearActivePlays(){ document.querySelectorAll('.pb-play').forEach(b=>b.classList.remove('on')); }
+  function hideAllPanels(){ document.querySelectorAll('.play, .play-home').forEach(p=>p.classList.remove('on')); }
+  function showTab(g){
+    document.querySelectorAll('.pb-tab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-g')===g));
+    document.querySelectorAll('.pb-play').forEach(b=>b.classList.toggle('show', b.getAttribute('data-g')===g));
+    var first = document.querySelector('.pb-play[data-g="'+g+'"]');
+    if(first){ var id = first.getAttribute('onclick').match(/showPlay\('([^']+)'\)/)[1]; showPlay(id); }
+  }
+  function showPlay(id){
+    hideAllPanels();
+    var panel = document.getElementById(id);
+    if(panel){ panel.classList.add('on'); }
+    clearActivePlays();
+    document.querySelectorAll('.pb-play').forEach(b=>{ var m=b.getAttribute('onclick').match(/showPlay\('([^']+)'\)/); if(m && m[1]===id) b.classList.add('on'); });
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  function showHome(){
+    hideAllPanels(); clearActivePlays();
+    document.getElementById('home').classList.add('on');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+</script>
+</body>
+</html>

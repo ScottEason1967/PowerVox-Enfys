@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hannah · Keeper of the Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; margin-bottom: 26px; }
+  .head-portrait { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top center; border: 4px solid var(--ac); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .head-disc { width: 150px; height: 150px; border-radius: 50%; background: var(--ac); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 56px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10px; font-weight: 800; letter-spacing: 1.6px; padding: 5px 13px; border-radius: 4px; text-transform: uppercase; margin-bottom: 10px; }
+  .head-title { font-family: var(--serif); font-size: 42px; font-weight: 600; color: #fff; line-height: 1.05; }
+  .head-village { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ql-why); margin-top: 2px; }
+  .head-role { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-top: 6px; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--ac); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .owns { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .owns th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--border-lt); }
+  .owns td { font-size: 12px; color: var(--text-sec); padding: 9px 14px 9px 0; border-bottom: 1px solid var(--border-lt); vertical-align: top; line-height: 1.55; }
+  .owns td:first-child { font-weight: 700; color: var(--pv-ink); white-space: nowrap; }
+  .guard-strip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 14px; padding: 16px 20px; margin: 0 0 20px; font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .guard-strip strong { color: var(--ql-why); }
+  .castnav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 4px 0 22px; }
+  .castnav a { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; padding: 6px 14px; border-radius: 999px; text-decoration: none; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.25); }
+  .castnav a:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+  .castnav a.active { background: var(--ac); color: #fff; border-color: transparent; }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 720px) { .head { grid-template-columns: 1fr; text-align: center; } .head-portrait, .head-disc { margin: 0 auto; } .page { padding: 28px 18px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body style="--ac:var(--green)">
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-town-hall.html">← The Town Hall</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>Hannah</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">The Keepers</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-disc">H</div>
+    <div>
+      <h1 class="head-title">Hannah</h1>
+      <div class="head-village">Keeper of the Library</div>
+      <div class="head-role">Director of Methodology, Impact &amp; Research Integrity</div>
+    </div>
+  </div>
+  <div class="castnav">
+    <a href="keeper-rachel.html">Rachel</a>
+    <a href="keeper-scott.html">Scott</a>
+    <a href="keeper-hannah.html" class="active" style="--ac:var(--green)">Hannah</a>
+    <a href="keeper-open-seat.html">[Open] · Sales &amp; BD</a>
+    <a href="the-town-hall.html">← The Town Hall</a>
+  </div>
+  <div class="prose">
+    <h3>Purpose</h3>
+    <p>To own the integrity of the PowerVox methodology and the integrity of the evidence beneath it. Hannah is the bridge between Rachel's thinking and what clients actually experience in the room — and the keeper of the standard that keeps the research honest as it grows into a category claim. The hypothesis is Rachel's; the discipline of testing it honestly is Hannah's.</p>
+  </div>
+  <div class="prose">
+    <h3>Why this shape</h3>
+    <p>Hannah does her best work taking a great idea and making it real, rigorous and repeatable — not generating the idea. That is the specification, not a limitation: the source IP is Rachel's; Hannah structures, operationalises and protects it. The independent-critic role is governance, not creativity: the person who refuses to let conviction outrun evidence and asks "have we fooled ourselves?" and means it. Her independence is not a courtesy — overriding her dissent on commercial grounds is precisely the failure the structure exists to prevent, and this matters more given environments she has worked in before where speaking plainly was not safe. Here it is the point. Ten years of friendship with Rachel (the White Rosettes) makes the keeping-honest role safe and even glad. The research-integrity work is staged with clear gates because the entrepreneurial rollercoaster is newer ground: structure is the gift.</p>
+  </div>
+  <div class="prose">
+    <h3>What this keeper owns</h3>
+    <table class="owns">
+      <tr><th>Area</th><th>What success looks like in 12 months</th></tr>
+        <tr><td>Methodology ownership</td><td>VQ documented, version-controlled, consistently applied — delivery no longer depends on Rachel being in the room. Lexicon version control.</td></tr>
+        <tr><td>Client diagnostics &amp; design</td><td>Every engagement opens with a structured VQ diagnostic and methodology-anchored design.</td></tr>
+        <tr><td>Behaviour-evidence &amp; impact</td><td>Credible proof of change across cohorts — not satisfaction scores. Real anonymised case studies (target 6–10) replacing composites.</td></tr>
+        <tr><td>Research integrity</td><td>The evidence threshold: falsification criteria pre-set before data arrives; n=20 hygiene, n=60 mid-beta, cave-month analysis; the Findings Document and Charter populated from evidence, not conviction.</td></tr>
+        <tr><td>Founder focus — substance</td><td>'Finish before you start' held on the substance side; methodology never diluted by the next idea.</td></tr>
+    </table>
+  </div>
+  <div class="guard-strip"><strong>Protected by:</strong> "not yet" is a defined part of the role, never insubordination. Her dissent on the evidence — "the threshold was not met" — is the single most valuable thing she does. <strong>Not her remit:</strong> commercial targets (the open seat's), operations and systems (Scott's), inventing methodology independently (Rachel's IP, Hannah's discipline).</div>
+  <div class="foot">
+    <span>Enfys · The Keepers · Hannah</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

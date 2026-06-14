@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Construct · the Library's reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+
+<style>
+  .nouns { width: 100%; border-collapse: collapse; }
+  .nouns th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); padding: 6px 12px 6px 0; border-bottom: 1px solid var(--border-lt); }
+  .nouns td { font-size: 12px; color: var(--text-sec); padding: 10px 14px 10px 0; border-bottom: 1px solid var(--border-lt); vertical-align: top; line-height: 1.55; }
+  .nouns td:first-child { font-weight: 800; color: var(--pv-ink); white-space: nowrap; }
+  .rungs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 4px; }
+  .rung { border-radius: 10px; padding: 12px 10px; color: #fff; text-align: center; }
+  .rung .rn { font-size: 9px; font-weight: 800; letter-spacing: 1.4px; opacity: 0.8; }
+  .rung .rt { font-family: var(--serif); font-style: italic; font-size: 16px; font-weight: 600; }
+  .rung .rq { font-size: 10px; opacity: 0.9; line-height: 1.4; margin-top: 4px; }
+  .chain { font-family: var(--serif); font-style: italic; text-align: center; font-size: 19px; color: #fff; margin: 0 0 26px; line-height: 1.6; }
+  .chain strong { color: var(--gold); font-style: normal; font-weight: 600; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .pcol { background: var(--card); border-radius: 14px; padding: 20px 22px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--pc); }
+  .pcol h4 { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--pv-ink); margin-bottom: 6px; }
+  .pcol ul { margin: 6px 0 0 18px; font-size: 12.5px; color: var(--text-sec); line-height: 1.7; }
+  .pcol p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  @media (max-width: 900px) { .rungs { grid-template-columns: repeat(2, 1fr); } .pair { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-library.html">← The Library</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Construct</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">The Library</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page-hero"><img src="images/Welcome%20Book.png" alt="" style="object-position: center 45%;"></div>
+
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Construct</em></h1>
+    <p class="head-sub">PowerVox is building a category, not competing in one. Category creators win partly by owning specific words and using them with absolute consistency. <strong>This is the canonical home of the estate's language — when any document drifts, this is what it is drifting from.</strong></p>
+  </div>
+
+  <p class="chain">PowerVox develops <strong>Voice Intelligence</strong> — measured by <strong>Voice Quotient™</strong> — which produces clearer, better-landed communication, whose hypothesised outcomes are lower compensation, reduced burnout risk and stronger psychological safety.<br>Capability → communication → outcomes. <strong>We never drop the middle term.</strong></p>
+
+  <div class="prose" style="--accent: var(--q-what);">
+    <em class="lead">The five sacred nouns.</em>
+    <p style="margin:8px 0 10px;">Five nouns are protected, used with consistent meaning in every context, by every team member, in every artefact. Everything else is a defined sub-term beneath them or ordinary language. The test for sacred status: could a stranger and a team member define it the same way without checking?</p>
+    <table class="nouns">
+      <tr><th>Sacred noun</th><th>Buyer-facing</th><th>Technical</th></tr>
+      <tr><td>Voice Quotient™</td><td>The measure of a leader's capacity to ensure what they think and intend actually lands in others. Voice Intelligence is the faculty; VQ™ is its quotient — on the model of intelligence and IQ (PP-01).</td><td>The overarching construct: a measurable, six-dimension capacity spanning expressive and receptive function.</td></tr>
+      <tr><td>Signal</td><td>A leader's capacity to read the room — to receive what others are actually communicating.</td><td>The receptive dimension of VQ; the differentiator no competing framework measures. Never a separate intelligence.</td></tr>
+      <tr><td>Compensation</td><td>What leaders do instead when they can no longer read the room well: over-control, mask, overload, disconnect.</td><td>The mechanism: four named outward behaviours and their seven inward parallels, the Leaks, rising as receptive capacity falls.</td></tr>
+      <tr><td>The Voice Ladder™</td><td>The journey from holding back (Control) to being understood (Clarity) to moving the room (Influence).</td><td>The lean public model, earned from the deeper six-rung architecture that is the spine of VQ™.</td></tr>
+      <tr><td>Anchors</td><td>The portable practices — phrase, gesture, image or ritual — that bring leaders back between sessions, in ordinary life.</td><td>The restoration mechanism; the third pillar alongside Compensations (outward failure) and Leaks (inward failure).</td></tr>
+    </table>
+  </div>
+
+  <div class="sec-h">The six dimensions · the deep architecture</div>
+  <div class="panel">
+    <p class="panel-sub">The spine of Voice Quotient™. Six facets of the same capability, not a ladder you climb; no single order is privileged. The deep architecture earns the lean public ladder; the lean one carries the deep one into the world.</p>
+    <div class="rungs">
+      <div class="rung" style="background:linear-gradient(135deg,#7E1F2D,#A8293B)"><div class="rn">EXPRESSIVE</div><div class="rt">Presence</div><div class="rq">Am I being felt?</div></div>
+      <div class="rung" style="background:linear-gradient(135deg,#94470F,#C25E1F)"><div class="rn">RECEPTIVE</div><div class="rt">Signal</div><div class="rq">What am I noticing?</div></div>
+      <div class="rung" style="background:linear-gradient(135deg,#97701A,#C99425)"><div class="rn">EXPRESSIVE</div><div class="rt">Clarity</div><div class="rq">What does this mean?</div></div>
+      <div class="rung" style="background:linear-gradient(135deg,#1F5E3A,#2F7A4D)"><div class="rn">EXPRESSIVE</div><div class="rt">Authenticity</div><div class="rq">What's true for me?</div></div>
+      <div class="rung" style="background:linear-gradient(135deg,#20436F,#2F5E9E)"><div class="rn">EXPRESSIVE</div><div class="rt">Conviction</div><div class="rq">Can I hold my ground under consequence?</div></div>
+      <div class="rung" style="background:linear-gradient(135deg,#422A66,#5B3A8C)"><div class="rn">EXPRESSIVE</div><div class="rt">Impact</div><div class="rq">What changed beyond the conversation?</div></div>
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,0.6);font-style:italic;margin-top:12px;">&#9873; CR-001 (Lexicon v1.2): the fourth dimension is <strong style="color:#fff;font-style:normal;">Conviction</strong> (was Confidence). <strong style="color:#fff;font-style:normal;">Confidence</strong> is reserved for the downstream outcome treated in the PowerVox Model of Confidence; it is not a dimension and not a component of VQ.</p>
+  </div>
+
+  <p style="text-align:center;font-size:12.5px;margin:2px 0 6px;"><a href="the-cast.html" style="color:#E8B33A;font-weight:700;text-decoration:none;">the Cast of Enfys →</a> &nbsp;·&nbsp; <a href="the-spectrum.html" style="color:#E8B33A;font-weight:700;text-decoration:none;">the Enfys Spectrum →</a></p>
+
+  <div class="sec-h">The four layers · where a voice breaks down</div>
+  <div class="panel">
+    <p class="panel-sub">The six dimensions are what the instrument scores. Beneath them runs a second lens: the four sequential, interdependent points where a voice succeeds or breaks down. A voice that does not land is rarely failing at expression alone; most often the breakdown is further back, at perception or integration, and the silence at the surface is only the symptom. Two lenses on one capability, the layers explain where it breaks, the dimensions are what is measured.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;">
+      <div style="background:rgba(47,94,158,0.16);border:1px solid rgba(156,194,240,0.3);border-radius:10px;padding:13px 14px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;color:#9CC2F0;">1 · PERCEPTION</div>
+        <p style="font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;margin-top:5px;">Where it begins. Voice Intelligence starts earlier than most frameworks, at the moment something is noticed. What you fail to perceive, you cannot integrate. This receptive capacity is named <strong style="color:#fff">Signal</strong>.</p>
+      </div>
+      <div style="background:rgba(47,122,77,0.18);border:1px solid rgba(159,216,180,0.3);border-radius:10px;padding:13px 14px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;color:#9FD8B4;">2 · INTEGRATION</div>
+        <p style="font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;margin-top:5px;">Holding thinking and feeling at once. Registering both the room and the report, the data and the discomfort, without flattening one to manage the other.</p>
+      </div>
+      <div style="background:rgba(201,148,37,0.16);border:1px solid rgba(232,179,58,0.35);border-radius:10px;padding:13px 14px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;color:#E8B33A;">3 · EXPRESSION</div>
+        <p style="font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;margin-top:5px;">Articulation under pressure. Clarity not as polish, but as faithfulness to what was perceived and integrated.</p>
+      </div>
+      <div style="background:rgba(91,58,140,0.2);border:1px solid rgba(201,175,239,0.35);border-radius:10px;padding:13px 14px;">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;color:#C9AFEF;">4 · LANDING</div>
+        <p style="font-size:11.5px;color:rgba(255,255,255,0.85);line-height:1.55;margin-top:5px;">Whether what you mean survives the journey into someone else. Coherence, the match between what is known inside and what is said outside, is what makes a voice land, and what makes its absence felt before it is named.</p>
+      </div>
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,0.6);font-style:italic;margin-top:12px;">⚑ Current articulation, from Voice Intelligence Definition v3, pending Hannah's ratification alongside the Six Dimensions and the Signal &amp; Broadcast paper.</p>
+  </div>
+
+  <div class="sec-h">The triadic structure · what fails, what it costs, what restores</div>
+  <div class="pair">
+    <div class="pcol" style="--pc:#A8293B">
+      <h4>The four compensations · outward</h4>
+      <p>What the leader does in the room — visible to others. The compensations cost the room.</p>
+      <ul><li>Over-control</li><li>Masking</li><li>Cognitive overload</li><li>Relational disconnection</li></ul>
+    </div>
+    <div class="pcol" style="--pc:#2F5E9E">
+      <h4>The seven leaks · inward</h4>
+      <p>What happens in the leader — often invisible even to themselves. The leaks cost the leader. (A sub-term under Compensation, held for elevation once the seven have stabilised.)</p>
+      <ul><li>Self-doubt</li><li>Over-responsibility</li><li>Shame</li><li>Hyper-reflection</li><li>Perfectionism</li><li>Nervous-system overload</li><li>Disconnected signal</li></ul>
+    </div>
+  </div>
+  <div class="prose" style="--accent: var(--q-what);">
+    <em class="lead">Anchors — the way back.</em>
+    <p style="margin-top:8px;">Small, deliberate, portable practices by which leaders return to VQ between sessions: a phrase, gesture, image or ritual carried out of the room. "These are the great days" carved at the Enfys threshold is a gratitude-reframe; Aur — thumb and ring finger pressed together — is a somatic anchor; the garlands chosen at the close of each Gather are anchors of intention. Not affirmations: interventions with measurable mechanisms, and the part of the methodology with the strongest existing evidence base.</p>
+  </div>
+
+  <div class="sec-h">The second variable · the room</div>
+  <div class="panel">
+    <p class="panel-sub">Everything above measures the voice. But a voice that lands is the voice meeting the room, and the room is the second variable the method works on. Same person, same voice, same hour: supplicant in one room, authority in the next. The only thing that changed was who held the power, and what that power was built to receive. So when a capable voice does not land, locating the whole problem in the speaker is incomplete by our own analysis. <strong style="color:#fff">The conditions are the variable, not the person.</strong></p>
+    <p style="font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.7;margin-top:6px;">VQ scores the speaker. Its complement, <strong style="color:#fff">the Conditions Taxonomy</strong>, maps the room across twelve dimensions: where power sits, what the room is built to receive, who is capable and unheard inside it, and whether the room is willing to change. The two instruments together are the diagnosis, and the diagnosis is the gap between a high-VQ voice and a low-reception room. The full schema and the canon that unites both sit on <a href="the-instrument.html" style="color:var(--gold);font-weight:700;text-decoration:none;">the Instrument</a>.</p>
+  </div>
+  <div class="prose" style="--accent: var(--q-what);">
+    <em class="lead">The vocabulary of the room.</em>
+    <p style="margin-top:8px;">Three terms are defined here as canon and explained in full where they live, so this page stays the dictionary and not a second strategy. <strong>Re-water the voice</strong> (the Greenhouse) is the lever that works on the person. <strong>Change the room</strong> (the allyship pathway) is the lever that works on the conditions, the half that makes the offer true rather than complicit. The <strong>readiness gate</strong> is the honest fork that asks whether the people who hold the power will learn to receive differently, and so decides which engagement is real. The strategy that sequences them, women first toward a gender-neutral destination, lives on <a href="the-greenhouse.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Greenhouse</a> and, for a prospect, on <a href="the-front-door.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Front Door</a>; the schema and the canon sit on <a href="the-instrument.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Instrument</a>. PowerVox maps conditions; it is not a women's-empowerment company.</p>
+  </div>
+
+  <div class="sec-h">The staged hypothesis · the claims discipline</div>
+  <div class="panel">
+    <p class="panel-sub">Test short chains before elegant theories. State only the link currently being tested. The word <strong style="color:#fff">'mediate' is reserved</strong> for the causal stage — using it early is the fastest way to lose an academic's trust.</p>
+    <p style="font-size:12.5px; color:rgba(255,255,255,0.85); line-height:1.7;">Phase Zero (2026 beta): lower receptive VQ (Signal) is associated with elevated compensation behaviours — correlational, one link. Phase One (2027–28): compensation behaviours associated with increased burnout risk and reduced safety indicators — correlational, second link. Mechanism (2028 pilot+): compensation mediates the relationship between receptive VQ and organisational outcomes — causal. Outcome domains: burnout risk and leader-perceived psychological safety are measured now; leadership sustainability proxy-only; organisational trust reserved for multi-source work. The diagnostic measures the capability and its measure — never the outcomes. That line is what stops the category over-claiming before it has earned its evidence.</p>
+  </div>
+
+  <div class="prose" style="--accent: var(--q-what);">
+    <em class="lead">Governance.</em>
+    <p style="margin-top:8px;">Sacred nouns and definitions: Rachel. Staged hypothesis and claims: Hannah, as independent critic. Outcome-domain measurability: Hannah plus critic. Market experiments: Rachel and Hannah, measuring behaviour and money, never politeness. Consent for the qualitative layer (free-text item, recorded debriefs, optional mini-360): Scott, inside the Deep Vault. Version control: Hannah. When a definition changes, it changes here first, then cascades — never the other way around. <strong>One consolidated vocabulary pass is pending before ratification ⚑:</strong> the three senses the word Signal now carries (the dimension, signal-versus-broadcast, the Signal Check), the Black Egg tier names against the value-ladder vocabulary, and the Dial and Equaliser to fold in once the Signal &amp; Broadcast paper settles. Ratifying the Six Dimensions while the vocabulary around them is still moving would create v0.3 work immediately; one pass, then the pen.</p>
+    <div class="links">
+      
+      <a href="pp-01.html">PP-01 · faculty and measure</a>
+      <a href="the-library.html">Back to the Library</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Construct · inherits Lexicon v1.2 · last cascade CR-001 (Conviction rename, VQ-38)</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

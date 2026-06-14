@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Map Room · where the village is going</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+
+<style>
+  .hz { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+  .hzc { border-radius: 14px; padding: 18px 20px; color: #fff; }
+  .hzc .hn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; opacity: 0.85; }
+  .hzc .ht { font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 600; margin: 2px 0 6px; }
+  .hzc p { font-size: 11.5px; line-height: 1.6; opacity: 0.92; }
+  .tl { width: 100%; border-collapse: collapse; }
+  .tl th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 6px 12px 6px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .tl td { font-size: 11.5px; color: rgba(255,255,255,0.88); padding: 9px 14px 9px 0; border-bottom: 1px solid rgba(255,255,255,0.12); vertical-align: top; line-height: 1.55; }
+  .tl td:first-child { font-weight: 800; color: #fff; white-space: nowrap; }
+  @media (max-width: 900px) { .hz { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Map Room</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">where the village is going</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page-hero"><img src="images/Enfys%20from%20afar.png" alt="" style="object-position: center 40%;"></div>
+
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Map <em>Room</em></h1>
+    <p class="head-sub">Where the Cartographer keeps the long charts. Three horizons running <strong>concurrently on one critical path</strong> — not phases done in turn. Every cohort delivered in Horizon 1 feeds the evidence in Horizon 2, which builds the category in Horizon 3. The Village Year is the loop; this room is the decade.</p>
+  </div>
+
+  <div class="hz">
+    <div class="hzc" style="background:linear-gradient(135deg,#1F5E3A,#2F7A4D)">
+      <div class="hn">Horizon 1 · 0–18 months</div><div class="ht">Operate</div>
+      <p>Revenue, the productised paid VQ diagnostic, recurring Greenhouse income, the productised TOM and surrounding processes, protected founder time. ~£225k worked Year 1; recurring compounding toward 40% by month 18.</p>
+    </div>
+    <div class="hzc" style="background:linear-gradient(135deg,#20436F,#2F5E9E)">
+      <div class="hn">Horizon 2 · 2026–27 · Phase Zero</div><div class="ht">Evidence</div>
+      <p>First dataset via paid cohorts; instrument validated; the compensation hypothesis tested privately; academic partner approached with data in hand. Baseline closes ~n=100; falsification criteria pre-set and held.</p>
+    </div>
+    <div class="hzc" style="background:linear-gradient(135deg,#422A66,#5B3A8C)">
+      <div class="hn">Horizon 3 · 2028–2034+</div><div class="ht">Category</div>
+      <p>Voice Intelligence established as a recognised leadership construct (IQ / EQ / VQ); the enterprise diagnostic; the moat. The buyer is the CPO; the budget is attrition cost, not training spend.</p>
+    </div>
+  </div>
+
+  <div class="sec-h">The concurrent timeline · next 18 months</div>
+  <div class="panel">
+    <table class="tl">
+      <tr><th>Period</th><th>Operate (revenue)</th><th>Evidence (dataset)</th><th>Category (positioning)</th></tr>
+      <tr><td>Months 1–3</td><td>Cap bespoke; launch paid VQ tier; first Root to Grow cohort, converting into the Greenhouse</td><td>Beta build: companion questionnaire; consent/IP signed off; falsification criteria locked</td><td>Website language review; the one front door resolved</td></tr>
+      <tr><td>Months 4–6</td><td>Cohorts one and two single-track; Greenhouse opens to first alumni</td><td>First-wave completions (30–40); n=20 instrument hygiene check</td><td>Authority of One brand architecture drafted</td></tr>
+      <tr><td>Months 7–9</td><td>Speaking line live; parallel two-track delivery as the model proves</td><td>Anchor cohorts onboarded; mid-beta review at n=60; first quarterly Greenhouse re-measure</td><td>the research charter begun from emerging data</td></tr>
+      <tr><td>Months 10–12</td><td>~£225k total; product share ~53%; Greenhouse ~35 members, ~£52.5k run-rate</td><td>Open call; baseline closes ~n=100; cave-month analysis against pre-set criteria</td><td>the charter finalised; critic review</td></tr>
+      <tr><td>Months 13–18</td><td>Recurring revenue compounding toward 40%</td><td>Findings drive academic-partner outreach</td><td>Partner conversations; academic NED recruited; first associate decided</td></tr>
+    </table>
+  </div>
+
+  <div class="prose" style="--accent: var(--blue);">
+    <em class="lead">The reframe the decade rests on.</em>
+    <p style="margin-top:10px;">The original research framing — "validate VQ as a leadership framework" — positioned PowerVox inside the crowded, procurement-resistant leadership-communication market, where the buyer is a Head of L&amp;D and the competitor set is every coaching firm with a presence framework. The adopted reframe moves PowerVox into <strong>organisational health and human sustainability</strong>: a faster-growing market, a different buyer (CPO, Chief Wellbeing Officer, sometimes the CFO via attrition cost), and critically under-served by measurable, methodology-led interventions. The wellbeing industry sells outcomes without mechanism; the leadership-development industry sells mechanism without outcomes. <strong>PowerVox sells both, joined</strong> — the only player with a mechanistic answer to the question CPOs actually have: which specific, trainable leadership behaviours measurably reduce burnout risk and raise psychological safety?</p>
+    <p style="margin-top:10px;">Three things make the hypothesis powerful: it is <strong>mechanistic, not correlational</strong> — each link in the chain is independently measurable, a publishable study, and a coaching intervention point; it contributes where the psychological-safety literature is weakest — behaviours like "ask for input" are downstream of receptive capacity, and a leader can perform them and still destroy safety if their Signal is poor, because the team feels unread; and it <strong>inverts the burnout conversation</strong> — leader burnout as a compensation pattern driven by deteriorating relational and perceptual capacity, not workload alone, which makes it trainable rather than a workload-management problem.</p>
+  </div>
+
+  <div class="sec-h">The decade · category milestones</div>
+  <div class="panel">
+    <table class="tl">
+      <tr><th>Year</th><th>Milestone</th><th>Buyer / market</th></tr>
+      <tr><td>2026</td><td>Phase Zero beta complete; hypothesis tested; the research charter populated from data</td><td>Internal</td></tr>
+      <tr><td>2027</td><td>Academic partner secured with data in hand; grant funding explored</td><td>Academic + funders</td></tr>
+      <tr><td>2028</td><td>Pilot study published on the strongest beta segment</td><td>Field / credibility</td></tr>
+      <tr><td>2029</td><td>Briefing report: the compensation pattern, pitched to CPOs</td><td>Chief People Officers</td></tr>
+      <tr><td>2030</td><td>Enterprise diagnostic (Leadership Compensation Index)</td><td>Board / C-suite</td></tr>
+      <tr><td>2033+</td><td>VQ™ index as a recognised organisational-health metric</td><td>Enterprise standard</td></tr>
+    </table>
+    <p class="panel-sub" style="margin:12px 0 0;">The reframe to keep visible: communication is the mechanism; wellbeing and safety are the hypothesised outcomes, held under investigation until the evidence clears its thresholds. Drop either and the story weakens.</p>
+  </div>
+
+  <div class="prose" style="--accent: var(--blue);">
+    <em class="lead">Where the decade is rendered.</em>
+    <div class="links">
+      <a href="the-village-year.html">The Village Year · the rhythm (WHEN)</a>
+      <a href="the-millwheel.html">The Millwheel · the commercial engine</a>
+      <a href="the-observatory.html">The Observatory · the evidence</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Map Room</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

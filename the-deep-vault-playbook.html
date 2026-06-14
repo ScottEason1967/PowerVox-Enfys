@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Deep Vault · the Information Governance Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+
+  /* category tabs */
+  .pb-tabs { position: sticky; top: 54px; z-index: 150; background: rgba(20,16,31,0.95); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 30px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .pb-tab { font-size: 14px; font-weight: 800; letter-spacing: 0.5px; padding: 11px 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.85); cursor: pointer; transition: all .16s ease; }
+  .pb-tab:hover { border-color: rgba(255,255,255,0.6); }
+  .pb-tab.on { background: var(--gold); color: var(--pv-ink); border-color: transparent; }
+  .pb-tab.ref { color: var(--ql-when); }
+  .pb-tab.ref.on { background: var(--blue); color: #fff; }
+
+  /* play buttons row */
+  .pb-plays { background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.10); padding: 11px 30px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+  .pb-play { display: none; align-items: baseline; gap: 7px; font-size: 11.5px; font-weight: 700; padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); border-left: 3px solid var(--gc, var(--blue)); background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.88); cursor: pointer; text-align: left; transition: all .16s ease; }
+  .pb-play.show { display: inline-flex; }
+  .pb-play:hover { background: rgba(255,255,255,0.10); }
+  .pb-play.on { background: #FFF6D9; color: var(--pv-ink); border-color: transparent; border-left-color: var(--gc); }
+  .pb-play .pn { font-size: 9px; font-weight: 800; letter-spacing: 0.5px; color: var(--ql-why); }
+  .pb-play.on .pn { color: var(--gold-deep); }
+
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 30px 30px 40px; }
+
+  /* home */
+  .home-hero { text-align: center; padding: 14px 0 8px; }
+  .home-eyebrow { display: inline-block; background: var(--red); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1.6px; padding: 5px 14px; border-radius: 4px; text-transform: uppercase; margin-bottom: 14px; }
+  .home-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .home-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .home-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto 6px; }
+  .home-sub strong { color: var(--gold); }
+  .north { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 22px 0 8px; }
+  .nstar { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 14px 16px; }
+  .nstar .nh { font-size: 11px; font-weight: 800; color: var(--ql-when); margin-bottom: 3px; }
+  .nstar p { font-size: 11.5px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+  .grp-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 16px; }
+  .gcard { background: var(--card); border-radius: 13px; padding: 16px 18px; box-shadow: 0 8px 26px rgba(0,0,0,0.3); border-top: 5px solid var(--gc); cursor: pointer; transition: transform .16s ease; }
+  .gcard:hover { transform: translateY(-2px); }
+  .gcard .gn { font-size: 9.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gc); }
+  .gcard h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--pv-ink); margin: 2px 0 5px; }
+  .gcard p { font-size: 11.5px; color: var(--text-sec); line-height: 1.5; }
+  .gcard .gcount { font-size: 10px; font-weight: 800; color: var(--text-muted); margin-top: 7px; }
+  @media (max-width: 760px){ .north, .grp-cards { grid-template-columns: 1fr; } }
+
+  /* play panels */
+  .play, .play-home { display: none; }
+  .play.on, .play-home.on { display: block; }
+  .play-head { border-bottom: 1px solid rgba(255,255,255,0.14); padding-bottom: 14px; margin-bottom: 16px; }
+  .play-kick { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ql-why); }
+  .play-title { font-family: var(--serif); font-size: 33px; font-weight: 600; color: #fff; line-height: 1.08; margin: 3px 0 7px; }
+  .play-title em { font-style: italic; color: var(--gold); }
+  .play-what { font-size: 13.5px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+  .play-phase { display:inline-block; font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; background: rgba(47,94,158,0.3); color: var(--ql-when); border: 1px solid rgba(156,194,240,0.4); margin-left: 8px; vertical-align: middle; }
+
+  .ps { background: var(--card); border-radius: 13px; padding: 16px 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.28); margin-bottom: 12px; border-left: 5px solid var(--sc, var(--blue)); }
+  .ps-h { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 8px; }
+  .ps p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .ps p strong, .ps li strong { color: var(--pv-ink); }
+  .ps ul, .ps ol { margin: 4px 0 0 18px; font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .ps li { margin-bottom: 4px; }
+  .ps.rec { border-left-color: var(--green); background: #F6FBF7; }
+  .ps.rec .ps-h { color: var(--green); }
+  .ps.open { border-left-color: var(--gold-deep); background: var(--warm-cream); }
+  .chip { display:inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: 0.3px; padding: 2px 7px; border-radius: 5px; margin: 2px 3px 0 0; }
+  .chip.art { background: var(--green-pale); color: var(--green); }
+  .chip.sys { background: rgba(47,94,158,0.12); color: var(--blue); }
+  .chip.src { background: rgba(91,58,140,0.10); color: var(--violet); font-style: italic; }
+
+  /* where we are today triage */
+  .today { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+  .tcol { border-radius: 11px; padding: 13px 15px; }
+  .tcol .th { font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 5px; }
+  .tcol p { font-size: 11.5px; line-height: 1.5; }
+  .tcol.work { background: rgba(47,122,77,0.12); border: 1px solid rgba(47,122,77,0.3); } .tcol.work .th { color: var(--green); } .tcol.work p { color: #2c5840; }
+  .tcol.build { background: rgba(47,94,158,0.10); border: 1px solid rgba(47,94,158,0.3); } .tcol.build .th { color: var(--blue); } .tcol.build p { color: #284a78; }
+  .tcol.block { background: rgba(168,41,59,0.10); border: 1px solid rgba(168,41,59,0.3); } .tcol.block .th { color: var(--red); } .tcol.block p { color: #7e2531; }
+  @media (max-width: 760px){ .today { grid-template-columns: 1fr; } }
+
+  .gate-call { background: rgba(168,41,59,0.14); border: 1px solid rgba(242,163,176,0.5); border-left: 5px solid var(--red); border-radius: 12px; padding: 15px 18px; margin: 0 0 12px; }
+  .gate-call .g-t { font-size: 10.5px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; color: #F2A3B0; margin-bottom: 4px; }
+  .gate-call p { font-size: 12.5px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+  .gate-call strong { color: #fff; }
+
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  .backhome { display:inline-block; margin-bottom: 14px; font-size: 11px; font-weight: 700; color: var(--ql-when); cursor: pointer; }
+  .backhome:hover { color: #fff; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-burrows.html">← The Burrows</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Deep Vault</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the IG Playbook</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+
+<div class="pb-tabs" id="tabs">
+  <button class="pb-tab ref on" data-g="ref" onclick="showTab('ref')">Reference</button>
+  <button class="pb-tab" data-g="basis" onclick="showTab('basis')">Set the basis</button>
+  <button class="pb-tab" data-g="bring" onclick="showTab('bring')">Bring data in</button>
+  <button class="pb-tab" data-g="safe" onclick="showTab('safe')">Keep it safe &amp; use it</button>
+  <button class="pb-tab" data-g="stand" onclick="showTab('stand')">Standing disciplines</button>
+</div>
+<div class="pb-plays" id="pbPlays">
+  <button class="pb-play show on" data-g="ref" style="--gc:var(--blue)" onclick="showPlay('ref')"><span class="pn">Reference</span> About this playbook</button>
+  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p1')"><span class="pn">Play 1</span> Set the lawful basis</button>
+  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p2')"><span class="pn">Play 2</span> Run a DPIA &amp; map processors</button>
+  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p3')"><span class="pn">Play 3</span> Appoint &amp; brief the reviewer</button>
+  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p4')"><span class="pn">Play 4</span> Design &amp; operate layered consent</button>
+  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p5')"><span class="pn">Play 5</span> Handle a sponsored cohort</button>
+  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p6')"><span class="pn">Play 6</span> Consent &amp; record a discovery call</button>
+  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p7')"><span class="pn">Play 7</span> Run a quarterly re-measure</button>
+  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p8')"><span class="pn">Play 8</span> Pseudonymise &amp; secure</button>
+  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p9')"><span class="pn">Play 9</span> Run the cave-month analysis</button>
+  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p10')"><span class="pn">Play 10</span> Abstract a class-B pattern</button>
+  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p11')"><span class="pn">Play 11</span> Use &amp; publish</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p12')"><span class="pn">Play 12</span> Handle a withdrawal</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p13')"><span class="pn">Play 13</span> Run retention &amp; deletion</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p14')"><span class="pn">Play 14</span> Pattern-contribution clause &amp; IP</button>
+  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p15')"><span class="pn">Play 15</span> Open the launch gate</button>
+</div>
+
+<div class="wrap">
+  <!-- HOME -->
+  <section class="play-home on" id="home">
+    <div class="home-hero">
+      <div class="home-eyebrow">The IG playbook · launch-blocking · owner: Scott</div>
+      <h1 class="home-title">The Deep <em>Vault</em></h1>
+      <p class="home-sub">One data-protection regime across two operations: the VQ Assessment beta and the Loop pattern library. This playbook is how each governance move is run — pick a group above, then a play. <strong>No beta invitation, and no class-B abstraction, until the gate is passed.</strong></p>
+    </div>
+    <div class="north">
+      <div class="nstar"><div class="nh">Honest data</div><p>The first dataset must be usable when the academic partner enters. Consent and pseudonymisation designed once, properly.</p></div>
+      <div class="nstar"><div class="nh">One regime, two classes</div><p>Class A personal beta data and class B engagement-derived patterns under a single architecture, not two.</p></div>
+      <div class="nstar"><div class="nh">The gate holds</div><p>External legal review and locked falsification criteria before anyone is invited. The gate is a feature, not a delay.</p></div>
+    </div>
+    <div class="grp-cards" id="grpCards">
+      <div class="gcard" style="--gc:var(--blue)" onclick="showPlay('ref')"><div class="gn">Reference</div><h3>About this playbook</h3><p>The two data classes, the RACI, and the operational swimlane.</p><div class="gcount">1 entry</div></div>
+      <div class="gcard" style="--gc:var(--red)" onclick="showTab('basis')"><div class="gn">Set the basis</div><h3>Before any data moves</h3><p>Lawful basis, the DPIA and processor map, and appointing the reviewer who holds the gate.</p><div class="gcount">3 plays</div></div>
+      <div class="gcard" style="--gc:var(--blue)" onclick="showTab('bring')"><div class="gn">Bring data in</div><h3>Consent and capture</h3><p>Layered consent, sponsored cohorts, discovery-call recording, and the longitudinal re-measure.</p><div class="gcount">4 plays</div></div>
+      <div class="gcard" style="--gc:var(--green)" onclick="showTab('safe')"><div class="gn">Keep it safe &amp; use it</div><h3>Protect, analyse, publish</h3><p>Pseudonymisation, the cave-month analysis, pattern abstraction, and onward use.</p><div class="gcount">4 plays</div></div>
+      <div class="gcard" style="--gc:var(--violet)" onclick="showTab('stand')"><div class="gn">Standing disciplines</div><h3>The rules that always apply</h3><p>Withdrawal, retention and deletion, the contribution clause and IP, and opening the gate.</p><div class="gcount">4 plays</div></div>
+    </div>
+  </section>
+
+  <!-- REFERENCE -->
+  <section class="play" id="ref">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Reference</div><h1 class="play-title">About this <em>playbook</em></h1><p class="play-what">What the Deep Vault governs, who holds each line, and where the operational detail lives.</p></div>
+    <div class="ps"><div class="ps-h">The two data classes</div><p><strong>Class A — beta research data (personal):</strong> every participant from invitation to deletion — the VQ Assessment, the companion questionnaire (burnout-risk and psychological-safety items), the qualitative layer (free-text item, recorded debriefs, the optional mini-360), and the Greenhouse quarterly re-measures. <strong>Class B — pattern library data (engagement-derived):</strong> discovery-call recordings and transcripts (client staff are data subjects), client documents, and the abstracted, anonymised patterns retained by sector.</p></div>
+    <div class="ps"><div class="ps-h">Roles &amp; accountability · the RACI</div>
+      <ul>
+        <li><strong>Controller — PowerVox Ltd.</strong> Determines purposes and means for both classes. <span class="chip src">⚑ confirm with reviewer</span></li>
+        <li><strong>Consent / DP / IP owner — Scott.</strong> One architecture across both classes; external review the gate.</li>
+        <li><strong>Pattern-library DP lead — Rachel.</strong> Class-B consent flow, pseudonymisation and privacy policy.</li>
+        <li><strong>Research integrity — Hannah.</strong> Falsification criteria pre-set and held; the n=20 and n=60 gates; cave-month analysis.</li>
+        <li><strong>External reviewer — to appoint.</strong> Independent legal check of the whole architecture before the first invitation.</li>
+        <li><strong>Academic NED — to recruit.</strong> Arms-length oversight strengthening eventual published work.</li>
+      </ul>
+    </div>
+    <div class="ps"><div class="ps-h">Where the How lives</div><p>This playbook is the manual — the decisions and procedures, run play by play. How the work actually flows day to day is the operating model's How page, <a href="the-gather.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Gather</a>; the consent subsystem itself sits in <a href="the-burrows.html#sys-consent" style="color:var(--blue);font-weight:700;text-decoration:none;">the Burrows</a>. Use those for the flow; use the plays here to run each governance move.</p></div>
+  </section>
+
+  <!-- ===== GROUP: SET THE BASIS ===== -->
+  <section class="play" id="p1">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the basis · Play 1</div><h1 class="play-title">Set the lawful <em>basis</em><span class="play-phase">before any capture</span></h1><p class="play-what">Decide, with the reviewer, the lawful basis for a data operation — and resolve whether the wellbeing items engage special-category rules.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A new data operation is being designed (the beta, a new instrument item, a class-B engagement).</li><li>The companion questionnaire's burnout-risk or wellbeing items change.</li><li>The reviewer is appointed and needs the basis put to them.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>Test Article 9 first.</strong> The binding constraint is Article 9, not Article 6. On a cautious reading the burnout-risk and wellbeing items contain health data for at least some participants — so an Article 9 condition is needed on top of any Article 6 basis.</li>
+      <li><strong>Pick the Article 9 condition.</strong> The realistic two are explicit consent (Art. 9(2)(a)) or the research condition (Art. 9(2)(j) with DPA 2018 safeguards). The research condition fits a commercial category-building programme awkwardly.</li>
+      <li><strong>Set the Article 6 basis</strong> to pair with it (see routes).</li>
+      <li><strong>Hand the decision to the reviewer</strong> rather than pre-deciding it — the layered-consent design survives either way; only the Article 6 label moves.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation · the drafter's position</div><p><strong>Consent-led.</strong> Explicit consent is the clean, proportionate route at a ~100-person scale, and informed consent is required for research ethics regardless — the academic partner will expect it. The freely-given test holds because participants are paying clients, not employees. <strong>The respectable alternative</strong> is legitimate interests (Art. 6(1)(f)) as the general basis with explicit consent solely as the Article 9 condition and for the layers where consent is unavoidable; this yields a more stable dataset. Held open for the reviewer.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The Article 6 label: consent-led vs legitimate-interests-led. <span class="chip src">⚑ reviewer</span></li><li>If the items are <em>not</em> special category, legitimate interests becomes the strong primary route and consent shrinks to the ethics layer.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The full reasoning is written.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The consent texts, drafted on this architecture once the label is settled.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>The Article 6 label awaits the external reviewer.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p2">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the basis · Play 2</div><h1 class="play-title">Run a DPIA &amp; map the <em>processors</em></h1><p class="play-what">Screen each data operation for its risks, and map every controller and processor before tooling is locked in.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Any new data operation, instrument or cohort design begins.</li><li>A processor (assessment platform, storage, transcription) is about to be chosen.</li><li>The risk profile changes (a new sponsored cohort, a mini-360, a class-B engagement).</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li><strong>Confirm the controller analysis.</strong> PowerVox Ltd determines purposes and means for both classes. <span class="chip src">⚑ confirm with reviewer</span></li>
+      <li><strong>Screen the DPIA triggers:</strong> systematic evaluation of individuals (scoring), potential special-category data (class A), vulnerable context (workplace power dynamics, sponsored cohorts).</li>
+      <li><strong>List the principal risks</strong> (carried into the per-play "where we are today"): re-identification in a small cohort, mini-360 candour about a named manager, recordings as high-sensitivity artefacts, pattern re-identification by sector insiders, commercial pressure on research framing.</li>
+      <li><strong>Hold tooling open.</strong> Leave the assessment platform unchosen until the reviewer has seen the processor map — deliberately. <span class="chip sys">⚙ platform, storage, transcription</span></li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Treat the DPIA as <strong>required</strong>, not optional, and complete the processor map as part of the same review so one legal check covers both products' foundations.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Controller analysis to confirm with the reviewer. <span class="chip src">⚑</span></li><li>The controller/processor map once tooling is chosen — processors not yet selected. <span class="chip src">⚑</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The DPIA screening position and the risk list are written.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The full DPIA and the processor map, completed as tooling is chosen.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Processors deliberately unselected until the reviewer sees the map.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p3">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Set the basis · Play 3</div><h1 class="play-title">Appoint &amp; brief the <em>reviewer</em><span class="play-phase">the gate</span></h1><p class="play-what">Bring in the independent legal reviewer whose sign-off is the launch gate, and put the nine open questions to them.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>The architecture is drafted and ready for independent check — now (it is launch-blocking).</li><li>Before the first beta invitation and before the second Loop client.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · the nine questions to put</div><ol>
+      <li>Special-category analysis of the burnout-risk and wellbeing items; the Article 9 condition and wording if engaged.</li>
+      <li>The Article 6 architecture: consent-led vs legitimate-interests-led with consent as the Art. 9 condition.</li>
+      <li>The layered-consent design, withdrawal carve-out, sponsored-cohort voluntariness, and the mini-360 respondent route.</li>
+      <li>The class-B anonymisation threshold against the ICO standard.</li>
+      <li>The pattern-contribution clause and its interaction with engagement confidentiality.</li>
+      <li>The controller / processor map once tooling is chosen.</li>
+      <li>The retention schedule, both classes.</li>
+      <li>The international-transfer position if the partner or tooling sits outside the UK.</li>
+      <li>The participant information text and consent-capture mechanics.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Appoint <strong>one reviewer for the whole architecture</strong> — one review buys both products their foundations. Brief them with this playbook as the artefact and the nine questions as the agenda.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Who the reviewer is — to appoint. <span class="chip src">⚑ launch-blocking</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The nine questions and the brief are ready.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The shortlist and engagement of the reviewer.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>No reviewer appointed yet — the gate cannot pass without one.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: BRING DATA IN ===== -->
+  <section class="play" id="p4">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Bring data in · Play 4</div><h1 class="play-title">Design &amp; operate layered <em>consent</em><span class="play-phase">class A</span></h1><p class="play-what">Run the seven consent layers so each is granted and withdrawn on its own, and capture the baseline and qualitative layers only under the consent actually given.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A participant is invited to the beta.</li><li>A qualitative layer (free-text, recording, mini-360) is added to a cohort.</li><li>The consent texts need drafting or revising.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · one ask at a time</div><ol>
+      <li>Issue the participant information <strong>before any capture</strong>.</li>
+      <li>Take consent layer by layer, each independently grantable and withdrawable: <strong>(a)</strong> participation &amp; baseline · <strong>(b)</strong> research use of pseudonymised responses · <strong>(c)</strong> recording of debriefs · <strong>(d)</strong> the free-text reflective item · <strong>(e)</strong> the mini-360, with the respondent's own consent route · <strong>(f)</strong> anonymised case-study use · <strong>(g)</strong> onward sharing with a named academic partner.</li>
+      <li>Capture the baseline (VQ Assessment + companion questionnaire) only under (a)/(b).</li>
+      <li>Run each qualitative layer only where its specific layer is granted.</li>
+      <li><strong>Never bundle the opt-in moment with the commercial moment.</strong></li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>The layered design survives whichever Article 6 label the reviewer settles — only the label moves. Draft the seven consent texts on this architecture <strong>once the label is set</strong>, not before.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The consent texts, drafted after the reviewer settles the Article 6 label. <span class="chip src">⚑</span></li><li>The mini-360 third-party respondent route. <span class="chip src">⚑ reviewer</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The seven-layer architecture is specified.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The consent texts and the capture mechanics.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Final wording waits on the Article 6 label (Play 1).</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p5">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Bring data in · Play 5</div><h1 class="play-title">Handle a sponsored <em>cohort</em></h1><p class="play-what">Handle consent where an employer sponsors a cohort and staff may feel participation is expected — the one place the power-imbalance objection revives.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A sponsoring organisation funds a cohort.</li><li>Any cohort where participants are not self-funding.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Add <strong>explicit voluntariness language</strong> to the consent for that cohort.</li>
+      <li>Add a <strong>no-detriment assurance</strong> — participation, or not, carries no consequence.</li>
+      <li>Keep the sponsor out of individual results.</li>
+      <li>Confirm the freely-given test is genuinely met for that cohort before capture.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>For self-funding participants the power-imbalance objection is weak; for sponsored cohorts it is real. Do <strong>not</strong> rely on plain consent here — the voluntariness and no-detriment wording is the mitigation.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The voluntariness / no-detriment wording. <span class="chip src">⚑ reviewer</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The risk is identified and reasoned.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The sponsored-cohort consent wording.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Wording awaits the reviewer.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p6">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Bring data in · Play 6</div><h1 class="play-title">Consent &amp; record a discovery <em>call</em><span class="play-phase">class B</span></h1><p class="play-what">Consent and record a Loop discovery call, where the client staff on the call are data subjects and the organisation is not.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Before any Loop discovery call starts.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Inform and consent <strong>everyone on the call</strong> to recording before it begins.</li>
+      <li>Treat client staff as data subjects; the client organisation is not a data subject.</li>
+      <li>Hold the transcript as engagement working material.</li>
+      <li>Pseudonymise client-staff personal data in working artefacts where retention is needed.</li>
+      <li>Issue the engagement privacy notice. <span class="chip art">→ engagement privacy notice</span></li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Recording consent is taken <strong>before</strong> the call and is non-negotiable. The value is the transcript; the risk is the audio (deleted within 90 days — Play 13).</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Interacts with the contribution clause (Play 14) and the anonymisation threshold (Play 10).</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The class-B data journey is specified.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The engagement privacy notice template.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Gated with the rest of the architecture at the reviewer; required before the second Loop client.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p7">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Bring data in · Play 7</div><h1 class="play-title">Run a quarterly <em>re-measure</em></h1><p class="play-what">Re-take the diagnostic with Greenhouse members each quarter — the layer that turns a one-shot snapshot into longitudinal data.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Each quarter, for active Greenhouse members (~35 in year one).</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Schedule the re-measure against the Greenhouse calendar under the existing consent layers.</li>
+      <li>Capture under the same architecture as the baseline.</li>
+      <li>Feed the pseudonymised longitudinal dataset.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>The re-measure is the longitudinal asset — protect the cadence so the held cohort produces change-over-time data, not repeated snapshots.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material; runs under the layered consent already given.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>Designed in the data journey.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Scheduling against the Greenhouse season calendar.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>None.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: KEEP IT SAFE & USE IT ===== -->
+  <section class="play" id="p8">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 8</div><h1 class="play-title">Pseudonymise &amp; <em>secure</em></h1><p class="play-what">Split identifiers from responses within 30 days so the analysis never needs names — the core mitigation for both small-cohort re-identification and withdrawal.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Within 30 days of any class-A capture.</li><li>On class-B working artefacts wherever they are retained.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Pseudonymise within 30 days of capture; hold identifiers separately.</li>
+      <li>Access-control the research store.</li>
+      <li>Automate the n-counts so the gates announce themselves: <strong>n=20</strong> hygiene · <strong>n=60</strong> mid-beta · <strong>~n=100</strong> close.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Do this <strong>on schedule, not when convenient</strong>. Pseudonymisation is what makes the withdrawal carve-out (Play 12) defensible and the small-cohort risk manageable.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Retention periods that govern the secured data are confirmed in Play 13. <span class="chip src">⚑</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The n-gates are set. The 30-day pseudonymisation rule is the chosen policy, pending the external legal review that gates launch.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The research store and the automated n-counts.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Storage tooling held until the reviewer sees the processor map (Play 2).</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p9">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 9</div><h1 class="play-title">Run the cave-month <em>analysis</em></h1><p class="play-what">Analyse the pseudonymised dataset in the protected cave-month, against criteria set before the data arrived. Shared with research integrity.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Annually, in the protected cave-month.</li><li>At the n=60 mid-beta review.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Analyse only pseudonymised data.</li>
+      <li>Against the pre-set criteria — set before the data arrived.</li>
+      <li>Apply the reliability gate: Cronbach's α ≥ 0.70 per dimension.</li>
+      <li>Hannah holds the thresholds; they never move on commercial grounds.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>This play sits across two domains: IG provides the safe, pseudonymised dataset; research integrity (the <a href="the-observatory.html" style="color:var(--blue);font-weight:700;text-decoration:none;">Observatory</a>) provides the locked criteria. Keep the two separate so neither bends to the other.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Nothing here directly — the criteria-locking is the launch gate (Play 15).</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The method and the reliability gate are set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The cave-month analysis workspace.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Falsification criteria must be locked first (the gate).</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p10">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 10</div><h1 class="play-title">Abstract a class-B <em>pattern</em></h1><p class="play-what">Abstract a Loop engagement into organisation-unidentifiable patterns for the library — the anonymisation threshold is the whole game.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>At each Loop engagement close, before anything enters the library.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Abstract to organisation-level form: sector, shape, lifecycle, governance archetypes, common gaps.</li>
+      <li>Remove organisation identity to <strong>commercial-confidentiality standard as well as data-protection standard</strong>.</li>
+      <li>Test against the ICO standard — not re-identifiable to an organisation by a sector insider.</li>
+      <li>Only the abstracted pattern enters the library; raw transcripts and documents are handled per the contract (Play 13).</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Once properly abstracted the pattern is outside personal-data scope — organisations have no UK GDPR rights. The threshold is everything, so have the reviewer confirm it before the second Loop client.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The anonymisation threshold against the ICO standard. <span class="chip src">⚑ reviewer</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The abstraction journey is specified.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The pattern-library schema.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Threshold confirmation at the reviewer; gated before the second Loop client.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p11">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 11</div><h1 class="play-title">Use &amp; <em>publish</em></h1><p class="play-what">The onward uses — anonymised case studies, sector white papers, and the dataset for the academic partner — each behind its own rule.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A case study is wanted from a participant's experience.</li><li>A sector white paper is being drafted.</li><li>The academic partner is ready to receive the dataset.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Case studies only under <strong>specific consent</strong> (layer f); target 6–10, anonymised.</li>
+      <li>White papers only from <strong>aggregated patterns</strong>, never a single identifiable engagement.</li>
+      <li>Share the dataset with the named academic partner <strong>under agreement</strong> (layer g).</li>
+      <li>Check the international-transfer position if the partner or tooling sits outside the UK.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Keep every onward use behind its own consent layer and the aggregation rule. The inbound funnel must never expose a single client or participant.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The international-transfer position. <span class="chip src">⚑ reviewer</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The onward-use rules are set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The academic-partner agreement.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Onward sharing gated on final consent texts and reviewer sign-off.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== GROUP: STANDING DISCIPLINES ===== -->
+  <section class="play" id="p12">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 12</div><h1 class="play-title">Handle a <em>withdrawal</em></h1><p class="play-what">Process a participant's withdrawal cleanly, without destabilising the dataset — the known cost of consent as a basis, met by design.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A participant withdraws any consent layer.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Honour the withdrawal <strong>prospectively</strong>.</li>
+      <li>Data already incorporated into analysis is retained in pseudonymised form — the standard research carve-out.</li>
+      <li>Withdraw the <strong>specific layer</strong>, not necessarily all layers.</li>
+      <li>Apply the carve-out wording confirmed with the reviewer.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Pseudonymisation within 30 days (Play 8) plus the prospective carve-out is the mitigation. <strong>Do not promise full erasure of already-analysed data</strong> — promise what the carve-out can honour.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The carve-out wording. <span class="chip src">⚑ reviewer</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The carve-out approach is designed.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The carve-out wording inside the consent texts.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Wording awaits the reviewer.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p13">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 13</div><h1 class="play-title">Run retention &amp; <em>deletion</em></h1><p class="play-what">Apply the retention schedule across both classes — the audio is always the sensitive artefact, the text the value.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Continuously; at each deletion point the schedule sets.</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · the schedule</div><ul>
+      <li><strong>A · contact &amp; consent records:</strong> programme + 6 years. <span class="chip src">⚑ confirm</span></li>
+      <li><strong>A · raw assessment responses:</strong> pseudonymise within 30 days.</li>
+      <li><strong>A · pseudonymised research dataset:</strong> 10 years. <span class="chip src">⚑ confirm</span></li>
+      <li><strong>A · debrief recordings:</strong> transcribe + pseudonymise; delete audio within 90 days. <span class="chip src">⚑</span></li>
+      <li><strong>A · case-study material:</strong> life of consent; review at 3 years.</li>
+      <li><strong>B · discovery recordings:</strong> delete audio within 90 days of close. <span class="chip src">⚑</span></li>
+      <li><strong>B · transcripts &amp; client documents:</strong> per contract; default return or destroy at close + 12 months. <span class="chip src">⚑</span></li>
+      <li><strong>B · abstracted patterns:</strong> indefinite — outside personal-data scope once abstracted. <span class="chip src">⚑ threshold</span></li>
+    </ul></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>Automate the deletion points so they happen by rule, not by memory. Audio out within 90 days in both classes.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Several retention periods are proposed and need the reviewer's confirmation. <span class="chip src">⚑</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The full schedule is drafted.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Automated deletion and an audit cycle.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Periods to confirm at review.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p14">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 14</div><h1 class="play-title">Contribution clause &amp; <em>IP</em></h1><p class="play-what">Carry the uniform pattern-contribution clause in every Loop contract, and hold the IP positions across both products.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Every Loop engagement contract.</li><li>Whenever IP is asserted externally (a claim, a publication, a trade-mark).</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it · the contribution clause</div><p>Every Loop contract carries one uniform clause: the client licenses PowerVox to abstract anonymised, organisation-unidentifiable patterns into the library; PowerVox warrants the anonymisation standard and that no client document or identifiable material enters the library; the client's own model remains the client's.</p></div>
+    <div class="ps"><div class="ps-h">The IP positions</div><ul>
+      <li><strong>The instrument</strong> — VQ Assessment, Black Egg, companion questionnaire, scoring logic: PowerVox Ltd's.</li>
+      <li><strong>Participant responses</strong> — stay theirs; PowerVox takes a research and case-study licence.</li>
+      <li><strong>Derived data &amp; abstracted patterns</strong> — PowerVox's, warranted anonymous.</li>
+      <li><strong>TOM templates &amp; the elicitation engine</strong> — PowerVox's (custody: Scott); clients licence outputs, never the engine.</li>
+    </ul></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>One uniform clause across all engagements so confidentiality is consistent. Draft the clause with the reviewer; verify the trade-mark registrations before relying on the ™ marks.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Clause drafting. <span class="chip src">⚑ reviewer</span></li><li>Trade-mark registration status — Voice Quotient™, the Voice Ladder™ — asserted, not yet evidenced. <span class="chip src">⚑ verify</span></li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The clause intent and IP positions are set.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>The clause wording for the contract template.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Trade-mark status unverified.</p></div>
+    </div>
+  </section>
+
+  <section class="play" id="p15">
+    <span class="backhome" onclick="showHome()">← Home</span>
+    <div class="play-head"><div class="play-kick">Standing disciplines · Play 15</div><h1 class="play-title">Open the launch <em>gate</em><span class="play-phase">launch-blocking</span></h1><p class="play-what">The exit criteria that must all be met before the beta opens — and the class-B equivalent before the second Loop client.</p></div>
+    <div class="gate-call"><div class="g-t">Exit criteria · all four, or the gate stays shut</div><p><strong>1.</strong> The keepers have resolved the ⚑ items they own. &nbsp; <strong>2.</strong> The external reviewer has signed off the architecture. &nbsp; <strong>3.</strong> The falsification criteria are locked (Hannah). &nbsp; <strong>4.</strong> The consent texts are final.</p></div>
+    <div class="ps"><div class="ps-h">Run this play when</div><ul><li>At the decision point before the first beta invitation.</li><li>Before the second Loop client (class B equivalent).</li></ul></div>
+    <div class="ps"><div class="ps-h">How to run it</div><ol>
+      <li>Check all four exit criteria are genuinely met.</li>
+      <li>For class B, confirm the same review has signed off the anonymisation standard and the contribution clause.</li>
+      <li>Only then issue the first invitation / begin abstraction.</li>
+    </ol></div>
+    <div class="ps rec"><div class="ps-h">Recommendation</div><p>This play is the gate, not its satisfaction. It stays shut until every criterion is met — <strong>no exceptions on commercial grounds</strong>. One review buys both products their foundations.</p></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>All four criteria are currently open — reviewer to appoint and sign off, criteria to lock, ⚑ items to resolve, texts to finalise.</li></ul></div>
+    <div class="today">
+      <div class="tcol work"><div class="th">Working today</div><p>The four criteria are defined.</p></div>
+      <div class="tcol build"><div class="th">Being built</div><p>Resolving the keeper ⚑ items.</p></div>
+      <div class="tcol block"><div class="th">Blocked / unresolved</div><p>Reviewer sign-off, locked criteria and final texts all outstanding.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  var groups = ['ref','basis','bring','safe','stand'];
+  function clearActivePlays(){ document.querySelectorAll('.pb-play').forEach(b=>b.classList.remove('on')); }
+  function hideAllPanels(){ document.querySelectorAll('.play, .play-home').forEach(p=>p.classList.remove('on')); }
+  function showTab(g){
+    document.querySelectorAll('.pb-tab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-g')===g));
+    document.querySelectorAll('.pb-play').forEach(b=>b.classList.toggle('show', b.getAttribute('data-g')===g));
+    // open the first play in the group
+    var first = document.querySelector('.pb-play[data-g="'+g+'"]');
+    if(first){ var id = first.getAttribute('onclick').match(/showPlay\('([^']+)'\)/)[1]; showPlay(id); }
+  }
+  function showPlay(id){
+    hideAllPanels();
+    var panel = document.getElementById(id);
+    if(panel){ panel.classList.add('on'); }
+    clearActivePlays();
+    document.querySelectorAll('.pb-play').forEach(b=>{ var m=b.getAttribute('onclick').match(/showPlay\('([^']+)'\)/); if(m && m[1]===id) b.classList.add('on'); });
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  function showHome(){
+    hideAllPanels(); clearActivePlays();
+    document.getElementById('home').classList.add('on');
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+</script>
+</body>
+</html>

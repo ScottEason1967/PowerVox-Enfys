@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Burrows · The workings beneath the village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36;
+    --gold: #E8B33A;
+    --gold-deep: #B8862E;
+    --warm-cream: #FFF9EC;
+    --text: #2B2433;
+    --text-sec: #5A5168;
+    --text-muted: #8B8295;
+    --border-lt: #ece8f1;
+    --card: #ffffff;
+    --red: #A8293B;
+    --green: #2F7A4D;
+    --blue: #2F5E9E;
+    --violet: #5B3A8C;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1080px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 14px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .note {
+    margin: 20px auto 32px; max-width: 880px;
+    padding: 15px 21px;
+    background: linear-gradient(135deg, var(--warm-cream), #FFFCF1);
+    border: 1px solid #F0DCA0; border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    font-size: 12.5px; color: var(--text-sec); line-height: 1.65;
+  }
+  .note strong { color: var(--pv-ink); }
+
+  .sys { 
+    background: var(--card); border-radius: 14px;
+    padding: 22px 24px 20px; margin-bottom: 14px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.30);
+    border-left: 5px solid var(--sc, var(--blue));
+    scroll-margin-top: 76px;
+  }
+  .sys-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .sys-num { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: var(--text-muted); }
+  .sys-name { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--pv-ink); }
+  .sys-plain { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
+  .sys-status {
+    margin-left: auto;
+    font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 4px 11px; border-radius: 999px;
+  }
+  .st-design { background: var(--warm-cream); color: var(--gold-deep); }
+  .st-indesign { background: rgba(47,94,158,0.12); color: var(--blue); }
+  .st-gated { background: rgba(168,41,59,0.12); color: var(--red); }
+  .st-central { background: rgba(232,179,58,0.20); color: #8a6310; }
+  .sys-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 8px 26px; margin-top: 10px; }
+  .sys-purpose { font-size: 13px; color: var(--text-sec); line-height: 1.65; }
+  .sys-purpose strong { color: var(--pv-ink); }
+  .sys-side { font-size: 11.5px; color: var(--text-sec); line-height: 1.6; }
+  .sys-side strong { color: var(--pv-ink); font-weight: 700; }
+  .sys-build { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-lt); grid-column: 1 / -1; }
+  .sys-build .b-h { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 4px; }
+  .sys-build p { font-size: 12px; color: var(--text-sec); line-height: 1.65; }
+  .sys-build a { color: var(--blue); font-weight: 700; text-decoration: none; }
+  .sys-build a:hover { text-decoration: underline; }
+  .stage-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+  details.design { margin-top: 12px; border-top: 1px solid var(--border-lt); padding-top: 10px; }
+  details.design summary { cursor: pointer; list-style: none; font-size: 10px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold-deep); }
+  details.design summary::-webkit-details-marker { display: none; }
+  details.design summary::after { content: ' ▸ open the design'; color: var(--text-muted); font-weight: 700; letter-spacing: 0.4px; text-transform: none; }
+  details.design[open] summary::after { content: ' ▾'; }
+  .dsec { margin-top: 10px; }
+  .dsec .dh { font-size: 9px; font-weight: 800; letter-spacing: 1.3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .dsec ol, .dsec ul { margin: 2px 0 0 18px; font-size: 11.5px; color: var(--text-sec); line-height: 1.65; }
+  .dsec p { font-size: 11.5px; color: var(--text-sec); line-height: 1.6; }
+  .dsec strong { color: var(--pv-ink); }
+  .stage-chip {
+    font-size: 9px; font-weight: 800; letter-spacing: 0.6px;
+    padding: 2px 9px; border-radius: 9px;
+    background: rgba(74,46,111,0.10); color: var(--violet);
+    border: 1px solid rgba(91,58,140,0.25);
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) {
+    .page { padding: 28px 18px 24px; }
+    .head-title { font-size: 32px; }
+    .sys-grid { grid-template-columns: 1fr; }
+  }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-gather.html">← The Gather</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Burrows</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the workings beneath the village</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+
+<div class="page-hero"><img src="images/Burrows.png" alt="" style="object-position: center 50%;"></div>
+
+<div class="page">
+
+  <div class="head">
+    <h1 class="head-title">The <em>Burrows</em></h1>
+    <p class="head-sub">Every village runs on workings you cannot see from the green. These are the chassis's subsystems — the things the Cartographer has to <strong>actually build</strong>. One canonical entry each; the Gather's cells point here, and nowhere else.</p>
+  </div>
+
+  <p class="note"><strong>How to read this.</strong> Each system carries its owner, the lifecycle stages it serves, what exists today, and what has to be built. Statuses are honest: most of these are still to design — that is the point of the register. When a system gains its own page or canonical document, the entry links to it and this page stops describing it.</p>
+
+  <div class="sys" id="sys-qualification" style="--sc: var(--green);">
+    <div class="sys-head"><span class="sys-num">01</span><span class="sys-name">The Gate machinery</span><span class="sys-plain">Qualification &amp; funnel</span><span class="sys-status st-design">⚑ designed v0.1 · confirm + implement</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">Only warm conversations reach Rachel's diary. Intake, criteria, routing and the diary-protection rules — the operational half of the funnel. The commercial half (targets, conversion) belongs to the open BD seat and is carried by Rachel.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott (operational) · open seat (commercial)<br><strong>Exists today:</strong> tacit, manual, in heads<div class="stage-chips"><span class="stage-chip">The Gate</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Qualification criteria per product · intake route (form or referral script) · routing rules to diary or decline · a pipeline view the keepers can read at a glance.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal</summary>
+      <div class="dsec"><div class="dh">The flow</div><ol>
+        <li>Enquiry arrives — Substack, LinkedIn, Black Egg result page, speaking room, or warm referral. <strong>Source captured at entry, always</strong> (it is the funnel's learning).</li>
+        <li>Intake form: role and seniority, organisation, which ware they're drawn to, timing, budget signal, how they found us.</li>
+        <li>Routing rules per product: Root to Grow (senior leader · can fund £1,495 · cohort timing fits) · TOM engagement (organisational sponsor · ~£30k budget · three-month window) · Greenhouse (alumni only until the Year 2–3 direct-entry trigger) · speaking (diary rules apply).</li>
+        <li>Qualified → a capped weekly allocation of conversation slots on Rachel's diary. Unqualified → nurture (Substack) or the decline template, kindly.</li>
+        <li>Pipeline board, five stages: New → Qualified → Conversation → Proposal → Won/Lost — readable by all keepers at a glance, reviewed in the weekly focus check.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Tooling ⚑</div><p>Kajabi form as the single intake (Kajabi is the canonical platform; Mehtab configures); pipeline board in a shared sheet or Notion; capped booking via a scheduling tool wired to the Village Clock's slot taxonomy.</p></div>
+      <div class="dsec"><div class="dh">Artefacts to make</div><ul><li>Qualification criteria sheet, one per ware</li><li>Decline + nurture email templates</li><li>The pipeline board itself</li></ul></div>
+      <div class="dsec"><div class="dh">Failure modes this design must beat</div><ul><li>Unqualified calls reaching Rachel's diary (the system's whole point)</li><li>Source attribution lost at entry</li><li>Pipeline invisible until someone asks</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-onboarding" style="--sc: var(--green);">
+    <div class="sys-head"><span class="sys-num">02</span><span class="sys-name">The Welcome bench</span><span class="sys-plain">Onboarding &amp; contracting</span><span class="sys-status st-design">⚑ designed v0.1 · confirm + implement</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">From "yes" to ready: contracts signed, schedule set, materials issued, access provisioned — per product, the same way every time. Both Rachel and Scott are qualified commercial solicitors, so contracting is owned in-house.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott<br><strong>Exists today:</strong> consultancy contracting practice; no productised onboarding<div class="stage-chips"><span class="stage-chip">The Welcome</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Engagement checklist per product · contract templates (RtG cohort terms, Greenhouse membership terms, TOM statement of work) · kick-off pack · access &amp; scheduling provisioning.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal</summary>
+      <div class="dsec"><div class="dh">The flow</div><ol>
+        <li>Won → contract issued from the per-ware template (RtG cohort terms · Greenhouse membership terms · TOM statement of work). Solicitor-drafted in-house, e-signed.</li>
+        <li>Invoice one raised on signature (the Ledger room's schedule).</li>
+        <li><strong>Consent pack issued separately from the contract</strong> — the Deep Vault's layers for beta participants, honouring the consent-is-not-payment principle from the Black Egg spec: the opt-in moment is never bundled with the commercial moment.</li>
+        <li>Scheduling: cohort dates or TOM workshop plan booked against the Village Clock's slot rules.</li>
+        <li>Access provisioned (Kajabi enrolment, community space) and the kick-off pack sent.</li>
+        <li>The onboarding checklist closes — same checklist, every engagement, no exceptions.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Tooling ⚑</div><p>E-signature platform (processor — goes on the Deep Vault's reviewer map); Kajabi enrolment; the checklist lives on the ops board.</p></div>
+      <div class="dsec"><div class="dh">Artefacts to make</div><ul><li>Three contract templates</li><li>Kick-off pack per ware</li><li>The single onboarding checklist</li></ul></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>Contract and consent conflated (breaks the Vault's layering)</li><li>Access arriving after session one</li><li>Scheduling that quietly breaches the cadence rules</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-consent" style="--sc: var(--red);">
+    <div class="sys-head"><span class="sys-num">03</span><span class="sys-name">The Deep Vault</span><span class="sys-plain">Consent · IP · data architecture</span><span class="sys-status st-gated">launch gate · drafted</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose"><strong>Launch-blocking.</strong> The consent, IP and data-protection architecture the research depends on — built in-house, with external legal review as the gate before the first beta invitation. A dataset gathered without this cannot be made honest after the fact.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott · external legal review as the gate<br><strong>Exists today:</strong> the data-protection groundwork done<div class="stage-chips"><span class="stage-chip">The Welcome</span><span class="stage-chip">The Harvest</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Consent flows for beta participants · retention &amp; deletion schedule · IP assignment and licence positions · DPIA · the external review itself. <a href="the-deep-vault-playbook.html">The Deep Vault — the IG playbook →</a></p></div>
+    
+    <details class="design"><summary>Design status — drafted, ahead of the others</summary>
+      <div class="dsec"><p>This system's design covers two data classes (beta research data; Loop pattern-library data), layered consent, the lawful-basis reasoning in full, retention schedule, the pattern-contribution clause, DPIA screening and nine reviewer questions. Remaining build: appoint the external reviewer (launch-blocking), resolve the keepers' ⚑ items, then draft the consent texts and participant information on the reviewed architecture, and complete the processor map as tooling is chosen.</p></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-cadence" style="--sc: var(--violet);">
+    <div class="sys-head"><span class="sys-num">04</span><span class="sys-name">The Village Clock</span><span class="sys-plain">Scheduling &amp; cadence protection</span><span class="sys-status st-design">⚑ designed v0.1 · confirm + implement</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">The visible/cave rhythm encoded into how everything is scheduled — whole-day batches, the protected cave-month for beta analysis, over-commitment flagged early. Energy is the binding constraint; this system is its guardian.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott, in the peer's register<br><strong>Exists today:</strong> the 2/4 model as agreement, not as system<div class="stage-chips"><span class="stage-chip">All stages</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Cadence rules in the calendar itself · capacity dashboard across the four seats · the over-commitment flag and the weekly focus check, kept light.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal</summary>
+      <div class="dsec"><div class="dh">The rules, encoded</div><ol>
+        <li><strong>Weekly:</strong> two build days per leader protected (a health guardrail) — slot type, not aspiration.</li>
+        <li><strong>Monthly:</strong> week four is the cave week — no client sessions booked into it, by calendar rule.</li>
+        <li><strong>Annually:</strong> the beta analysis is one protected cave-month, never scattered hours.</li>
+        <li><strong>Delivery caps:</strong> single cohort track in H1, parallel two-track only once grooved; three TOM engagements in the year; speaking capped. The caps live in the calendar, not in memory.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">The mechanism</div><p>A slot taxonomy on the shared calendar (Delivery · Build · Cave · Signal) plus a one-glance capacity view: founder-days committed against cap, per month, per keeper. Any month breaching its cap raises the over-commitment flag — which is not an alert, it is <strong>the peer conversation</strong>, held in Scott's register ("that breaks the diary").</p></div>
+      <div class="dsec"><div class="dh">Artefacts</div><ul><li>The slot taxonomy</li><li>The monthly capacity view</li><li>The weekly focus check agenda — three questions, kept light</li></ul></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>The cave eroded by "just one call"</li><li>Aggregate commitment invisible until someone is exhausted</li><li>The flag fired as a system notification instead of a human conversation</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-delivery" style="--sc: var(--green);">
+    <div class="sys-head"><span class="sys-num">05</span><span class="sys-name">The Workbenches</span><span class="sys-plain">Delivery operations</span><span class="sys-status st-design">⚑ designed v0.1 · confirm + implement</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">The systems beneath every engagement while it runs: session logistics, materials flow, cohort administration, client communications. Per product configuration — a Root to Grow cohort, a Greenhouse season, a TOM engagement — with nothing falling through the cracks.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott (systems) · Rachel &amp; Hannah (the rooms)<br><strong>Exists today:</strong> bespoke per engagement<div class="stage-chips"><span class="stage-chip">The Work</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>RtG cohort runbook — needed before cohort one · Greenhouse season calendar &amp; member administration · TOM engagement workplan template · the materials library.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal · the RtG runbook is the pre-cohort-one artefact</summary>
+      <div class="dsec"><div class="dh">Root to Grow cohort runbook — skeleton</div><ol>
+        <li><strong>T−6 weeks:</strong> enrolment closes (10–12 seats); cohort mix checked against the beta's segmentation needs (seniority, industry, gender spread).</li>
+        <li><strong>T−4:</strong> baseline issued — VQ Assessment + Black Egg + companion questionnaire (Hannah), under the Vault's consent layers.</li>
+        <li><strong>T−2:</strong> materials and anchors pack out; tech check; session calendar confirmed.</li>
+        <li><strong>Weeks 1–6:</strong> live delivery, Rachel + Hannah in the room, Scott's systems beneath; a per-week checklist (materials, recording where consented, follow-up trigger armed).</li>
+        <li><strong>Week 5:</strong> the Greenhouse invitation lands (the Tending rounds own the ask; ≥60% conversion target).</li>
+        <li><strong>Close:</strong> completion markers to the Harvest store; testimonial and case-study consent asked separately; transition complete.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Also under this system</div><p><strong>Greenhouse season ops:</strong> the monthly rhythm calendar, member administration, quarterly re-measure scheduling (feeds the Harvest store). <strong>TOM engagement workplan:</strong> month one discovery (recorded, consented), month two build and review, month three iterate and hand over — with an artefact register per engagement.</p></div>
+      <div class="dsec"><div class="dh">Tooling ⚑</div><p>Kajabi for cohort content and community; a structured materials library (build once, version, reuse — never rebuilt per cohort); checklists on the ops board.</p></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>Materials rebuilt from scratch each cohort</li><li>No single view of a live engagement's state</li><li>The conversion ask left until after the room has dispersed</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-tending" style="--sc: var(--green);">
+    <div class="sys-head"><span class="sys-num">06</span><span class="sys-name">The Tending rounds</span><span class="sys-plain">Follow-up &amp; practice workflows</span><span class="sys-status st-design">⚑ designed v0.1 · confirm + implement</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">What happens between rooms: check-ins scheduled, anchors travelling home with leaders, practice prompts, completion and transition. The workflow is Scott's; the content of the tending — anchors, behaviour evidence — belongs to Rachel and Hannah.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott (workflow) · Rachel &amp; Hannah (content)<br><strong>Exists today:</strong> anchors defined in the construct; no workflow<div class="stage-chips"><span class="stage-chip">The Tending</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Between-session check-in workflow · anchor distribution &amp; tracking · completion and RtG→Greenhouse transition flow.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal</summary>
+      <div class="dsec"><div class="dh">The flow</div><ol>
+        <li>Post-session: the week's anchor goes home with every leader (distribution automated; the anchor itself is Rachel's and Hannah's content).</li>
+        <li>Mid-week: one practice prompt, automated, light.</li>
+        <li>Check-in: a one-question pulse — answered in seconds, logged to the engagement view.</li>
+        <li>Week five: the Greenhouse invitation (the warm ask, made while the room is still warm).</li>
+        <li>Post-programme: alumni nurture rhythm; behaviour-evidence capture points logged to the Harvest store at the intervals Hannah sets.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Tooling ⚑</div><p>Kajabi email automations for prompts and anchors; the pulse as a one-tap form; evidence markers into the Harvest pipeline.</p></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>Anchors staying in the room — which defeats the construct's whole restoration claim</li><li>Pulse fatigue from over-asking</li><li>Evidence points defined after the cohort instead of before</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-evidence" style="--sc: var(--blue);">
+    <div class="sys-head"><span class="sys-num">07</span><span class="sys-name">The Harvest store</span><span class="sys-plain">The evidence pipeline</span><span class="sys-status st-gated">gated on 03</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">From room to dataset: the VQ Assessment and companion questionnaire captured, stored under consent, quality-checked at n=20, reviewed at n=60, analysed in the cave-month against pre-set criteria. Hannah holds the threshold; Scott builds the plumbing. The dataset must be usable when the academic partner enters.</p>
+      <p class="sys-side"><strong>Owner:</strong> Hannah (threshold) · Scott (plumbing)<br><strong>Exists today:</strong> beta design document; no pipeline<div class="stage-chips"><span class="stage-chip">The Harvest</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Capture instrument &amp; storage under the Deep Vault's rules · the n-gates as actual checkpoints · analysis workspace for the cave-month. </p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal · gated on the Deep Vault review</summary>
+      <div class="dsec"><div class="dh">The pipeline</div><ol>
+        <li>Capture: assessment platform (⚑ unchosen — deliberately, so the Vault's reviewer sees the processor before lock-in) takes the 38-question instrument + companion questionnaire.</li>
+        <li>Identifier split: pseudonymisation within 30 days of capture, per the Vault — analysis never needs names.</li>
+        <li>The research store: pseudonymised dataset, access-controlled, n-counts automated so the gates announce themselves (n=20 hygiene · n=60 mid-beta · ~n=100 close).</li>
+        <li>The cave-month workspace: analysis against the pre-set criteria; findings to the Charter; Hannah's thresholds untouchable on commercial grounds.</li>
+        <li>Class B lane: at each TOM engagement close, the pattern abstraction runs (the pattern-library schema) — organisation-unidentifiable patterns only into the library.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>Capture tooling chosen before the reviewer sees the processor map</li><li>Identifiers leaking into working files</li><li>Gate counts tracked by memory instead of by the system</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-ledger" style="--sc: var(--yellow, #C99425);">
+    <div class="sys-head"><span class="sys-num">08</span><span class="sys-name">The Ledger room</span><span class="sys-plain">Invoicing · collections · renewal</span><span class="sys-status st-design">⚑ designed v0.1 · was thinnest in sources</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">Money in, cleanly: invoicing and collections per product, renewal mechanics for the Greenhouse, and the records that make the revenue picture readable. Named as Scott's, specified nowhere — the first candidate for real process design.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott<br><strong>Exists today:</strong> consultancy invoicing habits<div class="stage-chips"><span class="stage-chip">The Ledger</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>Invoicing schedule per product · payment terms &amp; chase process · Greenhouse renewal flow · the revenue view against the ~£225k year-one path.</p></div>
+    
+    <details class="design"><summary>⚑ Design v0.1 — Cartographer's proposal · this system had nothing beneath it</summary>
+      <div class="dsec"><div class="dh">The flow</div><ol>
+        <li><strong>Invoice schedules per ware:</strong> RtG — on enrolment, before cohort start. Greenhouse — monthly subscription, collected automatically. TOM — three instalments (proposal: on signature / month two / on handover). Speaking — 50% on booking, 50% on delivery. ⚑ All proposals.</li>
+        <li><strong>Terms:</strong> 14 days; the chase ladder at 7, 14 and 21 days overdue — first chase automated and friendly, the third is a keeper's phone call, because many clients are also friends and the system must spare the friendship by being impersonal early.</li>
+        <li><strong>The revenue view, monthly:</strong> actual vs the ~£225k worked path · <strong>the PowerVox-product share %</strong> (the single guiding metric, visible every month, not annually) · the Greenhouse run-rate tracker against the ~£52.5k exit target.</li>
+        <li><strong>Renewals:</strong> Greenhouse retention watched monthly against the ~85% assumption; annual membership review cycle.</li>
+      </ol></div>
+      <div class="dsec"><div class="dh">Tooling ⚑</div><p>Kajabi payments for subscriptions; a proper accounting package for invoicing and the chase ladder; the revenue view as a one-page monthly sheet until it earns a dashboard.</p></div>
+      <div class="dsec"><div class="dh">Failure modes</div><ul><li>The guiding metric computed once a year instead of living monthly</li><li>Chasing friends ad hoc and awkwardly</li><li>Run-rate (the asset) confused with in-year revenue (the symptom)</li></ul></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="sys" id="sys-elicitation" style="--sc: var(--gold-deep);">
+    <div class="sys-head"><span class="sys-num">09</span><span class="sys-name">The Cartographer's table</span><span class="sys-plain">The elicitation engine</span><span class="sys-status st-central">the central build</span></div>
+    <div class="sys-grid">
+      <p class="sys-purpose">Strictly the method's production system, not a chassis subsystem — it lives with the third thing, listed here because the chassis runs its engagements. The repeatable, AI-supported flow of workshops, questionnaires and exchanges that populates a TOM without live facilitation. The collateral is currently tacit; <strong>externalising it is Rachel's job and the genuine unlock</strong>.</p>
+      <p class="sys-side"><strong>Owner:</strong> Scott (build) · Rachel (the unlock)<br><strong>Exists today:</strong> base templates; the prior public-sector programme's artefacts prove the output shape<div class="stage-chips"><span class="stage-chip">The Work</span><span class="stage-chip">the Loop</span></div></p>
+      <div class="sys-build"><div class="b-h">To build</div><p>The question sets &amp; sequence, externalised · workshop-to-template population flow · PowerVox as rehearsal, a paid validation client, a zero-knowledge falsification client. Canonical: <a href="the-cartographers-table.html">the Loop — the Cartographer's Table →</a></p></div>
+    
+    <details class="design"><summary>Design status — governed by the method</summary>
+      <div class="dsec"><p>This system's design lives with the method: the elicitation playbook phases (Ingest → Mirror → Skeleton → Correct → Settle → Deepen → Audit → Handoff), the question instruments, and the expert-persona frames. The unlock remains Rachel externalising the tacit collateral. Listed here, not owned here — the method is the third thing.</p></div>
+    </details>
+  </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Burrows · the system register</span>
+    <span><em>Proprietary &amp; confidential</em> · PowerVox TOM — a subsystem of the Loveheart TOM</span>
+  </div>
+
+</div>
+</body>
+</html>

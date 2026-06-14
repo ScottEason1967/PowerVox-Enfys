@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Nook · the evidence the model stands on</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 22px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 22px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--gold-deep); }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 16px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+
+  .sec-h {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    margin: 30px 0 6px;
+  }
+  .sec-h .sn { font-family: var(--serif); font-size: 27px; font-weight: 600; color: #fff; }
+  .sec-h .sn em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .sec-h .sk { font-size: 10px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; padding: 3px 9px; border-radius: 3px; }
+  .sec-h .sk.ext { background: rgba(47,94,158,0.22); border: 1px solid rgba(156,194,240,0.5); color: #BFD6F4; }
+  .sec-h .sk.int { background: rgba(91,58,140,0.24); border: 1px solid rgba(201,175,239,0.5); color: #D6C4F0; }
+  .sec-h .sk.gap { background: rgba(168,41,59,0.20); border: 1px solid rgba(216,128,140,0.5); color: #EBB3BB; }
+  .sec-lead { font-size: 12.5px; color: rgba(255,255,255,0.80); line-height: 1.65; margin: 0 0 16px; max-width: 860px; }
+  .sec-lead strong { color: #fff; }
+
+  .ev { background: var(--card); border-radius: 13px; padding: 17px 20px 16px; box-shadow: 0 7px 22px rgba(0,0,0,0.26); margin: 0 0 12px; border-left: 4px solid var(--ec, var(--blue)); }
+  .ev .claim { font-family: var(--serif); font-size: 16.5px; font-weight: 600; color: var(--pv-ink); line-height: 1.3; margin-bottom: 7px; }
+  .ev .note { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; margin-bottom: 10px; }
+  .ev .src { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; border-top: 1px solid var(--border-lt); padding-top: 9px; }
+  .ev .src .lbl { font-size: 9px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); }
+  .ev .src .who { font-size: 12.5px; font-weight: 700; color: var(--pv-ink); }
+  .ev .src .who a { color: var(--blue); text-decoration: none; }
+  .ev .src .who a:hover { text-decoration: underline; }
+  .ev .src .yr { font-size: 12px; color: var(--text-sec); font-weight: 600; }
+  .ev .tag { font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; margin-left: auto; }
+  .ev .tag.rig { background: var(--green-pale); color: var(--green); }
+  .ev .tag.wk { background: #FBEFD9; color: var(--gold-deep); }
+  .ev .tag.own { background: #EEE7F6; color: var(--violet); }
+
+  .gap-card { background: rgba(255,255,255,0.05); border: 1px dashed rgba(235,179,187,0.55); border-radius: 13px; padding: 16px 20px; margin: 0 0 12px; }
+  .gap-card .gclaim { font-family: var(--serif); font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 5px; }
+  .gap-card .gnote { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; }
+  .gap-card .gstamp { display: inline-block; margin-top: 9px; font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: #EBB3BB; }
+
+  .callout { background: rgba(232,179,58,0.10); border: 1px solid rgba(232,179,58,0.45); border-radius: 14px; padding: 18px 22px; margin: 0 0 22px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.7; }
+  .callout strong { color: #FFD66B; }
+
+  .foot { margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } .ev .tag { margin-left: 0; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Nook</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the evidence register</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;opacity:0.45;pointer-events:none;">Nook</a></span>
+</div>
+
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Nook</em></h1>
+    <p class="head-sub">Off the Library sits a quiet nook where the works the model leans on are gathered and kept open. This is the <strong>evidence register</strong>: the third-party research the village cites, and its own papers and charters, set side by side so anyone can see exactly what is backed and what is not yet.</p>
+  </div>
+
+  <div class="prose">
+    <em class="lead">What this nook is for.</em>
+    <p style="margin-top:8px;">The <a href="the-observatory.html" style="color:var(--green);font-weight:700;text-decoration:none;">Observatory</a> holds the research <strong>standard</strong> — the beta, the claims ladder, the thresholds a claim must clear before it may be made in public. This nook holds the research <strong>itself</strong>: a register of the actual sources. Two kinds sit here, kept honestly apart. <strong>External research</strong> is third-party work the model draws on, cited with its author, title and year, and linked where a source gives a link. <strong>Our own research</strong> is PowerVox's position papers, charters and companions, named plainly as internal work product with its version and date, never dressed up as independent evidence. Where the model makes a claim that nothing yet backs, a slot is left open and marked, so the gaps are visible rather than hidden.</p>
+    <div class="links">
+      <a href="the-observatory.html">The Observatory · the research standard</a>
+      <a href="the-records-room.html">The Records Room · the position papers</a>
+      <a href="the-library.html">The Library · the language it all rests on</a>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>How to read the markers.</strong> Each external item carries a confidence tag from the source dossier itself. <em style="color:#9FD8B4;font-style:normal;font-weight:700;">Rigorous</em> is peer-reviewed, large-sample, or longitudinal work. <em style="color:#E8C77A;font-style:normal;font-weight:700;">Widely cited, weakly sourced</em> is a figure used by serious institutions whose ultimate provenance is harder to trace, and which is attributed carefully rather than presented as primary research. Internal works carry <em style="color:#C9AFEF;font-style:normal;font-weight:700;">PowerVox</em>. The category claim the whole model points at — that Voice Intelligence sits alongside IQ and EQ — is held at hypothesis until the beta clears its thresholds. Nothing here asserts it.
+  </div>
+
+  <!-- ============ EXTERNAL ============ -->
+  <div class="sec-h">
+    <span class="sn">External <em>research</em></span>
+    <span class="sk ext">Third-party studies</span>
+  </div>
+  <p class="sec-lead">Independent work the model cites, drawn from the Greenhouse research companion <em>Money in the Hands of Women</em>, which assembled and graded these sources. Each is reproduced here with the author, title, year and link the companion records. The companion's own confidence grading is carried across unchanged.</p>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">The largest wealth transfer in history is underway, and it is moving toward women.</div>
+    <div class="note">US women controlled roughly $18tn in investable assets in 2023, projected to rise to $34tn (about 38% of US investable assets) by 2030; female-controlled wealth grew 51% from 2018 to 2023 against a 43% market rise. Based on a survey of 13,000+ US and European investors plus McKinsey wealth-management data — the strongest single source in the dossier.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://www.mckinsey.com/industries/financial-services/our-insights/the-new-face-of-wealth-the-rise-of-the-female-investor" target="_blank" rel="noopener">McKinsey &amp; Company — The new face of wealth: the rise of the female investor</a></span><span class="yr">May 2025</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">Income reaching the mother specifically improves children's outcomes.</div>
+    <div class="note">A systematic review of RCTs, quasi-experiments and longitudinal studies found household income has a positive causal effect on children's cognitive, social-behavioural and health outcomes, with larger effects where the income increase came through the mother.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://link.springer.com/article/10.1007/s12187-020-09782-0" target="_blank" rel="noopener">Cooper &amp; Stewart — Does household income affect children's outcomes?, Child Indicators Research</a></span><span class="yr">2020</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">A modest income rise to the poorest households produces measurable downstream gains.</div>
+    <div class="note">A US natural experiment found an additional $4,000 per year to the poorest households produced one additional year of educational attainment by age 21 and a 22% reduction in minor crime at ages 16–17.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2891175/" target="_blank" rel="noopener">Akee, Copeland, Keeler, Angold &amp; Costello — Parents' Incomes and Children's Outcomes (NBER)</a></span><span class="yr">NBER</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">Women invest with longer horizons and toward sustainable and impact-aligned ends.</div>
+    <div class="note">McKinsey's investor survey found women more security- and long-horizon-oriented in their goals; Morgan Stanley found 84% of women express interest in sustainable investing vs 67% of men, with women more likely to direct capital toward equity and environmental causes. The precise sustainable-investing split is attributed to Morgan Stanley directly.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">McKinsey (May 2025); Morgan Stanley Institute for Sustainable Investing (via Stanford Social Innovation Review)</span><span class="yr">2025</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">Firms led by female CEOs show measurably stronger ESG performance.</div>
+    <div class="note">A peer-reviewed study found female-led firms demonstrate stronger ESG performance and that female-led ESG initiatives positively affect both accounting and market performance — read by the authors as evidence the activity is substantive rather than performative.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://www.sciencedirect.com/science/article/abs/pii/S1057521925004958" target="_blank" rel="noopener">Do female CEOs lead more ethical firms? International Review of Financial Analysis</a></span><span class="yr">2025</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">Women give more, and the disposition behind it is structural, not circumstantial.</div>
+    <div class="note">Twenty years of nationally representative longitudinal research from the Women's Philanthropy Institute establishes consistent gender differences in giving; peer-reviewed work finds women's higher giving is mediated by higher empathic concern and a "principle of care" orientation.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://philanthropy.indianapolis.iu.edu/institutes/womens-philanthropy-institute/research/" target="_blank" rel="noopener">Women's Philanthropy Institute, Indiana University</a>; De Wit &amp; Bekkers — Nonprofit and Voluntary Sector Quarterly</span><span class="yr">2016 / 20-yr series</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">Female-founded teams outperform on returns per dollar invested.</div>
+    <div class="note">BCG/MassChallenge found women-owned startups generate more revenue per dollar of investment; First Round Capital, reviewing ten years and 300 portfolio companies, found teams with a female co-founder performed 63% better by valuation than all-male teams. The current capital system under-allocates relative to performance.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://web-assets.bcg.com/img-src/BCG-Why-Women-Owned-Startups-Are-a-Better-Bet-May-2018-NL_tcm9-193585.pdf" target="_blank" rel="noopener">BCG / MassChallenge — Why Women-Owned Startups Are a Better Bet</a> (2018); <a href="https://10years.firstround.com/" target="_blank" rel="noopener">First Round Capital — 10 Year Project</a></span><span class="yr">2018</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">The market mistakes overconfidence for competence, and pays for the mistake.</div>
+    <div class="note">Analysing 35,000+ brokerage accounts, Barber &amp; Odean found men trade 45% more than women and lose roughly 0.94 percentage points a year more to over-trading; among single investors the gap widens. The mechanism is overconfidence — a measurable, costly bias the system rewards rather than corrects. This is the load-bearing external anchor for the "signal over volume" argument.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://faculty.haas.berkeley.edu/odean/papers/gender/boyswillbeboys.pdf" target="_blank" rel="noopener">Barber &amp; Odean — Boys Will Be Boys, Quarterly Journal of Economics</a></span><span class="yr">2001</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--blue)">
+    <div class="claim">The advisory industry is structurally mismatched for the inheriting female client.</div>
+    <div class="note">Cerulli projects $124tn transferring through 2048, the largest in record. McKinsey finds 53% of female-controlled assets unmanaged (vs 45% male); women prefer educator-advisors and report a confidence gap before inheritance that closes sharply after it. Around 80% of widows switch advisors within a year.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="https://www.cerulli.com/press-releases/cerulli-anticipates-124-trillion-in-wealth-will-transfer-through-2048" target="_blank" rel="noopener">Cerulli Associates — The Great Wealth Transfer</a> (Dec 2024); McKinsey (May 2025); <a href="https://www.citizensbank.com/learning/great-wealth-transfer-women-shaping-financial-future.aspx" target="_blank" rel="noopener">Citizens Wealth — Women &amp; Wealth Transfer Survey</a> (Mar 2025)</span><span class="yr">2024–25</span><span class="tag rig">Rigorous</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--yellow)">
+    <div class="claim">Women reinvest the large majority of their earnings into family and community.</div>
+    <div class="note">The figure of up to 90% reinvestment by women versus 30–40% by men is cited by the World Bank, IMF, Harvard Center for International Development, the Gates Foundation and UN Women. Traced back, it leads to advocacy publications of 2003–2009 rather than a single foundational peer-reviewed study. The companion's own instruction: attribute as a "widely cited" figure, not as primary research. The directional claim is supported by adjacent rigorous work on female-headed household spending; the precise percentages are not.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">Widely cited by the World Bank, IMF, Harvard CID and Gates Foundation</span><span class="yr">2003–2009 origin</span><span class="tag wk">Widely cited, weakly sourced</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--yellow)">
+    <div class="claim">Women will control the majority of global capital by the 2030s.</div>
+    <div class="note">A stronger framing that secondary reporting has occasionally extrapolated from McKinsey's work. McKinsey's primary source does not make it; what it shows is that female-controlled wealth is growing faster than male-controlled wealth and that in the US and EU women will control 38–47% of investable assets by 2030. The companion's instruction: frame as "approaching parity over the 2030s and beyond," not definitive parity by a date.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">Secondary extrapolation of McKinsey (May 2025) — not asserted in the primary source</span><span class="yr">—</span><span class="tag wk">Widely cited, weakly sourced</span></div>
+  </div>
+
+  <p class="sec-lead" style="margin-top:18px;"><strong>A second, UK-facing reading list</strong> is held alongside the companion in <em>UK Research on Wealth Transfer</em>. It names the works the Greenhouse leans on for the British picture — Hargreaves Lansdown, the Institute for Fiscal Studies, M&amp;G / Prudential, St. James's Place, Parmenion, FTAdviser and LV= — but records only their titles and publishers, not extracted findings. They are listed as a curated reading list here; the specific figures are not yet mined, so no finding is claimed from them.</p>
+
+  <!-- ============ INTERNAL ============ -->
+  <div class="sec-h">
+    <span class="sn">From our own <em>research</em></span>
+    <span class="sk int">PowerVox work product</span>
+  </div>
+  <p class="sec-lead">The village's own papers, charters and companions. These are <strong>internal work product</strong>, not independent evidence. They set positions, frame the research, and assemble external sources — and they are cited honestly as such. The category claim they build toward is held at hypothesis until the beta clears its thresholds.</p>
+
+  <div class="ev" style="--ec:var(--violet)">
+    <div class="claim">Voice Intelligence is the leadership faculty; Voice Quotient™ is its measure.</div>
+    <div class="note">The naming position the category rests on, modelled on intelligence and IQ. States plainly that the naming may be adopted now but the public claim it implies — that Voice Intelligence sits alongside IQ and EQ — is held at hypothesis until the beta validates. Carries its own triggers for reopening. Adopted internally; claim status: held at hypothesis.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who"><a href="pp-01.html">PowerVox Position Paper PP-01 · Voice Intelligence &amp; Voice Quotient™</a></span><span class="yr">v0.1 · May 2026</span><span class="tag own">PowerVox</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--violet)">
+    <div class="claim">The compensation hypothesis: lost receptive VQ drives compensation, burnout risk and eroded safety.</div>
+    <div class="note">The ten-year research framing. Sets out the mechanistic, falsifiable hypothesis — that when leaders lose Signal, Authenticity and Presence they compensate through over-control, masking, cognitive overload and relational disconnection, raising burnout risk and lowering psychological safety. A hypothesis under investigation, not a finding. Names its own blindspots, including reverse causality and untested buyer demand.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">PowerVox · 10 Year Framing for Research (internal strategy paper)</span><span class="yr">2026</span><span class="tag own">PowerVox</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--violet)">
+    <div class="claim">The discipline that lets claims be made only when evidence earns them.</div>
+    <div class="note">A living scaffold — category, definitions, mechanism map, claims ladder, evidence thresholds, and the integrity spine, "what would falsify the theory." Deliberately unfinished, populated as the beta delivers evidence. It is the governing document for how this register grows: a claim may only power an offering once it has cleared its threshold. Template stage; the substantive content is to be drafted across the beta.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">PowerVox · VQ / Voice Intelligence Research Charter</span><span class="yr">Template v1.0 · May 2026</span><span class="tag own">PowerVox</span></div>
+  </div>
+
+  <div class="ev" style="--ec:var(--violet)">
+    <div class="claim">The external evidence base behind the women-and-wealth thesis, assembled and graded.</div>
+    <div class="note">The dossier that gathered and confidence-graded the third-party studies above. Internal in the sense that the assembly, framing and synthesis are PowerVox's; the sources within it are external and are cited in the External section of this register. Its honesty about which figures are rigorous and which are weakly sourced is the standard this nook follows.</div>
+    <div class="src"><span class="lbl">Source</span><span class="who">PowerVox · Research Companion — Money in the Hands of Women (Greenhouse)</span><span class="yr">2026</span><span class="tag own">PowerVox</span></div>
+  </div>
+
+  <!-- ============ GAPS ============ -->
+  <div class="sec-h">
+    <span class="sn">Evidence to be <em>added</em></span>
+    <span class="sk gap">Open slots</span>
+  </div>
+  <p class="sec-lead">Claims the model makes on the estate for which no backing yet exists in the research stack. They are kept here, named and open, so the gaps are visible. <strong>These are not weaknesses to hide; they are the work the beta and the charter exist to do.</strong> No citation is invented to fill them.</p>
+
+  <div class="gap-card">
+    <div class="gclaim">Voice Intelligence is a distinct, measurable leadership capability that sits alongside IQ and EQ.</div>
+    <div class="gnote">The category claim of the highest order. PP-01 and the Charter both state explicitly that PowerVox has not yet earned the right to assert it publicly; it sits at the top rungs of the claims ladder and waits on the beta. Held at hypothesis.</div>
+    <span class="gstamp">Evidence to be added · beta, then pilot</span>
+  </div>
+
+  <div class="gap-card">
+    <div class="gclaim">The VQ instrument is psychometrically sound — the six dimensions are stable, consistent and distinct.</div>
+    <div class="gnote">The first evidence gate. No internal reliability data exists yet (Cronbach's α ≥ 0.70 per dimension is the pre-set threshold). Until the beta returns it, instrument validity is asserted nowhere. The 10-Year Framing is explicit: "zero validated data as yet."</div>
+    <span class="gstamp">Evidence to be added · 2026 beta</span>
+  </div>
+
+  <div class="gap-card">
+    <div class="gclaim">Lost receptive VQ causes burnout and erodes psychological safety.</div>
+    <div class="gnote">The mechanism claim. The beta can test co-occurrence only; causality, and the word "mediate," are reserved for the 2028 longitudinal pilot. The reverse-causality risk — that exhaustion dulls receptivity rather than the other way round — is named in the Charter as the central question still open.</div>
+    <span class="gstamp">Evidence to be added · 2028 pilot</span>
+  </div>
+
+  <div class="gap-card">
+    <div class="gclaim">Developing VQ measurably reduces burnout and lifts safety in organisations.</div>
+    <div class="gnote">The outcome claim that would power an enterprise diagnostic. It depends on longitudinal or intervention evidence that does not yet exist, and on buyer demand the 10-Year Framing flags as "operationally untested as a purchase trigger."</div>
+    <span class="gstamp">Evidence to be added · longitudinal / intervention work</span>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Nook</span>
+    <span><em>Proprietary &amp; confidential</em> · what is backed, and what is not yet</span

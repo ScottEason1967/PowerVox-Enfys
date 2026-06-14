@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enfys · The Drawbridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: #fff;
+    background: linear-gradient(180deg, #14101F 0%, #241A36 40%, #3A2858 80%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .topnav-product-strip { display: flex; gap: 10px; align-items: center; }
+  .topnav-product { display:inline-block; line-height:1.5; font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; color: #fff; text-decoration: none; }
+  .topnav-product.rtg { background: var(--rtg); }
+  .topnav-product.greenhouse { background: var(--greenhouse); }
+  .topnav-product.tom { background: var(--tom); }
+  .fd-page { max-width: 1380px; margin: 0 auto; }
+
+  .arrive { padding: 34px 48px 4px; text-align: center; }
+  .arrive-title {
+    font-family: var(--serif); font-size: 54px; font-weight: 600; color: #fff;
+    letter-spacing: -0.4px; line-height: 1.02; margin-bottom: 8px;
+  }
+  .arrive-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .arrive-sub { font-family: var(--serif); font-style: italic; font-size: 17px; color: rgba(255,255,255,0.80); line-height: 1.55; max-width: 720px; margin: 0 auto 4px; }
+  .arrive-sub strong { color: var(--ql-why); font-weight: 600; }
+
+  .scene-wrap { padding: 14px 24px 0; position: relative; }
+  .scene-frame {
+    position: relative; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.16);
+  }
+  .scene-art { width: 100%; display: block; }
+  .scene-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 42%, transparent 58%, rgba(16,12,26,0.42) 100%); }
+
+  .hs { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; text-decoration: none; z-index: 10; }
+  .hs-ring {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1.5px solid rgba(255,228,150,0.95);
+    box-shadow: 0 0 14px rgba(232,179,58,0.45), inset 0 0 10px rgba(232,179,58,0.30);
+    position: relative; transition: transform 0.25s ease;
+    animation: halo 4.5s ease-in-out infinite;
+  }
+  .hs-ring::before { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 1px solid rgba(255,228,150,0.28); }
+  .hs-ring::after { content: ''; position: absolute; top: 50%; left: 50%; width: 4px; height: 4px; border-radius: 50%; transform: translate(-50%, -50%); background: #FFE496; box-shadow: 0 0 7px rgba(255,228,150,0.9); }
+  @keyframes halo {
+    0%, 100% { box-shadow: 0 0 12px rgba(232,179,58,0.35), inset 0 0 8px rgba(232,179,58,0.22); }
+    50% { box-shadow: 0 0 20px rgba(232,179,58,0.60), inset 0 0 12px rgba(232,179,58,0.38); }
+  }
+  .hs:hover .hs-ring { transform: scale(1.18); }
+  .hs-cap {
+    margin-top: 9px; padding: 5px 13px 6px;
+    background: rgba(16,12,26,0.74); backdrop-filter: blur(5px);
+    border: 1px solid rgba(232,179,58,0.38); border-radius: 3px;
+    text-align: center; white-space: nowrap; line-height: 1.25;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .hs:hover .hs-cap { background: rgba(16,12,26,0.92); border-color: rgba(255,228,150,0.85); }
+  .hs-q { display: block; font-size: 8.5px; font-weight: 800; letter-spacing: 2.4px; text-transform: uppercase; }
+  .hs-n { display: block; font-family: var(--serif); font-style: italic; font-size: 14.5px; font-weight: 600; color: #fff; }
+  .hs-r { display: block; margin-top: 3px; font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); opacity: 0; transition: opacity 0.18s ease; }
+  .hs:hover .hs-r { opacity: 0.95; }
+  .hs.cap-top { flex-direction: column-reverse; }
+  .hs.cap-top .hs-cap { margin-top: 0; margin-bottom: 9px; }
+  .hs-mill .hs-cap { transform: translateX(-48px); }
+  .hs-plaque .hs-cap { display: flex; gap: 7px; align-items: baseline; margin-top: 6px; padding: 4px 12px 5px; }
+  .hs-plaque .hs-q, .hs-plaque .hs-n { display: inline; }
+  .hs-plaque .hs-n { font-size: 13.5px; }
+  /* the Loveheart */
+  .scene-wrap svg.hs-heart {
+    width: 38px; height: 34px; display: block;
+    filter: drop-shadow(0 0 8px rgba(255,244,208,1)) drop-shadow(0 0 20px rgba(232,179,58,0.75)) drop-shadow(0 0 36px rgba(232,179,58,0.4));
+    animation: heartbeat 5s ease-in-out infinite; transform-origin: center;
+  }
+  @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.09); } }
+  .hs:hover .hs-heart { animation-duration: 1.8s; }
+  /* product diamonds */
+  .hs-diamond {
+    width: 22px; height: 22px; transform: rotate(45deg);
+    border: 1.6px solid var(--pcl); border-radius: 5px;
+    box-shadow: 0 0 10px var(--pcl), inset 0 0 6px var(--pcl);
+    background: rgba(16,12,26,0.25); transition: transform 0.25s ease;
+  }
+  .hs:hover .hs-diamond { transform: rotate(45deg) scale(1.18); }
+  .hs-egg {
+    width: 18px; height: 23px;
+    background: radial-gradient(circle at 37% 28%, #57506a 0%, #211b33 46%, #0b0913 100%);
+    border: 1.5px solid var(--pcl);
+    border-radius: 50% 50% 50% 50% / 62% 62% 40% 40%;
+    box-shadow: 0 0 11px var(--pcl), inset 0 2px 5px rgba(255,255,255,0.14);
+    transition: transform 0.25s ease;
+  }
+  .hs:hover .hs-egg { transform: scale(1.16); }
+  .hs-pin { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 38% 30%, rgba(40,34,56,0.92), rgba(11,9,20,0.95));
+    border: 1.5px solid var(--pcl);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--pcl) 45%, transparent), inset 0 1px 4px rgba(255,255,255,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .hs-pin svg { width: 19px; height: 19px; color: var(--pcl); display: block; }
+  .hs:hover .hs-pin { transform: scale(1.12); box-shadow: 0 0 15px var(--pcl), inset 0 1px 4px rgba(255,255,255,0.12); }
+  .hs-prod .hs-cap { border-color: var(--pcl); display: flex; gap: 7px; align-items: baseline; padding: 4px 11px 5px; }
+  .hs-prod .hs-q, .hs-prod .hs-n { display: inline; }
+  .hs-prod .hs-q { color: var(--pcl); }
+  .hs-prod .hs-n { font-size: 13px; }
+  /* Seren */
+  .hs-star {
+    font-family: var(--serif); font-size: 34px; line-height: 1; color: #FFF4D0;
+    text-shadow: 0 0 12px rgba(255,244,208,1), 0 0 26px rgba(232,179,58,0.85), 0 0 48px rgba(232,179,58,0.5);
+    animation: starpulse 3.6s ease-in-out infinite alternate;
+  }
+  @keyframes starpulse {
+    from { text-shadow: 0 0 6px rgba(255,235,176,0.7), 0 0 14px rgba(232,179,58,0.4); }
+    to   { text-shadow: 0 0 12px rgba(255,235,176,1), 0 0 26px rgba(232,179,58,0.75); }
+  }
+  .hs-here .hs-ring { border-style: dashed; animation-duration: 3s; }
+  @media (max-width: 860px) { .hs-cap { display: none; } .hs-ring { width: 22px; height: 22px; } }
+  @media (prefers-reduced-motion: reduce) { .hs-ring, .hs-star, .scene-wrap svg.hs-heart { animation: none; } }
+
+  .scene-caption {
+    text-align: center; font-family: var(--serif); font-style: italic;
+    font-size: 16px; color: rgba(255,255,255,0.78);
+    padding: 14px 48px 4px; line-height: 1.5;
+  }
+  .scene-caption strong { color: var(--ql-why); font-weight: 600; }
+  .scene-hint {
+    text-align: center; font-size: 10.5px; font-weight: 700; letter-spacing: 1.6px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); padding: 4px 0 26px;
+  }
+  .fd-footer {
+    margin: 6px 0 0; padding: 18px 48px 26px;
+    border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .fd-footer em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 720px) {
+    .topnav { padding: 12px 22px; }
+    .arrive { padding: 24px 22px 2px; }
+    .arrive-title { font-size: 36px; }
+    .fd-footer { padding: 16px 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PASSWORD GATE — friction, not security. Change GATE_PWD below. -->
+<div id="gate-overlay" style="position:fixed;inset:0;background:linear-gradient(rgba(20,16,31,0.45),rgba(36,26,54,0.70)), url('images/Enfysentrance.png') center 28%/cover no-repeat, #14101F;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;">
+  <div style="background:#fff;padding:36px 36px 30px;border-radius:14px;width:380px;max-width:90vw;box-shadow:0 24px 60px rgba(0,0,0,0.45);">
+    <div style="width:120px;height:4px;border-radius:2px;margin-bottom:18px;background:linear-gradient(90deg,#A8293B,#C25E1F,#C99425,#2F7A4D,#2F5E9E,#5B3A8C);"></div>
+    <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:#241A36;letter-spacing:-0.2px;margin:0 0 6px;">Enfys <em style="color:#B8862E;font-weight:500;">· The Drawbridge</em></h2>
+    <p style="font-size:13px;color:#5A5168;line-height:1.5;margin:0 0 22px;">The drawbridge is raised. Held for the people whose work this is.</p>
+    <input type="password" id="gate-pwd" placeholder="Password" autofocus autocomplete="off" style="width:100%;padding:11px 13px;font-size:14px;font-family:inherit;border:1px solid #ddd8e3;border-radius:6px;margin-bottom:10px;box-sizing:border-box;outline:none;">
+    <button id="gate-btn" style="background:#241A36;color:#fff;border:none;padding:11px 16px;border-radius:6px;font-weight:700;font-family:inherit;cursor:pointer;width:100%;font-size:14px;">Cross the drawbridge</button>
+    <div id="gate-msg" style="color:#A8293B;font-size:12px;margin-top:10px;min-height:14px;"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var GATE_PWD = 'Rainbow2026';
+  var SESSION_KEY = 'pv-enfys-gate-ok';
+  if (sessionStorage.getItem(SESSION_KEY) === '1') { document.getElementById('gate-overlay').style.display = 'none'; return; }
+  function attempt() {
+    var input = document.getElementById('gate-pwd').value;
+    if (input === GATE_PWD) { sessionStorage.setItem(SESSION_KEY, '1'); document.getElementById('gate-overlay').style.display = 'none'; }
+    else { document.getElementById('gate-msg').textContent = 'Not yet. The village waits.'; document.getElementById('gate-pwd').value = ''; document.getElementById('gate-pwd').focus(); }
+  }
+  document.getElementById('gate-btn').addEventListener('click', attempt);
+  document.getElementById('gate-pwd').addEventListener('keydown', function(e) { if (e.key === 'Enter') attempt(); });
+})();
+</script>
+
+<div class="topnav">
+  <span class="topnav-context">PowerVox · The Loveheart Estate · <strong>The Drawbridge</strong></span>
+  <div class="topnav-product-strip">
+    <a class="topnav-product" style="background:#B8862E;" href="the-noticeboard.html">Noticeboard</a>
+    <a class="topnav-product" style="background:#4A2E6F;" href="the-register.html">Register</a>
+    <a class="topnav-product" style="background:#8A6D3B;" href="the-hourglass.html">Hourglass</a>
+    <a class="topnav-product" style="background:#2E6F4A;" href="the-villagers.html">Villagers</a>
+    <a class="topnav-product" style="background:#2C4A6E;" href="the-nook.html">Nook</a>
+  </div>
+</div>
+
+<div class="fd-page">
+
+  <div class="arrive">
+    <h1 class="arrive-title">Welcome to <em>Enfys</em>.</h1>
+    <p class="arrive-sub">Enfys is where PowerVox lives and breathes — the village that holds its operating model. <strong>"These are the great days"</strong> is carved on the gate below. Breathe. <strong>Aur.</strong> Then come in.</p>
+  </div>
+
+  <!-- THE SCENE — every marked place is a door to its own page -->
+  <div class="scene-wrap">
+    <div class="scene-frame">
+      <img class="scene-art" src="images/newenfysscene.png" alt="Enfys — the village at dusk: the gate, the fountain, the Greenhouse, the Library, the Town Hall, the Old Oak and the Millwheel on the river">
+      <div class="scene-vignette"></div>
+
+      <!-- Seren -->
+      <a class="hs" style="left:24%; top:6%;" href="seren.html" title="Seren — star, light, noticing. The origin.">
+        <span class="hs-star">&#10022;</span>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-why)">The origin</span><span class="hs-n">Seren</span></span>
+      </a>
+
+      <!-- WHY — the Loveheart over the fountain -->
+      <a class="hs hs-plaque" style="left:51.6%; top:27%;" href="the-green.html" title="The heart of the village — WHY. To make goodness powerful, by building the conditions under which it can be.">
+        <svg class="hs-heart" viewBox="0 0 40 36" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lovegrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#C9384A"/><stop offset="0.22" stop-color="#E07B39"/><stop offset="0.42" stop-color="#E8B33A"/><stop offset="0.62" stop-color="#3E8E5A"/><stop offset="0.82" stop-color="#3A6FB5"/><stop offset="1" stop-color="#6C4BA6"/>
+            </linearGradient>
+          </defs>
+          <path d="M20 33 C13 26 2 19 2 10.5 C2 4.5 6.5 1 11.5 1 C15 1 18.3 3 20 6 C21.7 3 25 1 28.5 1 C33.5 1 38 4.5 38 10.5 C38 19 27 26 20 33 Z" fill="url(#lovegrad)" stroke="#FFF1C4" stroke-width="1.4"/>
+        </svg>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-why)">Why</span><span class="hs-n">The Heart of the Village</span></span>
+      </a>
+
+      <!-- WHAT — the Library -->
+      <a class="hs" style="left:13%; top:30%;" href="the-library.html" title="The Library — WHAT the village is made of. The Lexicon and the construct live here.">
+        <span class="hs-ring"></span>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-what)">What</span><span class="hs-n">The Library</span></span>
+      </a>
+
+      <!-- HOW — the Gather (placement proposed) -->
+      <a class="hs" style="left:24%; top:19%;" href="the-gather.html" title="The Gather — HOW the village operates. One engagement lifecycle, run across every product.">
+        <span class="hs-ring"></span>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-how)">How</span><span class="hs-n">The Gather</span></span>
+      </a>
+
+      <!-- WHO — the Town Hall -->
+      <a class="hs" style="left:83%; top:38%;" href="the-town-hall.html" title="The Town Hall — WHO keeps the village. Four seats; three held.">
+        <span class="hs-ring"></span>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-who)">Who</span><span class="hs-n">The Town Hall</span></span>
+      </a>
+
+      <!-- WHEN — the Old Oak -->
+      <a class="hs" style="left:58%; top:9%;" href="the-village-year.html" title="The Old Oak — WHEN. The Village Year: the two nested loops the village runs and renews by. The ancient witness; Owain the red dragon guards its hearth.">
+        <span class="hs-ring"></span>
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-when)">When</span><span class="hs-n">The Village Year</span></span>
+      </a>
+
+      <!-- the gate — you are here, opens the Village Register -->
+      <a class="hs hs-here cap-top" href="the-register.html" style="left:52%; top:92%;" title="The gate. 'These are the great days' is carved at the threshold. You are here. Opens the Village Register.">
+        <span class="hs-cap"><span class="hs-q" style="color:var(--ql-why)">You are here</span><span class="hs-n">The Drawbridge</span><span class="hs-r">open the Register</span></span>
+        <span class="hs-ring"></span>
+      </a>
+
+      <!-- the two doors at the threshold — how the village is seen from outside, and how it is built -->
+      <a class="hs hs-prod cap-top" style="left:39%; top:88%; --pcl:#F2D79A;" href="the-front-door.html" title="The Front Door — the sales pitch, as a prospective client meets it. The view from outside, with the money and the workings left behind the gate.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21 V8.2 a7 7 0 0 1 14 0 V21 Z" fill="currentColor" fill-opacity="0.12"/><path d="M4 21 H20"/><path d="M12 21 V13.5"/><circle cx="13.7" cy="14.6" r="0.9" fill="currentColor" stroke="none"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">Seen from outside</span><span class="hs-n">The Front Door</span></span>
+      </a>
+      <a class="hs hs-prod cap-top" style="left:64%; top:89%; --pcl:#E8C98F;" href="the-instrument.html" title="The Instrument — the method core: the canon's eight axioms, the conditions taxonomy and the line between our IP and the client's. How the village is built.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.6" r="1.8"/><path d="M12 6.4 L6.6 20"/><path d="M12 6.4 L17.4 20"/><path d="M9.2 14.4 H14.8"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">How it&rsquo;s built</span><span class="hs-n">The Instrument</span></span>
+      </a>
+
+      <!-- the wares — product markers (placements proposed) -->
+      <a class="hs hs-prod" style="left:35%; top:54%; --pcl:#8FD9B5;" href="the-greenhouse.html" title="The Greenhouse — recurring membership and the longitudinal cohort. The product page.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 21 V10.4 L12 4.4 L19.5 10.4 V21 Z" fill="currentColor" fill-opacity="0.12"/><path d="M12 4.4 V21"/><path d="M4.5 14.6 H19.5"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">The Gardener</span><span class="hs-n">The Greenhouse</span></span>
+      </a>
+      <a class="hs hs-prod" style="left:15%; top:88%; --pcl:#A9E3C0;" href="the-root-to-grow.html" title="Root to Grow — six weeks, the planting; revenue and beta evidence in the same hours. The product page.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 V10.5"/><path d="M12 13 C 8.4 13 6.4 10.4 6.4 7.8 C 10 7.8 12 10.4 12 13 Z" fill="currentColor" fill-opacity="0.16"/><path d="M12 10.8 C 15.6 10.8 17.6 8.2 17.6 5.6 C 14 5.6 12 8.2 12 10.8 Z" fill="currentColor" fill-opacity="0.16"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">The Seedbed</span><span class="hs-n">Root to Grow</span></span>
+      </a>
+      <a class="hs hs-prod" style="left:70%; top:58%; --pcl:#A5C8F2;" href="the-tom-method.html" title="The Loop — the productised operating-model engagement. The product page.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3 L19 7.2 V15.8 L12 21 L5 15.8 V7.2 Z" fill="currentColor" fill-opacity="0.12"/><circle cx="12" cy="12" r="3.1"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">The Workshop Barn</span><span class="hs-n">the Loop</span></span>
+      </a>
+      <a class="hs hs-prod" style="left:51%; top:61%; --pcl:#FFD66B;" href="the-black-egg.html" title="The Town Crier — calling the village's wares, carrying the Black Egg. The scalable way into the funnel and priority one in the value ladder.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24"><path d="M12 2.8 C 7.4 2.8 5.9 9.8 5.9 13.4 a6.1 6.1 0 0 0 12.2 0 C 18.1 9.8 16.6 2.8 12 2.8 Z" fill="#15111f" stroke="currentColor" stroke-width="1.6"/><path d="M9.4 6.8 C 8.4 8.4 7.9 10.4 7.9 12" fill="none" stroke="rgba(255,255,255,0.30)" stroke-width="1.1" stroke-linecap="round"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">The Town Crier</span><span class="hs-n">The Black Egg</span></span>
+      </a>
+      <a class="hs hs-prod" style="left:36.5%; top:34%; --pcl:#EAE4F4;" href="the-white-sofa.html" title="The White Sofa — Rachel's premium one-to-one coaching, the warm house by the Library. The White Sofa name is not yet settled canon.">
+        <span class="hs-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="6" rx="1.8" fill="currentColor" fill-opacity="0.12"/><path d="M5.5 11 V9 a2 2 0 0 1 2-2 h9 a2 2 0 0 1 2 2 v2"/><path d="M3 14.2 H21"/><path d="M6.5 17 V18.6 M17.5 17 V18.6"/></svg></span>
+        <span class="hs-cap"><span class="hs-q">The White Sofa ⚑</span><span class="hs-n">Coaching</span></span>
+      </a>
+
+      <!-- the Millwheel — the commercial engine on the river -->
+      <a class="hs hs-mill" style="left:93%; top:58%;" href="the-millwheel.html" title="The Millwheel — the commercial engine. How flow becomes value: recognition turns to evidence, evidence to authority, and the wheel turns again.">
+        <span class="hs-ring"></span>
+        <span class="hs-cap"><span class="hs-q" style="color:#F0C24A">The commercial engine</span><span class="hs-n">The Millwheel</span></span>
+      </a>
+    </div>
+  </div>
+
+  <p class="scene-caption">The marked places are doors. Gold rings are the five questions; the coloured markers are <strong>the wares the village sells</strong>, the black egg among them carried by the town crier; the star is the origin. The two pale doors at the threshold are the ways to read the whole village: <strong>the Front Door</strong>, as a client meets it, and <strong>the Instrument</strong>, how it is built.</p>
+  <p class="scene-hint">Click a place to enter it</p>
+
+  <div class="fd-footer">
+    <span>Enfys · The Drawbridge</span>
+    <span><em>Proprietary &amp; conf

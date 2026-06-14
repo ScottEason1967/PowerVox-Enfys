@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Black Egg · the one door in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 22px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .lines { font-family: var(--serif); font-style: italic; text-align: center; font-size: 20px; color: #fff; line-height: 1.7; margin: 4px 0 26px; }
+  .lines strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--gold-deep); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+  .tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 20px; }
+  .tier { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--tc); display: flex; flex-direction: column; gap: 6px; }
+  .tier .tn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--tc); }
+  .tier .tt { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); }
+  .tier p { font-size: 12px; color: var(--text-sec); line-height: 1.6; flex: 1; }
+  .tier .tr { font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--gold-deep); border-top: 1px solid var(--border-lt); padding-top: 8px; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 24px 28px; margin: 0 0 20px; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .crosslinks { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .crosslinks a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .crosslinks a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } .page { padding: 28px 18px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Black Egg</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the town crier's ware</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Black <em>Egg</em></h1>
+    <p class="head-sub">The Black Egg measures one thing: <strong>the distance between what a leader thinks they said and what a reader actually receives.</strong> Not a writing tool. It exists because in high-stakes environments the failure mode is not bad writing — it is filtered truth.</p>
+  </div>
+
+  <p class="lines">Know when your language changes what happens next.<br>A polite message can score high if it transmits. A "nice" message can score low if it distorts.<br><strong>v1 shows you the truth. v2 shows you yourself. v3 shows you the system.</strong></p>
+
+  <div class="prose">
+    <h3>What it measures</h3>
+    <p>Five properties of transmission fidelity: is the core claim present and unhidden; is someone accountable and named; are stakes and timing visible; is there a decision, an ask or a next step — or only a wish; and how much of the message is diluted by distorting language. A high score does not mean "well written". It means a reader will take the message you intended, at the weight you intended, with the action you intended. The commercial defensibility, in the spec's own words: grammar tools are commodity; <strong>transmission fidelity — the gap between intent and impact — is a leadership problem, and nothing in the market names it cleanly.</strong></p>
+    <p style="margin-top:10px;">The architectural rule that runs through the whole spec: <strong>score is structural, context is interpretive.</strong> The Context Envelope (audience × purpose, inferred silently and correctable) never changes a score — it changes which risks are surfaced and how the rewrite speaks. "Let me know your thoughts" passes in Inform → Peer and fails in Decide → Senior Leaders, at the same score.</p>
+  </div>
+
+  <div class="tiers">
+    <div class="tier" style="--tc:var(--green)">
+      <div class="tn">v1 · The Moment of Truth</div><div class="tt">Free · acquisition</div>
+      <p>Stateless single-message engine: paste or dictate (3 min voice, transcribed, user-approved), click, uncomfortable truth. Five-dimension scoring, Message Gap, rewrite. No login, no storage. Audio discarded in real time, ZDR — never stored.</p>
+      <div class="tr">Job: prove truth · viral, demoable</div>
+    </div>
+    <div class="tier" style="--tc:var(--blue)">
+      <div class="tn">v2 · The Mirror</div><div class="tt">Paid · the subscription</div>
+      <p>Opt-in memory: history, personal patterns under pressure, rewrite modes, extended limits. The paid VQ tier (~£49–£99, a working estimate) lives at this boundary — the scalable inbound product and the evidence on-ramp.</p>
+      <div class="tr">Job: create habit · monetisation</div>
+    </div>
+    <div class="tier" style="--tc:var(--violet)">
+      <div class="tn">v3 · The System</div><div class="tt">Enterprise · the platform</div>
+      <p>Org-level analytics, communication culture insights, bias detection, simulation for high-stakes conversations. The 2030 enterprise-diagnostic territory, earned by the evidence arc.</p>
+      <div class="tr">Job: scale impact · B2B</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">The founder-level rules the spec locks</div>
+    <p><strong>Consent is not payment.</strong> Consent unlocks memory; payment unlocks intelligence. The opt-in moment must be visibly separate from the upgrade moment — frame consent as a consequence of payment and enterprise trust erodes. <strong>No tier contamination.</strong> Every feature names its tier; cross-tier features are rejected by default — v2 features sneaking into v1 is the named failure mode, and holding that line under sales pressure is the moat.</p>
+  </div>
+
+  <div class="prose">
+    <h3>Its place in the village</h3>
+    <p>The town crier on the path: the one door in. Every Root to Grow cohort runs the Black Egg alongside the VQ Assessment — the Egg is the message-level transmission instrument, the Assessment is the 38-question capability diagnostic; they are siblings, not the same thing. The paid tier closes the free-to-£1,495 gap, feeds the beta as an evidence on-ramp, and carries a KPI of 35–40 completions a quarter. Owners: Hannah (product) · Scott (build/systems) · Rachel (signal/launch).</p>
+    <p style="margin-top:10px;"><strong>Open flags, honestly held:</strong> the spec header says both "locked for engineering handoff" and "pressure-test against real leadership emails before build" — pick one. And the spec's v1/v2/v3 vocabulary needs reconciling with the value ladder's "free Black Egg → paid VQ tier" naming in the canonical language before public copy is written. ⚑ Both pinned on the Noticeboard.</p>
+    <div class="links">
+      <a href="the-wares.html">The Wares · where it sits on the ladder</a>
+      <a href="the-noticeboard.html">The Noticeboard · its open flags</a>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <a href="the-root-to-grow.html">Root to Grow</a>
+    <a href="the-greenhouse.html">The Greenhouse</a>
+    <a href="the-tom-method.html">the Loop</a>
+    <a href="the-white-sofa.html">The White Sofa</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Black Egg</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

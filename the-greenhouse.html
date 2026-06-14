@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Greenhouse · the destination of the funnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --pc: #1F5E40; --pc-deep: #16442F; --pc-pale: #E5F1E9;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-title { font-family: var(--serif); font-size: 48px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .price-strip { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 16px 0 4px; }
+  .pill { font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: #fff; }
+  .pill.lead { background: var(--green); border-color: transparent; }
+  .lines { font-family: var(--serif); font-style: italic; text-align: center; font-size: 20px; color: #fff; line-height: 1.7; margin: 22px 0 26px; }
+  .lines strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--pc); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose em.lead { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--pc); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--pc); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green), var(--blue), var(--violet)); }
+  .returns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 20px; }
+  .ret { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--rc); display: flex; flex-direction: column; gap: 6px; }
+  .ret .rn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--rc); }
+  .ret .rt { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); }
+  .ret p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  .grow { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .grow-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .grow-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .seedrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .seed { background: rgba(31,94,64,0.22); border: 1px solid rgba(159,216,180,0.32); border-radius: 12px; padding: 14px 15px; }
+  .seed .sk { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #9FD8B4; margin-bottom: 5px; }
+  .seed .sv { font-size: 22px; font-weight: 800; color: #fff; font-family: var(--serif); line-height: 1; margin-bottom: 5px; }
+  .seed p { font-size: 11px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .own { background: var(--card); border-radius: 16px; padding: 20px 26px; box-shadow: 0 8px 26px rgba(0,0,0,0.28); margin: 0 0 20px; }
+  .own h3 { font-family: var(--serif); font-size: 19px; color: var(--pv-ink); margin-bottom: 10px; }
+  .own .row { display: flex; gap: 12px; font-size: 12.5px; color: var(--text-sec); padding: 8px 0; border-top: 1px solid var(--border-lt); line-height: 1.5; }
+  .own .row:first-of-type { border-top: none; }
+  .own .who { font-weight: 800; color: var(--pc); min-width: 86px; }
+  .crosslinks { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .crosslinks a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .crosslinks a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .returns, .seedrow { grid-template-columns: 1fr 1fr; } .page { padding: 28px 18px; } .head-title { font-size: 34px; } }
+  @media (max-width: 560px) { .returns, .seedrow { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Greenhouse</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the gardener's glasshouse</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Greenhouse</em></h1>
+    <p class="head-sub">Where the work keeps growing. <strong>The destination of the funnel, the recurring-revenue engine, and the longitudinal cohort all at once</strong> — a monthly rhythm that members stay inside, re-measuring as they go, so a one-shot snapshot becomes change over time.</p>
+    <div class="price-strip">
+      <span class="pill lead">~£125 / mo · est.</span>
+      <span class="pill">Recurring</span>
+      <span class="pill">Quarterly re-test</span>
+      <span class="pill">The held cohort</span>
+    </div>
+  </div>
+
+  <p class="lines">The number that matters is not this year's.<br>It is the <strong>run-rate the Greenhouse is exiting on</strong> — the asset the whole funnel is built to create.</p>
+
+  <div class="prose">
+    <h3>What it is</h3>
+    <p><em class="lead">The destination, not a stop on the way.</em> Root to Grow plants; the Greenhouse is where leaders stay to keep growing. Members enter a monthly rhythm of practice and presence, and re-take the diagnostic each quarter. That single habit is what turns a one-off beta snapshot into change-over-time data on a held cohort — the same people, measured again and again, which is the kind of evidence the category needs and the kind almost nobody else has. It is the relational heart of the work and the practice ground where the compensation hypothesis keeps being tested against real leaders under real pressure.</p>
+    <p style="margin-top:10px;">Commercially it is the recurring engine. The plan assumes <strong>~60% of Root to Grow alumni convert</strong> — a conservative planning figure, ⚑ unproven until real cohorts run — paying from the end of their cohort. The in-year figure is modest because members join through the year, but that misreads the asset. What matters is the <strong>annual run-rate it is exiting on</strong>: roughly £52,500 carried into the next year before a single new cohort runs. Priced for longevity, not volume. The run-rate leans on a second assumption worth naming: ~85% annual retention ⚑ — watched alongside the conversion figure above, because the asset story stands or falls on members staying.</p>
+    <div class="links">
+      <a href="the-root-to-grow.html">Root to Grow · the way in</a>
+      <a href="the-construct.html">The Construct · the named pathway</a>
+    </div>
+  </div>
+
+  <div class="sec-h">Why women, why now</div>
+  <div class="prose">
+    <p>The Greenhouse backs women leaders because the ground is moving under exactly that group, and the move is structural rather than a fashion. The largest wealth transfer in history is underway and it is flowing toward women, on four converging drivers McKinsey calls structural: women marrying later, earning and graduating more, outliving male spouses, and growing in financial confidence. It does not reverse on a cycle.</p>
+  </div>
+  <div class="grow">
+    <div class="grow-title">The shift, on the strongest evidence</div>
+    <div class="grow-sub">These are the rigorously-sourced figures from the research dossier, McKinsey's 2025 study of 13,000+ investors and peer-reviewed work on maternal income. The famous but weakly-sourced stats are deliberately left off, to protect the claim in front of a buyer.</div>
+    <div class="seedrow">
+      <div class="seed"><div class="sk">The transfer</div><div class="sv">$34T</div><p>US women's investable assets by 2030, up from $18T in 2023, around 38% of the US total. McKinsey 2025.</p></div>
+      <div class="seed"><div class="sk">Outpacing</div><div class="sv">+51%</div><p>growth in female-controlled wealth 2018–23, against 43% for the market. McKinsey 2025.</p></div>
+      <div class="seed"><div class="sk">Global scale</div><div class="sv">~$60T</div><p>held by women in 2023, around 34% of assets under management worldwide. McKinsey 2025.</p></div>
+      <div class="seed"><div class="sk">It compounds</div><div class="sv">+1 yr</div><p>extra schooling by age 21 when an extra $4k a year reaches the poorest households, with minor crime down ~22% at 16–17. Akee et al., NBER.</p></div>
+    </div>
+  </div>
+  <div class="prose">
+    <p>The last figure is the one that matters most for the mission. Income that reaches children through the mother has a larger positive causal effect on their cognitive, health and economic outcomes than the same income reaching the household another way, on Cooper and Stewart's 2020 systematic review of RCTs and longitudinal studies. So money in women's hands does not simply sit there, it compounds into the next generation. Backing the women who will hold that wealth, and helping them lead with a voice that lands, is the wedge the Greenhouse is built on. One honest boundary: the dossier establishes the stakes, not the mechanism — the claim that voice capability is how these leaders capture the moment is PowerVox's own hypothesis, and proving it is <a href="the-observatory.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Observatory's</a> job, not this page's.</p>
+  </div>
+  <div class="prose">
+    <p><strong>Why the ruthless rise first — and why that is the Greenhouse's case, not its objection.</strong> The dossier's hardest chapter says the quiet part out loud: competitive environments reward coherence, not virtue. The ruthless rise first because they are undivided — no internal voice second-guessing, no energy bled through shame — while good people leak the very coherence the environment responds to, through self-doubt, hyper-reflection and shame: the same leaks the <a href="the-construct.html" style="color:var(--blue);font-weight:700;text-decoration:none;">construct</a> names. The chapter's answer is not to become ruthless. It is that coherence and goodness are not opposites — accountability without shame builds character where shame destroys it — and a good leader restored to coherence outcompetes the ruthless one, because they are no longer fighting themselves. That is precisely the work: the Greenhouse exists to give good leaders the coherence the ruthless get for free. From the Hearts &amp; Minds research companion, "Why the Ruthless Rise First."</p>
+  </div>
+
+  <div class="sec-h">The other half · changing the room</div>
+  <div class="prose">
+    <p><strong>The Greenhouse re-waters the plant. It does not, on its own, end the drought.</strong> A capable woman whose voice is restored still walks back into a room built to mishear her: direct heard as &ldquo;gobby&rdquo;, conviction heard as &ldquo;emotional&rdquo;. By PowerVox's own analysis the conditions are the variable, not the person, so the honest model has a second pathway aimed at the room itself. <strong>The allyship pathway</strong> works with the people who hold the power so they learn to receive what they currently mishear. It is gender-neutral, it can run from day one where an organisation wants it, and it stays a distinct pathway from the women-only one. It is the half that changes the drought rather than re-watering a single plant, and it is what makes the offer true rather than complicit.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 18px;">
+    <div style="background:rgba(31,94,64,0.16);border:1px solid rgba(159,216,180,0.32);border-radius:13px;padding:16px 18px;">
+      <div style="font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#9FD8B4;">Lever one · the person</div>
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:600;color:#fff;margin:3px 0 5px;">The Greenhouse</div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.82);line-height:1.6;">Restores a capable voice to its owner. Women first, because the drought falls hardest there now and the budget already sits there. Measured by VQ, before and after.</p>
+    </div>
+    <div style="background:rgba(168,82,122,0.16);border:1px solid rgba(232,170,200,0.32);border-radius:13px;padding:16px 18px;">
+      <div style="font-size:9.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#E8AAC8;">Lever two · the room</div>
+      <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:600;color:#fff;margin:3px 0 5px;">The allyship pathway</div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.82);line-height:1.6;">Teaches the power-holders in the room to receive differently. Gender-neutral, and the destination the whole offer is heading toward: rooms that receive truth whoever speaks it.</p>
+    </div>
+  </div>
+  <div class="prose">
+    <p><strong>The readiness gate.</strong> One honest fork decides which engagement is real: are the people who hold the power willing to learn to receive differently? If yes, the two pathways run together and the change holds after we leave. If not yet, we will still run the Greenhouse honestly, but we name plainly that you are re-watering a plant you are sending back into drought, and the ripple is then carried by her. Women-only spaces stay necessary now, because there are things sayable in that room that cannot be said in a mixed one. The destination is gender-neutral, because the answer is equality. Women now because the drought falls hardest on them now. Said openly, that sequencing is the strategy, not a hedge, and it is why <strong>PowerVox is a company that maps conditions, not a women's-empowerment company</strong>: the women's cohort is the first intervention the map surfaces, not the headline.</p>
+  </div>
+
+  <div class="sec-h">What's inside</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 20px;">
+    <div class="ret" style="--rc:var(--blue)"><div class="rn">Measured</div><div class="rt">The ongoing diagnostic</div><p>Members re-take the VQ Assessment and the Black Egg on a rhythm, so growth shows up as <strong>real data over time</strong>, a development trajectory, not a feeling. No competitor embeds a proprietary diagnostic in a membership.</p></div>
+    <div class="ret" style="--rc:var(--red)"><div class="rn">Practised</div><div class="rt">Power Rooms &amp; the Lion's Den</div><p><strong>Professional actors</strong> build realistic pressure scenarios so a leader rehearses the hard conversation before it is real. Rivals use coaches or peers; none run sustained, actor-led practice inside the community.</p></div>
+    <div class="ret" style="--rc:var(--green)"><div class="rt">Expert sessions &amp; the library</div><div class="rn">Taught</div><p>Monthly expert sessions, archived into a <strong>growing resource hub</strong> so the value compounds for longer-standing members rather than evaporating after the call.</p></div>
+    <div class="ret" style="--rc:var(--violet)"><div class="rn">Held</div><div class="rt">Retreats &amp; the circle</div><p>Quarterly retreats and an <strong>application-only, capped community</strong> of Root to Grow alumnae. Digital-first by design, so it avoids the physical-space trap that closed AllBright and The Wing.</p></div>
+  </div>
+
+  <div class="sec-h">The nested tiers</div>
+  <div class="returns">
+    <div class="ret" style="--rc:var(--green)"><div class="rn">The membership</div><div class="rt">The Greenhouse</div><p>The base: the diagnostic, the expert sessions, the library, the retreats and the community. You earn your way in by graduating Root to Grow, so members arrive already changed and already sharing a language.</p></div>
+    <div class="ret" style="--rc:var(--red)"><div class="rn">Premium tier</div><div class="rt">The Lion's Den</div><p>The actor-led simulation tier. Sustained, high-pressure practice with professional actors, the place a leader goes to be tested rather than taught. Aspiration and progression within the membership.</p></div>
+    <div class="ret" style="--rc:var(--violet)"><div class="rn">By invitation</div><div class="rt">The Red Table</div><p>The invite-only inner circle. The deepest tier, small by design, the room within the room. Retention and upside without flattening everyone into a single price.</p></div>
+  </div>
+
+  <div class="sec-h">The Manifesto</div>
+  <div class="panel">
+    <div class="panel-title">Not a set of rules. A way of being.</div>
+    <p style="margin-bottom:14px;">Every member signs it. Application-only entry plus a signed manifesto creates values alignment a networking community cannot replicate: this is relational and values-driven where the competition is aspirational and transactional. Nine commitments, "a quiet promise between women who have chosen to grow, not just professionally, but truthfully and courageously."</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We take responsibility for our own growth</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We tell the truth, especially to ourselves</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We speak with courage and integrity</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We create safety for each other</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We celebrate, not compete</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We practise, not just learn</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We honour the whole person</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We hold each other to a higher standard</div>
+      <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:9px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,0.88);">We lead beyond ourselves</div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <h3>Two more routes</h3>
+    <p><strong>The corporate pathway.</strong> A track where companies sponsor Greenhouse membership for their senior women, the way employers cover the cost at Chief. It opens a second revenue line into the same product without building anything new.</p>
+    <p style="margin-top:10px;"><strong>The platform, coming.</strong> The roadmap is a platform play no competitor in this space is building: the gamified Enfys village as a place members step into between sessions, online Power Room simulations, and benchmarking. Members get early access, which builds loyalty and feedback. <strong>⚑ Horizon 2–3, build nothing yet</strong>; it is the future layer of this product, not a replacement for it.</p>
+    <div class="links">
+      <a href="the-construct.html">The Construct · the language it runs on</a>
+      <a href="the-cast.html">The Cast · the human face of the work</a>
+    </div>
+  </div>
+
+  <div class="sec-h">What it does, three ways</div>
+  <div class="returns">
+    <div class="ret" style="--rc:var(--green)">
+      <div class="rn">Recurring revenue</div><div class="rt">The run-rate engine</div>
+      <p>~£125/month, ~35 members by year-end, ~£17.5k in-year — but exiting at a ~£52.5k annual run-rate. The run-rate is the point, not the in-year number.</p>
+    </div>
+    <div class="ret" style="--rc:var(--blue)">
+      <div class="rn">Longitudinal data</div><div class="rt">Change over time</div>
+      <p>Quarterly re-tests on a held cohort turn a snapshot into a trend line. The same leaders, measured repeatedly — the evidence the category claim needs to stand up.</p>
+    </div>
+    <div class="ret" style="--rc:var(--violet)">
+      <div class="rn">Community</div><div class="rt">The relational heart</div>
+      <p>A named pathway in the Construct: the women's leadership sanctuary, sitting alongside the Commons for allyship. The place the practice becomes a habit.</p>
+    </div>
+  </div>
+
+  <div class="sec-h">The numbers behind it</div>
+  <div class="grow">
+    <div class="grow-title">Built for the run-rate, paced for the calendar</div>
+    <div class="grow-sub">The Greenhouse carries a real delivery cost, and that cost is why the cohort count stays at five. In the second half of the year each month holds both a live cohort and the Greenhouse cycle, on the same two-person calendar.</div>
+    <div class="seedrow">
+      <div class="seed"><div class="sk">Price</div><div class="sv">~£125</div><p>per member, per month</p></div>
+      <div class="seed"><div class="sk">Conversion</div><div class="sv">~60%</div><p>of Root to Grow alumni</p></div>
+      <div class="seed"><div class="sk">Members</div><div class="sv">~35</div><p>by year-end</p></div>
+      <div class="seed"><div class="sk">Run-rate out</div><div class="sv">~£52.5k</div><p>annual, into next year</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">The cost it carries, stated honestly</div>
+    <p>The Greenhouse is not free to run. It costs roughly <strong>3–4 founder-days a month</strong> while it is being designed and embedded, settling to <strong>1–2 days a month</strong> within about three months. That growing monthly load is the real reason the year holds at five cohorts rather than more: two people cannot run extra cohorts and an expanding membership on one calendar. The Year 2–3 unlock is <strong>direct membership without a cohort first</strong> — opened on a trigger, not a date, once the rhythm is grooved and the run-rate justifies it.</p>
+  </div>
+
+  <div class="own">
+    <h3>Who owns it</h3>
+    <div class="row"><span class="who">Rachel</span><span>Presence and community — the relational heart that keeps members inside the rhythm.</span></div>
+    <div class="row"><span class="who">Scott</span><span>Operations and retention — the systems that hold the recurring engine and protect the run-rate.</span></div>
+  </div>
+
+  <div class="prose">
+    <h3>Its place in the village</h3>
+    <p>The Greenhouse is the gardener's glasshouse, warm and year-round, where what the seedbed sowed is cultivated on. It is the place things keep growing after the first season. On the Millwheel it is the top of the rising ladder, the destination the buckets climb toward: Black Egg in, Root to Grow, the Greenhouse. From there the loop turns again through Evidence and Category.</p>
+    <div class="links">
+      <a href="the-millwheel.html">The Millwheel · the destination of the ladder</a>
+      <a href="the-village-year.html">The Village Year · the rhythm it runs on</a>
+      <a href="the-wares.html">The Wares · the full shelf</a>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <a href="the-black-egg.html">The Black Egg</a>
+    <a href="the-root-to-grow.html">Root to Grow</a>
+    <a href="the-tom-method.html">the Loop</a>
+    <a href="the-white-sofa.html">The White Sofa</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Greenhouse</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

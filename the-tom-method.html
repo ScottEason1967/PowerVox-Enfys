@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>the Loop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --pc: #2F5E9E; --pc-deep: #234876; --pc-pale: #E8F0FB;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-title { font-family: var(--serif); font-size: 48px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 790px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .price-strip { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 16px 0 4px; }
+  .pill { font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: #fff; }
+  .pill.lead { background: var(--blue); border-color: transparent; }
+  .pill.flag { background: rgba(232,179,58,0.16); border-color: rgba(232,179,58,0.5); color: var(--gold); }
+  .lines { font-family: var(--serif); font-style: italic; text-align: center; font-size: 20px; color: #fff; line-height: 1.7; margin: 22px 0 26px; }
+  .lines strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--pc); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose em.lead { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--pc); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--pc); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green), var(--blue), var(--violet)); }
+  .returns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 20px; }
+  .ret { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--rc); display: flex; flex-direction: column; gap: 6px; }
+  .ret .rn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--rc); }
+  .ret .rt { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); }
+  .ret p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  .grow { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .grow-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .grow-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .seedrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .seed { background: rgba(47,94,158,0.20); border: 1px solid rgba(156,194,240,0.32); border-radius: 12px; padding: 14px 15px; }
+  .seed .sk { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #9CC2F0; margin-bottom: 5px; }
+  .seed .sv { font-size: 22px; font-weight: 800; color: #fff; font-family: var(--serif); line-height: 1; margin-bottom: 5px; }
+  .seed p { font-size: 11px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .own { background: var(--card); border-radius: 16px; padding: 20px 26px; box-shadow: 0 8px 26px rgba(0,0,0,0.28); margin: 0 0 20px; }
+  .own h3 { font-family: var(--serif); font-size: 19px; color: var(--pv-ink); margin-bottom: 10px; }
+  .own .row { display: flex; gap: 12px; font-size: 12.5px; color: var(--text-sec); padding: 8px 0; border-top: 1px solid var(--border-lt); line-height: 1.5; }
+  .own .row:first-of-type { border-top: none; }
+  .own .who { font-weight: 800; color: var(--pc); min-width: 86px; }
+  .crosslinks { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .crosslinks a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .crosslinks a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .returns, .seedrow { grid-template-columns: 1fr 1fr; } .page { padding: 28px 18px; } .head-title { font-size: 34px; } }
+  @media (max-width: 560px) { .returns, .seedrow { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>the Loop</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the workshop barn</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">the <em>Loop</em></h1>
+    <p class="head-sub">Paid target-operating-model delivery. <strong>The consulting arm doing to itself what the whole business is doing</strong> — turning founder-dependent delivery into an instrument that earns while it delivers. The method is the product; the engagements are how it proves itself.</p>
+    <div class="price-strip">
+      <span class="pill lead">~£30k / engagement</span>
+      <span class="pill">Capped at three</span>
+      <span class="pill">Deliberately falling</span>
+      <span class="pill flag">Trade name pending ⚑</span>
+    </div>
+  </div>
+
+  <p class="lines">A method, not a person. An asset, not a calendar.<br><strong>The same move the funnel makes</strong> — delivery that stops depending on who is in the room.</p>
+
+  <div class="prose">
+    <h3>What it is</h3>
+    <p><em class="lead">The second engine.</em> The Loop is paid delivery of a target operating model and the work that surrounds it. The deeper point is that it is the consulting arm's version of the move the rest of PowerVox is making: founder-dependent delivery becoming a repeatable asset. The instrument is what makes that possible — a structured way to elicit, design and hand over an operating model that does not live only in the founders' heads. The method itself is the <strong>third thing</strong> in the estate: not the Loveheart ecology and not the PowerVox chassis, but the instrument both can pick up.</p>
+    <p style="margin-top:10px;">It proves itself across three kinds of client at once. <strong>PowerVox is the rehearsal subject</strong> — we run the method on ourselves first. A paid validation client is the validation. And a zero-knowledge client is the falsification test: what happens when the method meets a context the founders know nothing about, starting cold. That spread is the design, not an accident of who turned up.</p>
+    <div class="links">
+      <a href="the-cartographers-table.html">The method itself · the Cartographer's Table</a>
+      <a href="the-map-room.html">The Map Room · where the work is drawn</a>
+    </div>
+  </div>
+
+  <div class="sec-h">Three clients, three jobs</div>
+  <div class="returns">
+    <div class="ret" style="--rc:var(--green)">
+      <div class="rn">Rehearsal</div><div class="rt">PowerVox itself</div>
+      <p>The method is run on PowerVox first. We are our own first subject, so the instrument is tested before it is sold.</p>
+    </div>
+    <div class="ret" style="--rc:var(--blue)">
+      <div class="rn">Validation</div><div class="rt">A paid client</div>
+      <p>A paid validation engagement where the founders already know the ground. Proof the method delivers when context is familiar.</p>
+    </div>
+    <div class="ret" style="--rc:var(--violet)">
+      <div class="rn">Falsification</div><div class="rt">A zero-knowledge client</div>
+      <p>A cold-start engagement in a context the founders do not know. The honest test: does the method hold when nothing is assumed?</p>
+    </div>
+  </div>
+
+  <div class="sec-h">The commercial shape</div>
+  <div class="grow">
+    <div class="grow-title">A floor that is meant to fall</div>
+    <div class="grow-sub">Three engagements at ~£30k hold the Year-1 floor while the count is deliberately capped — and designed to drop. Bespoke is traded out only as the Greenhouse run-rate covers it, roughly twenty stable members buying back one engagement.</div>
+    <div class="seedrow">
+      <div class="seed"><div class="sk">Price</div><div class="sv">~£30k</div><p>per engagement</p></div>
+      <div class="seed"><div class="sk">Engagements</div><div class="sv">3</div><p>capped, Year 1</p></div>
+      <div class="seed"><div class="sk">Year-1 floor</div><div class="sv">~£90k</div><p>held while it scales</p></div>
+      <div class="seed"><div class="sk">Buy-back</div><div class="sv">~20</div><p>members cover one engagement</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Where it sits</div>
+    <p>The Loop is <strong>part of PowerVox</strong>. PowerVox Ltd contracts for it, the IP stays in-house, and today, while it is still founder-delivered, its revenue sits on the bespoke side of the product-share metric, not the product side. The Loop is built to migrate to product as the method externalises through the question set and the pattern library, and that crossing is itself part of what lifts the share upward. The working price is <strong>~£30k</strong>. The trade name is still to be settled, so the product is described here by what it does rather than by a name not yet given.</p>
+  </div>
+
+  <div class="own">
+    <h3>Who owns it</h3>
+    <div class="row"><span class="who">Scott</span><span>Architecture, the decision tools, and the persona-and-narrative work that drives adoption.</span></div>
+    <div class="row"><span class="who">Rachel</span><span>The elicitation engine, the playbook, the repeatable methods, questionnaires and templates.</span></div>
+    <div class="row"><span class="who">Hannah</span><span>Delivery support and the assurance framework — the integrity layer on client work.</span></div>
+  </div>
+
+  <div class="prose">
+    <h3>Its place in the village</h3>
+    <p>The Loop is the workshop barn — where things are built to be used again, not made once and forgotten. It is the second of the two engines: the funnel scales the product, the barn scales the craft. Both are the same idea, that delivery should become an asset rather than a debt against founder time.</p>
+    <div class="links">
+      <a href="the-records-room.html">The Records Room · the position papers</a>
+      <a href="the-wares.html">The Wares · the full shelf</a>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <a href="the-black-egg.html">The Black Egg</a>
+    <a href="the-root-to-grow.html">Root to Grow</a>
+    <a href="the-greenhouse.html">The Greenhouse</a>
+    <a href="the-white-sofa.html">The White Sofa</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · the Loop</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

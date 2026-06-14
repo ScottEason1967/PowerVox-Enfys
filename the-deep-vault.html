@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Deep Vault · the Information Governance playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1180px; margin: 0 auto; padding: 38px 30px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-eyebrow { display: inline-block; background: var(--red); color: #fff; font-size: 10px; font-weight: 800; letter-spacing: 1.6px; padding: 5px 14px; border-radius: 4px; text-transform: uppercase; margin-bottom: 14px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 820px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet)); }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 20px 24px; margin: 0 0 16px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: var(--ql-why); }
+  .classes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 8px; }
+  .cls { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--cc); }
+  .cls .cl-tag { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--cc); }
+  .cls h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); margin: 2px 0 6px; }
+  .cls p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .cls.a { --cc: var(--blue); } .cls.b { --cc: var(--violet); }
+  @media (max-width: 760px){ .classes { grid-template-columns: 1fr; } }
+
+  .gate-call { background: rgba(168,41,59,0.14); border: 1px solid rgba(242,163,176,0.5); border-left: 5px solid var(--red); border-radius: 12px; padding: 16px 20px; margin: 0 0 16px; }
+  .gate-call .g-t { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #F2A3B0; margin-bottom: 5px; }
+  .gate-call p { font-size: 12.5px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+  .gate-call strong { color: #fff; }
+
+  /* filter */
+  .filt { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 12px; align-items: center; }
+  .filt-l { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-right: 4px; }
+  .filt button { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; padding: 6px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.85); cursor: pointer; transition: all .18s ease; }
+  .filt button:hover { border-color: rgba(255,255,255,0.6); }
+  .filt button.on { background: var(--gold); color: var(--pv-ink); border-color: transparent; }
+
+  /* swimlane */
+  .lane-wrap { overflow-x: auto; padding-bottom: 6px; }
+  .lane { display: grid; grid-template-columns: 132px repeat(6, minmax(150px, 1fr)); gap: 7px; min-width: 1040px; }
+  .lh { font-size: 10px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: #fff; background: rgba(47,94,158,0.40); border: 1px solid rgba(156,194,240,0.4); border-radius: 8px; padding: 9px 10px; line-height: 1.25; }
+  .lh .s { display:block; font-size: 8.5px; font-weight: 700; color: rgba(255,255,255,0.6); letter-spacing: 0.4px; text-transform: none; margin-top: 2px; }
+  .lh.corner { background: rgba(20,16,31,0.5); border-color: rgba(255,255,255,0.18); display: flex; align-items: center; }
+  .ar { font-size: 11.5px; font-weight: 800; color: #fff; background: rgba(91,58,140,0.32); border: 1px solid rgba(201,175,239,0.35); border-radius: 8px; padding: 10px 10px; display: flex; flex-direction: column; justify-content: center; line-height: 1.2; }
+  .ar .arr { font-size: 8.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 3px; }
+  .cell { background: var(--card); border-radius: 8px; padding: 9px 10px 10px; box-shadow: 0 5px 16px rgba(0,0,0,0.25); font-size: 11px; color: var(--text-sec); line-height: 1.45; border-left: 3px solid var(--cl, var(--blue)); }
+  .cell .act { color: var(--pv-ink); font-weight: 700; display: block; margin-bottom: 4px; }
+  .cell .chip { display: inline-block; font-size: 8.5px; font-weight: 800; letter-spacing: 0.3px; padding: 2px 6px; border-radius: 5px; margin: 3px 3px 0 0; line-height: 1.3; }
+  .chip.art { background: var(--green-pale); color: var(--green); }
+  .chip.sys { background: rgba(47,94,158,0.12); color: var(--blue); }
+  .chip.gate { background: rgba(168,41,59,0.12); color: var(--red); }
+  .chip.flag { background: var(--warm-cream); color: var(--gold-deep); }
+  .cell.empty { background: transparent; box-shadow: none; border: 1px dashed rgba(255,255,255,0.12); border-left: 1px dashed rgba(255,255,255,0.12); }
+  .cell.gatecol { border-left-color: var(--red); }
+  .dim { opacity: 0.26; filter: grayscale(0.4); transition: opacity .2s ease; }
+  .lane-note { font-size: 11px; color: rgba(255,255,255,0.62); font-style: italic; margin: 8px 0 0; line-height: 1.55; }
+
+  /* tables */
+  .tbl { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 26px rgba(0,0,0,0.3); }
+  .tbl th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding: 11px 14px; border-bottom: 2px solid var(--border-lt); background: #faf8fc; }
+  .tbl td { font-size: 12px; color: var(--text-sec); padding: 10px 14px; border-bottom: 1px solid var(--border-lt); vertical-align: top; line-height: 1.5; }
+  .tbl td:first-child { font-weight: 700; color: var(--pv-ink); }
+  .tbl tr:last-child td { border-bottom: none; }
+  .flagdot { color: var(--gold-deep); font-weight: 800; }
+
+  /* decision panel */
+  .dec { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .dcol { background: var(--card); border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 26px rgba(0,0,0,0.3); border-top: 5px solid var(--dc); }
+  .dcol h4 { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--pv-ink); margin-bottom: 5px; }
+  .dcol p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  .dcol.led { --dc: var(--green); } .dcol.alt { --dc: var(--blue); }
+  .dec-note { font-family: var(--serif); font-style: italic; text-align: center; font-size: 15px; color: rgba(255,255,255,0.85); margin: 14px 0 0; }
+  .dec-note strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  @media (max-width: 760px){ .dec { grid-template-columns: 1fr; } }
+
+  .layers { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
+  .lay { background: var(--card); border-radius: 9px; padding: 10px 13px; box-shadow: 0 5px 16px rgba(0,0,0,0.22); font-size: 12px; color: var(--text-sec); line-height: 1.45; border-left: 3px solid var(--blue); }
+  .lay b { color: var(--pv-ink); }
+  @media (max-width: 760px){ .layers { grid-template-columns: 1fr; } }
+
+  .risks { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .risk { background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.16); border-radius: 11px; padding: 13px 15px; }
+  .risk .rk { font-size: 12px; font-weight: 800; color: #F2A3B0; margin-bottom: 3px; }
+  .risk p { font-size: 11.5px; color: rgba(255,255,255,0.82); line-height: 1.5; }
+  @media (max-width: 760px){ .risks { grid-template-columns: 1fr; } }
+
+  .qs { counter-reset: q; }
+  .q { background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 11px 15px 11px 44px; margin-bottom: 7px; position: relative; font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.55; }
+  .q::before { counter-increment: q; content: counter(q); position: absolute; left: 12px; top: 11px; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 11px; font-weight: 800; display:flex; align-items:center; justify-content:center; }
+
+  .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-burrows.html">← The Burrows</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Deep Vault</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">Information Governance playbook</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+
+<div class="page">
+  <div class="head">
+    <div class="head-eyebrow">The IG playbook · launch-blocking · owner: Scott</div>
+    <h1 class="head-title">The Deep <em>Vault</em></h1>
+    <p class="head-sub">PowerVox runs <strong>one</strong> data-protection regime across two operations: the VQ Assessment beta and the Loop pattern library. This is the operating manual for both — how data enters, is made safe, is used, and is let go, and the gate that holds until it has all been reviewed. A working draft for external legal review — the gate is not yet satisfied: the reviewer is unappointed and the foundation documents (privacy policy, terms, ROPA, DPIA) are still to be drafted. The Noticeboard holds the list.</p>
+  </div>
+
+  <div style="background:rgba(162,41,59,0.12);border:1px solid rgba(242,163,176,0.4);border-radius:18px;padding:20px 24px;margin:0 0 22px;display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:center;">
+    <div style="width:72px;height:72px;border-radius:50%;border:2px solid rgba(242,163,176,0.55);background-image:url('images/owain.png');background-size:cover;background-position:center;flex:0 0 auto;"></div>
+    <div>
+      <div style="font-family:var(--serif);font-size:21px;font-weight:600;color:#fff;margin-bottom:4px;">Owain &middot; the guardian</div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.65;">In Rachel's canon Owain is the red dragon, the guardian of the hearth and protector of Enfys, calm rather than fearsome. This is his work in the model. The Deep Vault is what he guards: the people's data, held safe, used only as promised, and let go when its time is done. <strong style="color:#fff;">Protection is not a feeling here, it is the controls this page specifies</strong> — a regime drafted, not yet passed, that has to hold before a single beta invitation goes out. The dragon gives the guardrails a guardian. <strong style="color:#fff;">⚑ Proposed framing, drawn from Rachel's canon.</strong></p>
+    </div>
+  </div>
+
+  <div class="classes">
+    <div class="cls a">
+      <div class="cl-tag">Data class A · personal</div>
+      <h3>The beta</h3>
+      <p>Every participant from invitation to deletion: the VQ Assessment, the companion questionnaire (burnout-risk and psychological-safety items), the qualitative layer (one free-text item, recorded debriefs, the optional mini-360), and the Greenhouse quarterly re-measures that make it longitudinal.</p>
+    </div>
+    <div class="cls b">
+      <div class="cl-tag">Data class B · engagement-derived</div>
+      <h3>The pattern library</h3>
+      <p>From Loop operating-model engagements: discovery-call recordings and transcripts (which hold client staff's personal data), the client's documents, and the abstracted, anonymised patterns retained by sector. Required before the second Loop client.</p>
+    </div>
+  </div>
+
+  <div class="gate-call">
+    <div class="g-t">⚑ The launch gate · this whole architecture</div>
+    <p><strong>No beta invitation issues, and no class-B abstraction begins, until this architecture has passed external legal review and the falsification criteria are locked.</strong> This page is the gate's artefact, not its satisfaction. The ten-year arc rests on the first dataset being honest and usable when the academic partner enters; one review buys both products their foundations.</p>
+  </div>
+
+  <div class="sec-h">The IG swimlane · how data moves, and who holds each step</div>
+  <div class="filt">
+    <span class="filt-l">Show</span>
+    <button class="on" data-f="all" onclick="setF('all',this)">Both classes</button>
+    <button data-f="A" onclick="setF('A',this)">Class A · the beta</button>
+    <button data-f="B" onclick="setF('B',this)">Class B · pattern library</button>
+  </div>
+  <div class="lane-wrap">
+    <div class="lane" id="lane">
+      <div class="lh corner">Who ↓ &nbsp;/&nbsp; Step →</div>
+      <div class="lh">1 · Set the basis<span class="s">controller, lawful basis, DPIA</span></div>
+      <div class="lh">2 · Inform &amp; consent<span class="s">before any capture</span></div>
+      <div class="lh">3 · Capture<span class="s">assessment / discovery call</span></div>
+      <div class="lh">4 · Pseudonymise &amp; secure<span class="s">within 30 days</span></div>
+      <div class="lh">5 · Use &amp; share<span class="s">analysis, abstraction, onward</span></div>
+      <div class="lh">6 · Retain, delete &amp; audit<span class="s">the schedule</span></div>
+
+      <!-- Controller -->
+      <div class="ar">PowerVox Ltd<span class="arr">Controller</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--blue)"><span class="act">Determines purposes &amp; means for both classes.</span><span class="chip flag">⚑ confirm controller analysis</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="AB" style="--cl:var(--blue)"><span class="act">Accountable for onward sharing under agreement.</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--blue)"><span class="act">Accountable for the retention regime.</span></div>
+
+      <!-- Scott -->
+      <div class="ar">Scott<span class="arr">DP / IP owner · the gate</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--green)"><span class="act">Sets one architecture across both classes; holds the lawful-basis decision; commissions the DPIA.</span><span class="chip art">→ DPIA</span><span class="chip art">→ ROPA</span></div>
+      <div class="cell" data-c="A" style="--cl:var(--green)"><span class="act">Issues participant information and the layered consent; owns the recording-consent layer.</span><span class="chip art">→ consent texts</span><span class="chip art">→ participant info</span></div>
+      <div class="cell" data-c="A" style="--cl:var(--green)"><span class="act">Capture runs only under consent; processor (assessment platform) selected and mapped.</span><span class="chip sys">⚙ assessment platform</span><span class="chip flag">⚑ processor map</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--green)"><span class="act">Pseudonymisation within 30 days; identifiers split from responses.</span><span class="chip art">→ pseudonymisation SOP</span></div>
+      <div class="cell" data-c="A" style="--cl:var(--green)"><span class="act">Case-study consent taken separately; dataset prepared for the academic partner under agreement.</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--green)"><span class="act">Runs the retention schedule; periodic audit of both classes.</span><span class="chip art">→ retention schedule</span></div>
+
+      <!-- Rachel -->
+      <div class="ar">Rachel<span class="arr">Class B DP lead</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Leads class-B consent flow and privacy policy; prior pipeline homework done.</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Every voice on the discovery call informed and consented to recording before it starts.</span><span class="chip art">→ engagement privacy notice</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Discovery call captured; client staff are data subjects, the organisation is not.</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Client-staff personal data pseudonymised in working artefacts where retained.</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Patterns abstracted to organisation-unidentifiable form; sector white papers from aggregates only.</span><span class="chip art">→ pattern library</span></div>
+      <div class="cell" data-c="B" style="--cl:var(--violet)"><span class="act">Raw transcripts and client documents returned or destroyed per contract.</span></div>
+
+      <!-- Hannah -->
+      <div class="ar">Hannah<span class="arr">Research integrity</span></div>
+      <div class="cell" data-c="A" style="--cl:var(--red)"><span class="act">Falsification criteria pre-set and locked before any data arrives.</span><span class="chip gate">launch-blocking</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="A" style="--cl:var(--red)"><span class="act">Baseline to the pre-registered plan; the n=20 hygiene gate.</span><span class="chip gate">n=20 gate</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="A" style="--cl:var(--red)"><span class="act">Cave-month analysis to pre-set criteria; reliability gate α ≥ 0.70 per dimension. Thresholds never move on commercial grounds.</span><span class="chip gate">n=60 review</span></div>
+      <div class="cell empty" data-c="AB"></div>
+
+      <!-- External reviewer -->
+      <div class="ar">External reviewer<span class="arr">to appoint · the gate</span></div>
+      <div class="cell gatecol" data-c="AB"><span class="act">Independent legal check of the whole architecture — controller analysis, lawful basis, DPIA, consent, retention.</span><span class="chip gate">go-live sign-off</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--red)"><span class="act">No first invitation, and no class-B abstraction, without sign-off.</span><span class="chip gate">cannot proceed without</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="AB" style="--cl:var(--red)"><span class="act">Confirms the retention schedule and the class-B anonymisation threshold.</span></div>
+
+      <!-- Data subject -->
+      <div class="ar">The data subject<span class="arr">participant · client staff</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="AB" style="--cl:var(--gold-deep)"><span class="act">Receives the information; grants each consent layer separately, each independently withdrawable.</span></div>
+      <div class="cell" data-c="AB" style="--cl:var(--gold-deep)"><span class="act">Completes the baseline / is recorded, only under the consent given.</span></div>
+      <div class="cell empty" data-c="AB"></div>
+      <div class="cell" data-c="A" style="--cl:var(--gold-deep)"><span class="act">May consent to a case study, or withdraw.</span></div>
+      <div class="cell" data-c="A" style="--cl:var(--gold-deep)"><span class="act">Withdrawal honoured prospectively; data already in analysis retained pseudonymised (the carve-out).</span><span class="chip flag">⚑ carve-out wording</span></div>
+    </div>
+  </div>
+  <p class="lane-note">Where a cell is empty, that actor has no role at that step. Chips: <span class="chip art">→ artefact produced</span> <span class="chip sys">⚙ system/tool</span> <span class="chip gate">a gate / blocker</span> <span class="chip flag">⚑ drafter's proposal, source silent</span>.</p>
+
+  <div class="sec-h">The decision that sets everything · lawful basis</div>
+  <div class="panel" style="margin-bottom:12px;"><p>The binding constraint is <strong>Article 9, not Article 6</strong>. The burnout-risk and wellbeing items will, on a cautious reading, contain health data for at least some participants — which needs an Article 9 condition on top of any Article 6 basis. The drafter's position is consent-led; the respectable alternative is handed to the reviewer rather than pre-decided. The layered-consent design below survives under either route — only the Article 6 label moves.</p></div>
+  <div class="dec">
+    <div class="dcol led">
+      <h4>Consent-led (the drafter's route)</h4>
+      <p>Explicit consent (Art. 9(2)(a)) as the condition, and the clean Article 6 basis at this scale. The research condition (Art. 9(2)(j)) is built for institutional research and fits a commercial category-building programme awkwardly; defending that fit costs more than a ~100-person beta justifies. The freely-given test holds — participants are paying clients, not employees — <em>except</em> sponsored cohorts, which need explicit voluntariness and no-detriment language.</p>
+    </div>
+    <div class="dcol alt">
+      <h4>Legitimate-interests-led (the alternative)</h4>
+      <p>Legitimate interests (Art. 6(1)(f)) as the general Article 6 basis, with explicit consent solely as the Article 9 condition and for the layers where consent is unavoidable anyway (recording, identifiable case studies, the mini-360). Permitted, common, and yields a more stable dataset on withdrawal. If the reviewer finds the items are not special category at all, this becomes the strong primary route.</p>
+    </div>
+  </div>
+  <p class="dec-note">Withdrawal instability is managed by design: <strong>pseudonymisation within 30 days</strong> and the <strong>standard research carve-out</strong> — withdrawal honoured prospectively, data already in analysis retained pseudonymised.</p>
+
+  <div class="sec-h">Consent architecture · class A · one ask at a time</div>
+  <div class="panel" style="margin-bottom:10px;"><p>Layered consent, each layer independently grantable and withdrawable. <strong>Consent unlocks one thing at a time</strong> — the opt-in moment is never bundled with the commercial moment. <span class="flagdot">⚑</span> Texts drafted on this architecture once the reviewer settles the Article 6 label.</p></div>
+  <div class="layers">
+    <div class="lay"><b>a · Participation</b> — programme and baseline assessment.</div>
+    <div class="lay"><b>b · Research use</b> — of pseudonymised responses.</div>
+    <div class="lay"><b>c · Recording</b> — debriefs; consent covers the recording specifically.</div>
+    <div class="lay"><b>d · Free-text item</b> — the optional reflective question.</div>
+    <div class="lay"><b>e · Mini-360</b> — with the third-party respondent's own consent route.</div>
+    <div class="lay"><b>f · Case studies</b> — anonymised, specific consent.</div>
+    <div class="lay"><b>g · Onward sharing</b> — with a named academic partner under agreement.</div>
+  </div>
+
+  <div class="sec-h">Roles &amp; accountability · who holds the line</div>
+  <table class="tbl">
+    <tr><th>Role</th><th>Holder</th><th>The line to hold</th></tr>
+    <tr><td>Controller</td><td>PowerVox Ltd</td><td>Determines purposes and means for both data classes. <span class="flagdot">⚑</span> confirm controller analysis with reviewer.</td></tr>
+    <tr><td>Consent / DP / IP owner</td><td>Scott</td><td>One architecture across both classes; external review the gate; consent for the qualitative layer covered explicitly before use.</td></tr>
+    <tr><td>Pattern library DP lead</td><td>Rachel</td><td>Leads pseudonymisation, consent flow and privacy policy for class B within this architecture; prior pipeline homework done.</td></tr>
+    <tr><td>Research integrity</td><td>Hannah</td><td>Falsification criteria pre-set and held; class A to the pre-registered plan; the n=20 and n=60 gates; cave-month analysis.</td></tr>
+    <tr><td>External reviewer</td><td>To appoint</td><td>Independent legal check of the whole architecture before the first beta invitation. One review buys both products their foundations.</td></tr>
+    <tr><td>Academic NED (planned)</td><td>To recruit</td><td>Arms-length oversight strengthening eventual published work.</td></tr>
+  </table>
+
+  <div class="sec-h">Retention &amp; deletion schedule <span style="font-weight:700;color:var(--gold-deep);font-size:11px;margin-left:6px;">⚑ proposed</span></div>
+  <table class="tbl">
+    <tr><th>Data</th><th>Retention</th><th>Rationale</th></tr>
+    <tr><td>A · Identifiable contact &amp; consent records</td><td>Programme + 6 years</td><td>Limitation period; consent evidence. <span class="flagdot">⚑</span> confirm</td></tr>
+    <tr><td>A · Raw assessment responses (identifiable)</td><td>Pseudonymise within 30 days</td><td>Minimisation; analysis never needs names</td></tr>
+    <tr><td>A · Pseudonymised research dataset</td><td>10 years</td><td>The category arc; publication and re-analysis. <span class="flagdot">⚑</span> confirm</td></tr>
+    <tr><td>A · Debrief recordings</td><td>Transcribe + pseudonymise; delete audio within 90 days</td><td>The recording is the sensitive artefact; the text is the value. <span class="flagdot">⚑</span></td></tr>
+    <tr><td>A · Case-study material</td><td>Life of consent; review at 3 years</td><td>Specific consent governs</td></tr>
+    <tr><td>B · Discovery recordings</td><td>Delete audio within 90 days of close</td><td>Same logic as debriefs. <span class="flagdot">⚑</span></td></tr>
+    <tr><td>B · Transcripts &amp; client documents</td><td>Per contract; default return or destroy at close + 12 months</td><td>Client's commercial material. <span class="flagdot">⚑</span></td></tr>
+    <tr><td>B · Abstracted anonymised patterns</td><td>Indefinite</td><td>The compounding asset; outside personal-data scope once abstracted. <span class="flagdot">⚑</span> threshold</td></tr>
+  </table>
+
+  <div class="sec-h">Intellectual property positions</div>
+  <table class="tbl">
+    <tr><th>Asset</th><th>Position</th></tr>
+    <tr><td>The instrument</td><td>VQ Assessment, the Black Egg, the companion questionnaire and scoring logic — PowerVox Ltd's proprietary IP. <span class="flagdot">⚑</span> verify trade-mark registration (Voice Quotient™, the Voice Ladder™).</td></tr>
+    <tr><td>Participant responses (class A)</td><td>Participants retain rights in their own words; PowerVox takes a licence for research and separately consented case-study use.</td></tr>
+    <tr><td>Derived data</td><td>Scores, indices, aggregates — PowerVox's. The class-B abstracted patterns — PowerVox's, warranted anonymous.</td></tr>
+    <tr><td>TOM templates &amp; the elicitation engine</td><td>Proprietary PowerVox assets (custody: Scott); clients licence outputs, never the engine.</td></tr>
+    <tr><td>The pattern-contribution clause</td><td>Every Loop contract: the client licenses PowerVox to abstract anonymised, organisation-unidentifiable patterns into the library; PowerVox warrants the anonymisation standard; the client's own model stays the client's. <span class="flagdot">⚑</span> clause drafting with the reviewer.</td></tr>
+  </table>
+
+  <div class="sec-h">Failure modes the design must beat · the DPIA risks</div>
+  <div class="risks">
+    <div class="risk"><div class="rk">Re-identification in a small cohort</div><p>~100 people in narrow seniority bands. Mitigated by pseudonymisation within 30 days and access control.</p></div>
+    <div class="risk"><div class="rk">Mini-360 candour about a named manager</div><p>Third-party respondents speaking about an identified leader. Own consent route and handling. <span class="flagdot" style="color:#FFD66B;">⚑</span></p></div>
+    <div class="risk"><div class="rk">Recordings as high-sensitivity artefacts</div><p>In both classes. Audio deleted within 90 days; the transcript is the value, the recording the risk.</p></div>
+    <div class="risk"><div class="rk">Pattern re-identification by a sector insider</div><p>Class B. Anonymisation tested against the ICO standard — not re-identifiable to an organisation by someone in the sector.</p></div>
+    <div class="risk"><div class="rk">Commercial pressure on the research framing</div><p>Mitigated by Hannah's independent-critic mandate; thresholds set before the data arrives and not moved after.</p></div>
+    <div class="risk"><div class="rk">Withdrawal destabilising the dataset</div><p>The known cost of consent as a basis. Met by pseudonymisation and the prospective withdrawal carve-out.</p></div>
+  </div>
+
+  <div class="sec-h">Open questions for the external reviewer</div>
+  <div class="qs">
+    <div class="q">Special-category analysis of the burnout-risk and wellbeing items; if engaged, the Article 9 condition and consent wording.</div>
+    <div class="q">The Article 6 architecture: consent-led versus legitimate-interests-led with explicit consent as the Art. 9 condition. The drafter holds the second open as the respectable alternative.</div>
+    <div class="q">Adequacy of the layered-consent design, the withdrawal carve-out, the sponsored-cohort voluntariness language, and the mini-360 respondent route.</div>
+    <div class="q">Class B anonymisation threshold against the ICO standard, including organisational re-identifiability by sector insiders.</div>
+    <div class="q">The pattern-contribution clause and its interaction with engagement confidentiality terms.</div>
+    <div class="q">The controller / processor map once tooling is chosen (assessment platform, storage, transcription — processors not yet selected).</div>
+    <div class="q">The retention schedule, both classes.</div>
+    <div class="q">International-transfer position if the academic partner or tooling sits outside the UK.</div>
+    <div class="q">The participant information text and consent-capture mechanics, to be drafted on this architecture once reviewed.</div>
+  </div>
+
+  <div class="sec-h">The gate · when it opens</div>
+  <div class="gate-call">
+    <div class="g-t">Exit criteria · all four, or the gate stays shut</div>
+    <p><strong>1.</strong> The keepers have resolved the ⚑ items they own. &nbsp; <strong>2.</strong> The external reviewer has signed off the architecture. &nbsp; <strong>3.</strong> The falsification criteria are locked (Hannah). &nbsp; <strong>4.</strong> The consent texts are final. The pattern-library gate opens for class B when the same review confirms the anonymisation standard and the contribution clause — before the second Loop client.</p>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Deep Vault · the IG playbook</span>
+    <span><em>Proprietary &amp; confidential</em> · working draft for external legal review</span>
+  </div>
+</div>
+
+<script>
+function setF(f, btn){
+  document.querySelectorAll('.filt button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#lane .cell').forEach(c=>{
+    var cc = c.getAttribute('data-c') || 'AB';
+    var show = (f==='all') || cc==='AB' || cc===f;
+    c.classList.toggle('dim', !show);
+  });
+}
+</script>
+</body>
+</html>

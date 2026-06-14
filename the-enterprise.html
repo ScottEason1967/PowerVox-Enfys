@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Enterprise Engagement · the organisational route</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --pc: #2F5E9E; --pc-deep: #234876;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1040px; margin: 0 auto; padding: 40px 30px 36px; }
+  .head { text-align: center; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 820px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .roads { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 14px; padding: 16px 20px; margin: 20px 0 24px; font-size: 12.5px; color: rgba(255,255,255,0.84); line-height: 1.65; }
+  .roads strong { color: var(--gold); }
+  .roads a { color: #9CC2F0; font-weight: 700; text-decoration: none; }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green), var(--blue), var(--violet)); }
+  .phase { background: var(--card); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border-left: 6px solid var(--pcl); padding: 22px 26px; margin-bottom: 16px; }
+  .phase-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .phase-n { font-family: var(--serif); font-size: 13px; font-weight: 700; color: var(--pcl); letter-spacing: 1px; text-transform: uppercase; }
+  .phase-t { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--pv-ink); }
+  .phase-wk { margin-left: auto; font-size: 10.5px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; color: var(--pc-deep); background: #E8F0FB; padding: 4px 11px; border-radius: 999px; }
+  .phase-q { font-size: 13.5px; font-style: italic; color: var(--pc); margin-bottom: 12px; }
+  .phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .phase-grid .lab { font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .phase-grid p { font-size: 12.5px; color: var(--text-sec); line-height: 1.55; }
+  .phase-grid strong { color: var(--pv-ink); }
+  .deliv { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-lt); font-size: 12.5px; color: var(--text-sec); }
+  .deliv strong { color: var(--pc); }
+  .phase.p1 { --pcl: var(--red); } .phase.p2 { --pcl: var(--orange); } .phase.p3 { --pcl: var(--green); } .phase.p4 { --pcl: var(--violet); }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .bands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0 6px; }
+  .band { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 13px 15px; }
+  .band .bk { font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: #9CC2F0; }
+  .band .bv { font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; margin: 3px 0; }
+  .band p { font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .flag { color: var(--gold-deep); font-weight: 800; }
+  .own { background: var(--card); border-radius: 16px; padding: 20px 26px; box-shadow: 0 8px 26px rgba(0,0,0,0.28); margin: 0 0 20px; }
+  .own h3 { font-family: var(--serif); font-size: 19px; color: var(--pv-ink); margin-bottom: 8px; }
+  .own p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .own strong { color: var(--pc-deep); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .links a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .links a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 720px){ .head-title { font-size: 34px; } .phase-grid, .bands { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Enterprise Engagement</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the organisational route</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Enterprise <em>Engagement</em></h1>
+    <p class="head-sub">How PowerVox sells into an organisation. <strong>The other road in</strong>, beside the self-serve funnel: a premium, outcome-led journey bought by a CPO or a board, that takes a leadership team from a baseline to visible, observable change in the rooms that matter.</p>
+  </div>
+
+  <div class="roads">There are two roads into PowerVox. One is the <a href="the-millwheel.html">self-serve funnel</a>, the Black Egg drawing individuals up the value ladder. This is the other: an <strong>organisational engagement</strong>, sold to a buyer with a budget and a team, structured so it feels tight, premium and outcome-led. Most of the time it is a three-to-four phase journey.</div>
+
+  <div class="sec-h">The journey</div>
+
+  <div class="phase p1">
+    <div class="phase-head"><span class="phase-n">Phase 1</span><span class="phase-t">Diagnosis &amp; Discovery</span><span class="phase-wk">4–6 weeks</span></div>
+    <div class="phase-q">"Where are your leaders actually on the Voice Ladder?"</div>
+    <div class="phase-grid">
+      <div><div class="lab">What we do</div><p>A Voice Quotient diagnostic for each leader, assessed across <strong>Control → Clarity → Influence</strong>, message landing and vocal patterns, through surveys, short recorded speaking samples and optional observation of real meetings. The first four training modules are delivered live and online.</p></div>
+      <div><div class="lab">What the client gets</div><p>A clear baseline of communication capability, and the patterns named: the <strong>invisible leaders</strong> (high capability, low voice), the <strong>dominant voices</strong> (high airtime, low impact), and systemic risks like a silence culture.</p></div>
+    </div>
+    <div class="deliv"><strong>Deliverable · the Executive Insight Report.</strong> A board-level narrative: here is what your leaders are saying, here is what is not landing, here is the cost. This phase alone is a valuable insight, and it is where PowerVox differentiates from almost the entire market.</div>
+  </div>
+
+  <div class="phase p2">
+    <div class="phase-head"><span class="phase-n">Phase 2</span><span class="phase-t">Design</span><span class="phase-wk">2–3 weeks</span></div>
+    <div class="phase-q">"What specifically needs to shift, and how?"</div>
+    <div class="phase-grid">
+      <div><div class="lab">What we do</div><p>Translate the diagnostic into a <strong>bespoke Voice Ladder pathway</strong>: target behaviours at each level, priority groups (executive, senior, emerging leaders), and the high-stakes scenarios that matter (boardrooms, change comms).</p></div>
+      <div><div class="lab">What the client gets</div><p>A tailored intervention plan, not generic training, with clear linkage to business outcomes: retention, decision quality, change execution.</p></div>
+    </div>
+    <div class="deliv"><strong>Deliverable · the PowerVox Programme Blueprint</strong>, with the quote for the phase ahead: the learning architecture, the measurement framework, the behaviour-tracking approach. This is where the buyer's fear is de-risked, by following a methodology.</div>
+  </div>
+
+  <div class="phase p3">
+    <div class="phase-head"><span class="phase-n">Phase 3</span><span class="phase-t">Activation &amp; Embed</span><span class="phase-wk">8–16 weeks</span></div>
+    <div class="phase-q">"Move leaders up the Voice Ladder, and make it stick."</div>
+    <div class="phase-grid">
+      <div><div class="lab">What we do</div><p>A core programme in small cohorts: saying the thing (Control → Clarity), landing the message (Clarity → Influence), handling challenge and tension, in real scenarios. Live application in real meetings and town halls. <strong>Power Room simulations</strong>, optional one-to-one coaching, and the <a href="the-greenhouse.html" style="color:var(--blue);font-weight:700;text-decoration:none;">Greenhouse</a> for senior women where it fits.</p></div>
+      <div><div class="lab">What the client gets</div><p>Visible, observable behaviour change. Not "they felt more confident," but <strong>"they ran the meeting differently, the message landed, the team responded."</strong> Tracked weekly: what did you say differently, and what happened as a result?</p></div>
+    </div>
+    <div class="deliv"><strong>Deliverable · the Behaviour Evidence Portfolio.</strong> Before-and-after examples, observed shifts, and optional short video comparisons, which are very powerful for boards. "You can't put communication change on a spreadsheet, but you can show it in a room."</div>
+  </div>
+
+  <div class="phase p4">
+    <div class="phase-head"><span class="phase-n">Phase 4 · optional</span><span class="phase-t">Sustain &amp; Scale</span><span class="phase-wk">ongoing</span></div>
+    <div class="phase-q">"Make this part of how leadership works here."</div>
+    <div class="phase-grid">
+      <div><div class="lab">What we do</div><p>The longer-term revenue and real-impact layer: keep the capability alive across the organisation through a retainer, refreshers, new cohorts and ongoing measurement, so the change holds rather than fading after the programme.</p></div>
+      <div><div class="lab">What the client gets</div><p>Communication treated as standing leadership infrastructure, not a one-off intervention, with the evidence base compounding over time.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-h">The shape of the deal</div>
+  <div class="panel">
+    <div class="panel-title">Priced by phase, validated by experiment</div>
+    <p>The engagement is priced phase by phase so the buyer commits to discovery first and the rest is earned. The working bands:</p>
+    <div class="bands">
+      <div class="band"><div class="bk">Diagnosis</div><div class="bv">£15–40k</div><p>the discovery phase and the Executive Insight Report</p></div>
+      <div class="band"><div class="bk">Programme</div><div class="bv">£50–150k+</div><p>design plus activation and embed</p></div>
+      <div class="band"><div class="bk">Sustain</div><div class="bv">retainer</div><p>ongoing, the impact layer</p></div>
+    </div>
+    <p style="margin-top:10px;"><span class="flag">⚑ Assumption, in test.</span> These bands are the documented working figures, not settled prices. The real numbers are being validated through the buyer experiments named in the Operating Architecture: a paid-willingness test at three price points against three buyers (roughly a £5k diagnostic pilot, a £15–25k cohort, a ~£50k enterprise diagnostic toward 2030), a buyer-language test, and a pattern-resonance test. The price the market will bear is learned, not assumed.</p>
+  </div>
+
+  <div class="own">
+    <h3>Who owns it</h3>
+    <p>The <a href="the-gather.html" style="color:var(--pc);font-weight:700;text-decoration:none;">open BD seat</a>, carried by Rachel in the interim. It is the enterprise and CPO conversation, today as pilots and B2B requests that convert into programmes, and as Horizon 3 nears, as the named enterprise-diagnostic line. Delivery draws on the same people and products the rest of the village runs on; this is the route to market, not a separate machine.</p>
+  </div>
+
+  <div class="links">
+    <a href="the-millwheel.html">The Millwheel · the other road in</a>
+    <a href="the-wares.html">The Wares · the products it sells</a>
+    <a href="the-gather.html">The Gather · the funnel and the BD seat</a>
+    <a href="the-black-egg.html">The Black Egg · the scalable way in</a>
+    <a href="the-deep-vault.html">The Deep Vault · the trust story the enterprise buyer will ask for</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Enterprise Engagement</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

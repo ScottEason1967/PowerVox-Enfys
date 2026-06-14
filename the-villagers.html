@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Villagers · who each ware is for</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --egg: #C25E1F; --rtg: #2F7A4D; --gh: #1F5E40; --loop: #2F5E9E; --coach: #5B3A8C;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1020px; margin: 0 auto; padding: 40px 30px 36px; }
+  .head { text-align: center; margin-bottom: 20px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .pv { background: var(--card); border-radius: 16px; box-shadow: 0 10px 28px rgba(0,0,0,0.28); border-left: 7px solid var(--pc); padding: 20px 24px; margin-bottom: 14px; display: grid; grid-template-columns: 64px 1fr; gap: 18px; }
+  .pv .disc { width: 56px; height: 56px; border-radius: 50%; border: 2px dashed var(--pc); background: radial-gradient(circle at 38% 30%, color-mix(in srgb, var(--pc) 35%, #ffffff), #f4f1f8); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 24px; font-weight: 700; color: var(--pc); }
+  .pv .nm { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 2px; }
+  .pv .nm h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--pv-ink); }
+  .pv .ware-tag { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #fff; background: var(--pc); padding: 3px 10px; border-radius: 999px; }
+  .pv .ware-tag a { color:#fff; text-decoration: none; }
+  .pv .who { font-size: 12px; font-style: italic; color: var(--pc); font-weight: 600; margin-bottom: 8px; }
+  .pv .row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+  .pv .col { flex: 1; min-width: 210px; }
+  .pv .lab { font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .pv p { font-size: 12px; color: var(--text-sec); line-height: 1.55; }
+  .pv p strong { color: var(--pv-ink); }
+  .pv .succ { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-lt); font-size: 12px; color: var(--text-sec); }
+  .pv .succ strong { color: var(--pc); }
+  .note { font-size: 12.5px; color: rgba(255,255,255,0.8); line-height: 1.65; margin: 20px 0 0; padding: 16px 20px; background: rgba(232,179,58,0.10); border: 1px solid rgba(232,179,58,0.4); border-radius: 12px; }
+  .note strong { color: var(--gold); }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .links a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .links a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 640px){ .head-title { font-size: 34px; } .pv { grid-template-columns: 1fr; } .pv .disc { margin: 0 auto; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Villagers</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">who each ware is for</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;opacity:0.45;pointer-events:none;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-eyebrow">One face per ware · the client lane, grounded</div>
+    <h1 class="head-title">The <em>Villagers</em></h1>
+    <p class="head-sub">A client lane wants a face. Each ware gets its own villager: who they are, what they want, what they fear, where they enter, and what done looks like. Settled as the persona-per-product rule; <strong>the names and faces await Rachel's pen ⚑</strong> — the epithets below are working titles, the situations are drawn from the product pages and the plan.</p>
+  </div>
+
+  <div class="pv" id="p-egg" style="--pc:var(--egg)">
+    <div class="disc">?</div>
+    <div>
+      <div class="nm"><h3>The Curious First-Timer</h3><span class="ware-tag"><a href="the-black-egg.html">the Black Egg</a></span></div>
+      <div class="who">⚑ name awaits Rachel's pen · the one at the crier's call</div>
+      <p>A capable leader who heard the signal — a talk, a piece, a colleague — and tried the free instrument with a real message. The result named something they had half-known for years: <strong>what they send is not what lands.</strong></p>
+      <div class="row">
+        <div class="col"><div class="lab">What they want</div><p>To understand the gap. Why careful messages come back misread, why the room hears a different person than the one speaking.</p></div>
+        <div class="col"><div class="lab">What they fear</div><p>That the problem is them; that naming it out loud makes it real to others before they have a handle on it.</p></div>
+        <div class="col"><div class="lab">Where they enter</div><p>The town crier on the path: the free Egg, then the paid tier when it ships — the first honest line they write about how they land.</p></div>
+      </div>
+      <div class="succ"><strong>Done looks like:</strong> the gap named in their own data, a Voice Profile in hand, and the free-to-paid step taken — warm and qualified by the time Root to Grow is mentioned.</div>
+    </div>
+  </div>
+
+  <div class="pv" id="p-rtg" style="--pc:var(--rtg)">
+    <div class="disc">?</div>
+    <div>
+      <div class="nm"><h3>The Cohort Leader</h3><span class="ware-tag"><a href="the-root-to-grow.html">Root to Grow</a></span></div>
+      <div class="who">⚑ name awaits Rachel's pen · the one in the seedbed</div>
+      <p>Senior enough that the stakes are real, funded enough to say yes, and timed to a cohort — the <a href="the-burrows.html#sys-qualification" style="color:var(--blue);font-weight:700;text-decoration:none;">routing rules</a> in person. Joins ten or eleven others for six weeks of live work with Rachel and Hannah.</p>
+      <div class="row">
+        <div class="col"><div class="lab">What they want</div><p>A voice that lands under consequence: in the board pack moment, the difficult conversation, the room that outranks them.</p></div>
+        <div class="col"><div class="lab">What they fear</div><p>That speaking plainly costs them standing; that the version of themselves who survives meetings is the only one colleagues will ever meet.</p></div>
+        <div class="col"><div class="lab">Where they enter</div><p>The Gate, warm and qualified; baseline VQ Assessment and Black Egg at the Welcome, the start of their own line.</p></div>
+      </div>
+      <div class="succ"><strong>Done looks like:</strong> measurable movement against their own baseline, anchors that travel home, and the week-five conversation about staying — into the Greenhouse — answered from experience, not persuasion.</div>
+    </div>
+  </div>
+
+  <div class="pv" id="p-gh" style="--pc:var(--gh)">
+    <div class="disc">?</div>
+    <div>
+      <div class="nm"><h3>The Alumna</h3><span class="ware-tag"><a href="the-greenhouse.html">the Greenhouse</a></span></div>
+      <div class="who">⚑ name awaits Rachel's pen · the one who stayed</div>
+      <p>Finished the cohort and chose not to drift. She is the person the wedge is built for: a woman leading through the decade the ground moves toward women, who knows six weeks starts something it cannot finish.</p>
+      <div class="row">
+        <div class="col"><div class="lab">What they want</div><p>A held place to keep practising: the monthly rhythm, the rooms where courage is rehearsed, peers who have each other's backs.</p></div>
+        <div class="col"><div class="lab">What they fear</div><p>Sliding back alone; becoming the leader the old environment kept asking her to be.</p></div>
+        <div class="col"><div class="lab">Where they enter</div><p>From cohort-end, paying monthly; the quarterly re-measure makes her growth visible and the dataset longitudinal.</p></div>
+      </div>
+      <div class="succ"><strong>Done looks like:</strong> she renews because the practice holds, her line keeps moving, and in time she becomes the proof — the case study (her separate consent), the referral, the voice that draws the next villager in.</div>
+    </div>
+  </div>
+
+  <div class="pv" id="p-loop" style="--pc:var(--loop)">
+    <div class="disc">?</div>
+    <div>
+      <div class="nm"><h3>The Sponsor</h3><span class="ware-tag"><a href="the-tom-method.html">the Loop · Groundwork ⚑</a></span></div>
+      <div class="who">⚑ name awaits Rachel's pen · the buyer at the workshop barn</div>
+      <p>An organisational buyer — the founder, COO or CPO of a business that runs on what lives in a few heads. Commissions the three-month operating-model engagement because something is coming: growth, a sale, a handover, or just the limit of heroics.</p>
+      <div class="row">
+        <div class="col"><div class="lab">What they want</div><p>The business out of the founders' heads and onto a map a stranger could run: visible, honest, theirs to keep.</p></div>
+        <div class="col"><div class="lab">What they fear</div><p>Consultancy that leaves slideware and a bill; a model nobody opens twice; their people's candour ending up somewhere it shouldn't.</p></div>
+        <div class="col"><div class="lab">Where they enter</div><p>The enterprise road or a warm referral; contract with the pattern-contribution clause, discovery with every voice consented before recording.</p></div>
+      </div>
+      <div class="succ"><strong>Done looks like:</strong> an operating model their team runs without the consultants in the room — the model theirs, the method ours — and a sponsor who can show, not describe, how the business works.</div>
+    </div>
+  </div>
+
+  <div class="pv" id="p-coach" style="--pc:var(--coach)">
+    <div class="disc">?</div>
+    <div>
+      <div class="nm"><h3>The Coachee</h3><span class="ware-tag"><a href="the-white-sofa.html">the White Sofa ⚑</a></span></div>
+      <div class="who">⚑ name awaits Rachel's pen · the one on the intimate seat</div>
+      <p>A founder or executive whose stakes are too particular for a cohort: the exit, the boardroom rupture, the speech that decides something. Buys the private room, and Rachel in it.</p>
+      <div class="row">
+        <div class="col"><div class="lab">What they want</div><p>The highest-stakes version of the work, one to one: their actual situation, their actual rooms, nothing generalised.</p></div>
+        <div class="col"><div class="lab">What they fear</div><p>Exposure. Being seen working on the thing before it is fixed.</p></div>
+        <div class="col"><div class="lab">Where they enter</div><p>By referral and fit, capped deliberately — a founder service, not a productised one, every relationship routing back to the diagnostic.</p></div>
+      </div>
+      <div class="succ"><strong>Done looks like:</strong> the moment met — the room moved — and a leader who knows exactly which instrument told them why.</div>
+    </div>
+  </div>
+
+  <div class="note"><strong>What this page is, and is not.</strong> These are the chassis's client avatars: who each ware serves, grounded in the product pages and the plan. They are deliberately not the Cast — Will, Ada, Ceri and Seren are story canon, the model felt as a tale; the Villagers are the buyers, the client lane of <a href="the-gather.html" style="color:var(--gold);font-weight:700;text-decoration:none;">the Gather</a> given faces. The settled rule is one persona page per avatar; this hub carries all five until Rachel names them, then each can take a page and a painted face of their own. ⚑ Everything above the product facts is the Cartographer's proposal.</div>
+
+  <div class="links">
+    <a href="the-wares.html">The Wares · what they buy</a>
+    <a href="the-gather.html">The Gather · the client lane they walk</a>
+    <a href="the-cast.html">The Cast · the story layer, kept distinct</a>
+    <a href="the-spectrum.html">The Spectrum · the journey they take</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Villagers</span>
+    <span><em>Proprietary &amp; confidential</em> · ⚑ names and faces await Rachel's pen</span>
+  </div>
+</div>
+</body>
+</html>

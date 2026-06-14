@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Village Green · Why</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+
+<style>
+  .dest {
+    font-family: var(--serif); font-style: italic;
+    font-size: 28px; line-height: 1.35; color: #fff; text-align: center;
+    max-width: 760px; margin: 6px auto 26px;
+  }
+  .dest strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .hm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .hm-center { grid-column: 2; }
+  .hm-card {
+    border-radius: 12px; overflow: hidden; position: relative;
+    aspect-ratio: 3 / 2; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35); transition: transform 0.18s ease; display: block;
+  }
+  .hm-card:hover { transform: translateY(-3px); }
+  .hm-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hm-card-cap {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 14px 10px;
+    background: linear-gradient(180deg, rgba(27,20,41,0) 0%, rgba(27,20,41,0.90) 78%);
+    color: #fff; font-size: 11.5px; line-height: 1.45;
+  }
+  .hm-card-cap strong { display: block; font-size: 12.5px; font-weight: 800; color: var(--gold); }
+  .hm-foot { font-family: var(--serif); font-size: 17px; color: rgba(255,255,255,0.82); margin-top: 20px; line-height: 1.6; font-style: italic; text-align: center; }
+  @media (max-width: 800px) { .hm-grid { grid-template-columns: 1fr; } .hm-center { grid-column: auto; } .dest { font-size: 22px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Village Green</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">Why</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page-hero"><img src="images/VillageGreen.png" alt="" style="object-position: center 45%;"></div>
+
+<div class="page">
+  <div class="head">
+    <div class="head-q" style="color:var(--ql-why)">WHY</div>
+    <h1 class="head-title">The Village <em>Green</em></h1>
+  </div>
+
+  <p class="dest">"To make goodness powerful — <strong>by building the conditions under which it can be.</strong>"</p>
+
+  <div class="prose" style="--accent: var(--q-why);">
+    <em class="lead">The destination statement — what everything else is in service of.</em>
+    <p style="margin-top:10px;">Humane effectiveness through condition design. The philosophy is the worldview the whole estate inherits from; the Manifesto is the constitutional record beneath it — where the work comes from, and why it matters as much as it does. When future documents drift, this is what they are drifting from. Everything in the village is arranged around this Green: the rainbow stands over the fountain at its heart, and the Loveheart above them both, because the Loveheart sits across the whole estate.</p>
+    <p style="margin-top:10px;">The philosophy governs when anything conflicts. The two working questions the estate lives inside: can humane leadership become coherent enough to compete — and can integrity, courage, care and humane leadership become <strong>effective</strong> rather than merely virtuous?</p>
+    <div class="links">
+      <a href="https://theloveheart.mykajabi.com/philosophy" target="_blank" rel="noopener">The Loveheart Philosophy</a>
+      <a href="https://theloveheart.mykajabi.com/manifesto" target="_blank" rel="noopener">The Loveheart Manifesto</a>
+      <a href="https://theloveheart.mykajabi.com/welcome" target="_blank" rel="noopener">The Welcome</a>
+      <a href="seren.html">Seren · the origin word</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Deeper into the village</div>
+    <p class="panel-sub">Some truths are not best explained — they are best lived, felt, remembered. Enfys is how the work is told to the part of the reader that understands stories before frameworks. Held by the estate, never delivered by the chassis: a creative track owned by Rachel, and the liveability test of the whole architecture — if an element of the estate has no home in the village, that's a flag worth examining. The founder's speaking belongs to this same signal: the village told aloud, from a stage rather than a page, the voice that draws people toward the gate. It is Recognition, not a ware. The creative track is becoming <strong>two books, one methodology</strong>: the <em>Enfys</em> novel for adults and children, and the <em>PowerVox</em> book on leadership voice in the AI era. Ruby's Loveheart, below, is the origin they grew from. ⚑ Both in writing, Horizon 2–3.</p>
+    <div class="hm-grid">
+      <a class="hm-card" href="loveheart-book.html">
+        <img src="images/Welcome%20Book.png" alt="The Loveheart book">
+        <div class="hm-card-cap"><strong>The Loveheart book</strong>Where it all began — Ruby's gift, now the constitution of the estate.</div>
+      </a>
+      <a class="hm-card" href="the-cast.html"><img src="images/Messenger%20Shimmer.png" alt="Shimmer the messenger"><div class="hm-card-cap"><strong>The cast of Enfys</strong>The human face of the model — Ada, Ceri, Will and Seren, each a part of how voice lands, and a leader you'll know.</div></a>
+      <a class="hm-card" href="the-spectrum.html"><img src="images/16-9%20enfys.png" alt="The Enfys Spectrum"><div class="hm-card-cap"><strong>The Enfys Spectrum</strong>The rainbow as method — seven colour-stages of transformation, each anchored to a place in the village.</div></a>
+      <a class="hm-card hm-center" href="https://1drv.ms/w/c/8abadee4a0048e8e/IQAt-tHfgxLVT56r49tTT_tEAUrBHqj8SCv2LKhhwNFmWjs?e=9RaEco" target="_blank" rel="noopener">
+        <img src="images/Aur.png" alt="Aur — the soft-gold greeting">
+        <div class="hm-card-cap"><strong>The content bank</strong>Sixty-three pieces, seven angles — the village told to the world, one post at a time.</div>
+      </a>
+    </div>
+    <p class="hm-foot">"The best people are rainbow. Red is great. Rainbow is better."</p>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Village Green</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Records Room · decisions we've settled</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 22px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 740px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .pp { background: var(--card); border-radius: 14px; padding: 20px 24px; margin-bottom: 12px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-left: 6px solid var(--pc); }
+  .pp-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .pp-num { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; color: var(--text-muted); }
+  .pp-name { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); }
+  .pp-status { margin-left: auto; font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; }
+  .st-adopted { background: var(--green-pale); color: var(--green); }
+  .st-markup { background: rgba(91,58,140,0.12); color: var(--violet); }
+  .st-joint { background: rgba(47,94,158,0.12); color: var(--blue); }
+  .st-named { background: var(--warm-cream); color: var(--gold-deep); }
+  .pp p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .pp p strong { color: var(--pv-ink); }
+  .pp .meta { font-size: 11px; color: var(--text-muted); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-lt); }
+  .pp .meta a { color: var(--blue); font-weight: 700; text-decoration: none; }
+  .pp .meta a:hover { text-decoration: underline; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 20px 0; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: var(--ql-why); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-town-hall.html">← The Town Hall</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Records Room</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">decisions we've settled</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Records <em>Room</em></h1>
+    <p class="head-sub">Each paper is a single adopted position with its reasons and the triggers that would reopen it. <strong>When a position changes, the paper changes first — then everything else cascades.</strong> Never the other way round.</p>
+  </div>
+
+  <div class="pp" style="--pc:var(--green)">
+    <div class="pp-head"><span class="pp-num">PP-01</span><span class="pp-name">Voice Intelligence &amp; Voice Quotient™</span><span class="pp-status st-adopted">adopted</span></div>
+    <p>Faculty and measure, on the model of intelligence and IQ: <strong>Voice Intelligence is the capability; Voice Quotient™ is its quotient.</strong> Settled the naming that had been carried as a pending flag; the public claim that VQ is a validated, measurable construct is held at hypothesis until the beta clears its thresholds.</p>
+    <div class="meta"><a href="pp-01.html">Read PP-01 in full →</a></div>
+  </div>
+
+  <div class="pp" style="--pc:var(--yellow)">
+    <div class="pp-head"><span class="pp-num">PP-02</span><span class="pp-name">Gender layering</span><span class="pp-status st-named">named · unwritten</span></div>
+    <p>The universal category and the women-leader wedge held at once — the mechanism is not gendered, its sharpest application is. The IOA carries the working position ("gender-neutral work, especially valuable for senior women"); the paper that settles it formally is not yet written.</p>
+    <div class="meta">Owner: Rachel · working position adopted, paper to be written</div>
+  </div>
+
+  <div class="pp" style="--pc:var(--yellow)">
+    <div class="pp-head"><span class="pp-num">PP-03</span><span class="pp-name">Condition Design</span><span class="pp-status st-named">named · unwritten</span></div>
+    <p>The philosophy's operational claim — humane effectiveness through condition design — as a settled position with its boundaries. Named on the Welcome page; not yet drafted.</p>
+    <div class="meta">Owner: Rachel</div>
+  </div>
+
+  <div class="pp" style="--pc:var(--violet)">
+    <div class="pp-head"><span class="pp-num">PP-04</span><span class="pp-name">One estate, two operating models, one method</span><span class="pp-status st-markup">drafted · Rachel's markup</span></div>
+    <p><strong>⚑ Amendment pending (Rachel):</strong> the Enfys clause needs the Disney/Pixar rider — Enfys is the IP <em>world</em> (ecology, Rachel's), and chassis products may be built <em>inside</em> it (the operating-model interface, a future gamified learning village), licensing its skin without the world becoming a chassis product. Two recorded edge cases: Root to Grow's cross-TOM interface, and the books' carriage trigger.</p>
+    <div class="meta">PP-04 v0.1 draft · Rendered live on <a href="the-town-hall.html">the Town Hall's settlement panel</a></div>
+  </div>
+
+  <div class="pp" style="--pc:var(--blue)">
+    <div class="pp-head"><span class="pp-num">PP-05</span><span class="pp-name">The Loop is part of PowerVox</span><span class="pp-status st-joint">drafted · joint ratification</span></div>
+    <p>The productised TOM business is a PowerVox ware: PowerVox Ltd contracts, IP in-house, revenue to the product-share metric, one equity conversation. Supersedes the Servitor Path A/B question as the Loop's home. Carries the default positions for Rachel to confirm or override: ~£30k price, three engagements year one, staffing per the keepers' roles, the SME ladder out pending her ruling.</p>
+    <div class="meta">PP-05 v0.1 draft</div>
+  </div>
+
+  <div class="pp" style="--pc:var(--violet)">
+    <div class="pp-head"><span class="pp-num">PP-06</span><span class="pp-name">The Standard Model &middot; the Canon</span><span class="pp-status st-markup">drafted &middot; the method core</span></div>
+    <p>The eight invariants that hold for every client, in every sector, regardless of who is in the room, each carried with its boundary. The central law: whether a voice lands is the voice meeting the room, so the work has two variables, not one. This is the fixed spec, not the taxonomy; it does not flex per engagement. Reopened only by a falsified axiom or a boundary that fails in the field. Rendered in full on <a href="the-instrument.html">the Instrument</a>.</p>
+    <div class="meta">PP-06 v0.1 draft &middot; the spine the rest of the estate drifts from</div>
+  </div>
+
+  <div class="pp" style="--pc:var(--blue)">
+    <div class="pp-head"><span class="pp-num">PP-07</span><span class="pp-name">The Conditions Taxonomy</span><span class="pp-status st-joint">drafted &middot; v0.1 schema</span></div>
+    <p>The second instrument: a fixed schema of twelve dimensions in four groups (where the power sits, what the room receives, the capable and unheard, readiness to change the room) along which rooms differ. Fixed headings, variable values. The schema is the IP that compounds; the values are the client's, elicited fresh. Because the schema is fixed, every engagement deposits a comparable row into the pattern library. Widened only with a stated reason, since every new dimension is a cost paid by every future map. Set out on <a href="the-instrument.html">the Instrument</a>.</p>
+    <div class="meta">PP-07 v0.1 draft &middot; the room, made mappable</div>
+  </div>
+
+  <div class="pp" style="--pc:var(--gold-deep)">
+    <div class="pp-head"><span class="pp-num">PP-08</span><span class="pp-name">The Invariant/Variable Line</span><span class="pp-status st-named">drafted &middot; the boundary</span></div>
+    <p>The single most valuable boundary in the business: what is ours and compounds across every client (the Canon, VQ, the taxonomy schema, the Loop protocol, the pattern library) versus what is the client's and disposable (their values, their mishearings, their named gaps, their VQ scores). The line itself is the product, because it is what a client is buying that they could not rebuild alone. The migration from founder-delivered to product runs straight along it. Drawn on <a href="the-instrument.html">the Instrument</a>.</p>
+    <div class="meta">PP-08 v0.1 draft &middot; where the IP stops and the engagement begins</div>
+  </div>
+
+  <div class="panel">
+    <p><strong>The room's rule.</strong> A position paper is reopened by its own named triggers, not by mood. Drafts in this room are written by the Cartographer from the founders' rulings and carry no authority until ratified — the drafting is faithful, the pen is theirs. The canonical language governs every word; where a paper conflicts with it, the language wins and the paper is corrected.</p>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Records Room</span>
+    <span><em>Proprietary &amp; confidential</em> · positions change first; everything else cascades</span>
+  </div>
+</div>
+</body>
+</html>
+                                                                                                                    

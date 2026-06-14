@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Millwheel · how flow becomes value</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1020px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .loop-panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 30px 34px 28px; margin: 0 0 24px; display: grid; grid-template-columns: 460px 1fr; gap: 34px; align-items: center; }
+  .loop-svg-wrap { display: flex; align-items: center; justify-content: center; }
+  .loop-svg-wrap svg { width: 100%; max-width: 460px; height: auto; }
+  .loop-title { font-family: var(--serif); font-size: 25px; font-weight: 600; color: #fff; letter-spacing: -0.2px; line-height: 1.2; margin-bottom: 8px; }
+  .loop-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .loop-sub { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 18px; }
+  .loop-legend { display: flex; flex-direction: column; gap: 9px; }
+  .loop-step { display: flex; gap: 12px; align-items: flex-start; }
+  .loop-dot { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #fff; }
+  .loop-step-text { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .loop-step-text strong { color: #fff; font-weight: 800; }
+  .loop-note { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.68); line-height: 1.6; font-style: italic; }
+  .loop-note strong { color: var(--ql-when); font-style: normal; }
+  .prose { background: var(--card); border-radius: 16px; padding: 22px 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 22px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--gold-deep); }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 16px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+  .callout { background: rgba(232,179,58,0.10); border: 1px solid rgba(232,179,58,0.45); border-radius: 14px; padding: 18px 22px; margin: 0 0 22px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.7; }
+  .callout strong { color: var(--ql-why); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 1080px) { .loop-panel { grid-template-columns: 1fr; } .page { padding: 28px 18px; } }
+  .mw-spin { animation: mwturn 60s linear infinite; }
+  @keyframes mwturn { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .mw-spin { animation: none; } }
+  .wheel-frame { position: relative; border-radius: 18px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.16); max-width: 780px; margin: 0 auto 12px; }
+  .wheel-frame img { width: 100%; display: block; }
+  .wms { position: absolute; transform: translate(-50%,-50%); display: flex; flex-direction: column; align-items: center; text-decoration: none; z-index: 6; }
+  a.loop-step { text-decoration: none; color: inherit; cursor: pointer; border-radius: 9px; padding: 6px 9px; margin: -2px -9px; transition: background 0.2s ease, transform 0.2s ease; }
+  a.loop-step:hover { background: rgba(255,255,255,0.07); transform: translateX(3px); }
+  a.loop-step:hover .loop-step-text strong { color: var(--gold); }
+  a.loop-step .loop-step-text strong { transition: color 0.2s ease; }
+  /* clickable hotspots over the painted buckets */
+  .bhot { position: absolute; transform: translate(-50%,-50%); width: 6%; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 6; }
+  .bhot::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--sc) 70%, transparent); background: radial-gradient(circle, color-mix(in srgb, var(--sc) 22%, transparent), transparent 62%); box-shadow: 0 0 7px color-mix(in srgb, var(--sc) 45%, transparent); transition: all 0.2s ease; }
+  .bhot:hover::before { border-color: var(--sc); box-shadow: 0 0 18px var(--sc); background: radial-gradient(circle, color-mix(in srgb, var(--sc) 38%, transparent), transparent 68%); }
+  .bhot-cap { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 5px; padding: 3px 9px 4px; background: rgba(16,12,26,0.92); border: 1px solid var(--sc); border-radius: 3px; white-space: nowrap; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; text-align: center; }
+  .bhot:hover .bhot-cap { opacity: 1; }
+  .bhot.up .bhot-cap { top: auto; bottom: 100%; margin-top: 0; margin-bottom: 5px; }
+  .bhot-cap span { display: block; font-size: 7.5px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sc); }
+  .bhot-cap b { display: block; font-family: var(--serif); font-style: italic; font-size: 12.5px; font-weight: 600; color: #fff; }
+  .bhot-cap i { display: block; font-style: normal; font-size: 8px; font-weight: 700; letter-spacing: 0.4px; color: rgba(255,255,255,0.62); margin-top: 3px; }
+  .wms-cap { margin-top: 7px; padding: 4px 11px 5px; background: rgba(16,12,26,0.82); backdrop-filter: blur(5px); border: 1px solid var(--sc); border-radius: 3px; white-space: nowrap; opacity: 0; transition: opacity 0.2s ease; text-align:center; }
+  .wms:hover .wms-cap { opacity: 1; }
+  .wms.below { flex-direction: column-reverse; }
+  .wms.below .wms-cap { margin-top: 0; margin-bottom: 7px; }
+  .wms-q { display:block; font-size: 8px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: var(--sc); }
+  .wms-n { display:block; font-family: var(--serif); font-style: italic; font-size: 13px; font-weight: 600; color: #fff; }
+  .wheel-hint { text-align:center; font-size: 10.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin: 0 0 20px; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Millwheel</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">how flow becomes value</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-eyebrow">The commercial engine · a diagnostic-gated view · ⚑ name proposed</div>
+    <h1 class="head-title">The <em>Millwheel</em></h1>
+    <p class="head-sub">How customers and money flow into the village and compound — neither time nor operations, but the <strong>commercial engine</strong> that turns flow into value. The river drives the wheel; the wheel grinds the corn; the village is fed. Recognition becomes evidence; evidence becomes the authority that draws the next arrivals.</p>
+  </div>
+
+  <div class="wheel-frame">
+    <img src="images/millwheel-closeup.png" alt="The Millwheel of Enfys — the river drives the wheel, three coloured buckets carry the paid ladder, the hub is Voice, the mill grinds out evidence and its renown rises as smoke">
+    <a class="bhot up" style="left:30%; top:80%; --sc:#A8293B;" href="the-green.html" title="Recognition River — the signal that draws them in. Opens the Green, the Why and Hearts & Minds anchor."><span class="bhot-cap"><span>Recognition River</span><b>the signal that draws them in</b><i>→ opens the Green · the Why</i></span></a>
+    <a class="bhot" style="left:41%; top:21%; --sc:#C25E1F;" href="the-black-egg.html" title="The Black Egg — the scalable front door of the funnel. Opens the Black Egg."><span class="bhot-cap"><span>The Black Egg · bucket</span><b>the scalable way in</b><i>→ opens the Black Egg</i></span></a>
+    <a class="bhot" style="left:34%; top:39%; --sc:#C99425;" href="the-root-to-grow.html" title="Root to Grow — the bucket rising. Opens the Root to Grow product page."><span class="bhot-cap"><span>Root to Grow · bucket</span><b>the planting</b><i>→ opens Root to Grow</i></span></a>
+    <a class="bhot" style="left:34%; top:61%; --sc:#2F7A4D;" href="the-greenhouse.html" title="The Greenhouse — the bucket carried round. Opens the Greenhouse product page."><span class="bhot-cap"><span>The Greenhouse · bucket</span><b>the tending, recurring</b><i>→ opens the Greenhouse</i></span></a>
+    <a class="bhot" style="left:45.3%; top:52%; --sc:#EAF2F7;" href="the-construct.html" title="Voice Quotient — the hub the whole wheel turns on. Opens the Construct."><span class="bhot-cap"><span>Voice · the hub</span><b>the instrument it turns on</b><i>→ opens the Construct</i></span></a>
+    <a class="bhot" style="left:69%; top:53%; --sc:#2F5E9E;" href="the-observatory.html" title="Evidence — the mill grinds it out. Opens the Observatory."><span class="bhot-cap"><span>Evidence · the mill</span><b>the by-product of every turn</b><i>→ opens the Observatory</i></span></a>
+    <a class="bhot" style="left:85%; top:6%; --sc:#5B3A8C;" href="the-map-room.html" title="The Category — the ten-year destination. Opens the Map Room, the decade ahead."><span class="bhot-cap"><span>Category · the smoke</span><b>the authority that draws the next</b><i>→ opens the Map Room · the decade</i></span></a>
+  </div>
+  <p class="wheel-hint">The river is recognition; the three buckets are the paid ladder; the hub is Voice; the mill grinds out evidence; the smoke is the category's renown drifting back to the river. Hover a part to name it, click to enter.</p>
+
+  <div class="loop-panel" style="grid-template-columns:1fr;">
+    <div>
+      <div class="loop-title">The wheel turns; the village is fed. <em>That is the commercial engine.</em></div>
+      <p class="loop-sub">Read it as a mill. The <strong>river is recognition</strong>, the current that turns everything. Three buckets scoop the <strong>paid ladder</strong> — the Black Egg, Root to Grow, the Greenhouse. The hub they all turn on is <strong>Voice</strong>. The turning grinds out <strong>evidence</strong>, and the mill's renown rises as smoke, the <strong>category</strong>, which drifts back to swell the river. The buckets are the revenue; evidence and the category are the compounding return. One turning wheel, three returns.</p>
+      <div class="loop-legend">
+        <a class="loop-step" href="the-green.html"><span class="loop-dot" style="background:#A8293B">1</span><span class="loop-step-text"><strong>Recognition River.</strong> Rachel's signal — content, speaking, Substack, the story — the current that draws people to the gate.</span></a>
+        <a class="loop-step" href="the-black-egg.html"><span class="loop-dot" style="background:#C25E1F">2</span><span class="loop-step-text"><strong>The Black Egg.</strong> The scalable way in: free instrument, then the paid VQ tier — the highest-leverage build on the board. Not the only entrance, the front of the self-serve funnel.</span></a>
+        <a class="loop-step" href="the-root-to-grow.html"><span class="loop-dot" style="background:#C99425">3</span><span class="loop-step-text"><strong>Root to Grow.</strong> The planting. Six weeks, paid cohorts — revenue and beta dataset in the same hours.</span></a>
+        <a class="loop-step" href="the-greenhouse.html"><span class="loop-dot" style="background:#2F7A4D">4</span><span class="loop-step-text"><strong>The Greenhouse.</strong> The tending. Recurring membership, the practice ground, the longitudinal cohort research re-contacts.</span></a>
+        <a class="loop-step" href="the-construct.html"><span class="loop-dot" style="background:#5A6470">★</span><span class="loop-step-text"><strong>Voice · the hub.</strong> Voice Quotient is the instrument the whole wheel turns on — measured at every rung, not a stage you buy. The Black Egg reads transmission (the gap between intended and received); Root to Grow runs the VQ assessment, the capability diagnostic. Two instruments, not one.</span></a>
+        <a class="loop-step" href="the-observatory.html"><span class="loop-dot" style="background:#2F5E9E">5</span><span class="loop-step-text"><strong>Evidence.</strong> The by-product the turning grinds out, held to Hannah's threshold — criteria set before the data arrives. Not a stage anyone buys.</span></a>
+        <a class="loop-step" href="the-map-room.html"><span class="loop-dot" style="background:#5B3A8C">6</span><span class="loop-step-text"><strong>Category.</strong> Voice Intelligence earns its place alongside IQ and EQ — and the authority becomes next year's recognition.</span></a>
+      </div>
+      <p class="loop-note"><strong>The other race in:</strong> TOM consultancy engagements diagnose the conditions around leaders — and deliver the very people whose development the village serves, joining the wheel at the gate. Consultancy revenue today, category evidence tomorrow, on one path.</p>
+    </div>
+  </div>
+
+  <div style="background:rgba(232,179,58,0.08);border:1px solid rgba(232,179,58,0.4);border-radius:18px;padding:20px 24px;margin:0 0 22px;display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:center;">
+    <div style="width:72px;height:72px;border-radius:50%;border:2px solid rgba(232,179,58,0.55);background-image:url('images/Welcome%20Book.png');background-size:cover;background-position:center;flex:0 0 auto;"></div>
+    <div>
+      <div style="font-family:var(--serif);font-size:21px;font-weight:600;color:#fff;margin-bottom:4px;">The welcome book &middot; the threshold</div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.65;">Before the wheel turns there is an older, smaller moment. At the gate sits a welcome book. You write one true thing, where you have come from, something you are ready to acknowledge, and in return you are handed a pen, not as a tool but as a symbol. That is the way in stripped to its heart. <strong style="color:#fff;">The Black Egg is that same threshold built to scale</strong>: the first honest line a leader writes about how they actually land, and the instrument of voice handed back. Everything downstream begins with one true sentence. <strong style="color:#fff;">⚑ Canon framing, drawn from Rachel's World of Enfys.</strong></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Why this is its own page, not the WHEN.</strong> The Millwheel is how customers and money flow in — a commercial view, not a clock and not a delivery cycle. It earns first-class rendering here because PowerVox is a competitive seller and its flywheel is load-bearing. An orchestrator like NHSE has no Millwheel — a monopoly convenes rather than competes, so its acquisition is distributed through market-shaping, not concentrated in a funnel. <strong>In the method, the Millwheel is a diagnostic-gated overlay: switched on for competitive commercial subjects, off for orchestrators.</strong>
+  </div>
+
+  <div class="prose">
+    <em class="lead">Where it sits.</em>
+    <p style="margin-top:8px;">The Millwheel turns the wares into revenue; the <a href="the-village-year.html">Village Year</a> is the rhythm by which they are delivered and improved; the <a href="the-gather.html">Gather</a> is the machinery that runs each turn. Three different questions about the same village: how value comes in, when the work beats, how the work is done. The strategic arc the wheel builds toward lives in the <a href="the-map-room.html">Map Room</a>.</p>
+    <div class="links">
+      <a href="the-wares.html">The Wares · what the wheel sells</a>
+      <a href="the-village-year.html">The Village Year · the two delivery loops (WHEN)</a>
+      <a href="the-black-egg.html">The Black Egg · the scalable way in</a>
+      <a href="the-map-room.html">The Map Room · the decade the wheel builds</a>
+      <a href="the-enterprise.html">The Enterprise Engagement · the organisational road in</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Millwheel · the commercial engine</span>
+    <span><em>Proprietary &amp; confidential</em> · a diagnostic-gated view</span>
+  </div>
+</div>
+</body>
+</html>

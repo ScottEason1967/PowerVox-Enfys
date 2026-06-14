@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Root to Grow · the front of the funnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --pc: #2F7A4D; --pc-deep: #1F5E40; --pc-pale: #E5F1E9;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-eyebrow { display: inline-block; background: var(--pc); color: #fff; font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 48px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 770px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .price-strip { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 16px 0 4px; }
+  .pill { font-size: 11px; font-weight: 800; letter-spacing: 0.6px; padding: 7px 15px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: #fff; }
+  .pill.lead { background: var(--pc); border-color: transparent; }
+  .lines { font-family: var(--serif); font-style: italic; text-align: center; font-size: 20px; color: #fff; line-height: 1.7; margin: 22px 0 26px; }
+  .lines strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--pc); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose em.lead { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--pc-deep); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--pc); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--gold), var(--green), var(--blue), var(--violet)); }
+  .returns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 20px; }
+  .ret { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--rc); display: flex; flex-direction: column; gap: 6px; }
+  .ret .rn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--rc); }
+  .ret .rt { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--pv-ink); }
+  .ret p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  .grow { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .grow-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .grow-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .seedrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .seed { background: rgba(47,122,77,0.16); border: 1px solid rgba(159,216,180,0.32); border-radius: 12px; padding: 14px 15px; }
+  .seed .sk { font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #9FD8B4; margin-bottom: 5px; }
+  .seed .sv { font-size: 22px; font-weight: 800; color: #fff; font-family: var(--serif); line-height: 1; margin-bottom: 5px; }
+  .seed p { font-size: 11px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 0 0 20px; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .own { background: var(--card); border-radius: 16px; padding: 20px 26px; box-shadow: 0 8px 26px rgba(0,0,0,0.28); margin: 0 0 20px; }
+  .own h3 { font-family: var(--serif); font-size: 19px; color: var(--pv-ink); margin-bottom: 10px; }
+  .own .row { display: flex; gap: 12px; font-size: 12.5px; color: var(--text-sec); padding: 8px 0; border-top: 1px solid var(--border-lt); line-height: 1.5; }
+  .own .row:first-of-type { border-top: none; }
+  .own .who { font-weight: 800; color: var(--pc-deep); min-width: 86px; }
+  .crosslinks { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .crosslinks a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .crosslinks a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .returns, .seedrow { grid-template-columns: 1fr 1fr; } .page { padding: 28px 18px; } .head-title { font-size: 34px; } }
+  @media (max-width: 560px) { .returns, .seedrow { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>Root to Grow</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the seedbed in the garden</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">Root to <em>Grow</em></h1>
+    <p class="head-sub">Six weeks that set the roots. <strong>The front of the funnel and the beta vehicle in one</strong> — the first six weeks of the Greenhouse, where a leader gets their language, their awareness and a measured baseline, and every paid place also buys a row of evidence.</p>
+    <div class="price-strip">
+      <span class="pill lead">£1,495 / participant</span>
+      <span class="pill">Six weeks</span>
+      <span class="pill">Cohorts of 10–12</span>
+      <span class="pill">Live, Rachel + Hannah</span>
+    </div>
+  </div>
+
+  <p class="lines">One critical path. Three returns.<br><strong>Revenue, a validated instrument, and the foundation of a category</strong> — all from the same six weeks.</p>
+
+  <div class="prose">
+    <h3>What it is</h3>
+    <p><em class="lead">The engine of the year.</em> Root to Grow is where a leader begins the work: initiation, awareness, the shared language of Voice Intelligence, and a baseline they can measure everything else against. It is deliberately the opening stretch of the Greenhouse rather than a standalone course, so the people who finish it are already standing at the door of the recurring programme. Cohorts are small, ten to twelve, and delivered live by Rachel and Hannah together. That is a choice, not a constraint dressed up as one: the count is set by what two people can deliver well, because the early cohorts are built for quality over volume. The aim is raving fans who carry on, not a big first number.</p>
+    <p style="margin-top:10px;">It is also how PowerVox earns the right to its category claim without spending founder time it does not have. Every cohort runs the full <strong>VQ Assessment</strong> and the <strong>Black Egg</strong> as part of the method, so the participants are paying clients and the highest-quality evidence source at the same time. We know the leader and we know their context. The research is generated as a by-product of normal trading, not in competition with it.</p>
+    <div class="links">
+      <a href="the-construct.html">The Construct · the language it teaches</a>
+      <a href="the-black-egg.html">The Black Egg · run inside every cohort</a>
+    </div>
+  </div>
+
+  <div class="sec-h">One path, three returns</div>
+  <div class="returns">
+    <div class="ret" style="--rc:var(--green)">
+      <div class="rn">Return one</div><div class="rt">Revenue</div>
+      <p>Five conservative cohorts in Year 1, around 55 paying participants at £1,495, worth roughly £82,000. The front of the funnel and the warm-up for the recurring engine behind it.</p>
+    </div>
+    <div class="ret" style="--rc:var(--blue)">
+      <div class="rn">Return two</div><div class="rt">A validated instrument</div>
+      <p>Each cohort is a clean dataset: known leaders, known context, the full assessment run live. The paid cohorts are what turn an unaffordable study into evidence that pays for itself.</p>
+    </div>
+    <div class="ret" style="--rc:var(--violet)">
+      <div class="rn">Return three</div><div class="rt">A category foundation</div>
+      <p>Every defensible result is a brick under Voice Intelligence as a recognised leadership category, measured by Voice Quotient™. Revenue today, proof that compounds.</p>
+    </div>
+  </div>
+
+  <div class="sec-h">How the year runs</div>
+  <div class="grow">
+    <div class="grow-title">Five cohorts, paced to capacity</div>
+    <div class="grow-sub">Two cohorts in the first half while the model is proven on a single track, then up to two in parallel in the second half once delivery is grooved. Live delivery by two people sets the ceiling, so the calendar is honest about it.</div>
+    <div class="seedrow">
+      <div class="seed"><div class="sk">Cohorts</div><div class="sv">5</div><p>conservative, Year 1</p></div>
+      <div class="seed"><div class="sk">Per cohort</div><div class="sv">10–12</div><p>kept small on purpose</p></div>
+      <div class="seed"><div class="sk">Participants</div><div class="sv">~55</div><p>topped toward n≈100 for the beta</p></div>
+      <div class="seed"><div class="sk">Year-1 value</div><div class="sv">~£82k</div><p>front of the funnel</p></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Enrol for the cohort the evidence needs</div>
+    <p>Seats are not filled first-come. They are filled for the mix the beta requires — <strong>seniority, industry and a deliberate gender spread</strong> — so the dataset is representative rather than convenient. The wider pool of alumni and warm network tops the cohort numbers up toward the ≈100 baseline the research design calls for. Quality of fit comes before speed of fill, and the conversion target onward into the Greenhouse is <strong>60% or better</strong>.</p>
+  </div>
+
+  <div class="own">
+    <h3>Who owns it</h3>
+    <div class="row"><span class="who">Rachel</span><span>The IP, the design, live delivery and facilitation, and the coaching that carries it.</span></div>
+    <div class="row"><span class="who">Hannah</span><span>Methodology, co-delivery, and research integrity — the evidence threshold every cohort is held to.</span></div>
+    <div class="row"><span class="who">Scott</span><span>Operations and the consent, IP and data architecture that lets paid cohorts double as a clean study.</span></div>
+  </div>
+
+  <div class="prose">
+    <h3>Its place in the village</h3>
+    <p>Root to Grow is the seedbed, out in the garden, where the seeds are sown and the first roots go down. It is the first season's work: the language takes hold, and what grows from it is cultivated on by the gardener in the Greenhouse next door. On the Millwheel it is the third bucket on the rising ladder — Black Egg in, Root to Grow, then the Greenhouse as the destination.</p>
+    <div class="links">
+      <a href="the-greenhouse.html">The Greenhouse · where it leads</a>
+      <a href="the-millwheel.html">The Millwheel · the ladder it sits on</a>
+      <a href="the-wares.html">The Wares · the full shelf</a>
+    </div>
+  </div>
+
+  <div class="crosslinks">
+    <a href="the-black-egg.html">The Black Egg</a>
+    <a href="the-greenhouse.html">The Greenhouse</a>
+    <a href="the-tom-method.html">the Loop</a>
+    <a href="the-white-sofa.html">The White Sofa</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · Root to Grow</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

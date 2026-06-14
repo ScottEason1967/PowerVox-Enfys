@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Noticeboard · what is open across the village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1000px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 20px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto; }
+  .counts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 26px; }
+  .count { border-radius: 12px; padding: 12px 22px; text-align: center; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); }
+  .count .n { font-size: 30px; font-weight: 900; line-height: 1; }
+  .count .l { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-top: 5px; }
+  .count.blocking .n { color: #F2A3B0; }
+  .count.open .n { color: var(--ql-why); }
+  .count.settled .n { color: #9FD8B4; }
+  details.group {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 14px; margin-bottom: 12px; overflow: hidden;
+  }
+  details.group summary {
+    cursor: pointer; list-style: none; padding: 14px 20px;
+    display: flex; align-items: baseline; gap: 12px;
+    font-family: var(--serif); font-size: 20px; font-weight: 600; color: #fff;
+  }
+  details.group summary::-webkit-details-marker { display: none; }
+  details.group summary .tag { font-family: 'Segoe UI', sans-serif; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+  details.group summary .cnt { margin-left: auto; font-family: 'Segoe UI', sans-serif; font-size: 12px; font-weight: 800; color: rgba(255,255,255,0.6); }
+  .t-block { background: rgba(168,41,59,0.25); color: #F2A3B0; border: 1px solid rgba(242,163,176,0.4); }
+  .t-decide { background: rgba(91,58,140,0.30); color: #C9AFEF; border: 1px solid rgba(201,175,239,0.4); }
+  .t-confirm { background: rgba(47,94,158,0.28); color: #9CC2F0; border: 1px solid rgba(156,194,240,0.4); }
+  .t-build { background: rgba(47,122,77,0.28); color: #9FD8B4; border: 1px solid rgba(159,216,180,0.4); }
+  .t-art { background: rgba(232,179,58,0.22); color: var(--ql-why); border: 1px solid rgba(255,214,107,0.4); }
+  .items { padding: 4px 20px 16px; }
+  .item {
+    background: var(--card); border-radius: 10px; padding: 11px 16px; margin-bottom: 8px;
+    display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;
+    border-left: 4px solid var(--ic, var(--blue));
+    font-size: 12.5px; color: var(--text-sec); line-height: 1.55;
+  }
+  .item strong { color: var(--pv-ink); }
+  .item .owner { margin-left: auto; font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .item a { color: var(--blue); font-weight: 700; text-decoration: none; }
+  .item a:hover { text-decoration: underline; }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Noticeboard</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">what is open</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;opacity:0.45;pointer-events:none;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Noticeboard</em></h1>
+    <p class="head-sub">Every open item across the village, pinned in one place with its owner. Items live where they belong on their own pages; this board mirrors and aggregates. <strong style="color:var(--ql-why)">If it is not on the board, it is not open.</strong></p>
+  </div>
+
+  <div class="counts">
+    <div class="count blocking"><div class="n">2</div><div class="l">Launch-blocking</div></div>
+    <div class="count open"><div class="n">43</div><div class="l">Open items</div></div>
+    <div class="count settled"><div class="n">5</div><div class="l">Settled this week</div></div>
+  </div>
+
+  <details class="group" open>
+    <summary>Launch gates <span class="tag t-block">blocking the beta</span><span class="cnt">2</span></summary>
+    <div class="items">
+      <div class="item" style="--ic:var(--red)"><span><strong>The Deep Vault passes external legal review.</strong> Drafted and waiting on a reviewer appointment — <a href="the-deep-vault-playbook.html">the IG playbook</a> · <a href="the-burrows.html#sys-consent">register entry</a>. No beta invitation before sign-off. <strong>Target ⚑ dates proposed: shortlist by 20 Jun, appointment by 4 Jul.</strong> Cost of delay: every unappointed week pushes beta wave one right, and the September–Christmas delivery window absorbs roughly six weeks of slip and no more.</span><span class="owner">Scott · reviewer to appoint</span></div>
+      <div class="item" style="--ic:var(--red)"><span><strong>Falsification criteria locked</strong> before any data arrives, with Hannah confirmed as independent critic in her role spec. <a href="the-observatory.html">The Observatory</a> holds the thresholds. <strong>Target ⚑: locked, and the critic line signed into her role spec, before the first cohort is sold.</strong></span><span class="owner">Hannah · launch-blocking</span></div>
+    </div>
+  </details>
+
+  <details class="group" open>
+    <summary>Decisions awaiting Rachel (or joint) <span class="tag t-decide">ratification</span><span class="cnt">17</span></summary>
+    <div class="items">
+      <div class="item" style="--ic:var(--violet)"><span><strong>Signal &amp; Broadcast core construct</strong> (Rachel, new paper) — names the move under Voice Intelligence: telling the signal (reality) from the broadcast (internal noise), "notice the station, assess the quality, turn the dial." Pending Hannah's ratification alongside the Six Dimensions. Open: the word <strong>Signal</strong> now carries three meanings (the dimension, signal-vs-broadcast, the Signal Check) and must be disambiguated; whether the studio / dial / equaliser metaphor sits inside Enfys or replaces part of it; and the <strong>Dial (state) and Equaliser (Wholeness / HQ)</strong> to fold into the Construct once ratified, since it resolves how a leader moves through facets that have no order.</span><span class="owner">Hannah ratifies · Rachel refines</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>PP-04</strong> · one estate, two operating models, one method — drafted from her messages, awaiting her markup. <a href="the-records-room.html">Records Room</a></span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>PP-05</strong> · the Loop is part of PowerVox — drafted from Scott's ruling; binds both founders' plans, so joint ratification. <a href="the-records-room.html">Records Room</a></span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Loop price default</strong> (~£30k; £20k superseded unless reinstated) and <strong>capacity default</strong> (three engagements year one) — confirm or override at PP-05 signing.</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Root to Grow price</strong> — the model carries £1,495 (Business Plan v3) on every page and in the Year-1 ledger; the built Kajabi programme and the programme design carry £697 with a 3 × £250 plan. Scott's call: hold £1,495 pending Rachel's deep dive. If she rules £697, the £82k RtG line, the product-share figures and the "free-to-£1,495 gap" framing all move with it. Reconcile delivery attribution at the same time (plan: Rachel + Hannah; programme design: Rachel alone).</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Root to Grow go-to-market (Rachel)</strong> — content and sales pack next, sell to three or four organisations, deliver September–Christmas with rave reviews as the landing point. ⚑ To confirm as the plan of record. Two knock-ons when confirmed: organisational sponsors engage the Deep Vault's sponsored-cohort voluntariness language, and the window concentrates delivery into one quarter — <a href="the-hourglass.html">the Hourglass</a> shows what that does to the keepers' days.</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>The beta's gender mix vs the universal claim</strong> — the funnel that feeds the beta is the women's wedge, so the dataset behind "Voice Intelligence alongside IQ and EQ" will skew female unless the ~45-person top-up pool is recruited for balance. Call it deliberately: evidence the category in the beachhead and say so plainly, or spend the pool on gender spread. <a href="the-observatory.html">The Observatory</a> carries the honest-boundary panel either way.</span><span class="owner">Rachel + Hannah + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Enfys as the sales artefact (Rachel + Scott)</strong> — use the village to sell, commercials stripped. Build rule ⚑: the sales copy is <em>generated</em> from the live site by a strip pass (prices, the ledger, KPIs, the Noticeboard, Deep Vault gap-lists and keeper personal detail removed), never hand-maintained, so the two copies cannot drift. The standing keeper-confidential rule still governs the full model; the stripped copy is what a prospect sees.</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>The Owl's meaning</strong> — the site proposes the Owl as the verification standard behind recognition; Rachel's open question is whether the Owl belongs to Signal instead. Her pen rules; the <a href="the-town-hall.html">Town Hall</a> panel carries both readings until she does.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>The SME value ladder</strong> (statutory books → shareholders' agreements → contracts → cash-flow / tax → the sale-ready due-diligence pack) — <strong>leaning IN</strong> (Rachel + Scott). The doorway is an <strong>automated statutory-books service</strong> (Companies House API), sold done-for-you on a subscription with the plumbing hidden, junior-operated, via accountancy-firm partners. Open: confirm scope so it stays a <strong>separate tool-bag line</strong>, adjacent to the Voice Intelligence core rather than folded into it, and does not pull founder focus from Root to Grow, the named priority and landing point. ⚑</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>The Loop trade name → Groundwork (Scott's call)</strong> — "Loop" doesn't sit in the PowerVox ecosystem; <strong>Groundwork</strong> chosen as the working trade name, pending two gates before it goes site-wide: Rachel's pen, and the trademark check (note: Groundwork UK, the community charity, is a known name-neighbour to clear). The name isn't self-explanatory on its own, so it always travels with its descriptor — "Groundwork · the operating model, built for you" or similar lockup, Rachel's wording. File and page renames happen in one commit once both gates clear; settles in the Construct.</span><span class="owner">Rachel · with the check</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Village canon set</strong> — keeper titles, the Gather at the amphitheatre, the Burrows, the Map Room, the Observatory, the Noticeboard, the crier. All ⚑ until her pen rules.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>The Commons has no home.</strong> The Construct names it as a pathway beside the Greenhouse; it appears nowhere in the operating model, the wares or the village. The liveability test's loudest current flag.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>PP-04 Enfys amendment (Rachel):</strong> Enfys is the IP world (ecology); chassis products may be built inside it, licensing its skin. The Disney/Pixar rider — to fold into PP-04 at ratification.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Enfys, the book</strong> — Rachel's vision: a YA novel in the Harry Potter / Toy Story register, dual-layer for adults, carrying the Loveheart philosophy and VQ. A Loveheart-TOM element + Recognition-station / referral asset ("clients give it to their kids"). Horizon 2–3; finish-before-you-start applies. Title TBD.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Enfys, the gamified village</strong> — Rachel's vision: an immersive online world where leaders escape to practise PowerVox between cohorts. Almost certainly the named self-serve destination, given form. A future PowerVox product skinned in Enfys. Horizon 2–3; build nothing yet. (with Rachel: this build is closer to it than expected — the village view, the library, the town hall and the anchors translate directly; a member-facing skin on what exists, rather than a new build.)</span><span class="owner">Rachel + Scott</span></div>
+      <div class="item" style="--ic:var(--violet)"><span><strong>Books / Enfys commercial-carriage trigger</strong> — written terms for the day PowerVox carries them, before a publisher calls.</span><span class="owner">Rachel</span></div>
+    </div>
+  </details>
+
+  <details class="group" open>
+    <summary>Keeper confirmations <span class="tag t-confirm">checking</span><span class="cnt">4</span></summary>
+    <div class="items">
+      <div class="item"><span><strong>The Gather's ⚑ cells</strong> — the open seat's row and the judgement calls await keeper sign-off, and the depth pass added three things to confirm: the <strong>Operator lane</strong> (the platform and the VA, mirroring the Town Hall's proposed cast), <strong>Rachel's class-B lane</strong> in the IG stream (her Deep Vault role, previously missing from the Gather), and the <strong>Hourglass question</strong> at the Gate. The standing-rhythm band (settled) is now built above the streams. <a href="the-gather.html">The matrix</a></span><span class="owner">Rachel · Hannah</span></div>
+      <div class="item"><span><strong>Black Egg spec contradiction</strong> — the header says both "locked for engineering handoff" and "pressure-test before build" (deep-dive review flag). Pick one before engineering starts. <a href="the-black-egg.html">The Black Egg</a></span><span class="owner">Rachel</span></div>
+      <div class="item"><span><strong>Black Egg tiers vs value-ladder naming</strong> — the v1/v2/v3 stack and the "free Black Egg → paid VQ tier (£49–£99)" pricing need one reconciled vocabulary in the Construct. ⚑</span><span class="owner">Hannah · Rachel</span></div>
+      <div class="item"><span><strong>The Kajabi display font</strong> — Cormorant Garamond is a declared stand-in across this site; read the real font from the philosophy page and it swaps in one line.</span><span class="owner">Scott</span></div>
+    </div>
+  </details>
+
+  <details class="group">
+    <summary>The build register <span class="tag t-build">the Burrows + the Loop</span><span class="cnt">17</span></summary>
+    <div class="items">
+      <div class="item" style="--ic:var(--green)"><span><strong>Eight chassis systems: ⚑ designs drafted (v0.2)</strong> — flows, tooling proposals, artefacts and failure modes now on every register entry, including the RtG runbook skeleton. Next: keeper confirmation, then the artefact builds (criteria sheets, contract templates, checklists, the revenue view). <a href="the-burrows.html">The Burrows</a></span><span class="owner">Scott → keepers</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>The elicitation engine</strong> — the central build; blocked on Rachel externalising the tacit collateral (the questions, the sequence, the reading of the room). The single biggest blocker on the Loop.</span><span class="owner">Rachel unlock · Scott build</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Loop tool depth devices</strong> — tile mini-visualisations, richer persona pages, spine/overlay primitive, cross-links. Then <strong>discipline mechanics</strong>: provenance, inference flagging, owner attribution, strip pass. the method</span><span class="owner">Scott</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Loop business plan</strong> reconciled into the PowerVox frame · <strong>landing page reframe</strong> to PowerVox-ware copy · <strong>pattern library schema</strong> on the Deep Vault's class B.</span><span class="owner">Scott · Rachel refine</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Paid VQ / Black Egg tier shipped</strong> and the next Root to Grow cohort structured as beta wave one — the single highest-leverage move on the board. <a href="the-wares.html">The Wares</a></span><span class="owner">All three</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Black Egg lifecycle in the Gather</strong> — defined when the paid tier ships (filter button currently disabled, honestly).</span><span class="owner">Scott</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Stage detail pages</strong> behind the Gather — held until the ⚑ cells are confirmed.</span><span class="owner">Scott · after confirmations</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Coaching split from speaking</strong> — coaching now homed at the <a href="the-white-sofa.html">White Sofa</a> (page built, marker placed provisionally on the painting); speaking sits with Recognition as signal, not a separate ware. The White Sofa name and its spot on the scene await Rachel's pen.</span><span class="owner">Scott · Rachel's pen</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Academic NED</strong> recruitment (arms-length research oversight) — planned, months 13–18 window.</span><span class="owner">Rachel · Hannah</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Real anonymised case studies</strong> (6–10) replacing composites in the content bank.</span><span class="owner">Hannah</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>Reference-model anonymisation</strong> (the public-sector source model) for the Loop's credibility wall (political sensitivities flagged).</span><span class="owner">Scott</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>IG · data-protection foundations</strong> — the baseline documents the <a href="the-deep-vault.html">Deep Vault</a> launch gate needs and that do not yet exist: privacy policy, terms, cookie policy, retention schedule, and the Record of Processing (ROPA). ⚑</span><span class="owner">Scott (IG) · external review</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>IG · DPIA</strong> — a data-protection impact assessment for the high-risk processing (the Black Egg, the corporate diagnostic, Greenhouse profiling, voice samples), required before launch. ⚑</span><span class="owner">Scott (IG) · external review</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>IG · special-category condition</strong> — confirm the Article 9 basis (explicit consent / research) for sensitive content and the women's-leadership products, and the per-activity lawful-basis matrix from the Data Protection Inventory. ⚑</span><span class="owner">Scott (IG) · external review</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>IG · processors &amp; transfers</strong> — data-processing agreements with the named processors (Kajabi, Stripe, the LLM provider, the VA); zero-data-retention secured with the LLM provider (a Black Egg launch-blocker); and an international-transfer mechanism (SCCs / IDTA plus a transfer risk assessment) for the US-hosted stack and overseas members. ⚑</span><span class="owner">Scott (IG) · external review</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>The Village Register and the Villagers built</strong> — wayfinding for all 36 pages, and the five client personas per the settled persona-per-product rule. ⚑ Both page names, and the five persona epithets, await Rachel's pen; faces follow via the portrait recipe. <a href="the-register.html">The Register</a> · <a href="the-villagers.html">The Villagers</a></span><span class="owner">Rachel's pen</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>The Hourglass</strong> — the capacity ledger: keeper-days supply against the plan's demand, the no-understudy risk named, and the proposed rule that no new yes lands without an Hourglass check. <a href="the-hourglass.html">Built</a> ⚑ name and day-counts to confirm with keepers; the Village Clock enforces once confirmed.</span><span class="owner">Scott → keepers</span></div>
+      <div class="item" style="--ic:var(--green)"><span><strong>PowerVox/Enfys demo consent rule</strong> — this model is keeper-confidential; no prospect sees it without Rachel's explicit consent. Standing rule, recorded here so it is never assumed.</span><span class="owner">Standing</span></div>
+    </div>
+  </details>
+
+  <details class="group">
+    <summary>The artwork punch list <span class="tag t-art">Rachel's track</span><span class="cnt">4</span></summary>
+    <div class="items">
+      <div class="item" style="--ic:var(--yellow)"><span><strong>A town crier figure</strong> on the path below the fountain — gives the Black Egg its body.</span><span class="owner">Rachel · Gemini recipe</span></div>
+      <div class="item" style="--ic:var(--yellow)"><span><strong>The lady in red</strong> by the bonfire scaled to her depth (currently ~2× correct height).</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--yellow)"><span><strong>The lady in white</strong> by the fountain likewise; her two light sources resolved to one lantern.</span><span class="owner">Rachel</span></div>
+      <div class="item" style="--ic:var(--yellow)"><span><strong>Rachel's and Hannah's portraits</strong> via the recipe that produced the Cartographer.</span><span class="owner">Rachel · Hannah</span></div>
+    </div>
+  </details>
+
+  <details class="group">
+    <summary>Settled this week <span class="tag t-build">for the record</span><span class="cnt">5</span></summary>
+    <div class="items">
+      <div class="item" style="--ic:var(--violet)"><span>One estate, two nested operating models, one method (PP-04).</span><span class="owner">settled</span></div>
+      <div class="item" style="--ic:var(--violet)"><span>The Loop is part of PowerVox (PP-05); Servitor Path A/B superseded.</span><span class="owner">settled</span></div>
+      <div class="item" style="--ic:var(--violet)"><span>Source hierarchy: Rachel's PowerVox documents primary over the earlier working record — price, capacity, staffing, SME-ladder defaults set.</span><span class="owner">settled</span></div>
+      <div class="item" style="--ic:var(--violet)"><span>One data-protection regime: Deep Vault v0.2 carries the beta and the pattern library as two classes in one architecture.</span><span class="owner">settled</span></div>
+      <div class="item" style="--ic:var(--violet)"><span>HOW is the operational floor, never the products; the wares stand separately in the village.</span><span class="owner">settled</span></div>
+    </div>
+  </details>
+
+  <div class="foot">
+    <span>Enfys · The Noticeboard</span>
+    <span><em>Proprietary &amp; confidential</em> · items live on their own pages; the board mirrors</span>
+  </div>
+</div>
+<script>
+// The badges count themselves from the board, so the headline can never drift from the items again.
+(function(){
+  var blocking = 0, open = 0, settled = 0;
+  document.querySelectorAll('details.group').forEach(function(g){
+    var n = g.querySelectorAll('.item').length;
+    var label = (g.querySelector('summary') || {textContent:''}).textContent;
+    var cnt = g.querySelector('summary .cnt'); if (cnt) cnt.textContent = n;
+    if (/Launch gates/i.test(label)) blocking = n;
+    else if (/Settled/i.test(label)) settled = n;
+    else open += n;
+  });
+  var c = document.querySelectorAll('.counts .count .n');
+  if (c.length === 3) { c[0].textContent = blocking; c[1].textContent = open; c[2].textContent = settled; }
+})();
+</script>
+</body>
+</html>

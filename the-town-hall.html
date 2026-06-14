@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Town Hall · Who</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+
+<style>
+  .seats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0 0 26px; }
+  .seat {
+    background: var(--card); border-radius: 14px; padding: 20px 18px 18px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.30);
+    display: flex; flex-direction: column; gap: 8px; position: relative; overflow: hidden;
+  }
+  .seat::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: var(--seat-c); }
+  .seat-disc { width: 44px; height: 44px; border-radius: 50%; background: var(--seat-c); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 17px; margin-top: 4px; }
+  .seat-portrait { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: top center; border: 2.5px solid var(--seat-c); box-shadow: 0 3px 10px rgba(0,0,0,0.25); margin-top: 4px; }
+  .seat-name { font-size: 15px; font-weight: 800; color: var(--pv-ink); }
+  .seat-village { font-family: var(--serif); font-style: italic; font-size: 14px; font-weight: 600; color: var(--gold-deep); }
+  .seat-role { font-size: 10px; font-weight: 800; letter-spacing: 1.1px; text-transform: uppercase; color: var(--seat-c); }
+  .seat-desc { font-size: 12px; color: var(--text-sec); line-height: 1.55; flex: 1; }
+  .seat-guard { font-size: 11px; color: var(--text-muted); line-height: 1.5; border-top: 1px solid var(--border-lt); padding-top: 9px; }
+  .seat-guard strong { color: var(--text-sec); font-weight: 700; }
+  .seat-rachel { --seat-c: var(--violet); }
+  .seat-scott { --seat-c: var(--blue); }
+  .seat-hannah { --seat-c: var(--green); }
+  .seat-open { --seat-c: #8a8f99; border: 1px dashed rgba(36,26,54,0.35); background: #fbfbfd; box-shadow: none; }
+  /* nesting */
+  .nest-panel { display: grid; grid-template-columns: 1.7fr 1fr; gap: 16px; margin: 0 0 14px; align-items: stretch; }
+  .nest-loveheart { background: rgba(91,58,140,0.16); border: 1px solid rgba(201,175,239,0.35); border-radius: 16px; padding: 20px 22px; }
+  .nest-label { font-size: 10px; font-weight: 800; letter-spacing: 1.8px; text-transform: uppercase; margin-bottom: 6px; }
+  .nest-loveheart > .nest-label { color: #C9AFEF; }
+  .nest-loveheart > p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 14px; }
+  .nest-loveheart > p strong, .nest-method p strong { color: #fff; }
+  .nest-powervox { background: #fff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.30); }
+  .nest-powervox .nest-label { color: var(--blue); }
+  .nest-powervox p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .nest-powervox p strong { color: var(--pv-ink); }
+  .nest-method { background: rgba(232,179,58,0.08); border: 1px dashed rgba(232,179,58,0.55); border-radius: 16px; padding: 20px 22px; display: flex; flex-direction: column; }
+  .nest-method .nest-label { color: var(--ql-why); }
+  .nest-method p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.6; }
+  .nest-method .nest-subjects { margin-top: auto; padding-top: 12px; font-size: 11px; color: rgba(255,255,255,0.70); line-height: 1.7; border-top: 1px solid rgba(232,179,58,0.25); }
+  .nest-method .nest-subjects strong { color: var(--ql-why); font-weight: 700; }
+  .nest-test { font-family: var(--serif); font-style: italic; text-align: center; font-size: 15.5px; color: rgba(255,255,255,0.85); margin: 0 0 26px; line-height: 1.6; }
+  .nest-test strong { color: var(--gold); font-style: normal; font-weight: 600; }
+  /* lanterns */
+  .moves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 26px; }
+  .move { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 14px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .move-num { width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFD66B, var(--gold-deep)); color: var(--pv-ink); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; box-shadow: 0 0 18px rgba(232,179,58,0.45); }
+  .move-title { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.3; }
+  .move-desc { font-size: 12px; color: rgba(255,255,255,0.80); line-height: 1.55; flex: 1; }
+  .move-owner { font-size: 10.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ql-why); border-top: 1px solid rgba(255,255,255,0.14); padding-top: 9px; }
+  @media (max-width: 1080px) { .seats { grid-template-columns: repeat(2, 1fr); } .nest-panel { grid-template-columns: 1fr; } .moves { grid-template-columns: 1fr; } }
+  @media (max-width: 720px) { .seats { grid-template-columns: 1fr; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Town Hall</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">Who</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page-hero"><img src="images/town-hall.png" alt="" style="object-position: center 35%;"></div>
+
+<div class="page">
+  <div class="head">
+    <div class="head-q" style="color:var(--ql-who)">WHO</div>
+    <h1 class="head-title">The Town <em>Hall</em></h1>
+    <p class="head-sub">Four seats at the table; three held today. The structure exists to protect Rachel's signal, to build assets that earn while we deliver, and to make sure <strong>no one is asked to work against their own grain</strong>. Village titles are proposals — Rachel's pen decides.</p>
+  </div>
+
+  <div class="prose" style="--accent: var(--q-who);">
+    <em class="lead">Who this is for.</em>
+    <p style="margin-top:10px;">Rachel, Scott and Hannah — the keepers of the village today, and the fourth keeper when they arrive. This is PowerVox's own operating model, and Enfys is its permanent home: the five-question architecture turned on ourselves, never for circulation beyond the three of us. Where a place leads to a finished document it links to the canonical source; where the work is not yet built, it says so honestly. <strong>One settlement governs every page:</strong> one estate, two operating models, one method — Enfys is the window, never the architecture, and never a product the chassis delivers.</p>
+    <div class="links">
+      <a href="the-records-room.html">The Records Room · decisions settled</a>
+      <a href="the-observatory.html">The Observatory · the research standard</a>
+      <a href="keeper-rachel.html">The keeper pages · Rachel, Scott, Hannah, [Open]</a>
+      <a href="the-noticeboard.html">The Noticeboard · what is open</a>
+      <a href="the-hourglass.html">The Hourglass · the keepers' days</a>
+    </div>
+  </div>
+
+  <div class="panel" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:18px;padding:22px 26px;margin:0 0 22px;display:grid;grid-template-columns:72px 1fr;gap:20px;align-items:center;">
+    <div style="width:72px;height:72px;border-radius:50%;border:2px solid rgba(232,179,58,0.55);background-image:url('images/owl.png');background-size:cover;background-position:center;flex:0 0 auto;"></div>
+    <div>
+      <div style="font-family:var(--serif);font-size:21px;font-weight:600;color:#fff;margin-bottom:4px;">The Owl &middot; the witness</div>
+      <p style="font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.65;">High in the Old Oak, always present and mostly unseen, the Owl watches. When recognition is asked for in the Town Hall, it is the Owl that says whether a thing was genuinely lived. <em style="color:#FFD66B;font-style:normal;">This was lived.</em> Or <em style="color:#FFD66B;font-style:normal;">not yet, do this first.</em> In the model it is the verification standard behind recognition, the line between a value claimed and a value earned. Nothing counts as evidence until it clears the threshold set before the data arrives, which is <a href="the-observatory.html" style="color:var(--blue);font-weight:700;text-decoration:none;">Hannah's research standard</a>, not anyone's say-so. <strong style="color:#fff;">⚑ Proposed addition, drawn from Rachel's canon — and an open question of hers: whether the Owl belongs to Signal rather than verification. Her pen rules; the Noticeboard carries it.</strong></p>
+    </div>
+  </div>
+
+  <div class="sec-h">The keepers</div>
+  <div class="seats">
+    <div class="seat seat-rachel">
+      <img class="seat-portrait" src="images/rachel.png" alt="Rachel — the Voice of the Village" style="object-position: 30% 15%;">
+      <div class="seat-name"><a href="keeper-rachel.html" style="color:inherit;text-decoration:none;">Rachel →</a></div>
+      <div class="seat-village">The Voice of the Village</div>
+      <div class="seat-role">Founder · Signal &amp; Category</div>
+      <div class="seat-desc">The constitutional voice of the work. Signal, category, the key relationships, the launches, founder-led coaching and speaking. The recognition surface the whole village converts through.</div>
+      <div class="seat-guard"><strong>Protected by:</strong> the finish-before-you-start gate — Hannah on substance, Scott on capacity.</div>
+    </div>
+    <div class="seat seat-scott">
+      <img class="seat-portrait" src="images/scott1.png" alt="Scott — the Cartographer">
+      <div class="seat-name"><a href="keeper-scott.html" style="color:inherit;text-decoration:none;">Scott →</a></div>
+      <div class="seat-village">The Cartographer</div>
+      <div class="seat-role">Operating Model &amp; Delivery Architecture</div>
+      <div class="seat-desc">Draws the maps the village navigates by — the operating model, the delivery architecture, the consent/IP/data foundations, and the productised TOM engine that becomes a product in its own right.</div>
+      <div class="seat-guard"><strong>Protected from:</strong> presenting, facilitating, selling. The map room, not the stage.</div>
+    </div>
+    <div class="seat seat-hannah">
+      <div class="seat-disc">H</div>
+      <div class="seat-name"><a href="keeper-hannah.html" style="color:inherit;text-decoration:none;">Hannah →</a></div>
+      <div class="seat-village">Keeper of the Library</div>
+      <div class="seat-role">Methodology, Impact &amp; Research Integrity</div>
+      <div class="seat-desc">The integrity of the methodology and the integrity of the evidence. Keeper of the threshold: falsification criteria pre-set, held honestly, adjusted only on evidence — never on commercial pressure.</div>
+      <div class="seat-guard"><strong>Protected by:</strong> "not yet" is a defined part of the role, never insubordination.</div>
+    </div>
+    <div class="seat seat-open">
+      <div class="seat-disc">?</div>
+      <div class="seat-name"><a href="keeper-open-seat.html" style="color:inherit;text-decoration:none;">[Open] →</a></div>
+      <div class="seat-village">The Gatekeeper-Outward</div>
+      <div class="seat-role">Sales &amp; Business Development</div>
+      <div class="seat-desc">The keeper the village knowingly does not yet have — the one who crosses the drawbridge outward and brings the right people back across it. Conversion, and the bridge from consultancy into PowerVox-funded streams.</div>
+      <div class="seat-guard"><strong>Carried by:</strong> Rachel, in the interim. Fed by warm pipeline, not cold hunting.</div>
+    </div>
+  </div>
+
+  <div class="sec-h">The wider cast · who the village serves and works with</div>
+  <p style="font-size:13px;color:rgba(255,255,255,0.78);line-height:1.65;margin:0 0 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:14px 18px;">Beyond the keepers sit the actors the village is <em>for</em> and the allies it works <em>with</em>, the same widening of the cast a large operating model carries. <strong style="color:var(--gold);">The discs below are placemarks.</strong> The painted faces will be created with Rachel's eye, the same hand as the keepers. ⚑ Proposed cast.</p>
+  <div class="seats">
+    <div class="seat seat-open">
+      <div class="seat-disc" style="border:2px dashed rgba(242,163,176,0.6);">&#9677;</div>
+      <div class="seat-name"><a href="the-villagers.html" style="color:inherit;text-decoration:none;">The Leader →</a></div>
+      <div class="seat-village">The one the village is for</div>
+      <div class="seat-role">Client · the individual</div>
+      <div class="seat-desc">The person who walks the <a href="the-spectrum.html" style="color:var(--blue);font-weight:700;text-decoration:none;">Spectrum</a> and uses the wares, from the Black Egg in to the Greenhouse and the White Sofa. Each ware carries its own client persona: the Black Egg first-timer, the Root to Grow leader, the Greenhouse alumna, the Loop sponsor, the White Sofa coachee.</div>
+      <div class="seat-guard"><strong>⚑ Avatars:</strong> one persona per product — the first set is written at <a href="the-villagers.html" style="color:inherit;">the Villagers</a>; names and faces await Rachel's pen.</div>
+    </div>
+    <div class="seat seat-open">
+      <div class="seat-disc" style="border:2px dashed rgba(156,194,240,0.6);">&#8962;</div>
+      <div class="seat-name"><a href="the-enterprise.html" style="color:inherit;text-decoration:none;">The Sponsor →</a></div>
+      <div class="seat-village">The buyer at the gate</div>
+      <div class="seat-role">Enterprise · CPO / board</div>
+      <div class="seat-desc">Commissions the organisational engagement for a whole leadership team. The buyer the open BD seat converts, and the one the operating model itself helps to persuade.</div>
+      <div class="seat-guard"><strong>⚑ Avatar:</strong> the enterprise buyer, to come.</div>
+    </div>
+    <div class="seat seat-open">
+      <div class="seat-disc" style="border:2px dashed rgba(159,216,180,0.6);">&#8644;</div>
+      <div class="seat-name">The Partners</div>
+      <div class="seat-village">The allies on the road</div>
+      <div class="seat-role">Affiliates &amp; referrers</div>
+      <div class="seat-desc">Accountancy firms and trusted partners who carry the SME tools to market and refer the right leaders across the drawbridge. Reach and revenue without founder time.</div>
+      <div class="seat-guard"><strong>⚑ Avatar:</strong> the partner, to come.</div>
+    </div>
+    <div class="seat seat-open">
+      <div class="seat-disc" style="border:2px dashed rgba(201,175,239,0.6);">&#10038;</div>
+      <div class="seat-name"><a href="the-observatory.html" style="color:inherit;text-decoration:none;">The Scholar →</a></div>
+      <div class="seat-village">The witness from outside</div>
+      <div class="seat-role">Academic oversight · research integrity</div>
+      <div class="seat-desc">The arms-length academic partner and NED who keep the evidence honest and inherit a clean dataset. The credibility wall behind the category claim.</div>
+      <div class="seat-guard"><strong>⚑ Avatar:</strong> the academic, to come.</div>
+    </div>
+    <div class="seat seat-open">
+      <div class="seat-disc" style="border:2px dashed rgba(232,179,58,0.6);font-size:14px;">VA</div>
+      <div class="seat-name">The Operator</div>
+      <div class="seat-village">The hand at the controls</div>
+      <div class="seat-role">VA &amp; platform · Kajabi</div>
+      <div class="seat-desc">Configures and runs the tooling under the IG rules, the assessment platform, the checkout, the pipeline. The junior-operated layer that lets the village scale without founders.</div>
+      <div class="seat-guard"><strong>⚑</strong> Actor placement, and avatar, to confirm.</div>
+    </div>
+  </div>
+
+  <div class="sec-h">The settlement · one estate, two operating models, one method</div>
+  <div class="nest-panel">
+    <div class="nest-loveheart">
+      <div class="nest-label">The Loveheart TOM · the ecology</div>
+      <p>How the whole ecology operates as a living system in service of the destination. Its why is the destination statement; its actors are the elements of the ecology, not roles in a company. It holds what the chassis would otherwise drop: <strong>the three books, the foundations, Arte Club (held in paused intention), the research integrity standard — and Enfys itself</strong>, the architecture lived as story.</p>
+      <div class="nest-powervox">
+        <div class="nest-label">The PowerVox TOM · the chassis — nested, never parallel</div>
+        <p>How a three-person team runs a multi-stream commercial business predictably, without living in Rachel's head. Its why is commercial: <strong>revenue, evidence, category on one path</strong>. Its actors are the four seats; its processes are the engagement lifecycle, the consent–IP–data subsystem, qualification and cadence protection. Clean, conventional shape — the Cartographer's home ground.</p>
+      </div>
+    </div>
+    <div class="nest-method">
+      <div class="nest-label">the Loop · the instrument</div>
+      <p>Separate from both operating models: the generic, client-agnostic elicitation engine that can produce <strong>any</strong> operating model — including these two. The models are content; the method is the instrument that draws content out of a subject.</p>
+      <div class="nest-subjects"><strong>PowerVox</strong> · the rehearsal subject — proves the template populates<br><strong>A paid validation client</strong> · validation<br><strong>A zero-knowledge client</strong> · the falsification test — a cold start</div>
+    </div>
+  </div>
+  <p class="nest-test">The allocation test, in one line: <strong>if it earns or delivers, it's the PowerVox TOM. If it exists in service of the destination whether or not it earns, it's the Loveheart TOM.</strong></p>
+
+  <div class="sec-h">Lanterns on the path · the first three moves</div>
+  <div class="moves">
+    <div class="move">
+      <div class="move-num">1</div>
+      <div class="move-title">Lock the falsification criteria</div>
+      <div class="move-desc">Confirm Hannah as independent critic in her role spec, with thresholds pre-set before any data arrives. A dataset gathered without pre-set criteria cannot be made honest after the fact.</div>
+      <div class="move-owner">Hannah · launch-blocking</div>
+    </div>
+    <div class="move">
+      <div class="move-num">2</div>
+      <div class="move-title">Ship the paid VQ / Black Egg tier</div>
+      <div class="move-desc">Close the free-to-£1,495 gap and structure the next Root to Grow cohort as beta wave one. One build doing revenue and evidence at once — the single highest-leverage move on the board.</div>
+      <div class="move-owner">Rachel + Scott + Hannah</div>
+    </div>
+    <div class="move">
+      <div class="move-num">3</div>
+      <div class="move-title">Commission the consent / IP architecture</div>
+      <div class="move-desc">The consent, IP and data-protection architecture for the beta, with external legal review as the gate before the first invitation — so the dataset is usable when the academic partner enters.</div>
+      <div class="move-owner">Scott · the launch gate</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Town Hall</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

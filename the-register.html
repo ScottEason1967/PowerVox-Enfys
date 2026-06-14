@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Village Register · every place, one line each</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 30px 36px; }
+  .head { text-align: center; margin-bottom: 20px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 760px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 24px 0 12px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet)); }
+  .reg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .rg { display: block; background: var(--card); border-radius: 10px; padding: 11px 14px; box-shadow: 0 5px 16px rgba(0,0,0,0.22); text-decoration: none; border-left: 4px solid var(--rc, var(--blue)); }
+  .rg:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0,0,0,0.3); }
+  .rg .rn { font-family: var(--serif); font-size: 16.5px; font-weight: 600; color: var(--pv-ink); }
+  .rg .rn em { font-style: normal; font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--rc, var(--blue)); margin-left: 7px; }
+  .rg .rd { display: block; font-size: 11.5px; color: var(--text-sec); line-height: 1.45; margin-top: 2px; }
+  .eco { --rc: var(--violet); } .cha { --rc: var(--blue); } .ware { --rc: var(--green); } .meta { --rc: var(--gold-deep); } .story { --rc: #9C3A7E; }
+  @media (max-width: 720px){ .reg { grid-template-columns: 1fr; } .head-title { font-size: 34px; } }
+  .legend { text-align: center; font-size: 11px; color: rgba(255,255,255,0.6); margin: 0 0 6px; }
+  .legend b { font-weight: 800; letter-spacing: 0.5px; }
+  .legend .lv { color: #C9AFEF; } .legend .lb { color: #9CC2F0; } .legend .lg { color: #9FD8B4; } .legend .lo { color: #F0C24A; } .legend .lp { color: #E08AC4; }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Village Register</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">every place, one line</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;opacity:0.45;pointer-events:none;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-eyebrow">Wayfinding · every door in the village</div>
+    <h1 class="head-title">The Village <em>Register</em></h1>
+    <p class="head-sub">The painting on the Drawbridge doors about half the village; the rest live behind hub pages. This register lists <strong>every place, one line each</strong>, so nothing needs hunting for. Grouped by what it is, alphabetical within each group.</p>
+  </div>
+
+  <p class="legend"><b class="lv">ecology</b> · the Loveheart TOM &nbsp;&nbsp; <b class="lb">chassis</b> · the PowerVox TOM &nbsp;&nbsp; <b class="lg">ware</b> · a product &nbsp;&nbsp; <b class="lo">meta</b> · registers &amp; tools &nbsp;&nbsp; <b class="lp">story</b> · Hearts &amp; Minds</p>
+
+  <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:18px 22px;margin:0 0 24px;">
+    <div style="font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#E8B33A;margin-bottom:10px;">How to read this estate · one page, one job</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;font-size:12.5px;color:rgba(255,255,255,0.85);line-height:1.5;">
+      <div><strong style="color:#fff;">Sell it</strong> &rarr; <a href="the-front-door.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Front Door</a>, the pitch a prospect meets.</div>
+      <div><strong style="color:#fff;">Run it</strong> &rarr; <a href="the-cartographers-table.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Loop</a>, how an engagement is delivered.</div>
+      <div><strong style="color:#fff;">Price it</strong> &rarr; <a href="the-wares.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Wares</a>, what each product is and costs.</div>
+      <div><strong style="color:#fff;">What's always true</strong> &rarr; <a href="the-instrument.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Instrument</a>, the canon, the conditions schema, the combined map.</div>
+      <div><strong style="color:#fff;">Define the words</strong> &rarr; <a href="the-construct.html" style="color:#9CC2F0;text-decoration:none;font-weight:700;">the Construct</a>, the canonical language.</div>
+      <div><strong style="color:#fff;">The rule</strong> &rarr; when a definition changes, the Construct changes first, then everything cascades. Never the other way round.</div>
+    </div>
+  </div>
+
+  <div class="sec-h">The five questions</div>
+  <div class="reg">
+    <a class="rg eco" href="the-green.html"><span class="rn">The Village Green <em>why · ecology</em></span><span class="rd">The destination statement, the philosophy links, and the Hearts &amp; Minds doorway.</span></a>
+    <a class="rg eco" href="the-library.html"><span class="rn">The Library <em>what · ecology</em></span><span class="rd">The painted shelves: every layer of the estate, each book a door; the Construct is the language's home.</span></a>
+    <a class="rg cha" href="the-village-year.html"><span class="rn">The Village Year <em>when · chassis</em></span><span class="rd">The two nested loops over the four-season oak: the rhythm of doing inside the loop of improving.</span></a>
+    <a class="rg cha" href="the-town-hall.html"><span class="rn">The Town Hall <em>who · chassis</em></span><span class="rd">The four seats, the wider cast, the settlement panel and the first three moves.</span></a>
+    <a class="rg cha" href="the-gather.html"><span class="rn">The Gather <em>how · chassis</em></span><span class="rd">Seven workstreams as multi-actor swimlanes; the operating floor, with the standing rhythm above it.</span></a>
+  </div>
+
+  <div class="sec-h">The engines &amp; registers · chassis</div>
+  <div class="reg">
+    <a class="rg cha" href="the-burrows.html"><span class="rn">The Burrows</span><span class="rd">The systems register: nine subsystems with designs, owners and statuses.</span></a>
+    <a class="rg cha" href="the-deep-vault.html"><span class="rn">The Deep Vault</span><span class="rd">The consent, IP and data architecture; two data classes; the launch gate, drafted for external review.</span></a>
+    <a class="rg cha" href="the-deep-vault-playbook.html"><span class="rn">The Deep Vault Playbook</span><span class="rd">The fifteen IG plays, from lawful basis to the launch gate.</span></a>
+    <a class="rg cha" href="the-commercial-playbook.html"><span class="rn">The Commercial Playbook</span><span class="rd">The twenty commercial plays: set direction, win work, run money, grow reach.</span></a>
+    <a class="rg cha" href="the-hourglass.html"><span class="rn">The Hourglass</span><span class="rd">The capacity ledger: keeper-days supply against the plan's demand; the binding constraint counted. ⚑</span></a>
+    <a class="rg cha" href="the-millwheel.html"><span class="rn">The Millwheel</span><span class="rd">The commercial engine as a painted flywheel: river, buckets, hub, mill and smoke.</span></a>
+    <a class="rg cha" href="the-map-room.html"><span class="rn">The Map Room</span><span class="rd">The three horizons and the decade the wheel builds toward.</span></a>
+    <a class="rg cha" href="the-observatory.html"><span class="rn">The Observatory</span><span class="rd">The research standard: gates, thresholds, the claims ladder and the honest boundary.</span></a>
+    <a class="rg cha" href="the-records-room.html"><span class="rn">The Records Room</span><span class="rd">The position papers PP-01 to PP-08 and their statuses.</span></a>
+    <a class="rg cha" href="pp-01.html"><span class="rn">PP-01</span><span class="rd">Voice Intelligence and Voice Quotient™, rendered in full.</span></a>
+    <a class="rg cha" href="the-construct.html"><span class="rn">The Construct</span><span class="rd">The canonical language: sacred nouns, six facets, compensations, leaks, anchors, governance, and the room as the second variable.</span></a>
+    <a class="rg cha" href="the-instrument.html"><span class="rn">The Instrument</span><span class="rd">The method core: the Canon's eight axioms, the Conditions Taxonomy schema, the invariant/variable line, and the combined map tracing every condition to a product.</span></a>
+    <a class="rg cha" href="the-enterprise.html"><span class="rn">The Enterprise Engagement</span><span class="rd">The organisational road in: phases, buyers, working price bands and the trust story.</span></a>
+  </div>
+
+  <div class="sec-h">The wares · what the village sells</div>
+  <div class="reg">
+    <a class="rg ware" href="the-wares.html"><span class="rn">The Wares</span><span class="rd">The five products on one shelf, the year-one ledger and the assumptions strip.</span></a>
+    <a class="rg ware" href="the-black-egg.html"><span class="rn">The Black Egg</span><span class="rd">The transmission-fidelity instrument; the scalable way in, carried by the town crier.</span></a>
+    <a class="rg ware" href="the-root-to-grow.html"><span class="rn">Root to Grow</span><span class="rd">Six weeks, the planting: revenue and beta evidence in the same hours.</span></a>
+    <a class="rg ware" href="the-greenhouse.html"><span class="rn">The Greenhouse</span><span class="rd">The destination membership: the women's-leadership sanctuary, its evidence base and its tiers.</span></a>
+    <a class="rg ware" href="the-tom-method.html"><span class="rn">the Loop → Groundwork ⚑</span><span class="rd">The productised operating-model engagement; the second engine. Trade name pending ratification.</span></a>
+    <a class="rg ware" href="the-cartographers-table.html"><span class="rn">The Cartographer's Table</span><span class="rd">The method itself: eight moves, nine primitives, the deliverables split.</span></a>
+    <a class="rg ware" href="the-white-sofa.html"><span class="rn">The White Sofa ⚑</span><span class="rd">Rachel's premium one-to-one coaching, capped and pointed.</span></a>
+    <a class="rg ware" href="the-villagers.html"><span class="rn">The Villagers ⚑</span><span class="rd">The five client personas, one per ware: who each product is for, in one face each.</span></a>
+  </div>
+
+  <div class="sec-h">Hearts &amp; Minds · the story layer</div>
+  <div class="reg">
+    <a class="rg story" href="seren.html"><span class="rn">Seren</span><span class="rd">The origin word: star, light, noticing.</span></a>
+    <a class="rg story" href="the-cast.html"><span class="rn">The Cast of Enfys</span><span class="rd">Will, Ada, Ceri and Seren: the model with a human face, and the Hum beneath it.</span></a>
+    <a class="rg story" href="the-spectrum.html"><span class="rn">The Enfys Spectrum</span><span class="rd">Seven colours, seven stages: the transformation methodology, place-anchored.</span></a>
+    <a class="rg story" href="loveheart-book.html"><span class="rn">The Loveheart Book</span><span class="rd">Ruby's picture book, where it all began.</span></a>
+  </div>
+
+  <div class="sec-h">Meta · the boards</div>
+  <div class="reg">
+    <a class="rg meta" href="index.html"><span class="rn">The Drawbridge</span><span class="rd">The gate and the painting: every marked place a door.</span></a>
+    <a class="rg meta" href="the-front-door.html"><span class="rn">The Front Door</span><span class="rd">The public product page: the two-rooms hook, the blank instrument beside one room mapped, the offerings and the readiness gate. The sales artefact.</span></a>
+    <a class="rg meta" href="the-noticeboard.html"><span class="rn">The Noticeboard</span><span class="rd">Every open item in the village, with its owner; if it is not on the board, it is not open.</span></a>
+    <a class="rg meta" href="keeper-rachel.html"><span class="rn">The keeper pages</span><span class="rd">Rachel, Scott, Hannah and the open seat, in depth: purpose, ownership, protections.</span></a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Village Register</span>
+    <span><em>Proprietary &amp; confidential</em> · ⚑ name proposed, Rachel's pen</span>
+  </div>
+</div>
+</body>
+</html>

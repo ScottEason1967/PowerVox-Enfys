@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cartographer's Table · the Loop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0; --ql-how: #9FD8B4;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1020px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 10px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .thesis { font-family: var(--serif); font-style: italic; text-align: center; font-size: 22px; color: #fff; line-height: 1.55; margin: 18px auto 28px; max-width: 780px; }
+  .thesis strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet)); }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 22px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--blue); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+  /* engagement phases */
+  .phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 22px; }
+  .phase { background: var(--card); border-radius: 14px; padding: 18px 20px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-top: 5px solid var(--pc); }
+  .phase .pn { font-size: 9.5px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--pc); margin-bottom: 4px; }
+  .phase .pt { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 6px; }
+  .phase p { font-size: 12px; color: var(--text-sec); line-height: 1.6; }
+  /* the eight moves */
+  .moves { counter-reset: move; }
+  .move {
+    background: var(--card); border-radius: 14px; padding: 18px 22px 16px; margin-bottom: 10px;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.30); border-left: 6px solid var(--mc, var(--blue));
+    display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start;
+  }
+  .move .num {
+    counter-increment: move;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--mc, var(--blue)); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 18px;
+  }
+  .move .num::before { content: counter(move); }
+  .move h4 { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--pv-ink); margin-bottom: 3px; }
+  .move h4 span { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mc); font-family: 'Segoe UI', sans-serif; margin-left: 8px; }
+  .move p { font-size: 12.5px; color: var(--text-sec); line-height: 1.6; }
+  .move p strong { color: var(--pv-ink); }
+  .move .inst { font-size: 11.5px; color: var(--text-muted); margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border-lt); line-height: 1.55; }
+  .move .inst strong { color: var(--text-sec); }
+  /* primitives grid */
+  .prims { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 22px; }
+  .prim { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 13px 16px; }
+  .prim .ph { font-family: var(--serif); font-style: italic; font-size: 15.5px; font-weight: 600; color: var(--ql-why); margin-bottom: 3px; }
+  .prim p { font-size: 11px; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .callout { background: rgba(232,179,58,0.10); border: 1px solid rgba(232,179,58,0.45); border-radius: 14px; padding: 18px 22px; margin: 0 0 22px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.7; }
+  .callout strong { color: var(--ql-why); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 900px) { .phases, .prims { grid-template-columns: 1fr; } .page { padding: 28px 18px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Cartographer's Table</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the Loop</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Cartographer's <em>Table</em></h1>
+    <p class="head-sub">the Loop, written down for the first time — v1.0 draft, for keeper ratification. The generic, client-agnostic method for producing a living target operating model for any organisation. <strong>The models it produces are content; this method is the instrument</strong> (PP-04, clause 3). Proven twice as practice — a large public-sector programme and PowerVox itself — and productised here.</p>
+  </div>
+
+  <p class="thesis">"<strong>Propose, then correct.</strong> The method never asks a client to author their operating model. It proposes an opinionated, partially-wrong model built from the template and their own sources — and harvests the corrections. People cannot write their operating model down. They can correct a wrong one instantly."</p>
+
+  <div class="prose">
+    <h3>Why the method works</h3>
+    <p>Two failure modes kill conventional operating-model work. The consultant's failure: a beautiful document nobody runs — a picture hung on a wall. The questionnaire's failure, in Rachel's words from the founding conversation: you type reams in and get a pretty picture of your own information back. The method beats both with one mechanic. The template arrives already opinionated — five frames, a lifecycle, an actor cast, a system register — so the client is never facing a blank page. The engine populates it from their real sources — documents, a recorded discovery call, their website — so the first draft is concrete enough to be <strong>wrong in specific, correctable ways</strong>. And the engagement is then a correction loop, because the two most informative events in any build are the moments the client says "no — that's not a product, that's a process" or "those two things aren't siblings, one sits inside the other". The corrections are the model. Everything else is furniture.</p>
+  </div>
+
+  <div class="sec-h">The engagement · three months, three movements</div>
+  <div class="phases">
+    <div class="phase" style="--pc:var(--green)">
+      <div class="pn">Month one</div><div class="pt">Discovery</div>
+      <p>Source inventory gathered. The recorded discovery call — one to two hours, run by us, expert personas loaded into the question frame per section, transcribed under consent. The engine ingests everything and mirrors it back: "here is what your organisation says it is — correct us."</p>
+    </div>
+    <div class="phase" style="--pc:var(--blue)">
+      <div class="pn">Month two</div><div class="pt">Build &amp; review</div>
+      <p>The skeleton model proposed — clickable, navigable, deliberately complete enough to be wrong. Correction loops in structured sessions: classifications visible, the client's eye as ground truth, every settlement papered as it lands.</p>
+    </div>
+    <div class="phase" style="--pc:var(--violet)">
+      <div class="pn">Month three</div><div class="pt">Iterate &amp; hand over</div>
+      <p>Depth earned where corrections have settled; the gap audit run honestly (what came from your sources, what we proposed, what still lives in someone's head); the external-readiness pass; hand-over of the model — theirs to run, with the cadence to run it by.</p>
+    </div>
+  </div>
+
+  <div class="sec-h">The eight moves · the elicitation playbook</div>
+  <div class="moves">
+    <div class="move" style="--mc:#A8293B"><span class="num"></span><div>
+      <h4>Ingest <span>sources in, nothing asserted</span></h4>
+      <p>Everything the client has — strategy papers, org charts, contracts, the website, prior consultancy — read in full before a single question is asked. Facts are traced to sources from the first hour; what has no source is flagged, not assumed.</p>
+      <div class="inst"><strong>Instrument:</strong> the source inventory checklist; the provenance register that every later artefact inherits.</div>
+    </div></div>
+    <div class="move" style="--mc:#C25E1F"><span class="num"></span><div>
+      <h4>Mirror <span>the synthesis that invites correction</span></h4>
+      <p>The engine plays back what the sources say the organisation is — its purpose, its products, its actors, its rhythms — as a confident, specific synthesis. The mirror is not a summary; it is bait. The first corrections it draws are the most valuable data of the engagement.</p>
+      <div class="inst"><strong>Instrument:</strong> the mirror-back document; the discovery call script, with expert-persona frames per section (financial, technical, regulatory, people) so each domain is interrogated in its own language.</div>
+    </div></div>
+    <div class="move" style="--mc:#C99425"><span class="num"></span><div>
+      <h4>Skeleton <span>the opinionated first model</span></h4>
+      <p>The five-question structure proposed and populated: WHY at the centre, WHAT as the wares, WHEN as the loop or lifecycle the business actually lives by, HOW as the operational floor, WHO as the named cast. One lifecycle, run across product configurations — never one model per product.</p>
+      <div class="inst"><strong>Instrument:</strong> the template kit — front door, hubs, operational matrix with configuration filters, system register, persona pages.</div>
+    </div></div>
+    <div class="move" style="--mc:#2F7A4D"><span class="num"></span><div>
+      <h4>Correct <span>the loop that makes it true</span></h4>
+      <p>Structured correction sessions with every classification visible — products as chips, processes as lanes, actors as cards — because subjects cannot author taxonomies but correct them on sight. Small option sets with recommendations, never open questions. The client's screen is ground truth; their markup outranks the engine's estimates, always.</p>
+      <div class="inst"><strong>Instrument:</strong> the markup loop; structured choice points; the deliberate classification tests (products v processes, parent v subsidiary, model v method).</div>
+    </div></div>
+    <div class="move" style="--mc:#2F5E9E"><span class="num"></span><div>
+      <h4>Settle <span>rulings become constitution</span></h4>
+      <p>When the sponsor rules on something architectural, it is papered immediately: one position, its reasons, and the triggers that would reopen it. Constitutions accumulate from rulings. The engine's job is to notice a ruling has happened and offer the paper while the reasoning is warm.</p>
+      <div class="inst"><strong>Instrument:</strong> the position-paper template; the client lexicon; the bridge brief stating which artefact is authoritative on what; the allocation test for two-altitude organisations.</div>
+    </div></div>
+    <div class="move" style="--mc:#5B3A8C"><span class="num"></span><div>
+      <h4>Deepen <span>detail where it has been earned</span></h4>
+      <p>Depth follows settlement, never precedes it. Operational walkthroughs, system designs, persona pages and governance shapes are built only on corrected foundations — and every system design the engine proposes where the client's sources are silent carries the proposal flag and an owner to confirm it.</p>
+      <div class="inst"><strong>Instrument:</strong> the system register pattern (flow, tooling, artefacts, failure modes per system); expert modules producing flagged, reviewable artefacts with a named human gate.</div>
+    </div></div>
+    <div class="move" style="--mc:#B8862E"><span class="num"></span><div>
+      <h4>Audit <span>the honest progress meter</span></h4>
+      <p>The standing report: what is populated from your sources, what is proposed and flagged, what is blocked on a named human. This triage is the engagement's truth — it cannot be gamed, and it tells the client exactly what their model still needs from them.</p>
+      <div class="inst"><strong>Instrument:</strong> the gap audit; the status meta-view with visible counts, every item owned and deep-linked.</div>
+    </div></div>
+    <div class="move" style="--mc:#1F5E40"><span class="num"></span><div>
+      <h4>Handoff <span>a model that runs</span></h4>
+      <p>The external-readiness pass strips the scaffolding; the cadence rules are encoded so the model is lived through, not framed; the engagement state is written down so any future session — theirs or ours — resumes cold. The model is the client's. The method, the templates and the anonymised pattern stay with PowerVox.</p>
+      <div class="inst"><strong>Instrument:</strong> the strip pass; the cadence encoding; the engagement state pack; the pattern-contribution clause (Deep Vault, class B).</div>
+    </div></div>
+  </div>
+
+  <div class="sec-h">What the template carries · the primitives</div>
+  <div class="prims">
+    <div class="prim"><div class="ph">Five frames</div><p>WHY at the centre; WHAT, WHEN, HOW, WHO around it. The elicitation frame and the navigation are the same structure.</p></div>
+    <div class="prim"><div class="ph">Two nested loops (WHEN)</div><p>An inner cadence (the rhythm of doing) inside an outer renewal (measure → improve). Every model has both; the louder one is set by where the business wins or loses, and can shift over time. The stages are elicited, never imposed.</p></div>
+    <div class="prim"><div class="ph">Configurations</div><p>One lifecycle × N products with filter highlighting. Kills the duplication that bloats conventional TOMs.</p></div>
+    <div class="prim"><div class="ph">The named cast</div><p>Actors as people with portraits, protections and "why this role exists" panels. Models get adopted when their actors are human.</p></div>
+    <div class="prim"><div class="ph">Spine and overlay</div><p>Universal versus configurable, made visible by colour — the primitive that lets one platform serve many configurations.</p></div>
+    <div class="prim"><div class="ph">The artefact stack</div><p>Front door → places → operational walkthroughs → system register → canonical sources. Five levels of drill-down, all cross-linked.</p></div>
+    <div class="prim"><div class="ph">Status discipline</div><p>Resolved / in progress / unresolved with visible counts; honesty furniture throughout — chips, flags, dashed not-yets, launch gates.</p></div>
+    <div class="prim"><div class="ph">The governance pack</div><p>A client lexicon, position papers with reopen triggers, the bridge brief, one canonical home per fact.</p></div>
+    <div class="prim"><div class="ph">The optional skin</div><p>A narrative world over conventional bones, with a named canon owner — offered where the client has a story, never invented uninvited.</p></div>
+  </div>
+
+  <div class="sec-h">The leadership lens · what the WHO and HOW surface</div>
+  <div class="prose" style="border-top-color:#5B3A8C;">
+    <h3>One method, two readings</h3>
+    <p>The five frames map the whole operating model. Two of them carry a second reading that is the bridge to the rest of PowerVox: <strong>WHO holds the power</strong> and <strong>HOW the place actually runs</strong>. Pointed at leadership, those frames surface the conditions of the room — where power sits, what the room is built to receive, who is capable and unheard inside it, and whether it is willing to change. That structured read is the <a href="the-instrument.html">Conditions Taxonomy</a>, twelve dimensions in four groups. It is not a separate engagement and it does not compete with the five frames; it is what this one method reveals when it is run on a leadership problem. And it is the reason the Loop is the front door: map any organisation honestly and its leadership and communication gaps appear on their own, which is exactly the demand the <a href="the-greenhouse.html">Greenhouse</a> and the allyship pathway are built to meet. <strong>The Loop is the master method; the taxonomy is one of the things it brings to the surface.</strong></p>
+    <div class="links">
+      <a href="the-instrument.html">The Instrument · the canon, the taxonomy, the line</a>
+      <a href="the-front-door.html">The Front Door · the diagnosis as a prospect meets it</a>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Proof status, held honestly.</strong> The template layer is proven on two real subjects. The elicitation engine is not yet proven on the hard case: both builds had rich sources and an expert in the room. PowerVox is the rehearsal (it proves the template populates), a paid validation client the validation, a zero-knowledge client the falsification test — a cold start. Until that test reports, this method claims craft, not magic. Metrics defined before the engagements begin: cells populated from sources versus proposed; correction cycles to settlement; client hours per stack level; positions papered; pattern-library entries of reusable quality.
+  </div>
+
+  <div class="prose">
+    <h3>What the client gets, and what stays with us</h3>
+    <p><strong>Theirs:</strong> the operating model itself — a clickable, navigable artefact they host and run (a live hosted version as a premium add-on), with the cadence and status discipline that make it a working tool rather than a wall picture. <strong>Ours:</strong> the method, the template kit, the elicitation instruments, and an anonymised, organisation-unidentifiable pattern contributed to the library under the engagement's contribution clause — the asset that compounds, so every engagement makes the next one sharper. Engagement shape: three months, expert-led, ~£30k (pricing confirmation at PP-05 ratification).</p>
+    <div class="links">
+      <a href="the-gather.html">The Gather · this method running on ourselves</a>
+      <a href="the-burrows.html#sys-elicitation">The Burrows · the engine's register entry</a>
+      <a href="the-records-room.html">The Records Room · PP-04 and PP-05</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Cartographer's Table · the Loop v1.0 draft</span>
+    <span><em>Proprietary &amp; confidential</em> · the first written version — keeper ratification pending</span>
+  </div>
+</div>
+</body>
+</html>

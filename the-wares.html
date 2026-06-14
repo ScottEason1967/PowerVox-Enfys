@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Wares · what the village sells</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+</style>
+
+<style>
+  .ware { background: var(--card); border-radius: 16px; padding: 22px 26px; box-shadow: 0 8px 26px rgba(0,0,0,0.30); margin-bottom: 16px; border-left: 6px solid var(--wc); }
+  .ware-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .ware-name { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--pv-ink); }
+  .ware-price { font-size: 12px; font-weight: 800; color: var(--wc); }
+  .ware-status { margin-left: auto; font-size: 9.5px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; padding: 4px 11px; border-radius: 999px; background: var(--warm-cream); color: var(--gold-deep); }
+  .ware-status.run { background: var(--green-pale); color: var(--green); }
+  .ware p { font-size: 13px; color: var(--text-sec); line-height: 1.65; }
+  .ware .own { font-size: 11px; color: var(--text-muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border-lt); }
+  .ware .own strong { color: var(--text-sec); }
+  .ware a { color: var(--wc); font-weight: 700; text-decoration: none; }
+  .ware a:hover { text-decoration: underline; }
+  .ladder { width: 100%; border-collapse: collapse; }
+  .ladder th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 6px 12px 6px 0; border-bottom: 1px solid rgba(255,255,255,0.2); }
+  .ladder td { font-size: 12.5px; color: rgba(255,255,255,0.88); padding: 9px 14px 9px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .ladder td:first-child { font-weight: 800; color: #fff; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Wares</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">what the village sells</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The <em>Wares</em></h1>
+    <p class="head-sub">What the chassis sells — displayed in the village, owned by the company, never confused with how the village operates. One guiding metric governs the year: <strong>the PowerVox-product share of revenue</strong>, moving decisively upward — ~53% in Year 1, ~75% in Year 2, ~89% in Year 3 — as bespoke consultancy is deliberately traded out for the scaling funnel — <a href="the-millwheel.html" style="color:var(--gold);">the Millwheel</a>.</p>
+  </div>
+
+  <div class="ware" style="--wc:#B8862E;">
+    <div class="ware-head"><span class="ware-name"><a href="the-black-egg.html" style="color:inherit;text-decoration:none;">The Black Egg · paid VQ tier →</a></span><span class="ware-price">~£49–£99 (est.) · the one door in</span><span class="ware-status">build · priority one</span></div>
+    <p>A standalone paid diagnostic that unlocks pattern recognition and a Voice Profile — already promised in the Black Egg copy. It closes the free-to-£1,495 pricing gap, becomes the scalable inbound product the plan depends on, and is an evidence on-ramp into the beta. One build, three strategic jobs: the single highest-leverage move on the board. Worked Year-1 contribution ~£15,000; 35–40 completions a quarter.</p>
+    <div class="own"><strong>Owners:</strong> Hannah (product) · Scott (build/systems) · Rachel (signal/launch). In the village: the town crier on the path — dashed until it ships.</div>
+  </div>
+
+  <div class="ware" style="--wc:#2F7A4D;">
+    <div class="ware-head"><span class="ware-name"><a href="the-root-to-grow.html" style="color:inherit;text-decoration:none;">Root to Grow →</a></span><span class="ware-price">£1,495 / participant · six weeks</span><span class="ware-status run">run · the engine</span></div>
+    <p>The front of the funnel and the beta vehicle: initiation, awareness, language, baseline. Five conservative cohorts of 10–12 in Year 1 (~55 participants, ~£82,000), delivered live by Rachel and Hannah together — capacity, not appetite, sets the count. Every cohort runs the full VQ Assessment and Black Egg, so every pound also buys a row of beta evidence. Quality over volume: raving fans who convert onward at ≥60%.</p>
+    <div class="own"><strong>Owners:</strong> Rachel (IP, design, delivery, coaching) · Hannah (methodology, delivery, research integrity) · Scott (operations, consent/IP). In the village: the planting, in the garden. <a href="the-gather.html?p=rtg">See it run through the Gather →</a></div>
+  </div>
+
+  <div class="ware" style="--wc:#1F5E40;">
+    <div class="ware-head"><span class="ware-name"><a href="the-greenhouse.html" style="color:inherit;text-decoration:none;">The Greenhouse →</a></span><span class="ware-price">~£125 / month · recurring</span><span class="ware-status run">run · the destination</span></div>
+    <p>The destination of the funnel, the recurring-revenue engine, and the longitudinal research cohort — members re-take the diagnostic quarterly, turning a one-shot snapshot into change-over-time data on a held cohort. ~60% of Root to Grow alumni convert; ~35 members by year-end contributing ~£17.5k in-year but exiting at a <strong>~£52.5k annual run-rate</strong> — the run-rate, not the in-year figure, is the asset. Also a named pathway in the Construct: the women's leadership sanctuary, alongside the Commons for allyship. The Year 2–3 unlock is direct membership without a cohort first, opened on a trigger, not a date.</p>
+    <div class="own"><strong>Owners:</strong> Rachel (presence/community) · Scott (operations/retention). In the village: the glasshouse itself. <a href="the-gather.html?p=gh">See it run through the Gather →</a></div>
+  </div>
+
+  <div class="ware" style="--wc:#2F5E9E;">
+    <div class="ware-head"><span class="ware-name"><a href="the-tom-method.html" style="color:inherit;text-decoration:none;">the Loop →</a></span><span class="ware-price">~£30k / engagement · capped at three bespoke</span><span class="ware-status run">run · the second engine</span></div>
+    <p>Paid target-operating-model delivery — the consulting arm's version of the move the whole business is making: founder-dependent delivery becoming an asset that earns while we deliver. Three engagements at ~£30k hold the Year-1 floor (~£90,000) while the count is deliberately capped and falling: bespoke is dropped only as Greenhouse run-rate covers it, roughly twenty stable members buying back one engagement. PowerVox is the rehearsal subject, a paid validation client the validation, a zero-knowledge client the falsification test. The method itself is the third thing — the instrument, not a TOM. The Loop product is part of PowerVox — PowerVox Ltd contracts, the IP stays in-house. Today, founder-delivered, its revenue counts as bespoke for the product-share metric; it is built to migrate to product as the method externalises. The working price is ~£30k; the trade name is still to be settled.</p>
+    <div class="own"><strong>Owners:</strong> Scott (architecture, decision tools, persona-and-narrative) · Rachel (elicitation engine, playbook, templates) · Hannah (delivery support, assurance). In the village: the workshop barn. <a href="the-cartographers-table.html">The method itself →</a> · <a href="the-gather.html?p=tom">See it run through the Gather →</a></div>
+  </div>
+
+  <div class="ware" style="--wc:#5B3A8C;">
+    <div class="ware-head"><span class="ware-name"><a href="the-white-sofa.html" style="color:inherit;text-decoration:none;">Coaching · the White Sofa →</a></span><span class="ware-price">premium · founder-led · capped</span><span class="ware-status run">run · deliberately limited</span></div>
+    <p>Rachel's premium one-to-one coaching, the intimate counterpart to the stage. A real revenue line and her stated priority, but a founder service rather than a productised offer: it cannot be delivered without Rachel in the room, which is why it stays capped and pointed, every relationship routing back to the diagnostic. <strong>Speaking is not a separate ware.</strong> The founder's speaking is part of the signal that draws people in, so it lives with Recognition, not on this shelf. Counting it twice, as signal and as product, was the muddle this split removes.</p>
+    <div class="own"><strong>Owner:</strong> Rachel. In the village: the White Sofa, the intimate seat. ⚑ The White Sofa is proposed canon, awaiting Rachel's pen.</div>
+  </div>
+
+  <div class="sec-h">The year-one ledger · worked scenario</div>
+  <div class="panel">
+    <table class="ladder">
+      <tr><th>Stream</th><th>Assumption</th><th>Annual</th></tr>
+      <tr><td>Bespoke consultancy (capped)</td><td>3 engagements @ ~£30k, TOM delivery end to end</td><td>£90,000</td></tr>
+      <tr><td>Root to Grow</td><td>5 cohorts × 11 = 55 @ £1,495</td><td>£82,000</td></tr>
+      <tr><td>The Greenhouse</td><td>~60% conversion; ~35 members by year-end; paying from cohort-end</td><td>£17,500</td></tr>
+      <tr><td>Paid VQ / Black Egg tier</td><td>scalable diagnostic on-ramp</td><td>£15,000</td></tr>
+      <tr><td>Pilots / B2B requests</td><td>convert to programmes/cohorts</td><td>£20,000</td></tr>
+      <tr><td><strong>Total (Year 1)</strong></td><td>PowerVox-product share ~53%; Greenhouse exits at ~£52.5k run-rate</td><td><strong>~£225,000</strong></td></tr>
+    </table>
+    <p class="panel-sub" style="margin:12px 0 0;">Deliberately NOT in this window: FairGround (developed, held, not killed), the books (Rachel's creative track, ecology-held), a second free front door (Voice Mirror resolved in favour of the Black Egg), bespoke beyond capacity. Each unaligned yes drains an aligned one.</p>
+    <p class="panel-sub" style="margin:10px 0 0;"><strong style="color:var(--ql-why, #FFD66B);">The two assumptions to watch ⚑</strong> — the price and the retention. The ledger above is the Business Plan v3 scenario at £1,495; the built Kajabi programme carries £697 (3 × £250), a decision now pinned on the Noticeboard for Rachel. At £697 the same worked year reads: Root to Grow ~£38k, total ~£181k, product share ~39%, and the "free-to-£1,495 gap" framing narrows with it. Separately, the £52.5k exit run-rate assumes ~85% annual membership retention, unproven until the community holds people. Neither assumption is wrong; both are bets, and this strip exists so they stay visible rather than settled by silence.</p>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Wares</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>                                                                                                         

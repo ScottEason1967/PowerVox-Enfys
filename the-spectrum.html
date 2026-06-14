@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Enfys Spectrum · the transformation methodology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --c1: #C25E1F; --c2: #C99425; --c3: #2F7A4D; --c4: #2F5E9E; --c5: #A8293B; --c6: #5B3A8C; --c7: #9C3A7E;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1020px; margin: 0 auto; padding: 40px 30px 36px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-title { font-family: var(--serif); font-size: 47px; font-weight: 600; color: #fff; line-height: 1.04; margin-bottom: 10px; }
+  .head-title em { font-style: italic; background: linear-gradient(90deg,#C25E1F,#C99425,#2F7A4D,#2F5E9E,#A8293B,#5B3A8C,#9C3A7E); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 800px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .ribbon { height: 6px; border-radius: 3px; margin: 16px 0 22px; background: linear-gradient(90deg,#C25E1F,#C99425,#2F7A4D,#2F5E9E,#A8293B,#5B3A8C,#9C3A7E); }
+  .stage { background: var(--card); border-radius: 16px; box-shadow: 0 10px 28px rgba(0,0,0,0.28); border-left: 7px solid var(--sc); padding: 20px 24px; margin-bottom: 14px; display: grid; grid-template-columns: 56px 1fr; gap: 18px; }
+  .stage .dot { width: 44px; height: 44px; border-radius: 50%; background: var(--sc); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; font-weight: 700; color: #fff; }
+  .stage .nm { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 2px; }
+  .stage .nm h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--pv-ink); }
+  .stage .place { font-size: 12px; font-weight: 800; letter-spacing: 0.4px; text-transform: uppercase; color: var(--sc); }
+  .stage .place a { color: var(--sc); text-decoration: none; }
+  .stage .place a:hover { text-decoration: underline; }
+  .stage .shift { font-size: 12px; color: var(--text-muted); margin: 4px 0 8px; }
+  .stage .shift b { color: var(--sc); font-weight: 700; }
+  .stage .theme { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--pv-ink); margin-bottom: 8px; }
+  .stage .row { display: flex; gap: 18px; flex-wrap: wrap; }
+  .stage .col { flex: 1; min-width: 200px; }
+  .stage .lab { font-size: 9px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
+  .stage .col p { font-size: 12px; color: var(--text-sec); line-height: 1.55; }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 22px 26px; margin: 22px 0 0; }
+  .panel-title { font-family: var(--serif); font-size: 21px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: #fff; }
+  .panel a { color: var(--gold); font-weight: 700; text-decoration: none; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+  .links a { font-size: 12px; font-weight: 700; text-decoration: none; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2); padding: 9px 15px; border-radius: 999px; }
+  .links a:hover { background: rgba(255,255,255,0.14); }
+  .foot { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 680px){ .head-title { font-size: 34px; } .stage { grid-template-columns: 1fr; } .stage .dot { margin: 0 auto; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Spectrum</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the transformation methodology</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <h1 class="head-title">The Enfys <em>Spectrum</em></h1>
+    <p class="head-sub">Enfys means rainbow, and it is also the methodology spine, the thing that makes PowerVox <strong>credible, repeatable and genuinely transformational</strong>, not just beautiful. Seven colours, seven stages. Each one is a psychological shift, a leadership capability and a practice, and each is anchored to a place in the village.</p>
+  </div>
+
+  <div class="ribbon"></div>
+
+  <div class="stage" style="--sc:var(--c1)">
+    <div class="dot">1</div>
+    <div>
+      <div class="nm"><h3>Curiosity</h3><span class="place">The Crossing</span></div>
+      <div class="shift">From <b>closed, certain, guarded</b> &nbsp;→&nbsp; to <b>open, questioning, coachable</b></div>
+      <div class="theme">"What if there's more available to you than this?"</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Expanding perspective; suspending judgement. Without curiosity, nothing moves.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>The 10 Better Questions drill; the Future Self interview; a curiosity audit, where am I defaulting to certainty?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c2)">
+    <div class="dot">2</div>
+    <div>
+      <div class="nm"><h3>Welcome</h3><span class="place">The Threshold · Aur</span></div>
+      <div class="shift">From <b>guarded, unsafe, performative</b> &nbsp;→&nbsp; to <b>safe, seen, able to soften</b></div>
+      <div class="theme">"You don't find your voice in a place that feels unsafe."</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Creating safety, for self and others; regulating the nervous system. Psychological safety, done beautifully and on purpose.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>The state check-in (head, heart, body); safety mapping, where do I shrink versus expand; circle agreements for groups.</p></div>
+      </div>
+      <div style="display:flex;gap:14px;align-items:center;margin-top:14px;padding-top:14px;border-top:1px solid var(--border-lt);">
+        <div style="width:52px;height:52px;border-radius:50%;border:2px solid var(--c2);background-image:url('images/Welcome%20Book.png');background-size:cover;background-position:center;flex:0 0 auto;"></div>
+        <p style="font-size:12px;color:var(--text-sec);line-height:1.55;margin:0;"><strong style="color:var(--pv-ink);">The welcome book.</strong> At the threshold sits a book. You write one true thing, where you have come from, a truth you are ready to acknowledge, and you are handed a pen, not as a tool but as a symbol. <em>Aur</em>, soft gold, is the word you are greeted with once you have crossed. <span style="color:var(--text-muted);">⚑ Canon, from Rachel's World of Enfys.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c3)">
+    <div class="dot">3</div>
+    <div>
+      <div class="nm"><h3>Growth</h3><span class="place"><a href="the-green.html">The Green</a></span></div>
+      <div class="shift">From <b>a fixed identity</b> &nbsp;→&nbsp; to <b>evolving, self-led growth</b></div>
+      <div class="theme">"You are allowed to become."</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Self-awareness; identity expansion. Where people start to re-author themselves, the Book of Future You.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>Identity rewrite ("I am someone who…"); limiting-belief excavation; growth-edge mapping, where am I ready but resisting?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c4)">
+    <div class="dot">4</div>
+    <div>
+      <div class="nm"><h3>Truth</h3><span class="place"><a href="the-millwheel.html">The River</a></span></div>
+      <div class="shift">From <b>filtered, diluted, people-pleasing</b> &nbsp;→&nbsp; to <b>clear, honest, aligned</b></div>
+      <div class="theme">"Say what is true, not what is safe."</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Clarity of thought; clean communication. Where voice starts to sharpen.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>The Say It Cleanly drill, truth in one sentence; the Unsaid List; truth versus story, separating fact from interpretation.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c5)">
+    <div class="dot">5</div>
+    <div>
+      <div class="nm"><h3>Courage</h3><span class="place"><a href="the-town-hall.html">The Town Hall</a></span></div>
+      <div class="shift">From <b>silence, hesitation</b> &nbsp;→&nbsp; to <b>expression, leadership, visibility</b></div>
+      <div class="theme">"Your voice matters. Use it." &nbsp;A PowerVox core moment.</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Speaking under pressure; visible leadership.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>Power Room simulations; the difficult-conversation framework; 3-minute stand and speak, no prep; the Podium, where members book in to practise and get feedback.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c6)">
+    <div class="dot">6</div>
+    <div>
+      <div class="nm"><h3>Insight</h3><span class="place"><a href="the-burrows.html">The Burrows</a></span></div>
+      <div class="shift">From <b>surface-level action</b> &nbsp;→&nbsp; to <b>deep integration and wisdom</b></div>
+      <div class="theme">"Pause. Listen. There is more underneath."</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Reflection; pattern recognition; meditation for mindfulness and intuition. The stage most programmes skip; here it is made foundational.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>Reflective journaling prompts; pattern mapping, where does this show up across my life; intuitive-decision practice, head versus instinct.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" style="--sc:var(--c7)">
+    <div class="dot">7</div>
+    <div>
+      <div class="nm"><h3>Community</h3><span class="place"><a href="the-gather.html">The Gather</a></span></div>
+      <div class="shift">From <b>isolated leadership</b> &nbsp;→&nbsp; to <b>connected, collective power</b></div>
+      <div class="theme">"Together we rise." &nbsp;Where transformation becomes sustainable.</div>
+      <div class="row">
+        <div class="col"><div class="lab">Core skill</div><p>Relational leadership; contribution; peer support and inspiration.</p></div>
+        <div class="col"><div class="lab">Practice</div><p>Witnessing circles, listening without fixing; hot-seat coaching; the contribution challenge, how do I lift others?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Why it's a methodology, not just a model</div>
+    <p>Most people stop at a nice model. The Spectrum keeps people <strong>moving between the stages</strong>: it is not a ladder you climb once and leave. A leader will speak with courage and then need to return to safety; find truth and then need fresh curiosity. That ongoing movement, the transformation cycle practised through Enfys play, is what turns a framework into a method. It is the same non-linearity the six dimensions hold: you do not finish the rainbow, you live inside it. <strong>⚑ Current articulation of Rachel's transformation model; the colour-to-stage mapping is hers to confirm.</strong></p>
+  </div>
+
+  <div class="links">
+    <a href="the-construct.html">The Construct · what it develops</a>
+    <a href="the-green.html">The Village Green · Hearts &amp; Minds</a>
+    <a href="the-cast.html">The Cast · who walks it</a>
+    <a href="the-greenhouse.html">The Greenhouse · where it's practised</a>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Spectrum</span>
+    <span><em>Proprietary &amp; confidential</em> · story canon, Rachel's pen</span>
+  </div>
+</div>
+</body>
+</html>

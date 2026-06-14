@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hourglass · the keepers' days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295; --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B; --ql-when: #9CC2F0; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; font-size: 14.5px; line-height: 1.6; color: var(--text); background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%); background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  .topnav { background: rgba(20,16,31,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(255,255,255,0.12); padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 54px; position: sticky; top: 0; z-index: 200; }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1060px; margin: 0 auto; padding: 40px 30px 36px; }
+  .head { text-align: center; margin-bottom: 18px; }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px; border-radius: 4px; text-transform: uppercase; margin-bottom: 16px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 14.5px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 820px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .sec-h { display: flex; align-items: center; gap: 12px; font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin: 26px 0 14px; }
+  .sec-h::before { content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet)); }
+  .panel { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 20px 24px; margin: 0 0 16px; }
+  .panel p { font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .panel p strong { color: var(--ql-why); }
+  .risk-call { background: rgba(168,41,59,0.14); border: 1px solid rgba(242,163,176,0.5); border-left: 5px solid var(--red); border-radius: 12px; padding: 16px 20px; margin: 0 0 16px; }
+  .risk-call .g-t { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: #F2A3B0; margin-bottom: 5px; }
+  .risk-call p { font-size: 12.5px; color: rgba(255,255,255,0.88); line-height: 1.6; }
+  .risk-call strong { color: #fff; }
+  .tbl { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 26px rgba(0,0,0,0.3); }
+  .tbl th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding: 11px 14px; border-bottom: 2px solid var(--border-lt); background: #faf8fc; }
+  .tbl td { font-size: 12px; color: var(--text-sec); padding: 10px 14px; border-bottom: 1px solid var(--border-lt); vertical-align: top; line-height: 1.5; }
+  .tbl td:first-child { font-weight: 700; color: var(--pv-ink); }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr.sum td { background: var(--warm-cream); font-weight: 700; color: var(--pv-ink); }
+  .flagdot { color: var(--gold-deep); font-weight: 800; }
+  .prose { background: var(--card); border-radius: 16px; padding: 22px 26px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 22px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 16px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .prose .links a:hover { text-decoration: underline; }
+  .foot { margin-top: 28px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 720px){ .head-title { font-size: 34px; } .page { padding: 28px 16px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Hourglass</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the keepers' days</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;opacity:0.45;pointer-events:none;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-eyebrow">The binding constraint · ⚑ name proposed</div>
+    <h1 class="head-title">The <em>Hourglass</em></h1>
+    <p class="head-sub">The Business Plan's own first sentence of strategy: <strong>"the constraint on growth remains time."</strong> The village counts its money carefully on the Wares and its rhythm beautifully on the Village Year. This page counts the days — what each keeper actually has, what the plan actually asks for, and where the two part company. Every figure is sourced to the Business Plan or flagged ⚑ where the documents are silent.</p>
+  </div>
+
+  <div class="sec-h">The supply side · what a keeper's month holds</div>
+  <table class="tbl">
+    <tr><th>Keeper</th><th>The month as the documents describe it</th><th>Build &amp; delivery days available</th></tr>
+    <tr><td>Rachel</td><td>Three to four days a week on outside client work (continuing, by design, until product revenue unwinds it). Two build days a week. Week four is the cave, protected by calendar rule.</td><td>~8 build days a month, less the cave week → <strong>~6 days</strong> for everything PowerVox asks of her</td></tr>
+    <tr><td>Scott</td><td>Same outside-work pattern; two build days a week; carries operations, IG, the funnel build and nine Burrows systems inside them.</td><td><strong>~8 days</strong></td></tr>
+    <tr><td>Hannah</td><td>Same pattern; two build days a week; methodology, research integrity and co-delivery inside them.</td><td><strong>~8 days</strong></td></tr>
+  </table>
+  <p style="font-size:11.5px;color:rgba(255,255,255,0.65);font-style:italic;margin:8px 0 0;">Supply grows only one way: outside client days falling as product revenue replaces them. Each outside day per week released returns ~4 days a month. That trade is the whole plan — the Hourglass is where it becomes visible.</p>
+
+  <div class="sec-h">The demand side · what the plan asks for, per month</div>
+  <table class="tbl">
+    <tr><th>Stream</th><th>Load while running</th><th>Falls on</th><th>Source</th></tr>
+    <tr><td>Root to Grow cohorts</td><td>~1 day per keeper per cohort-week, delivery plus preparation <span class="flagdot">⚑</span> — so ~4 days a month each while one cohort runs, ~8 while two run in parallel (the H2 design)</td><td>Rachel + Hannah</td><td>Five cohorts of six weeks, delivered live by both, is Business Plan; the days-per-week figure is the Cartographer's inference <span class="flagdot">⚑</span></td></tr>
+    <tr><td>The Greenhouse</td><td>3–4 founder-days a month while designing and embedding, settling to 1–2 within roughly three months</td><td>Rachel (+ Scott on retention)</td><td>Business Plan, sourced</td></tr>
+    <tr><td>The Loop (bespoke, capped at three)</td><td>Three engagements of ~three months each is close to continuous Loop delivery across the year <span class="flagdot">⚑</span> days-per-month unquantified in any document</td><td>Scott + Rachel</td><td>Cap and shape sourced; monthly load silent <span class="flagdot">⚑</span></td></tr>
+    <tr><td>Speaking &amp; coaching</td><td>Capped and premium, but unquantified <span class="flagdot">⚑</span></td><td>Rachel</td><td>Business Plan names it; no day-count exists</td></tr>
+    <tr><td>Sales &amp; BD (the open seat)</td><td>Unquantified <span class="flagdot">⚑</span> — every conversion KPI is parked here in the interim</td><td>Rachel</td><td>Leadership doc; no day-count exists</td></tr>
+    <tr><td>The beta analysis</td><td>One protected cave-month, as a single block</td><td>Hannah</td><td>Business Plan, sourced</td></tr>
+    <tr class="sum"><td>A second-half month at full plan</td><td colspan="3">Two parallel cohorts (~8d) + Greenhouse (~2d) + a live Loop engagement (~1–2d) + speaking (~1d) + BD (~1–2d) ≈ <strong>13–15 days asked of Rachel against ~6 available</strong>. The gap closes only by dropping outside client days — which is the plan's intent, but nothing yet schedules it.</td></tr>
+  </table>
+
+  <div class="risk-call" style="margin-top:16px;">
+    <div class="g-t">⚑ The key risk this page exists to hold</div>
+    <p><strong>Rachel is on the critical path of every revenue line at once</strong> — cohort delivery, Greenhouse presence, Loop elicitation, speaking, BD and the signal that feeds Recognition — and the demand on her months at full plan runs roughly twice her protected envelope unless outside client days fall on schedule. There is no understudy anywhere in the model: a month of her absence stops every line simultaneously. The plan's own mitigations exist but are parked late — the associate-facilitator decision sits at months 13–18 and could be pulled forward; recorded and templated assets reduce live dependence; the open BD seat removes one load entirely when filled. <strong>The plan sharpens this:</strong> selling Root to Grow to three or four organisations for delivery between September and Christmas moves most of the cohort load into a single quarter, which makes the worked month above the norm for that quarter, not the peak.</p>
+  </div>
+
+  <div class="panel">
+    <p><strong>The rule this page proposes ⚑</strong> — no new commitment crosses the drawbridge without an Hourglass check, the same way no open item exists off the Noticeboard. The finish-before-you-start gate already protects Rachel from new <em>ideas</em>; the Hourglass protects the calendar from new <em>yeses</em>. The Village Clock (Burrows system 04) is where the rule would be enforced once confirmed; this page is where the arithmetic lives. The day-counts marked ⚑ are the Cartographer's working inferences and need keeper confirmation — the point is not the precision of the numbers, it is that the question "whose days does this take?" gets asked while no is still cheap.</p>
+  </div>
+
+  <div class="prose">
+    <em class="lead">Where it sits.</em>
+    <p style="margin-top:8px;">The <a href="the-village-year.html">Village Year</a> is the rhythm; the Hourglass is the volume the rhythm has to carry. The <a href="the-wares.html">Wares</a> count what the work earns; the Hourglass counts what it costs in the only currency the village cannot mint. The substitution arc — outside days traded for product revenue — is the Business Plan's deliberate design; this page exists so the trade is watched, not assumed.</p>
+    <div class="links">
+      <a href="the-town-hall.html">The Town Hall · the keepers</a>
+      <a href="the-village-year.html">The Village Year · the rhythm</a>
+      <a href="the-burrows.html">The Burrows · the Village Clock, system 04</a>
+      <a href="the-noticeboard.html">The Noticeboard · what is open</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Enfys · The Hourglass</span>
+    <span><em>Proprietary &amp; confidential</em> · ⚑ day-counts to confirm with keepers</span>
+  </div>
+</div>
+</body>
+</html>

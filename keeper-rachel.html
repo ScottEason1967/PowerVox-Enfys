@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rachel · The Voice of the Village</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C; --yellow: #C99425;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { display: grid; grid-template-columns: 150px 1fr; gap: 28px; align-items: center; margin-bottom: 26px; }
+  .head-portrait { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; object-position: top center; border: 4px solid var(--ac); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .head-disc { width: 150px; height: 150px; border-radius: 50%; background: var(--ac); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 56px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+  .head-eyebrow { display: inline-block; background: var(--gold); color: var(--pv-ink); font-size: 10px; font-weight: 800; letter-spacing: 1.6px; padding: 5px 13px; border-radius: 4px; text-transform: uppercase; margin-bottom: 10px; }
+  .head-title { font-family: var(--serif); font-size: 42px; font-weight: 600; color: #fff; line-height: 1.05; }
+  .head-village { font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ql-why); margin-top: 2px; }
+  .head-role { font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,0.70); margin-top: 6px; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 20px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--ac); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .owns { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .owns th { text-align: left; font-size: 9.5px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--border-lt); }
+  .owns td { font-size: 12px; color: var(--text-sec); padding: 9px 14px 9px 0; border-bottom: 1px solid var(--border-lt); vertical-align: top; line-height: 1.55; }
+  .owns td:first-child { font-weight: 700; color: var(--pv-ink); white-space: nowrap; }
+  .guard-strip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); border-radius: 14px; padding: 16px 20px; margin: 0 0 20px; font-size: 12.5px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+  .guard-strip strong { color: var(--ql-why); }
+  .castnav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 4px 0 22px; }
+  .castnav a { font-size: 11px; font-weight: 700; letter-spacing: 0.6px; padding: 6px 14px; border-radius: 999px; text-decoration: none; color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.25); }
+  .castnav a:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+  .castnav a.active { background: var(--ac); color: #fff; border-color: transparent; }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 720px) { .head { grid-template-columns: 1fr; text-align: center; } .head-portrait, .head-disc { margin: 0 auto; } .page { padding: 28px 18px; } }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body style="--ac:var(--violet)">
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-town-hall.html">← The Town Hall</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>Rachel</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">The Keepers</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <img class="head-portrait" src="images/rachel.png" alt="Rachel — the Voice of the Village" style="object-position: 30% 12%;">
+    <div>
+      <h1 class="head-title">Rachel</h1>
+      <div class="head-village">The Voice of the Village</div>
+      <div class="head-role">Founder · Signal, Category &amp; the Constitutional Voice</div>
+    </div>
+  </div>
+  <div class="castnav">
+    <a href="keeper-rachel.html" class="active" style="--ac:var(--violet)">Rachel</a>
+    <a href="keeper-scott.html">Scott</a>
+    <a href="keeper-hannah.html">Hannah</a>
+    <a href="keeper-open-seat.html">[Open] · Sales &amp; BD</a>
+    <a href="the-town-hall.html">← The Town Hall</a>
+  </div>
+  <div class="prose">
+    <h3>Purpose</h3>
+    <p>Signal, category, the key relationships, the launches, and the founder-led coaching and speaking. Rachel is the recognition surface the whole business converts through, and she holds the constitutional voice of the work — the things only she can do. PowerVox grows through Rachel's signal, methodology and relationships; the structure exists to protect that.</p>
+  </div>
+  <div class="prose">
+    <h3>Why this shape</h3>
+    <p>The founder dynamic is candid: the biggest risk to momentum is Rachel's attention being pulled toward new ideas before current commitments are delivered. The answer is not restraint imposed from below but a structure that lets her do what only she can do — the signal, the category, the rooms — while Hannah guards the substance ("is the last thing finished?") and Scott guards the capacity ("does this fit the diary and the cadence?"). She also carries the open Sales &amp; BD seat in the interim, which means several conversion KPIs are parked with her temporarily and belong to the fourth keeper when they arrive.</p>
+  </div>
+  <div class="prose">
+    <h3>What this keeper owns</h3>
+    <table class="owns">
+      <tr><th>Area</th><th>What success looks like in 12 months</th></tr>
+        <tr><td>Signal &amp; category</td><td>The content engine, speaking, Substack, the launches; the sacred nouns and category language (Lexicon owner for definitions).</td></tr>
+        <tr><td>Root to Grow delivery</td><td>Delivers cohorts live with Hannah — capacity sets the count at five in year one.</td></tr>
+        <tr><td>The Greenhouse</td><td>Presence and community; the monthly rhythm; the relational heart of the work.</td></tr>
+        <tr><td>The elicitation unlock</td><td>Externalising the tacit TOM collateral — the questions, the sequence, the reading of the room — is Rachel's job and the genuine unlock for the productised method.</td></tr>
+        <tr><td>Conversion (interim)</td><td>Carried for the open seat: RtG→Greenhouse invitations, TOM clients into PowerVox streams, qualified inbound.</td></tr>
+    </table>
+  </div>
+  <div class="guard-strip"><strong>Protected by:</strong> the finish-before-you-start gate — Hannah on substance, Scott on capacity; both explicitly authorised to say "not yet". Bespoke capped at three engagements. The 2/4 visible/cave cadence protected by design — the Village Clock (Burrows system 04) enforces it once confirmed and implemented. Her own line to hold: stay focused on agreed priorities; resist new shiny initiatives until current ones ship.</div>
+  <div class="foot">
+    <span>Enfys · The Keepers · Rachel</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+_backups/
+*.bak*
+_*.png
+_*.tmp
+_wheelcal.html
+~$*
+# working documents — sources live beside the site, never pushed
+*.docx
+Library-redraw-brief*.md
+Playbook-play-register.md
+Enfys Cast - character and art briefs.md
+Gather depth pass - instruction.md

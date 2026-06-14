@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PP-01 · Voice Intelligence and Voice Quotient™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --ql-why: #FFD66B;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 900px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 20px; }
+  .head-num { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-bottom: 6px; }
+  .head-title { font-family: var(--serif); font-size: 38px; font-weight: 600; color: #fff; line-height: 1.12; margin-bottom: 8px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-status { display: inline-block; background: var(--green-pale); color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; }
+  .position {
+    font-family: var(--serif); font-style: italic; text-align: center; font-size: 21px;
+    color: #fff; line-height: 1.55; margin: 18px auto 26px; max-width: 740px;
+  }
+  .position strong { color: var(--ql-why); font-style: normal; font-weight: 600; }
+  .prose { background: var(--card); border-radius: 16px; padding: 24px 28px; box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 18px; font-size: 13.5px; color: var(--text-sec); line-height: 1.7; border-top: 5px solid var(--green); }
+  .prose strong { color: var(--pv-ink); }
+  .prose h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--pv-ink); margin-bottom: 8px; }
+  .prose .rej { border-left: 4px solid var(--red); padding-left: 14px; margin: 10px 0; }
+  .prose .ado { border-left: 4px solid var(--green); padding-left: 14px; margin: 10px 0; }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 14px; padding-top: 12px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--blue); }
+  .callout { background: rgba(232,179,58,0.10); border: 1px solid rgba(232,179,58,0.45); border-radius: 14px; padding: 18px 22px; margin: 0 0 18px; font-size: 13px; color: rgba(255,255,255,0.88); line-height: 1.7; }
+  .callout strong { color: var(--ql-why); }
+  .foot { margin-top: 26px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); font-size: 11.5px; color: rgba(255,255,255,0.62); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-records-room.html">← The Records Room</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>PP-01</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">Position Papers</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page">
+  <div class="head">
+    <div class="head-num">Position Paper PP-01 · v0.1 · May 2026</div>
+    <h1 class="head-title">Voice Intelligence and Voice Quotient™: <em>faculty and measure</em></h1>
+    <span class="head-status">Adopted (internal) · claim held at hypothesis until the beta validates</span>
+  </div>
+
+  <p class="position">"Voice Intelligence is the human leadership capability. Voice Quotient™ is how we measure it. <strong>The same relationship as intelligence and IQ — the faculty and its quotient.</strong>"</p>
+
+  <div class="prose">
+    <h3>The position, stated plainly</h3>
+    <p>PowerVox adopts a two-layer naming convention. <strong>Voice Intelligence</strong> is the leadership capability: whether what a leader thinks and intends actually lands in others, and whether they can receive what reaches them — the human-facing category name, the thing that in time sits alongside IQ and EQ. <strong>Voice Quotient™ (VQ)</strong> is the measure: the proprietary six-dimension instrument, the scores it produces, and any index derived from it — the sacred, trademarked, instrument-anchored noun.</p>
+    <p style="margin-top:8px;"><strong>The one-line test that prevents drift:</strong> if you can put a number on it, it is Voice Quotient; if you are naming the human capability itself, it is Voice Intelligence.</p>
+  </div>
+
+  <div class="prose">
+    <h3>Why this position, and not the alternatives</h3>
+    <div class="rej"><p><strong>Rejected — "Voice Quotient everywhere; retire Voice Intelligence."</strong> Clean, but it discards the IQ/EQ analogy that does real positioning work, and it contradicts the research programme, which is founded on the claim that Voice Intelligence sits alongside IQ and EQ. A category cannot be founded on a noun it has just retired.</p></div>
+    <div class="rej"><p><strong>Rejected — "Leave it ambiguous; use either."</strong> The status quo until now, and precisely the vocabulary drift the Construct exists to prevent. Ambiguity in a category-founding vocabulary is not neutral — it is corrosive, because founding documents are cited for their definitions long after their findings are superseded.</p></div>
+    <div class="ado"><p><strong>Adopted — "Faculty and measure."</strong> The only option under which both governing documents are simultaneously correct: the canonical language keeps Voice Quotient™ as its sacred noun; the research programme keeps Voice Intelligence as the category it founds. The contradiction dissolves because the two were never competing — and no one finds "intelligence versus IQ" confusing. It also settles the future enterprise instrument: it is a Voice Quotient index — a measure — never a "Voice Intelligence Index". An index is a number; numbers are Voice Quotient.</p></div>
+  </div>
+
+  <div class="prose">
+    <h3>The cost, named honestly</h3>
+    <p>This adds a second protected term to a canon whose whole discipline is restraint. Accepted on one condition: Voice Intelligence is strictly the faculty-level name for the capability Voice Quotient™ measures — never a free-floating second sacred noun to be decorated with sub-terms. The one-line test is the fence. If the team finds itself coining "Voice Intelligence" compounds that are not simply the human-readable form of a Voice Quotient measure, the fence has been breached and this paper should be reopened.</p>
+  </div>
+
+  <div class="callout">
+    <strong>The load-bearing distinction: the naming is adopted now; the claim it implies is not.</strong> "Voice Intelligence is a distinct, measurable leadership capability that sits alongside IQ and EQ" is a category claim of the highest order, and PowerVox has not yet earned the right to assert it publicly. We may use the names now. We may not yet make, in public, the category claim the names imply. <strong>The beta is what converts the second into a right we have earned.</strong>
+  </div>
+
+  <div class="prose">
+    <h3>What this paper governs</h3>
+    <p>Anyone writing in the PowerVox voice — methodology, marketing, research, Enfys — uses this paper as the single reference for which noun to use when. It sits above the canonical language (which holds the sacred noun) and the research programme (which holds the claim), and states how they relate. Owner: Hannah (methodology and research integrity), with Rachel (category). A standing guardrail follows: Signal is depicted as central, never named as a peer intelligence.</p>
+    <div class="links">
+      <a href="the-construct.html">The Construct · the vocabulary in use</a>
+      <a href="the-observatory.html">The Observatory · the evidence that earns the claim</a>
+      <a href="the-records-room.html">The Records Room · all positions</a>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Position Papers · PP-01</span>
+    <span><em>Proprietary &amp; confidential</em></span>
+  </div>
+</div>
+</body>
+</html>

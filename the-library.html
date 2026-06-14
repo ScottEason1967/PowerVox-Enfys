@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Library · What</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pv-ink: #241A36; --pv-ink-deep: #1B1429; --pv-plum: #4A2E6F;
+    --gold: #E8B33A; --gold-deep: #B8862E; --warm-cream: #FFF9EC;
+    --text: #2B2433; --text-sec: #5A5168; --text-muted: #8B8295;
+    --border-lt: #ece8f1; --card: #ffffff; --green-pale: #E5F1E9;
+    --red: #A8293B; --orange: #C25E1F; --yellow: #C99425;
+    --green: #2F7A4D; --blue: #2F5E9E; --violet: #5B3A8C;
+    --rtg: #2F7A4D; --greenhouse: #1F5E40; --tom: #2F5E9E;
+    --q-why: #C99425; --q-what: #5B3A8C; --q-when: #2F5E9E; --q-how: #2F7A4D; --q-who: #A8293B;
+    --ql-why: #FFD66B; --ql-what: #C9AFEF; --ql-when: #9CC2F0; --ql-how: #9FD8B4; --ql-who: #F2A3B0;
+    --serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    font-size: 14.5px; line-height: 1.6; color: var(--text);
+    background: linear-gradient(180deg, #14101F 0%, #241A36 35%, #3A2858 75%, #4A2E6F 100%);
+    background-attachment: fixed; min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  .topnav {
+    background: rgba(20,16,31,0.92); backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding: 14px 36px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    min-height: 54px; position: sticky; top: 0; z-index: 200;
+  }
+  .topnav a.back { font-size: 13px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .topnav a.back:hover { color: #FFD66B; }
+  .topnav-context { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+  .topnav-context strong { color: var(--gold); }
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 36px 30px; }
+  .head { text-align: center; margin-bottom: 24px; }
+  .head-eyebrow {
+    display: inline-block; background: var(--gold); color: var(--pv-ink);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 1.8px; padding: 6px 15px;
+    border-radius: 4px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .head-q { font-size: 38px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .head-title { font-family: var(--serif); font-size: 46px; font-weight: 600; color: #fff; line-height: 1.05; margin-bottom: 12px; }
+  .head-title em { font-style: italic; color: var(--gold); font-weight: 500; }
+  .head-sub { font-size: 15px; color: rgba(255,255,255,0.88); line-height: 1.65; max-width: 780px; margin: 0 auto; }
+  .head-sub strong { color: var(--gold); }
+  .prose {
+    background: var(--card); border-radius: 16px; padding: 26px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.32); margin: 0 0 26px;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .prose strong { color: var(--pv-ink); }
+  .prose em.lead { font-family: var(--serif); font-size: 17px; color: var(--pv-ink); }
+  .prose .links { display: flex; flex-wrap: wrap; gap: 8px 20px; border-top: 1px solid var(--border-lt); margin-top: 16px; padding-top: 14px; }
+  .prose .links a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--accent, var(--blue)); }
+  .prose .links a:hover { text-decoration: underline; }
+  .prose .links a::after { content: ' →'; }
+  .prose .links span.pending { font-size: 13px; font-weight: 600; color: var(--text-muted); font-style: italic; }
+  .panel {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 18px; padding: 26px 30px; margin: 0 0 26px;
+  }
+  .panel-title { font-family: var(--serif); font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+  .panel-sub { font-size: 12.5px; color: rgba(255,255,255,0.78); line-height: 1.6; margin-bottom: 16px; }
+  .sec-h {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11.5px; font-weight: 800; letter-spacing: 1.6px; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); margin: 8px 0 14px;
+  }
+  .sec-h::before {
+    content: ''; display: inline-block; width: 44px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--red), var(--orange), var(--yellow), var(--green), var(--blue), var(--violet));
+  }
+  .foot {
+    margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
+    font-size: 11.5px; color: rgba(255,255,255,0.62);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
+  @media (max-width: 800px) { .page { padding: 28px 18px 24px; } .head-title { font-size: 32px; } }
+
+  .page-hero { height: 200px; overflow: hidden; position: relative; }
+  .page-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .page-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,16,31,0.30) 0%, rgba(20,16,31,0.05) 35%, rgba(22,17,35,0.94) 100%); }
+</style>
+<script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
+</head>
+<body>
+<div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="index.html">← The Drawbridge</a></div>
+  <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Library</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">What</span></div>
+  <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
+</div>
+<div class="page-hero"><img src="images/Library%20Enfys.png" alt="" style="object-position: center 40%;"></div>
+
+<div class="page">
+  <div class="head">
+    <div class="head-q" style="color:var(--ql-what)">WHAT</div>
+    <h1 class="head-title">The <em>Library</em></h1>
+    <p class="head-sub">Every word the estate uses is kept here. The <strong>Construct</strong> is the canonical home of the language; when any document drifts, that is what it is drifting from.</p>
+  </div>
+
+  <div class="prose" style="--accent: var(--q-what);">
+    <em class="lead">What the village is made of.</em>
+    <p style="margin-top:10px;"><strong>Voice Intelligence</strong> is the capability; <strong>Voice Quotient™</strong> is its measure. The full vocabulary — the five sacred nouns, the six rungs, the four compensations and seven leaks, the anchors and the claims discipline — lives in <a href="the-construct.html" style="color:var(--blue);font-weight:700;text-decoration:none;">the Construct</a>, the canonical reference. The Library names what the estate keeps and points to where each thing lives, so nothing is defined twice. (One standing guardrail worth repeating: Signal is the receptive dimension of VQ, never a peer intelligence alongside IQ, EQ or VQ.)</p>
+    <div class="links">
+      <a href="the-instrument.html">The Instrument · the method core</a>
+      <a href="the-construct.html">The Construct · the full reference</a>
+      <a href="pp-01.html">PP-01 · Voice Intelligence &amp; VQ™</a>
+      <a href="the-records-room.html">The Records Room · the position papers</a>
+      <a href="the-observatory.html">The Observatory · the research standard</a>
+      <a href="the-nook.html">The Nook · the evidence register</a>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">The shelves · draw a book out</div>
+    <p class="panel-sub">Each marked book is a door. Hover to draw it from the shelf, click to open it. One canonical home for each thing, so nothing drifts.</p>
+    <style>
+      .lib-frame { position:relative; max-width:600px; margin:6px auto 0; border-radius:14px; overflow:hidden; box-shadow:0 16px 44px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.12); }
+      .lib-frame > img.base { width:100%; display:block; }
+      .book-lift { position:absolute; left:calc(var(--L) * 1%); top:calc(var(--T) * 1%); width:calc(var(--W) * 1%); height:calc(var(--H) * 1%); cursor:pointer; text-decoration:none; z-index:2; }
+      .book-lift .slot { position:absolute; inset:0; background:linear-gradient(180deg,#080502,#1a120a); border-radius:1px; box-shadow: inset 0 6px 10px rgba(0,0,0,0.8); }
+      .book-lift .spine { position:absolute; inset:0; overflow:hidden; border-radius:2px 2px 1px 1px; transition:transform .22s ease, box-shadow .22s ease; }
+      .book-lift .spine img { position:absolute; max-width:none; width:calc(10000% / var(--W)); height:calc(10000% / var(--H)); left:calc(var(--L) / var(--W) * -100%); top:calc(var(--T) / var(--H) * -100%); }
+      .book-lift:hover { z-index:8; }
+      .book-lift:hover .spine { transform:translateY(-26%); box-shadow:0 14px 22px rgba(0,0,0,0.65), 0 0 16px var(--bcl); }
+      .book-lift .blabel { position:absolute; left:50%; bottom:calc(100% + 9px); transform:translateX(-50%) translateY(4px); background:rgba(16,12,26,0.96); border:1px solid var(--bcl); color:#FFE6A8; font-family:var(--serif); font-style:italic; font-size:13.5px; font-weight:600; padding:4px 11px 5px; border-radius:5px; white-space:nowrap; text-align:center; opacity:0; pointer-events:none; transition:opacity .22s ease, transform .22s ease; box-shadow:0 8px 20px rgba(0,0,0,0.5); z-index:9; }
+      .book-lift .blabel .bn { display:block; font-family:'Segoe UI',sans-serif; font-size:8.5px; font-style:normal; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; color:rgba(243,231,200,0.6); margin-bottom:1px; }
+      .book-lift:hover .blabel { opacity:1; transform:translateX(-50%) translateY(0); }
+      .book-lift .bstar { position:absolute; left:50%; top:3px; transform:translateX(-50%); font-size:11px; line-height:1; color:#FFE6A8; text-shadow:0 0 5px rgba(255,228,150,0.95), 0 0 11px rgba(232,179,58,0.65); pointer-events:none; z-index:6; transition:opacity .2s ease; }
+      .book-lift:hover .bstar { opacity:0; }
+      .book-lift.snr .bstar { transform: translateX(-50%) translateX(2px); }
+      .c0{--bcl:#A8293B;} .c1{--bcl:#C25E1F;} .c2{--bcl:#C99425;} .c3{--bcl:#2F7A4D;} .c4{--bcl:#2F5E9E;} .c5{--bcl:#5B3A8C;} .cr{--bcl:#7FB0E6;}
+      .plate { position:absolute; left:50%; transform:translate(-50%,-50%); font-family:var(--serif); font-weight:700; font-size:9px; letter-spacing:0.8px; color:#3a2810; text-transform:uppercase; white-space:nowrap; pointer-events:none; z-index:4; text-shadow:0 1px 1px rgba(255,230,170,0.7); }
+      @media (max-width:720px){ .book-lift .blabel{ font-size:11px; } }
+    </style>
+    <div class="lib-frame">
+      <img class="base" src="images/library-update.png" alt="The Library of Enfys — five shelves, each a layer, labelled in brass">
+      <!-- Shelf 1 · Foundations (y6, h13) -->
+      <a class="book-lift c0" style="--L:17.6;--T:9.5;--W:2.8;--H:12.5;" href="https://theloveheart.mykajabi.com/philosophy" target="_blank" rel="noopener"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Foundations</span>Philosophy</span></a>
+      <a class="book-lift c0" style="--L:29;--T:9.5;--W:2.8;--H:12.5;" href="https://theloveheart.mykajabi.com/manifesto" target="_blank" rel="noopener"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Foundations</span>Manifesto</span></a>
+      <a class="book-lift c0" style="--L:41;--T:9.5;--W:2.8;--H:12.5;" href="https://theloveheart.mykajabi.com/welcome" target="_blank" rel="noopener"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Foundations</span>The Welcome</span></a>
+      <!-- Shelf 2 · The Operating Model (y26, h12) -->
+      <a class="book-lift c2" style="--L:17.6;--T:26.8;--W:2.8;--H:12.5;" href="the-construct.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Operating Model</span>The Construct</span></a>
+      <!-- Shelf 3 · Playbooks (y45, h12) -->
+      <a class="book-lift c3" style="--L:17.6;--T:44.2;--W:2.8;--H:12.5;" href="the-cartographers-table.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Playbooks</span>the Loop</span></a>
+      <a class="book-lift c3" style="--L:29;--T:44.2;--W:2.8;--H:12.5;" href="the-commercial-playbook.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Playbooks</span>The Commercial Playbook</span></a>
+      <a class="book-lift c3" style="--L:41;--T:44.2;--W:2.8;--H:12.5;" href="the-deep-vault-playbook.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Playbooks</span>The IG Playbook</span></a>
+      <!-- Shelf 4 · Position Papers (y64, h12) -->
+      <a class="book-lift c4" style="--L:17.6;--T:61.5;--W:2.8;--H:12.5;" href="the-records-room.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>The Records Room</span></a>
+      <a class="book-lift c4" style="--L:29;--T:61.5;--W:2.8;--H:12.5;" href="pp-01.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>PP-01</span></a>
+      <a class="book-lift c4" style="--L:41;--T:61.5;--W:2.8;--H:12.5;" href="the-records-room.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>PP-02</span></a>
+      <a class="book-lift c4" style="--L:52.4;--T:61.5;--W:2.8;--H:12.5;" href="the-records-room.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>PP-03</span></a>
+      <a class="book-lift c4" style="--L:64.4;--T:61.5;--W:2.8;--H:12.5;" href="the-records-room.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>PP-04</span></a>
+      <a class="book-lift c4 snr" style="--L:75.8;--T:61.5;--W:2.8;--H:12.5;" href="the-records-room.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Position Papers</span>PP-05</span></a>
+      <!-- Shelf 5 · Research (y82, h12) -->
+      <a class="book-lift cr" style="--L:17.6;--T:78.6;--W:2.8;--H:12.5;" href="the-observatory.html"><span class="slot"></span><span class="bstar">&#10022;</span><span class="spine"><img src="images/library-update.png" alt=""></span><span class="blabel"><span class="bn">Research</span>The Observatory</span></a>
+      <a class="book-lift cr" style="--L:29;--T:78.6;--W:2.8;--H:12.5;" href="the-nook.html"><span class="slot"></span><span 
