@@ -102,6 +102,14 @@
   .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
   .backhome { display:inline-block; margin-bottom: 14px; font-size: 11px; font-weight: 700; color: var(--ql-when); cursor: pointer; }
   .backhome:hover { color: #fff; }
+  /* decision grids */
+  .pgrid-wrap { overflow-x: auto; margin-top: 6px; border-radius: 8px; }
+  table.pgrid { width: 100%; border-collapse: collapse; font-size: 11.5px; min-width: 520px; }
+  table.pgrid th, table.pgrid td { border: 1px solid var(--border-lt); padding: 7px 10px; text-align: left; vertical-align: top; line-height: 1.45; }
+  table.pgrid thead th { background: #F3EEF9; color: var(--pv-ink); font-weight: 800; font-size: 9.5px; letter-spacing: 0.4px; text-transform: uppercase; }
+  table.pgrid td.rl { background: #FAF8FC; font-weight: 700; color: var(--pv-ink); white-space: nowrap; }
+  table.pgrid td { color: var(--text-sec); }
+  table.pgrid .fl { color: var(--violet); font-style: italic; font-weight: 700; white-space: nowrap; }
 </style>
 <script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
 </head>
@@ -191,6 +199,15 @@
       <li><strong>Speaking &amp; coaching</strong> — the premium pair; founder-led, every room routes back to the diagnostic.</li>
       <li>An opportunity can mix routes, but name the primary — it sets the dominant downstream play set.</li>
     </ol></div>
+    <div class="ps"><div class="ps-h">The five routes, compared</div><div class="pgrid-wrap"><table class="pgrid">
+      <thead><tr><th>Route</th><th>Use when</th><th>Primary buyer</th><th>Price</th><th>Feeds</th><th>Then run</th></tr></thead>
+      <tbody>
+        <tr><td class="rl">The Black Egg</td><td>a scalable, self-serve way in is wanted</td><td>the individual leader</td><td>~£49&ndash;99 <span class="fl">est.</span></td><td>the funnel + beta evidence</td><td>Play 8, then Play 5</td></tr>
+        <tr><td class="rl">Root to Grow</td><td>a cohort or sponsor opportunity</td><td>leader, or sponsoring org</td><td>£1,495 <span class="fl">⚑</span></td><td>the Greenhouse + beta</td><td>Play 6, then Play 13</td></tr>
+        <tr><td class="rl">The Greenhouse</td><td>a leader wants ongoing practice</td><td>alumna or direct member</td><td>~£125/mo <span class="fl">est.</span></td><td>the recurring run-rate</td><td>Play 12, then Play 11</td></tr>
+        <tr><td class="rl">The Loop</td><td>an organisation wants the model built</td><td>enterprise / CPO sponsor</td><td>~£30k <span class="fl">⚑</span></td><td>the second engine + pattern library</td><td>Play 7, then Play 16</td></tr>
+        <tr><td class="rl">Speaking &amp; coaching</td><td>a premium, founder-led room</td><td>event host or individual</td><td>premium <span class="fl">⚑</span></td><td>recognition into the funnel</td><td>Play 17</td></tr>
+      </tbody></table></div></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Route toward the funnel and the guiding metric — prefer the paths that grow product share. Take bespoke (TOM) only within the cap, and only where it feeds the second engine.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Which ware a given enquiry routes to is a judgement until the qualification criteria are set (Play 5).</li></ul></div>
     <div class="today">
@@ -230,6 +247,15 @@
       <li><strong>TOM engagement</strong> ~£30k — bespoke, capped.</li>
       <li><strong>Speaking &amp; coaching</strong> — premium, founder-led, capped.</li>
     </ul></div>
+    <div class="ps"><div class="ps-h">The ladder, priced</div><div class="pgrid-wrap"><table class="pgrid">
+      <thead><tr><th>Ware</th><th>Price</th><th>What it buys</th><th>Billing</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="rl">The Black Egg</td><td>~£49&ndash;99</td><td>the paid diagnostic + Voice Profile</td><td>one-off</td><td><span class="fl">⚑ band to confirm</span></td></tr>
+        <tr><td class="rl">Root to Grow</td><td>£1,495</td><td>the six-week cohort</td><td>on enrolment</td><td><span class="fl">⚑ £697 alt pending Rachel</span></td></tr>
+        <tr><td class="rl">The Greenhouse</td><td>~£125/mo</td><td>recurring membership</td><td>monthly, auto</td><td>est.</td></tr>
+        <tr><td class="rl">The Loop</td><td>~£30k</td><td>bespoke operating-model build</td><td>three instalments</td><td><span class="fl">⚑ at PP-05 (£20k superseded)</span></td></tr>
+        <tr><td class="rl">Speaking &amp; coaching</td><td>premium</td><td>founder-led, capped</td><td>50% booking / 50% delivery</td><td><span class="fl">⚑ not set</span></td></tr>
+      </tbody></table></div></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Ship the Black Egg paid tier first (Play 8) — it is the single highest-leverage price move on the board.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The TOM price ~£30k (the earlier £20k framing superseded unless reinstated). <span class="chip flag">⚑ at PP-05</span></li><li>The ~£50k enterprise diagnostic is a 2030 destination, not a price today.</li></ul></div>
     <div class="today">
@@ -272,7 +298,7 @@
       <li>Track on a five-stage pipeline board: New → Qualified → Conversation → Proposal → Won/Lost.</li>
     </ol></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>The diary cap is the whole point — protect it. Source attribution at entry is non-negotiable; it is how the funnel learns what works.</p></div>
-    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Qualification criteria per ware to finalise; routing rules to confirm with the keepers.</li></ul></div>
+    <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Qualification criteria per ware to finalise; routing rules to confirm with the keepers.</li><li><span class="chip flag">⚑ grid to come</span> A per-ware qualification grid (role, seniority, budget signal, timing) belongs here and would match the decision grids on Plays 1, 3, 9 and 18. It is deliberately not built yet, because the criteria are not set. Inventing thresholds before the keepers agree them would be false depth.</li></ul></div>
     <div class="today">
       <div class="tcol work"><div class="th">Working today</div><p>The design exists in the Burrows (the Gate machinery).</p></div>
       <div class="tcol build"><div class="th">Being built</div><p>The criteria sheets and the pipeline board.</p></div>
@@ -346,6 +372,14 @@
       <li>The chase ladder at 7, 14 and 21 days overdue — first chases automated and friendly; the 21-day chase is a keeper's phone call.</li>
       <li>Spare the friendship by being impersonal early — many clients are also friends.</li>
     </ol></div>
+    <div class="ps"><div class="ps-h">The invoice schedules, per ware</div><div class="pgrid-wrap"><table class="pgrid">
+      <thead><tr><th>Ware</th><th>Invoiced</th><th>Terms</th><th>Chase</th></tr></thead>
+      <tbody>
+        <tr><td class="rl">Root to Grow</td><td>on enrolment</td><td>14 days</td><td>7 / 14 / 21-day ladder</td></tr>
+        <tr><td class="rl">The Greenhouse</td><td>monthly, auto-collected</td><td>on the day</td><td>failed-payment retry</td></tr>
+        <tr><td class="rl">The Loop</td><td>three instalments</td><td>14 days</td><td>7 / 14 / 21-day ladder</td></tr>
+        <tr><td class="rl">Speaking</td><td>50% on booking, 50% on delivery</td><td>14 days</td><td>7 / 14 / 21-day ladder</td></tr>
+      </tbody></table></div><p style="font-size:11px;color:var(--text-muted);margin-top:6px;">⚑ Schedules proposed, not yet confirmed.</p></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Automate the early chases so the system, not a keeper, does the awkward part; reserve the human call for the rare late one.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The per-ware invoice schedules are proposed, not yet confirmed. <span class="chip flag">⚑</span></li></ul></div>
     <div class="today">
@@ -507,6 +541,13 @@
       <li><strong>Paid-willingness test</strong> — three real price points (~£5k / £15–25k / ~£50k) to three buyers.</li>
       <li><strong>Pattern-resonance test</strong> — say the four compensation behaviours aloud; capture the verbatim "that's me".</li>
     </ol></div>
+    <div class="ps"><div class="ps-h">The three experiments, side by side</div><div class="pgrid-wrap"><table class="pgrid">
+      <thead><tr><th>Experiment</th><th>How it runs</th><th>What is measured</th></tr></thead>
+      <tbody>
+        <tr><td class="rl">Buyer-language</td><td>three fixed propositions, delivered flat, into CPO conversations</td><td>leaning-in, never politeness</td></tr>
+        <tr><td class="rl">Paid-willingness</td><td>three real price points (~£5k / £15&ndash;25k / ~£50k) to three buyers</td><td>money actually on the table</td></tr>
+        <tr><td class="rl">Pattern-resonance</td><td>say the four compensation behaviours aloud</td><td>the verbatim &ldquo;that&rsquo;s me&rdquo;</td></tr>
+      </tbody></table></div></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Measure behaviour and money, never politeness. The experiments earn the right to a price, rather than assuming one.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The ~£50k enterprise price is a 2030 destination the experiments must earn.</li></ul></div>
     <div class="today">
