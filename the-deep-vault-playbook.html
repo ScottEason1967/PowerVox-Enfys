@@ -107,16 +107,49 @@
   .foot em { color: var(--gold); font-style: normal; font-weight: 700; }
   .backhome { display:inline-block; margin-bottom: 14px; font-size: 11px; font-weight: 700; color: var(--ql-when); cursor: pointer; }
   .backhome:hover { color: #fff; }
+  /* the cast on a play */
+  .cast-row { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 10px; margin: 4px 0 0; }
+  @media (max-width: 720px){ .cast-row { grid-auto-flow: row; grid-template-columns: repeat(2,1fr); } }
+  .cast-card { display: flex; align-items: center; gap: 11px; background: #F5F2FA; border: 1px solid var(--border-lt); border-radius: 12px; padding: 9px 16px 9px 9px; }
+  .cast-card .cc-av { width: 44px; height: 44px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid var(--cac, #8a8f99); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #fff; background-color: var(--cac, #8a8f99); }
+  .cast-card .cc-n { font-size: 14px; font-weight: 800; color: var(--pv-ink); line-height: 1.2; display: block; }
+  .cast-card .cc-r { font-size: 11px; color: var(--text-muted); }
+  /* per-play swimlane */
+  .sl-legend { display: flex; flex-wrap: wrap; gap: 18px; margin: 0 0 12px; font-size: 11.5px; color: var(--text-sec); }
+  .sl-legend span b { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+  .sl-wrap { overflow-x: auto; padding-bottom: 6px; }
+  .sl-grid { display: grid; gap: 8px; min-width: 860px; align-items: stretch; }
+  .sl-stage { font-size: 11px; font-weight: 800; letter-spacing: 0.3px; color: var(--pv-ink); background: #E7DEF2; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; line-height: 1.2; }
+  .sl-stage.blank { background: transparent; }
+  .sl-actor { display: flex; align-items: center; gap: 10px; background: #F5F2FA; border: 1px solid var(--border-lt); border-radius: 10px; padding: 9px 11px; }
+  .sl-actor .sa-av { width: 38px; height: 38px; border-radius: 50%; background-size: cover; background-position: center; border: 2px solid var(--sac,#8a8f99); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; background-color: var(--sac,#8a8f99); }
+  .sl-actor .sa-n { font-size: 13px; font-weight: 800; color: var(--pv-ink); line-height: 1.2; }
+  .sl-cell { background: #FBFAFD; border: 1px solid var(--border-lt); border-radius: 10px; padding: 10px 12px; font-size: 11.5px; color: var(--text-sec); line-height: 1.5; border-left: 4px solid var(--cellc, #ccc); }
+  .sl-cell.blank { background: #F4F2F6; border: 1px dashed #d9d3e2; }
+  .sl-cell strong { display: block; color: var(--pv-ink); margin-bottom: 3px; font-size: 12.5px; }
+  .sl-cell .ct { font-size: 8.5px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; display: inline-block; }
+  .sl-cell.found { --cellc: var(--green); } .sl-cell.found .ct { color: var(--green); }
+  .sl-cell.gate { --cellc: var(--red); background: #FCEEEA; } .sl-cell.gate .ct { color: var(--red); }
+  .sl-cell.overlay { --cellc: var(--gold-deep); background: #FFFBF0; } .sl-cell.overlay .ct { color: var(--gold-deep); }
+  .controls { position: sticky; top: 54px; z-index: 160; background: #191323; }
+  .controls .pb-tabs { position: static; top: auto; }
+  .prodbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center; padding: 10px 30px 2px; background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .prodbar .pl { font-size: 10px; font-weight: 800; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-right: 4px; }
+  .pk { font-size: 11px; font-weight: 700; padding: 5px 13px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.82); cursor: pointer; transition: all .16s ease; }
+  .pk:hover { border-color: rgba(255,255,255,0.55); }
+  .pk.on { background: var(--gold); color: var(--pv-ink); border-color: transparent; }
+  .pb-play.dim { opacity: 0.22; pointer-events: none; }
 </style>
 <script>(function(){try{if(sessionStorage.getItem('pv-enfys-gate-ok')!=='1')location.replace('index.html');}catch(e){}})();</script>
 </head>
 <body>
 <div class="topnav" style="display:flex;align-items:center;height:54px;min-height:54px;padding-top:0;padding-bottom:0;">
-  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-burrows.html">← The Burrows</a></div>
+  <div style="flex:0 0 463px;display:flex;align-items:center;"><a class="back" href="the-library.html">← The Library</a></div>
   <div class="pv-navcenter" style="flex:1 1 auto;min-width:0;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;padding:0 14px;overflow:hidden;"><span class="topnav-context" style="font-size:12px;letter-spacing:0.8px;color:var(--gold);"><strong>The Deep Vault</strong></span><span class="topnav-context" style="font-size:9px;font-weight:700;letter-spacing:0.5px;color:rgba(255,255,255,0.62);">the IG Playbook</span></div>
   <span data-pv-quickbar style="display:inline-flex;gap:10px;flex-wrap:nowrap;align-items:center;flex:0 0 auto;"><a href="the-noticeboard.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#B8862E;padding:4px 10px;border-radius:4px;">Noticeboard</a><a href="the-register.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#4A2E6F;padding:4px 10px;border-radius:4px;">Register</a><a href="the-hourglass.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#8A6D3B;padding:4px 10px;border-radius:4px;">Hourglass</a><a href="the-villagers.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2E6F4A;padding:4px 10px;border-radius:4px;">Villagers</a><a href="the-nook.html" style="display:inline-block;line-height:1.5;font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;font-size:10.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;color:#fff;text-decoration:none;background:#2C4A6E;padding:4px 10px;border-radius:4px;">Nook</a></span>
 </div>
 
+<div class="controls">
 <div class="pb-tabs" id="tabs">
   <button class="pb-tab ref on" data-g="ref" onclick="showTab('ref')">Reference</button>
   <button class="pb-tab" data-g="basis" onclick="showTab('basis')">Set the basis</button>
@@ -124,23 +157,30 @@
   <button class="pb-tab" data-g="safe" onclick="showTab('safe')">Keep it safe &amp; use it</button>
   <button class="pb-tab" data-g="stand" onclick="showTab('stand')">Standing disciplines</button>
 </div>
+<div class="prodbar">
+  <span class="pl">Show plays for</span>
+  <button class="pk on" data-prod="both" onclick="setProduct('both')">Both</button>
+  <button class="pk" data-prod="beta" onclick="setProduct('beta')">The Beta · class A</button>
+  <button class="pk" data-prod="pattern" onclick="setProduct('pattern')">The Pattern library · class B</button>
+</div>
 <div class="pb-plays" id="pbPlays">
-  <button class="pb-play show on" data-g="ref" style="--gc:var(--blue)" onclick="showPlay('ref')"><span class="pn">Reference</span> About this playbook</button>
-  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p1')"><span class="pn">Play 1</span> Set the lawful basis</button>
-  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p2')"><span class="pn">Play 2</span> Run a DPIA &amp; map processors</button>
-  <button class="pb-play" data-g="basis" style="--gc:var(--red)" onclick="showPlay('p3')"><span class="pn">Play 3</span> Appoint &amp; brief the reviewer</button>
-  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p4')"><span class="pn">Play 4</span> Design &amp; operate layered consent</button>
-  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p5')"><span class="pn">Play 5</span> Handle a sponsored cohort</button>
-  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p6')"><span class="pn">Play 6</span> Consent &amp; record a discovery call</button>
-  <button class="pb-play" data-g="bring" style="--gc:var(--blue)" onclick="showPlay('p7')"><span class="pn">Play 7</span> Run a quarterly re-measure</button>
-  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p8')"><span class="pn">Play 8</span> Pseudonymise &amp; secure</button>
-  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p9')"><span class="pn">Play 9</span> Run the cave-month analysis</button>
-  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p10')"><span class="pn">Play 10</span> Abstract a class-B pattern</button>
-  <button class="pb-play" data-g="safe" style="--gc:var(--green)" onclick="showPlay('p11')"><span class="pn">Play 11</span> Use &amp; publish</button>
-  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p12')"><span class="pn">Play 12</span> Handle a withdrawal</button>
-  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p13')"><span class="pn">Play 13</span> Run retention &amp; deletion</button>
-  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p14')"><span class="pn">Play 14</span> Pattern-contribution clause &amp; IP</button>
-  <button class="pb-play" data-g="stand" style="--gc:var(--violet)" onclick="showPlay('p15')"><span class="pn">Play 15</span> Open the launch gate</button>
+  <button class="pb-play show on" data-g="ref" data-prod="both" style="--gc:var(--blue)" onclick="showPlay('ref')"><span class="pn">Reference</span> About this playbook</button>
+  <button class="pb-play" data-g="basis" data-prod="both" style="--gc:var(--red)" onclick="showPlay('p1')"><span class="pn">Play 1</span> Set the lawful basis</button>
+  <button class="pb-play" data-g="basis" data-prod="both" style="--gc:var(--red)" onclick="showPlay('p2')"><span class="pn">Play 2</span> Run a DPIA &amp; map processors</button>
+  <button class="pb-play" data-g="basis" data-prod="both" style="--gc:var(--red)" onclick="showPlay('p3')"><span class="pn">Play 3</span> Appoint &amp; brief the reviewer</button>
+  <button class="pb-play" data-g="bring" data-prod="beta" style="--gc:var(--blue)" onclick="showPlay('p4')"><span class="pn">Play 4</span> Design &amp; operate layered consent</button>
+  <button class="pb-play" data-g="bring" data-prod="beta" style="--gc:var(--blue)" onclick="showPlay('p5')"><span class="pn">Play 5</span> Handle a sponsored cohort</button>
+  <button class="pb-play" data-g="bring" data-prod="pattern" style="--gc:var(--blue)" onclick="showPlay('p6')"><span class="pn">Play 6</span> Consent &amp; record a discovery call</button>
+  <button class="pb-play" data-g="bring" data-prod="beta" style="--gc:var(--blue)" onclick="showPlay('p7')"><span class="pn">Play 7</span> Run a quarterly re-measure</button>
+  <button class="pb-play" data-g="safe" data-prod="both" style="--gc:var(--green)" onclick="showPlay('p8')"><span class="pn">Play 8</span> Pseudonymise &amp; secure</button>
+  <button class="pb-play" data-g="safe" data-prod="beta" style="--gc:var(--green)" onclick="showPlay('p9')"><span class="pn">Play 9</span> Run the cave-month analysis</button>
+  <button class="pb-play" data-g="safe" data-prod="pattern" style="--gc:var(--green)" onclick="showPlay('p10')"><span class="pn">Play 10</span> Abstract a class-B pattern</button>
+  <button class="pb-play" data-g="safe" data-prod="both" style="--gc:var(--green)" onclick="showPlay('p11')"><span class="pn">Play 11</span> Use &amp; publish</button>
+  <button class="pb-play" data-g="stand" data-prod="beta" style="--gc:var(--violet)" onclick="showPlay('p12')"><span class="pn">Play 12</span> Handle a withdrawal</button>
+  <button class="pb-play" data-g="stand" data-prod="both" style="--gc:var(--violet)" onclick="showPlay('p13')"><span class="pn">Play 13</span> Run retention &amp; deletion</button>
+  <button class="pb-play" data-g="stand" data-prod="both" style="--gc:var(--violet)" onclick="showPlay('p14')"><span class="pn">Play 14</span> Pattern-contribution clause &amp; IP</button>
+  <button class="pb-play" data-g="stand" data-prod="both" style="--gc:var(--violet)" onclick="showPlay('p15')"><span class="pn">Play 15</span> Open the launch gate</button>
+</div>
 </div>
 
 <div class="wrap">
@@ -188,12 +228,41 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Set the basis · Play 1</div><h1 class="play-title">Set the lawful <em>basis</em><span class="play-phase">before any capture</span></h1><p class="play-what">Decide, with the reviewer, the lawful basis for a data operation — and resolve whether the wellbeing items engage special-category rules.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A new data operation is being designed (the beta, a new instrument item, a class-B engagement).</li><li>The companion questionnaire's burnout-risk or wellbeing items change.</li><li>The reviewer is appointed and needs the basis put to them.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li><strong>Test Article 9 first.</strong> The binding constraint is Article 9, not Article 6. On a cautious reading the burnout-risk and wellbeing items contain health data for at least some participants — so an Article 9 condition is needed on top of any Article 6 basis.</li>
-      <li><strong>Pick the Article 9 condition.</strong> The realistic two are explicit consent (Art. 9(2)(a)) or the research condition (Art. 9(2)(j) with DPA 2018 safeguards). The research condition fits a commercial category-building programme awkwardly.</li>
-      <li><strong>Set the Article 6 basis</strong> to pair with it (see routes).</li>
-      <li><strong>Hand the decision to the reviewer</strong> rather than pre-deciding it — the layered-consent design survives either way; only the Article 6 label moves.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">DP owner, drafts the basis</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--green);">H</span><span><span class="cc-n">Hannah</span><span class="cc-r">the research-ethics bar</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">decides the label ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Test Article 9</div>
+        <div class="sl-stage">2 · Choose the condition</div>
+        <div class="sl-stage">3 · Pair Article 6</div>
+        <div class="sl-stage">4 · Reviewer confirms</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I test Article 9 first.</strong>On a cautious read the wellbeing items are health data for some participants, so an Article 9 condition is needed on top of Article 6.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I narrow the condition.</strong>To the realistic two: explicit consent, 9(2)(a), or the research condition, 9(2)(j).</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I pair the Article 6 basis.</strong>Consent-led recommended, with legitimate interests the respectable alternative.</div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--green);">H</span><span class="sa-n">Hannah</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I hold the ethics bar.</strong>Informed consent is required for research whichever label is chosen; the academic partner will expect it.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I confirm the label.</strong>The decision is handed to me, not pre-decided; nothing is built on a basis I have not signed off.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation · the drafter's position</div><p><strong>Consent-led.</strong> Explicit consent is the clean, proportionate route at a ~100-person scale, and informed consent is required for research ethics regardless — the academic partner will expect it. The freely-given test holds because participants are paying clients, not employees. <strong>The respectable alternative</strong> is legitimate interests (Art. 6(1)(f)) as the general basis with explicit consent solely as the Article 9 condition and for the layers where consent is unavoidable; this yields a more stable dataset. Held open for the reviewer.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The Article 6 label: consent-led vs legitimate-interests-led. <span class="chip src">⚑ reviewer</span></li><li>If the items are <em>not</em> special category, legitimate interests becomes the strong primary route and consent shrinks to the ethics layer.</li></ul></div>
     <div class="today">
@@ -207,12 +276,41 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Set the basis · Play 2</div><h1 class="play-title">Run a DPIA &amp; map the <em>processors</em></h1><p class="play-what">Screen each data operation for its risks, and map every controller and processor before tooling is locked in.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Any new data operation, instrument or cohort design begins.</li><li>A processor (assessment platform, storage, transcription) is about to be chosen.</li><li>The risk profile changes (a new sponsored cohort, a mini-360, a class-B engagement).</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li><strong>Confirm the controller analysis.</strong> PowerVox Ltd determines purposes and means for both classes. <span class="chip src">⚑ confirm with reviewer</span></li>
-      <li><strong>Screen the DPIA triggers:</strong> systematic evaluation of individuals (scoring), potential special-category data (class A), vulnerable context (workplace power dynamics, sponsored cohorts).</li>
-      <li><strong>List the principal risks</strong> (carried into the per-play "where we are today"): re-identification in a small cohort, mini-360 candour about a named manager, recordings as high-sensitivity artefacts, pattern re-identification by sector insiders, commercial pressure on research framing.</li>
-      <li><strong>Hold tooling open.</strong> Leave the assessment platform unchosen until the reviewer has seen the processor map — deliberately. <span class="chip sys">⚙ platform, storage, transcription</span></li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">runs the DPIA</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span><span class="cc-n">The Operator</span><span class="cc-r">tooling &amp; processors ⚑</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">sees the map first ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Confirm controller</div>
+        <div class="sl-stage">2 · Screen triggers</div>
+        <div class="sl-stage">3 · List the risks</div>
+        <div class="sl-stage">4 · Hold tooling open</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I confirm the controller.</strong>PowerVox Ltd determines purposes and means for both classes, confirmed with the reviewer.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I screen the triggers.</strong>Scoring of individuals, possible special-category data, vulnerable workplace context.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I list the risks.</strong>Re-identification, mini-360 candour, recordings, sector re-identification, commercial pressure on framing.</div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span class="sa-n">Operator</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I hold the tooling.</strong>Platform, storage and transcription stay unchosen until the map is approved.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I see the processor map.</strong>Before any tool is committed; the DPIA and the map are one review.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Treat the DPIA as <strong>required</strong>, not optional, and complete the processor map as part of the same review so one legal check covers both products' foundations.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Controller analysis to confirm with the reviewer. <span class="chip src">⚑</span></li><li>The controller/processor map once tooling is chosen — processors not yet selected. <span class="chip src">⚑</span></li></ul></div>
     <div class="today">
@@ -226,7 +324,35 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Set the basis · Play 3</div><h1 class="play-title">Appoint &amp; brief the <em>reviewer</em><span class="play-phase">the gate</span></h1><p class="play-what">Bring in the independent legal reviewer whose sign-off is the launch gate, and put the nine open questions to them.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>The architecture is drafted and ready for independent check — now (it is launch-blocking).</li><li>Before the first beta invitation and before the second Loop client.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it · the nine questions to put</div><ol>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">appoints &amp; briefs</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">sign-off is the gate ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Appoint one reviewer</div>
+        <div class="sl-stage">2 · Brief with this playbook</div>
+        <div class="sl-stage">3 · Put the nine questions</div>
+        <div class="sl-stage">4 · Sign-off</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I appoint one reviewer.</strong>One reviewer for the whole architecture; one review buys both products their foundations.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I brief with this playbook.</strong>The playbook is the artefact, the nine questions the agenda.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I put the nine questions.</strong>Set out below, from the special-category analysis to the participant text.</div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I sign off the architecture.</strong>The sign-off is the launch gate; nothing opens until it passes.</div>
+      </div></div>
+    </div>
+    <div class="ps"><div class="ps-h">The nine questions to put</div><ol>
       <li>Special-category analysis of the burnout-risk and wellbeing items; the Article 9 condition and wording if engaged.</li>
       <li>The Article 6 architecture: consent-led vs legitimate-interests-led with consent as the Art. 9 condition.</li>
       <li>The layered-consent design, withdrawal carve-out, sponsored-cohort voluntariness, and the mini-360 respondent route.</li>
@@ -251,13 +377,45 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Bring data in · Play 4</div><h1 class="play-title">Design &amp; operate layered <em>consent</em><span class="play-phase">class A</span></h1><p class="play-what">Run the seven consent layers so each is granted and withdrawn on its own, and capture the baseline and qualitative layers only under the consent actually given.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A participant is invited to the beta.</li><li>A qualitative layer (free-text, recording, mini-360) is added to a cohort.</li><li>The consent texts need drafting or revising.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it · one ask at a time</div><ol>
-      <li>Issue the participant information <strong>before any capture</strong>.</li>
-      <li>Take consent layer by layer, each independently grantable and withdrawable: <strong>(a)</strong> participation &amp; baseline · <strong>(b)</strong> research use of pseudonymised responses · <strong>(c)</strong> recording of debriefs · <strong>(d)</strong> the free-text reflective item · <strong>(e)</strong> the mini-360, with the respondent's own consent route · <strong>(f)</strong> anonymised case-study use · <strong>(g)</strong> onward sharing with a named academic partner.</li>
-      <li>Capture the baseline (VQ Assessment + companion questionnaire) only under (a)/(b).</li>
-      <li>Run each qualitative layer only where its specific layer is granted.</li>
-      <li><strong>Never bundle the opt-in moment with the commercial moment.</strong></li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">designs &amp; operates consent</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span><span class="cc-n">The Participant</span><span class="cc-r">grants each layer</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;">360</span><span><span class="cc-n">360 respondent</span><span class="cc-r">own consent route</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--gold-deep)"></b>Outside party · acts for themselves</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Issue the information</div>
+        <div class="sl-stage">2 · Take consent, layer by layer</div>
+        <div class="sl-stage">3 · Capture the baseline</div>
+        <div class="sl-stage">4 · Run the qualitative layers</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I issue the participant information.</strong>Before any capture.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I take consent layer by layer.</strong>Seven layers (a&ndash;g below), each granted and withdrawn on its own.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I capture the baseline.</strong>VQ Assessment + companion questionnaire, only under (a)/(b).</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I run each qualitative layer only where its layer is granted.</strong></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span class="sa-n">Participant</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I grant or refuse each layer.</strong>Each stands alone; I can withdraw any one later (<a href="#" onclick="showPlay('p12');return false;" style="color:var(--gold-deep);font-weight:700;text-decoration:none;">Play 12</a>).</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I give the layer that unlocks it.</strong>Free-text, recording or mini-360 happen only on my specific consent.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;">360</span><span class="sa-n">360 respondent</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I consent on my own route.</strong>The mini-360 respondent consents separately from the participant.</div>
+      </div></div>
+    </div>
+    <div class="ps"><div class="ps-h">The seven consent layers</div><ul>
+      <li><strong>(a)</strong> participation &amp; baseline · <strong>(b)</strong> research use of pseudonymised responses · <strong>(c)</strong> recording of debriefs · <strong>(d)</strong> the free-text reflective item · <strong>(e)</strong> the mini-360, with the respondent's own consent route · <strong>(f)</strong> anonymised case-study use · <strong>(g)</strong> onward sharing with a named academic partner.</li>
+    </ul></div>
+    <div class="gate-call"><div class="g-t">The hard rule</div><p><strong>Never bundle the opt-in moment with the commercial moment.</strong></p></div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>The layered design survives whichever Article 6 label the reviewer settles — only the label moves. Draft the seven consent texts on this architecture <strong>once the label is set</strong>, not before.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The consent texts, drafted after the reviewer settles the Article 6 label. <span class="chip src">⚑</span></li><li>The mini-360 third-party respondent route. <span class="chip src">⚑ reviewer</span></li></ul></div>
     <div class="today">
@@ -271,12 +429,41 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Bring data in · Play 5</div><h1 class="play-title">Handle a sponsored <em>cohort</em></h1><p class="play-what">Handle consent where an employer sponsors a cohort and staff may feel participation is expected — the one place the power-imbalance objection revives.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A sponsoring organisation funds a cohort.</li><li>Any cohort where participants are not self-funding.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Add <strong>explicit voluntariness language</strong> to the consent for that cohort.</li>
-      <li>Add a <strong>no-detriment assurance</strong> — participation, or not, carries no consequence.</li>
-      <li>Keep the sponsor out of individual results.</li>
-      <li>Confirm the freely-given test is genuinely met for that cohort before capture.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">sets the cohort wording</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#C8791E;background-image:url('images/the-sponsor-alternative.png');"></span><span><span class="cc-n">The Sponsor</span><span class="cc-r">funds, sees no results</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span><span class="cc-n">The Participant</span><span class="cc-r">free to decline</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span><span><b style="background:var(--gold-deep)"></b>Outside party</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Voluntariness language</div>
+        <div class="sl-stage">2 · No-detriment assurance</div>
+        <div class="sl-stage">3 · Sponsor out of results</div>
+        <div class="sl-stage">4 · Confirm freely-given</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I add explicit voluntariness language</strong> to that cohort's consent.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I add a no-detriment assurance.</strong>Taking part, or not, carries no consequence.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I keep the sponsor out of individual results.</strong></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I confirm the freely-given test is met</strong> before capture. Here the power-imbalance objection is real, not assumed.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#C8791E;background-image:url('images/the-sponsor-alternative.png');"></span><span class="sa-n">Sponsor</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I fund the cohort but never see individual results.</strong>Aggregate only.</div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span class="sa-n">Participant</span></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I can decline freely,</strong> with no consequence either way.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>For self-funding participants the power-imbalance objection is weak; for sponsored cohorts it is real. Do <strong>not</strong> rely on plain consent here — the voluntariness and no-detriment wording is the mitigation.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The voluntariness / no-detriment wording. <span class="chip src">⚑ reviewer</span></li></ul></div>
     <div class="today">
@@ -290,13 +477,41 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Bring data in · Play 6</div><h1 class="play-title">Consent &amp; record a discovery <em>call</em><span class="play-phase">class B</span></h1><p class="play-what">Consent and record a Loop discovery call, where the client staff on the call are data subjects and the organisation is not.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Before any Loop discovery call starts.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Inform and consent <strong>everyone on the call</strong> to recording before it begins.</li>
-      <li>Treat client staff as data subjects; the client organisation is not a data subject.</li>
-      <li>Hold the transcript as engagement working material.</li>
-      <li>Pseudonymise client-staff personal data in working artefacts where retention is needed.</li>
-      <li>Issue the engagement privacy notice. <span class="chip art">→ engagement privacy notice</span></li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--red);background-image:url('images/rachel-new.png');"></span><span><span class="cc-n">Rachel</span><span class="cc-r">runs the Loop call</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;">Cs</span><span><span class="cc-n">Client staff</span><span class="cc-r">the data subjects</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span><span class="cc-n">The Operator</span><span class="cc-r">transcript &amp; audio</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span><span><b style="background:var(--gold-deep)"></b>Outside party</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Consent to recording</div>
+        <div class="sl-stage">2 · Who is a data subject</div>
+        <div class="sl-stage">3 · Hold the transcript</div>
+        <div class="sl-stage">4 · Issue the privacy notice</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--red);background-image:url('images/rachel-new.png');"></span><span class="sa-n">Rachel</span></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I consent everyone on the call before it begins.</strong>Non-negotiable, and before recording starts.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I treat client staff as data subjects;</strong> the organisation is not.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I issue the engagement privacy notice.</strong> <span class="chip art">→ engagement privacy notice</span></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;">Cs</span><span class="sa-n">Client staff</span></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I consent to being recorded,</strong> or we don't record.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span class="sa-n">Operator</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I hold the transcript as working material</strong> and pseudonymise where retained. Audio deleted within 90 days (<a href="#" onclick="showPlay('p13');return false;" style="color:var(--blue);font-weight:700;text-decoration:none;">Play 13</a>).</div>
+        <div class="sl-cell blank"></div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Recording consent is taken <strong>before</strong> the call and is non-negotiable. The value is the transcript; the risk is the audio (deleted within 90 days — Play 13).</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Interacts with the contribution clause (Play 14) and the anonymisation threshold (Play 10).</li></ul></div>
     <div class="today">
@@ -310,11 +525,31 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Bring data in · Play 7</div><h1 class="play-title">Run a quarterly <em>re-measure</em></h1><p class="play-what">Re-take the diagnostic with Greenhouse members each quarter — the layer that turns a one-shot snapshot into longitudinal data.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Each quarter, for active Greenhouse members (~35 in year one).</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Schedule the re-measure against the Greenhouse calendar under the existing consent layers.</li>
-      <li>Capture under the same architecture as the baseline.</li>
-      <li>Feed the pseudonymised longitudinal dataset.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">runs the re-measure</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;background-image:url('images/the-alumna-the-greenhouse.png');"></span><span><span class="cc-n">Greenhouse member</span><span class="cc-r">retakes each quarter</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--gold-deep)"></b>Outside party</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(3,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Schedule against the calendar</div>
+        <div class="sl-stage">2 · Capture under the same rules</div>
+        <div class="sl-stage">3 · Feed the longitudinal set</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I schedule against the Greenhouse calendar,</strong> under the consent already given.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I capture under the same architecture</strong> as the baseline.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I feed the pseudonymised longitudinal dataset.</strong></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;background-image:url('images/the-alumna-the-greenhouse.png');"></span><span class="sa-n">Member</span></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I retake the diagnostic each quarter.</strong>~35 of us in year one.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>The re-measure is the longitudinal asset — protect the cadence so the held cohort produces change-over-time data, not repeated snapshots.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>None material; runs under the layered consent already given.</li></ul></div>
     <div class="today">
@@ -329,11 +564,31 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 8</div><h1 class="play-title">Pseudonymise &amp; <em>secure</em></h1><p class="play-what">Split identifiers from responses within 30 days so the analysis never needs names — the core mitigation for both small-cohort re-identification and withdrawal.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Within 30 days of any class-A capture.</li><li>On class-B working artefacts wherever they are retained.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Pseudonymise within 30 days of capture; hold identifiers separately.</li>
-      <li>Access-control the research store.</li>
-      <li>Automate the n-counts so the gates announce themselves: <strong>n=20</strong> hygiene · <strong>n=60</strong> mid-beta · <strong>~n=100</strong> close.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">sets the rule &amp; the gates</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span><span class="cc-n">The Operator</span><span class="cc-r">stands up the store</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(3,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Pseudonymise in 30 days</div>
+        <div class="sl-stage">2 · Access-control the store</div>
+        <div class="sl-stage">3 · Automate the n-counts</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I pseudonymise within 30 days</strong> of capture and hold identifiers separately.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I access-control the research store.</strong></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I automate the n-counts.</strong>n=20 hygiene · n=60 mid-beta · ~n=100 close.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span class="sa-n">Operator</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I stand up the store and controls.</strong>Tooling held until the reviewer sees the map (<a href="#" onclick="showPlay('p2');return false;" style="color:var(--green);font-weight:700;text-decoration:none;">Play 2</a>).</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I wire the counts in</strong> so the gates announce themselves.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Do this <strong>on schedule, not when convenient</strong>. Pseudonymisation is what makes the withdrawal carve-out (Play 12) defensible and the small-cohort risk manageable.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Retention periods that govern the secured data are confirmed in Play 13. <span class="chip src">⚑</span></li></ul></div>
     <div class="today">
@@ -347,12 +602,34 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 9</div><h1 class="play-title">Run the cave-month <em>analysis</em></h1><p class="play-what">Analyse the pseudonymised dataset in the protected cave-month, against criteria set before the data arrived. Shared with research integrity.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Annually, in the protected cave-month.</li><li>At the n=60 mid-beta review.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Analyse only pseudonymised data.</li>
-      <li>Against the pre-set criteria — set before the data arrived.</li>
-      <li>Apply the reliability gate: Cronbach's α ≥ 0.70 per dimension.</li>
-      <li>Hannah holds the thresholds; they never move on commercial grounds.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">provides the safe dataset</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--green);">H</span><span><span class="cc-n">Hannah</span><span class="cc-r">holds the criteria ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Pseudonymised data only</div>
+        <div class="sl-stage">2 · Pre-set criteria</div>
+        <div class="sl-stage">3 · Reliability gate</div>
+        <div class="sl-stage">4 · Thresholds hold</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I provide the safe, pseudonymised dataset.</strong>The IG side of the wall.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--green);">H</span><span class="sa-n">Hannah</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I set the criteria before the data arrives.</strong></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I apply the reliability gate.</strong>Cronbach's &alpha; &ge; 0.70 per dimension.</div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I hold the thresholds;</strong> they never move on commercial grounds.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>This play sits across two domains: IG provides the safe, pseudonymised dataset; research integrity (the <a href="the-observatory.html" style="color:var(--blue);font-weight:700;text-decoration:none;">Observatory</a>) provides the locked criteria. Keep the two separate so neither bends to the other.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>Nothing here directly — the criteria-locking is the launch gate (Play 15).</li></ul></div>
     <div class="today">
@@ -366,12 +643,34 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 10</div><h1 class="play-title">Abstract a class-B <em>pattern</em></h1><p class="play-what">Abstract a Loop engagement into organisation-unidentifiable patterns for the library — the anonymisation threshold is the whole game.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>At each Loop engagement close, before anything enters the library.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Abstract to organisation-level form: sector, shape, lifecycle, governance archetypes, common gaps.</li>
-      <li>Remove organisation identity to <strong>commercial-confidentiality standard as well as data-protection standard</strong>.</li>
-      <li>Test against the ICO standard — not re-identifiable to an organisation by a sector insider.</li>
-      <li>Only the abstracted pattern enters the library; raw transcripts and documents are handled per the contract (Play 13).</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--red);background-image:url('images/rachel-new.png');"></span><span><span class="cc-n">Rachel</span><span class="cc-r">abstracts the pattern</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">confirms the threshold ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Abstract to org-level</div>
+        <div class="sl-stage">2 · Remove identity</div>
+        <div class="sl-stage">3 · Test the threshold</div>
+        <div class="sl-stage">4 · Only the pattern enters</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--red);background-image:url('images/rachel-new.png');"></span><span class="sa-n">Rachel</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I abstract to organisation-level form.</strong>Sector, shape, lifecycle, governance archetypes, common gaps.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I remove identity</strong> to commercial-confidentiality and data-protection standard.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I test against the ICO standard.</strong>Not re-identifiable by a sector insider.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>Only the abstracted pattern enters the library.</strong>Raw material handled per contract (<a href="#" onclick="showPlay('p13');return false;" style="color:var(--green);font-weight:700;text-decoration:none;">Play 13</a>).</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I confirm the threshold before the second Loop client.</strong>The anonymisation threshold is the whole game.</div>
+        <div class="sl-cell blank"></div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Once properly abstracted the pattern is outside personal-data scope — organisations have no UK GDPR rights. The threshold is everything, so have the reviewer confirm it before the second Loop client.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The anonymisation threshold against the ICO standard. <span class="chip src">⚑ reviewer</span></li></ul></div>
     <div class="today">
@@ -385,12 +684,41 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Keep it safe &amp; use it · Play 11</div><h1 class="play-title">Use &amp; <em>publish</em></h1><p class="play-what">The onward uses — anonymised case studies, sector white papers, and the dataset for the academic partner — each behind its own rule.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A case study is wanted from a participant's experience.</li><li>A sector white paper is being drafted.</li><li>The academic partner is ready to receive the dataset.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Case studies only under <strong>specific consent</strong> (layer f); target 6–10, anonymised.</li>
-      <li>White papers only from <strong>aggregated patterns</strong>, never a single identifiable engagement.</li>
-      <li>Share the dataset with the named academic partner <strong>under agreement</strong> (layer g).</li>
-      <li>Check the international-transfer position if the partner or tooling sits outside the UK.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">controls onward use</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#5B6CB8;background-image:url('images/the-scholar.png');"></span><span><span class="cc-n">Academic partner</span><span class="cc-r">receives under agreement</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">transfer position ⚑</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span><span><b style="background:var(--gold-deep)"></b>Outside party</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Case studies</div>
+        <div class="sl-stage">2 · White papers</div>
+        <div class="sl-stage">3 · Dataset to partner</div>
+        <div class="sl-stage">4 · Transfer check</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I publish case studies only under specific consent</strong> (layer f). 6&ndash;10, anonymised.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I draw white papers from aggregated patterns only.</strong>Never a single identifiable engagement.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I share the dataset under agreement</strong> (layer g).</div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#5B6CB8;background-image:url('images/the-scholar.png');"></span><span class="sa-n">Partner</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I receive the dataset under the named-partner agreement.</strong></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I check the international-transfer position</strong> if the partner or tooling sits outside the UK.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Keep every onward use behind its own consent layer and the aggregation rule. The inbound funnel must never expose a single client or participant.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The international-transfer position. <span class="chip src">⚑ reviewer</span></li></ul></div>
     <div class="today">
@@ -405,12 +733,34 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Standing disciplines · Play 12</div><h1 class="play-title">Handle a <em>withdrawal</em></h1><p class="play-what">Process a participant's withdrawal cleanly, without destabilising the dataset — the known cost of consent as a basis, met by design.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>A participant withdraws any consent layer.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Honour the withdrawal <strong>prospectively</strong>.</li>
-      <li>Data already incorporated into analysis is retained in pseudonymised form — the standard research carve-out.</li>
-      <li>Withdraw the <strong>specific layer</strong>, not necessarily all layers.</li>
-      <li>Apply the carve-out wording confirmed with the reviewer.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span><span class="cc-n">The Participant</span><span class="cc-r">withdraws a layer</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">honours it by design</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--gold-deep)"></b>Outside party</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Honour prospectively</div>
+        <div class="sl-stage">2 · Retain analysed data</div>
+        <div class="sl-stage">3 · The specific layer</div>
+        <div class="sl-stage">4 · Apply the carve-out</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#2E6F4A;background-image:url('images/curious-first-timer-blackegg.png');"></span><span class="sa-n">Participant</span></div>
+        <div class="sl-cell overlay"><span class="ct">Outside party</span><strong>I withdraw a layer, at any time.</strong></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I honour it prospectively.</strong></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>Data already in analysis stays pseudonymised</strong> &mdash; the standard research carve-out.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I withdraw the specific layer,</strong> not necessarily all.</div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I apply the carve-out wording</strong> confirmed with the reviewer. No promise of erasing already-analysed data.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>Pseudonymisation within 30 days (Play 8) plus the prospective carve-out is the mitigation. <strong>Do not promise full erasure of already-analysed data</strong> — promise what the carve-out can honour.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>The carve-out wording. <span class="chip src">⚑ reviewer</span></li></ul></div>
     <div class="today">
@@ -424,7 +774,14 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Standing disciplines · Play 13</div><h1 class="play-title">Run retention &amp; <em>deletion</em></h1><p class="play-what">Apply the retention schedule across both classes — the audio is always the sensitive artefact, the text the value.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Continuously; at each deletion point the schedule sets.</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it · the schedule</div><ul>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">confirms the periods ⚑</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--gold-deep);background-image:url('images/the-operator.png');"></span><span><span class="cc-n">The Operator</span><span class="cc-r">automates each deletion</span></span></div>
+      </div>
+      <p style="font-size:11.5px;color:var(--text-muted);margin-top:10px;line-height:1.5;">This play stays a schedule rather than a swimlane: it is one standing rule-set, not a sequence of moves. Scott confirms the open periods with the reviewer; the Operator wires each deletion point so it fires by rule, not by memory.</p>
+    </div>
+    <div class="ps"><div class="ps-h">The retention schedule</div><ul>
       <li><strong>A · contact &amp; consent records:</strong> programme + 6 years. <span class="chip src">⚑ confirm</span></li>
       <li><strong>A · raw assessment responses:</strong> pseudonymise within 30 days.</li>
       <li><strong>A · pseudonymised research dataset:</strong> 10 years. <span class="chip src">⚑ confirm</span></li>
@@ -447,7 +804,42 @@
     <span class="backhome" onclick="showHome()">← Home</span>
     <div class="play-head"><div class="play-kick">Standing disciplines · Play 14</div><h1 class="play-title">Contribution clause &amp; <em>IP</em></h1><p class="play-what">Carry the uniform pattern-contribution clause in every Loop contract, and hold the IP positions across both products.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>Every Loop engagement contract.</li><li>Whenever IP is asserted externally (a claim, a publication, a trade-mark).</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it · the contribution clause</div><p>Every Loop contract carries one uniform clause: the client licenses PowerVox to abstract anonymised, organisation-unidentifiable patterns into the library; PowerVox warrants the anonymisation standard and that no client document or identifiable material enters the library; the client's own model remains the client's.</p></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">drafts the clause ⚑</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--red);background-image:url('images/rachel-new.png');"></span><span><span class="cc-n">Rachel</span><span class="cc-r">carries it in contracts</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">holds the IP</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · who does what, step by step</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Draft the clause</div>
+        <div class="sl-stage">2 · Carry it everywhere</div>
+        <div class="sl-stage">3 · Hold the IP</div>
+        <div class="sl-stage">4 · Verify trade-marks</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I draft the uniform clause</strong> with Scott.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I confirm the trade-mark registrations</strong> before we rely on the marks.</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--red);background-image:url('images/rachel-new.png');"></span><span class="sa-n">Rachel</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I carry the uniform clause in every Loop contract</strong> and warrant the standard: no identifiable material enters the library; the client's model stays theirs.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I hold the IP positions</strong> across both products (set out below).</div>
+        <div class="sl-cell blank"></div>
+      </div></div>
+    </div>
+    <div class="ps"><div class="ps-h">The contribution clause</div><p>Every Loop contract carries one uniform clause: the client licenses PowerVox to abstract anonymised, organisation-unidentifiable patterns into the library; PowerVox warrants the anonymisation standard and that no client document or identifiable material enters the library; the client's own model remains the client's.</p></div>
     <div class="ps"><div class="ps-h">The IP positions</div><ul>
       <li><strong>The instrument</strong> — VQ Assessment, Black Egg, companion questionnaire, scoring logic: PowerVox Ltd's.</li>
       <li><strong>Participant responses</strong> — stay theirs; PowerVox takes a research and case-study licence.</li>
@@ -468,11 +860,48 @@
     <div class="play-head"><div class="play-kick">Standing disciplines · Play 15</div><h1 class="play-title">Open the launch <em>gate</em><span class="play-phase">launch-blocking</span></h1><p class="play-what">The exit criteria that must all be met before the beta opens — and the class-B equivalent before the second Loop client.</p></div>
     <div class="gate-call"><div class="g-t">Exit criteria · all four, or the gate stays shut</div><p><strong>1.</strong> The keepers have resolved the ⚑ items they own. &nbsp; <strong>2.</strong> The external reviewer has signed off the architecture. &nbsp; <strong>3.</strong> The falsification criteria are locked (Hannah). &nbsp; <strong>4.</strong> The consent texts are final.</p></div>
     <div class="ps"><div class="ps-h">Run this play when</div><ul><li>At the decision point before the first beta invitation.</li><li>Before the second Loop client (class B equivalent).</li></ul></div>
-    <div class="ps"><div class="ps-h">How to run it</div><ol>
-      <li>Check all four exit criteria are genuinely met.</li>
-      <li>For class B, confirm the same review has signed off the anonymisation standard and the contribution clause.</li>
-      <li>Only then issue the first invitation / begin abstraction.</li>
-    </ol></div>
+    <div class="ps"><div class="ps-h">The cast on this play</div>
+      <div class="cast-row">
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--gold-deep);">K</span><span><span class="cc-n">The keepers</span><span class="cc-r">resolve their ⚑ items</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:#6b7280;">&#9878;</span><span><span class="cc-n">The Reviewer</span><span class="cc-r">signs off ⚑</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--green);">H</span><span><span class="cc-n">Hannah</span><span class="cc-r">locks the criteria ⚑</span></span></div>
+        <div class="cast-card"><span class="cc-av" style="--cac:var(--blue);background-image:url('images/scott1.png');"></span><span><span class="cc-n">Scott</span><span class="cc-r">opens the gate</span></span></div>
+      </div>
+    </div>
+    <div class="ps"><div class="ps-h">How to run it · the four criteria, and who clears each</div>
+      <div class="sl-legend"><span><b style="background:var(--green)"></b>Foundation · every time, the same way</span><span><b style="background:var(--red)"></b>Gate · a checkpoint that must pass</span></div>
+      <div class="sl-wrap"><div class="sl-grid" style="grid-template-columns:132px repeat(4,1fr);">
+        <div class="sl-stage blank"></div>
+        <div class="sl-stage">1 · Keepers' items resolved</div>
+        <div class="sl-stage">2 · Reviewer sign-off</div>
+        <div class="sl-stage">3 · Criteria locked</div>
+        <div class="sl-stage">4 · Consent texts final</div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--gold-deep);">K</span><span class="sa-n">Keepers</span></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>We resolve the ⚑ items we each own.</strong></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:#6b7280;">&#9878;</span><span class="sa-n">Reviewer</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I sign off the architecture.</strong>For class B, the anonymisation standard and the contribution clause too.</div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--green);">H</span><span class="sa-n">Hannah</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell gate"><span class="ct">Gate</span><strong>I lock the falsification criteria.</strong></div>
+        <div class="sl-cell blank"></div>
+
+        <div class="sl-actor"><span class="sa-av" style="--sac:var(--blue);background-image:url('images/scott1.png');"></span><span class="sa-n">Scott</span></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell blank"></div>
+        <div class="sl-cell found"><span class="ct">Foundation</span><strong>I finalise the consent texts</strong> &mdash; and only when all four hold do I issue the first invitation or begin abstraction.</div>
+      </div></div>
+    </div>
     <div class="ps rec"><div class="ps-h">Recommendation</div><p>This play is the gate, not its satisfaction. It stays shut until every criterion is met — <strong>no exceptions on commercial grounds</strong>. One review buys both products their foundations.</p></div>
     <div class="ps open"><div class="ps-h">Open decisions inside this play</div><ul><li>All four criteria are currently open — reviewer to appoint and sign off, criteria to lock, ⚑ items to resolve, texts to finalise.</li></ul></div>
     <div class="today">
@@ -486,14 +915,31 @@
 
 <script>
   var groups = ['ref','basis','bring','safe','stand'];
+  var currentProd = 'both';
+  function prodMatch(pr){ return currentProd==='both' || pr==='both' || pr===currentProd; }
+  function applyProdFilter(){
+    document.querySelectorAll('.pb-play').forEach(function(b){
+      var pr = b.getAttribute('data-prod') || 'both';
+      b.classList.toggle('dim', !prodMatch(pr));
+    });
+  }
+  function setProduct(p){
+    currentProd = p;
+    document.querySelectorAll('.pk').forEach(function(k){ k.classList.toggle('on', k.getAttribute('data-prod')===p); });
+    applyProdFilter();
+  }
   function clearActivePlays(){ document.querySelectorAll('.pb-play').forEach(b=>b.classList.remove('on')); }
   function hideAllPanels(){ document.querySelectorAll('.play, .play-home').forEach(p=>p.classList.remove('on')); }
   function showTab(g){
     document.querySelectorAll('.pb-tab').forEach(t=>t.classList.toggle('on', t.getAttribute('data-g')===g));
     document.querySelectorAll('.pb-play').forEach(b=>b.classList.toggle('show', b.getAttribute('data-g')===g));
-    // open the first play in the group
-    var first = document.querySelector('.pb-play[data-g="'+g+'"]');
-    if(first){ var id = first.getAttribute('onclick').match(/showPlay\('([^']+)'\)/)[1]; showPlay(id); }
+    applyProdFilter();
+    // open the first play in the group that matches the current product
+    var btns = document.querySelectorAll('.pb-play[data-g="'+g+'"]');
+    var target = null;
+    btns.forEach(function(b){ if(!target && prodMatch(b.getAttribute('data-prod')||'both')) target = b; });
+    if(!target && btns.length) target = btns[0];
+    if(target){ var id = target.getAttribute('onclick').match(/showPlay\('([^']+)'\)/)[1]; showPlay(id); }
   }
   function showPlay(id){
     hideAllPanels();
